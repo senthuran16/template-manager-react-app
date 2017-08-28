@@ -52,7 +52,8 @@ class RuleCollection extends React.Component {
 
     // Button Click
     loadRuleTemplates() {
-        console.log(this.state.name+" Clicked");
+        console.log(this.state.name + " Clicked");
+        greet()
     }
 
     // Renders a RuleCollection
@@ -72,8 +73,8 @@ class RuleCollection extends React.Component {
         return (
             <div>
                 <button onClick={(e) => this.loadRuleTemplates(e)}>
-                <h3>{this.state.name}</h3>
-                <p>{this.state.description}</p>
+                    <h3>{this.state.name}</h3>
+                    <p>{this.state.description}</p>
                 </button>
             </div>
         );
@@ -181,21 +182,235 @@ class Property extends React.Component {
 }
 
 // Simple Button Click test /////////////////////////////////
-class Hello extends React.Component{
-    render(){
+class Hello extends React.Component {
+    render() {
         return (
             <h2>
-                <button onClick={(e) => this.handleClick(e)}>{this.props.name}</button></h2>
+                <button onClick={(e) => this.handleClick(e)}>{this.props.name}</button>
+            </h2>
         );
     }
 
-    handleClick(){
+    handleClick() {
         console.log("Test Click");
-        ReactDOM.render(<Hello name="TestClicked" />, document.getElementById("root"));
+        ReactDOM.render(<Hello name="TestClicked"/>, document.getElementById("root"));
     }
 }
 
-ReactDOM.render(<Hello name="Test" />, document.getElementById("root"));
+function show() {
+    var myObj = {
+        ruleCollections: [
+            {
+                "name": "SensorDataAnalysis",
+                "description": "Domain for sensor data analysis",
+                "ruleTemplates": [
+                    {
+                        "name": "SensorAnalytics",
+                        "type": "app",
+                        "instanceCount": "many",
+                        "script": "<script> (optional)",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "templates": [
+                            {
+                                "type": "siddhiApp",
+                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                            },
+                            {
+                                "type": "siddhiApp",
+                                "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
+                            }
+                        ],
+                        "properties": {
+                            "inStream1": {
+                                "description": "Input Stream",
+                                "defaultValue": "myInputStream1",
+                                "type": "options",
+                                "options": ["myInputStream1", "myInputStream2"]
+                            },
+                            "property1": {
+                                "description": "Unique Identifier for the sensor",
+                                "defaultValue": "sensorName",
+                                "type": "options",
+                                "options": ["sensorID", "sensorName"]
+                            },
+                            "property2": {
+                                "description": "Type of value, the sensor measures",
+                                "defaultValue": "sensorValue",
+                                "type": "String"
+                            },
+                            "outStream1": {
+                                "description": "Output Stream 1",
+                                "defaultValue": "myOutputStream1",
+                                "type": "options",
+                                "options": ["myOutputStream1", "myOutputStream2"]
+                            },
+                            "outStream2": {
+                                "description": "Output Stream 2",
+                                "defaultValue": "myOutputStream2",
+                                "type": "options",
+                                "options": ["myOutputStream1", "myOutputStream2"]
+                            }
+                        }
+                    },
+                    {
+                        "name": "SensorLoggings",
+                        "type": "<app>",
+                        "instanceCount": "many",
+                        "script": "<script> (optional)",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "templates": [
+                            {
+                                "type": "siddhiApp",
+                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                            }
+                        ],
+                        "properties": {
+                            "inStream1": {
+                                "description": "Input Stream",
+                                "defaultValue": "myInputStream1",
+                                "type": "options",
+                                "options": ["myInputStream1", "myInputStream2"]
+                            },
+                            "property1": {
+                                "description": "Unique Identifier for the sensor",
+                                "defaultValue": "sensorName",
+                                "type": "options",
+                                "options": ["sensorID", "sensorName"]
+                            },
+                            "outStream1": {
+                                "description": "Output Stream 1",
+                                "defaultValue": "myOutputStream1",
+                                "type": "options",
+                                "options": ["myOutputStream1", "myOutputStream2"]
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "SensorDataAnalysis2",
+                "description": "Domain for sensor data analysis",
+                "ruleTemplates": [
+                    {
+                        "name": "SensorAnalytics",
+                        "type": "app",
+                        "instanceCount": "many",
+                        "script": "<script> (optional)",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "templates": [
+                            {
+                                "type": "siddhiApp",
+                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                            },
+                            {
+                                "type": "siddhiApp",
+                                "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
+                            }
+                        ],
+                        "properties": {
+                            "inStream1": {
+                                "description": "Input Stream",
+                                "defaultValue": "myInputStream1",
+                                "type": "options",
+                                "options": ["myInputStream1", "myInputStream2"]
+                            },
+                            "property1": {
+                                "description": "Unique Identifier for the sensor",
+                                "defaultValue": "sensorName",
+                                "type": "options",
+                                "options": ["sensorID", "sensorName"]
+                            },
+                            "property2": {
+                                "description": "Type of value, the sensor measures",
+                                "defaultValue": "sensorValue",
+                                "type": "String"
+                            },
+                            "outStream1": {
+                                "description": "Output Stream 1",
+                                "defaultValue": "myOutputStream1",
+                                "type": "options",
+                                "options": ["myOutputStream1", "myOutputStream2"]
+                            },
+                            "outStream2": {
+                                "description": "Output Stream 2",
+                                "defaultValue": "myOutputStream2",
+                                "type": "options",
+                                "options": ["myOutputStream1", "myOutputStream2"]
+                            }
+                        }
+                    },
+                    {
+                        "name": "SensorLoggings",
+                        "type": "<app>",
+                        "instanceCount": "many",
+                        "script": "<script> (optional)",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "templates": [
+                            {
+                                "type": "siddhiApp",
+                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                            }
+                        ],
+                        "properties": {
+                            "inStream1": {
+                                "description": "Input Stream",
+                                "defaultValue": "myInputStream1",
+                                "type": "options",
+                                "options": ["myInputStream1", "myInputStream2"]
+                            },
+                            "property1": {
+                                "description": "Unique Identifier for the sensor",
+                                "defaultValue": "sensorName",
+                                "type": "options",
+                                "options": ["sensorID", "sensorName"]
+                            },
+                            "outStream1": {
+                                "description": "Output Stream 1",
+                                "defaultValue": "myOutputStream1",
+                                "type": "options",
+                                "options": ["myOutputStream1", "myOutputStream2"]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    //ReactDOM.render(<Hello name={myObj.myArray[0].name}/>, document.getElementById("root"));
+    ReactDOM.render(<TemplateManager ruleCollections={myObj.ruleCollections}/>, document.getElementById("root"));
+}
+
+// For testing
+function greet(){
+    console.log("Greet")
+}
+
+
+function load(elementTypeToLoad, parent){
+    if(elementTypeToLoad === "ruleCollections"){
+        // Parent contains array of RuleCollections
+        ReactDOM.render(<TemplateManager ruleCollections={parent.ruleCollections}/>, document.getElementById("root"));
+    }else if(elementTypeToLoad === "ruleTemplates"){
+        // Parent is the RuleCollection
+        ReactDOM.render(<TemplateManager ruleCollections={parent.ruleTemplates}/>, document.getElementById("root"));
+    }else if(elementTypeToLoad === "ruleTemplate"){
+
+    }
+}
+
+function loadRuleCollections(){
+
+}
+
+function loadRuleTemplates(){
+
+}
+
+function loadRuleTemplate(){
+
+}
+
+show();
 //////////////////////////////////////////////////////////////
 
 
@@ -378,5 +593,4 @@ ReactDOM.render(<Hello name="Test" />, document.getElementById("root"));
 //             }
 //         ]}
 //     />, document.getElementById("root")
-// )
-// ;
+// );
