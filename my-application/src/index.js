@@ -180,6 +180,7 @@ class Property extends React.Component {
     }
 }
 
+// Simple Button Click test /////////////////////////////////
 class Hello extends React.Component{
     render(){
         return (
@@ -195,6 +196,7 @@ class Hello extends React.Component{
 }
 
 ReactDOM.render(<Hello name="Test" />, document.getElementById("root"));
+//////////////////////////////////////////////////////////////
 
 
 // ReactDOM.render(
