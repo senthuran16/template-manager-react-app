@@ -19,6 +19,7 @@ class TemplateManager extends React.Component {
                 name={ruleCollection.name}
                 description={ruleCollection.description}
                 ruleTemplates={ruleCollection.ruleTemplates}
+                viewAs="thumbnail"
             />
         );
 
@@ -46,39 +47,63 @@ class RuleCollection extends React.Component {
         this.state = {
             name: props.name,
             description: props.description,
-            ruleTemplates: props.ruleTemplates
+            ruleTemplates: props.ruleTemplates,
+            // 'thumbnail' when displaying available RuleCollections
+            // 'parent' when displaying available RuleTemplates under this
+            viewAs: props.viewAs
         }
     }
 
     // Button Click
     loadRuleTemplates() {
-        console.log(this.state.name + " Clicked");
+        console.log("Loaded Rule Templates from Rule Collection '" + this.state.name + "'");
         greet()
+        load("ruleTemplates", this, "some") //todo: replace 'some' with proper one
     }
 
     // Renders a RuleCollection
     render() {
-        const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
-            <RuleTemplate
-                key={ruleTemplate.name}
-                name={ruleTemplate.name}
-                type={ruleTemplate.type}
-                instanceCount={ruleTemplate.instanceCount}
-                script={ruleTemplate.script}
-                description={ruleTemplate.description}
-                templates={ruleTemplate.templates}
-                // todo: map it
-            />
-        );
-        return (
-            <div>
-                <button onClick={(e) => this.loadRuleTemplates(e)}>
-                    <h3>{this.state.name}</h3>
-                    <p>{this.state.description}</p>
-                </button>
-            </div>
-        );
+        // View available RuleCollections as Thumbnails
+        if (this.state.viewAs === "thumbnail") {
+            return (
+                <div>
+                    <button onClick={(e) => this.loadRuleTemplates(e)}>
+                        <h3>{this.state.name}</h3>
+                        <p>{this.state.description}</p>
+                    </button>
+                </div>
+            );
+        } else {
+            console.log("RuleCollection view as 'parent'")
+            console.log("State ruleTemplates : ")
+            console.log(this.state.ruleTemplates)
+            // View RuleTemplates, available under this RuleCollection
+            const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
+                <RuleTemplate
+                    key={ruleTemplate.name}
+                    ruleCollectionName={ruleTemplate.ruleCollectionName}
+                    name={ruleTemplate.name}
+                    type={ruleTemplate.type}
+                    instanceCount={ruleTemplate.instanceCount}
+                    script={ruleTemplate.script}
+                    description={ruleTemplate.description}
+                    templates={ruleTemplate.templates}
+                    properties={ruleTemplate.properties}
+                    viewAs="thumbnail"
+                />
+            );
+            console.log("const ruleTemplates : ")
+            console.log(ruleTemplates)
+
+            return (
+                <div>
+                    <h2>Rule Templates</h2>
+                    <div>{ruleTemplates}</div>
+                </div>
+            );
+        } //todo: Continue from here
     }
+
 }
 
 class RuleTemplate extends React.Component {
@@ -99,36 +124,78 @@ class RuleTemplate extends React.Component {
         }
     }
 
+    // Button Click
+    loadRuleTemplateForm() {
+        console.log("Loaded Form for Rule Template '" + this.state.name + "'");
+        greet()
+        load("ruleTemplateForm", this, "some") //todo: replace 'some' with proper one
+    }
+
     render() {
         // View as a form
         if (this.state.viewAs === "form") {
-            const properties = this.state.properties.map((property) =>
+            console.log("view as form")
+            console.log("this.state.properties : ")
+            console.log(this.state.properties)
+
+            // Tricky Foreach key comes here
+
+            // Convert objects, to an objects array
+            var propertiesArray = []
+            for (var propertyKey in this.state.properties) {
+                var propertyKeyString = propertyKey.toString()
+                console.log("A property : ")
+                console.log(this.state.properties[propertyKeyString])
+                // Push as an object,
+                // that has the original object's Key & Value
+                // denoted by new Keys : 'propertyName' & 'propertyObject'
+                propertiesArray.push(
+                    {
+                        propertyName: propertyKey,
+                        propertyObject: this.state.properties[propertyKeyString]
+                    }
+                )
+            }
+
+            console.log("propertiesArray : ")
+            console.log(propertiesArray)
+
+            const properties = propertiesArray.map((property) =>
                 <Property
-                    key={property.toString}
-                    name={property.toString}
-                    description={property.description}
-                    defaultValue={property.defaultValue}
-                    type={property.type}
-                    options={property.options}
+                    key={property.propertyName}
+                    name={property.propertyName}
+                    description={property.propertyObject.description}
+                    defaultValue={property.propertyObject.defaultValue}
+                    type={property.propertyObject.type}
+                    options={property.propertyObject.options}
                 />
             );
+
+
+            console.log("Const properties : ")
+            console.log(properties)
             return (
                 <div>
-                    {properties}
+                    <form>
+                        {properties}
+                    </form>
                 </div>
             );
         } else {
             // View as thumbnail
+            console.log("view as thumbnail")
             return (
                 <div>
-                    <h3>{this.state.name}</h3>
-                    <p>{this.state.description}
-                        <br/>
-                        <hr/>
-                        Type : {this.state.instanceCount}
-                        <br/>
-                        Instance Count : {this.state.instanceCount}
-                    </p>
+                    <button onClick={(e) => this.loadRuleTemplateForm(e)}>
+                        <h3>{this.state.name}</h3>
+                        <p>
+                            {this.state.description}
+                            <br/>
+                            Type : {this.state.instanceCount}
+                            <br/>
+                            Instance Count : {this.state.instanceCount}
+                        </p>
+                    </button>
                 </div>
             );
         }
@@ -169,16 +236,54 @@ class Property extends React.Component {
             htmlSource += "</select>";
         } else {
             // Text Field
-            htmlSource += "<input type=text name=" + property.name + " value=" + property.defaultValue + ">";
+            htmlSource += "<input type=text name=" + property.name + " value=" + property.defaultValue + "/>";
         }
         return (htmlSource);
     }
 
-    render() {
+    renderBackup() {
+        var property = this.state.property;
+        var htmlSource = "";
+        if (property.type === "options") {
+            // Options : List view
+            htmlSource += "<select name=" + property.name + " value=" + property.defaultValue + ">";
+
+            // Each given option
+            for (let option of property.options) {
+                htmlSource += "<option value=" + option + ">" + option + "</option>";
+            }
+
+            htmlSource += "</select>";
+        } else {
+            // Text Field
+            htmlSource += "<input type=text name=" + property.name + " value=" + property.defaultValue + "/>";
+        }
         return (
-            this.returnElement()
+            <div>{htmlSource}</div>
         );
     }
+
+    render() {
+        var htmlSource = "";
+        if (this.state.property.type === "options") {
+            // Options : List view
+            htmlSource += "<select name=" + this.state.property.name + " value=" + this.state.property.defaultValue + ">";
+
+            // Each given option
+            for (let option of this.state.property.options) {
+                htmlSource += "<option value=" + option + ">" + option + "</option>";
+            }
+
+            htmlSource += "</select>";
+        } else {
+            // Text Field
+            htmlSource += "<input type=text name=" + this.state.property.name + " value=" + this.state.property.defaultValue + "/>";
+        }
+        return (
+            <div>{htmlSource}</div>
+        );
+    }
+
 }
 
 // Simple Button Click test /////////////////////////////////
@@ -201,15 +306,15 @@ function show() {
     var myObj = {
         ruleCollections: [
             {
-                "name": "SensorDataAnalysis",
-                "description": "Domain for sensor data analysis",
+                "name": "SensorDataAnalysis1",
+                "description": "Collection for sensor data analysis(1)",
                 "ruleTemplates": [
                     {
-                        "name": "SensorAnalytics",
+                        "name": "SensorAnalytics1",
                         "type": "app",
                         "instanceCount": "many",
                         "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (1)",
                         "templates": [
                             {
                                 "type": "siddhiApp",
@@ -253,11 +358,11 @@ function show() {
                         }
                     },
                     {
-                        "name": "SensorLoggings",
+                        "name": "SensorLoggings1",
                         "type": "<app>",
                         "instanceCount": "many",
                         "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (1)",
                         "templates": [
                             {
                                 "type": "siddhiApp",
@@ -289,14 +394,14 @@ function show() {
             },
             {
                 "name": "SensorDataAnalysis2",
-                "description": "Domain for sensor data analysis",
+                "description": "Collection for sensor data analysis(2)",
                 "ruleTemplates": [
                     {
-                        "name": "SensorAnalytics",
+                        "name": "SensorAnalytics2",
                         "type": "app",
                         "instanceCount": "many",
                         "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (2)",
                         "templates": [
                             {
                                 "type": "siddhiApp",
@@ -340,11 +445,11 @@ function show() {
                         }
                     },
                     {
-                        "name": "SensorLoggings",
+                        "name": "SensorLoggings2",
                         "type": "<app>",
                         "instanceCount": "many",
                         "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
+                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (2)",
                         "templates": [
                             {
                                 "type": "siddhiApp",
@@ -377,37 +482,68 @@ function show() {
         ]
     }
     //ReactDOM.render(<Hello name={myObj.myArray[0].name}/>, document.getElementById("root"));
+    console.log("MyObj is : " + myObj)
     ReactDOM.render(<TemplateManager ruleCollections={myObj.ruleCollections}/>, document.getElementById("root"));
 }
 
 // For testing
-function greet(){
+function greet() {
     console.log("Greet")
 }
 
+/**
+ * Renders an element / a list of elements, as specified
+ *
+ * @param elementTypeToLoad Type of element (ruleCollections, ruleTemplates, ruleTemplateForm)
+ * @param parent The object, from which the elementTypeToLoad's details are loaded
+ * @param parentName Name of the parent
+ */
+function load(elementTypeToLoad, content, parentName) {
+    if (elementTypeToLoad === "ruleCollections") {
+        /**
+         * content : Contains array of RuleCollection Objects
+         * parentName : null
+         */
+        ReactDOM.render(<TemplateManager ruleCollections={content.ruleCollections}/>, document.getElementById("root"));
+    } else if (elementTypeToLoad === "ruleTemplates") {
+        // content is the RuleCollection Object
+        /**
+         * content : The RuleCollection object, that contains array of RuleTemplate objects
+         * parentName : null (extracted from the RuleCollection object) todo: haven't done. Do
+         */
+        console.log("Went into 'load'");
+        console.log("Content is : ");
+        console.log(content);
+        console.log("props")
+        console.log("name : " + content.state.name);
+        console.log("description : " + content.state.description);
+        console.log("ruleTemplates : ");
+        console.log(content.state.ruleTemplates);
 
-function load(elementTypeToLoad, parent){
-    if(elementTypeToLoad === "ruleCollections"){
-        // Parent contains array of RuleCollections
-        ReactDOM.render(<TemplateManager ruleCollections={parent.ruleCollections}/>, document.getElementById("root"));
-    }else if(elementTypeToLoad === "ruleTemplates"){
-        // Parent is the RuleCollection
-        ReactDOM.render(<TemplateManager ruleCollections={parent.ruleTemplates}/>, document.getElementById("root"));
-    }else if(elementTypeToLoad === "ruleTemplate"){
-
+        ReactDOM.render(
+            <RuleCollection
+                name={content.state.name}
+                description={content.state.description}
+                ruleTemplates={content.state.ruleTemplates}
+                viewAs="parent"/>, document.getElementById("root"));
+    } else if (elementTypeToLoad === "ruleTemplateForm") {
+        // content is the RuleTemplate Object
+        /**
+         * content : The RuleTemplate object, of which the properties are going to be loaded
+         * parentName : RuleCollection object's name
+         */
+        ReactDOM.render(
+            <RuleTemplate
+                ruleCollectionName={parentName}
+                name={content.state.name}
+                type={content.state.type}
+                instanceCount={content.state.instanceCount}
+                script={content.state.script}
+                description={content.state.description}
+                templates={content.state.templates}
+                properties={content.state.properties}
+                viewAs="form"/>, document.getElementById("root"));
     }
-}
-
-function loadRuleCollections(){
-
-}
-
-function loadRuleTemplates(){
-
-}
-
-function loadRuleTemplate(){
-
 }
 
 show();
