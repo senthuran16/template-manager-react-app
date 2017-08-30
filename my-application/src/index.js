@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// Entire TemplateManager is considered as this class
 class TemplateManager extends React.Component {
     constructor(props) {
         super(props);
@@ -11,7 +10,7 @@ class TemplateManager extends React.Component {
         }
     }
 
-    // Renders available RuleCollections
+    // Renders available RuleCollections as thumbnails
     render() {
         const ruleCollections = this.state.ruleCollections.map((ruleCollection) =>
             <RuleCollection
@@ -31,14 +30,6 @@ class TemplateManager extends React.Component {
         );
     }
 
-    // render() {
-    //     console.log(this.state.ruleCollections);
-    //     const rc = this.state.ruleCollections[0].ruleTemplates[0].properties;
-    //     console.log(rc);
-    //     var keys = [];
-    //     for(var key in rc)
-    //         console.log(key);
-    // }
 }
 
 class RuleCollection extends React.Component {
@@ -47,41 +38,35 @@ class RuleCollection extends React.Component {
         this.state = {
             name: props.name,
             description: props.description,
-            ruleTemplates: props.ruleTemplates,
+            ruleTemplates: props.ruleTemplates, // todo: **************************************** FROM HERE ************
             // 'thumbnail' when displaying available RuleCollections
             // 'parent' when displaying available RuleTemplates under this
             viewAs: props.viewAs
         }
     }
 
-    // Button Click
+    // Handles Click on thumbnail
     loadRuleTemplates() {
-        console.log("Loaded Rule Templates from Rule Collection '" + this.state.name + "'");
-        greet()
-        load("ruleTemplates", this, "some") //todo: replace 'some' with proper one
+        load("ruleTemplates", this, this.state.name)
     }
 
-    // Renders a RuleCollection
+    // Renders each available RuleCollection as thumbnail, or
+    // RuleTemplates under a given RuleCollection as thumbnails (RuleCollection as parent)
     render() {
         // View available RuleCollections as Thumbnails
         if (this.state.viewAs === "thumbnail") {
             return (
-                <div>
-                    <button onClick={(e) => this.loadRuleTemplates(e)}>
-                        <h3>{this.state.name}</h3>
-                        <p>{this.state.description}</p>
-                    </button>
+                <div className="ruleCollectionCard" onClick={(e) => this.loadRuleTemplates(e)}>
+                    <h3>{this.state.name}</h3>
+                    <p>{this.state.description}</p>
                 </div>
             );
         } else {
-            console.log("RuleCollection view as 'parent'")
-            console.log("State ruleTemplates : ")
-            console.log(this.state.ruleTemplates)
             // View RuleTemplates, available under this RuleCollection
             const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
-                <RuleTemplate
+                <RuleTemplate // todo: ******************************************************* THROUGH HERE ************
                     key={ruleTemplate.name}
-                    ruleCollectionName={ruleTemplate.ruleCollectionName}
+                    ruleCollectionName={this.state.name}
                     name={ruleTemplate.name}
                     type={ruleTemplate.type}
                     instanceCount={ruleTemplate.instanceCount}
@@ -92,16 +77,15 @@ class RuleCollection extends React.Component {
                     viewAs="thumbnail"
                 />
             );
-            console.log("const ruleTemplates : ")
-            console.log(ruleTemplates)
 
             return (
                 <div>
                     <h2>Rule Templates</h2>
+                    <p>{this.state.name}</p>
                     <div>{ruleTemplates}</div>
                 </div>
             );
-        } //todo: Continue from here
+        }
     }
 
 }
@@ -109,7 +93,7 @@ class RuleCollection extends React.Component {
 class RuleTemplate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = { // todo: ************************************************************* TO HERE ******************
             ruleCollectionName: props.ruleCollectionName,
             name: props.name,
             type: props.type,
@@ -126,26 +110,18 @@ class RuleTemplate extends React.Component {
 
     // Button Click
     loadRuleTemplateForm() {
-        console.log("Loaded Form for Rule Template '" + this.state.name + "'");
-        greet()
-        load("ruleTemplateForm", this, "some") //todo: replace 'some' with proper one
+        load("ruleTemplateForm", this, this.state.name) //todo: replace 'some' with proper one
     }
 
+    // Renders properties of the RuleTemplate as a form, or
+    // each RuleTemplate as a thumbnail
     render() {
         // View as a form
         if (this.state.viewAs === "form") {
-            console.log("view as form")
-            console.log("this.state.properties : ")
-            console.log(this.state.properties)
-
-            // Tricky Foreach key comes here
-
             // Convert objects, to an objects array
             var propertiesArray = []
             for (var propertyKey in this.state.properties) {
                 var propertyKeyString = propertyKey.toString()
-                console.log("A property : ")
-                console.log(this.state.properties[propertyKeyString])
                 // Push as an object,
                 // that has the original object's Key & Value
                 // denoted by new Keys : 'propertyName' & 'propertyObject'
@@ -156,9 +132,6 @@ class RuleTemplate extends React.Component {
                     }
                 )
             }
-
-            console.log("propertiesArray : ")
-            console.log(propertiesArray)
 
             const properties = propertiesArray.map((property) =>
                 <Property
@@ -171,31 +144,31 @@ class RuleTemplate extends React.Component {
                 />
             );
 
-
-            console.log("Const properties : ")
-            console.log(properties)
             return (
                 <div>
+                    <h3>Property values for Template</h3>
+                    <p>
+                        {this.state.ruleCollectionName} > {this.state.name}
+                    </p>
                     <form>
-                        {properties}
+                        {properties}<br/>
+                        <input type="submit" value="Submit"/>
                     </form>
                 </div>
             );
         } else {
             // View as thumbnail
-            console.log("view as thumbnail")
             return (
-                <div>
-                    <button onClick={(e) => this.loadRuleTemplateForm(e)}>
-                        <h3>{this.state.name}</h3>
-                        <p>
-                            {this.state.description}
-                            <br/>
-                            Type : {this.state.instanceCount}
-                            <br/>
-                            Instance Count : {this.state.instanceCount}
-                        </p>
-                    </button>
+                <div className="ruleTemplateCard" onClick={(e) => this.loadRuleTemplateForm(e)}>
+                    <h3>{this.state.name}</h3>
+                    <p>
+                        {this.state.description}
+                        <br/>
+                        <br/>
+                        Type : {this.state.type}
+                        <br/>
+                        Instance Count : {this.state.instanceCount}
+                    </p>
                 </div>
             );
         }
@@ -217,54 +190,10 @@ class Property extends React.Component {
         }
     }
 
-    /**
-     * Gives out the required HTML element for the Property
-     * @returns {string} HTML element as a string
-     */
-    returnElement() {
-        var property = this.state.property;
-        var htmlSource = "";
-        if (property.type === "options") {
-            // Options : List view
-            htmlSource += "<select name=" + property.name + " value=" + property.defaultValue + ">";
-
-            // Each given option
-            for (let option of property.options) {
-                htmlSource += "<option value=" + option + ">" + option + "</option>";
-            }
-
-            htmlSource += "</select>";
-        } else {
-            // Text Field
-            htmlSource += "<input type=text name=" + property.name + " value=" + property.defaultValue + "/>";
-        }
-        return (htmlSource);
-    }
-
-    renderBackup() {
-        var property = this.state.property;
-        var htmlSource = "";
-        if (property.type === "options") {
-            // Options : List view
-            htmlSource += "<select name=" + property.name + " value=" + property.defaultValue + ">";
-
-            // Each given option
-            for (let option of property.options) {
-                htmlSource += "<option value=" + option + ">" + option + "</option>";
-            }
-
-            htmlSource += "</select>";
-        } else {
-            // Text Field
-            htmlSource += "<input type=text name=" + property.name + " value=" + property.defaultValue + "/>";
-        }
-        return (
-            <div>{htmlSource}</div>
-        );
-    }
-
+    // Renders each element either as a TextField or Select box
     render() {
         var htmlSource = "";
+        htmlSource += this.state.property.description + " : <br/>";
         if (this.state.property.type === "options") {
             // Options : List view
             htmlSource += "<select name=" + this.state.property.name + " value=" + this.state.property.defaultValue + ">";
@@ -277,33 +206,34 @@ class Property extends React.Component {
             htmlSource += "</select>";
         } else {
             // Text Field
-            htmlSource += "<input type=text name=" + this.state.property.name + " value=" + this.state.property.defaultValue + "/>";
+            htmlSource += "<input type=text name=" + this.state.property.name + " value=" + this.state.property.defaultValue + " required >";
         }
+        htmlSource += "<br/><br/>"
         return (
-            <div>{htmlSource}</div>
+            <div dangerouslySetInnerHTML={this.toHTML(htmlSource)}/>
         );
+    }
+
+    /**
+     * Converts a given string to HTML
+     * @param inputString Given string
+     * @returns {{__html: *}} Converted HTML
+     */
+    toHTML(inputString) {
+        return {
+            __html: inputString
+        }
     }
 
 }
 
-// Simple Button Click test /////////////////////////////////
-class Hello extends React.Component {
-    render() {
-        return (
-            <h2>
-                <button onClick={(e) => this.handleClick(e)}>{this.props.name}</button>
-            </h2>
-        );
-    }
-
-    handleClick() {
-        console.log("Test Click");
-        ReactDOM.render(<Hello name="TestClicked"/>, document.getElementById("root"));
-    }
-}
-
-function show() {
-    var myObj = {
+/**
+ * Gets available RuleCollections as from the API and returns
+ * @returns {{ruleCollections: [null,null]}} JSON array, containing RuleCollections
+ */
+function getRuleCollections() {
+    // todo: this should be retrieved from API
+    var receivedObject = {
         ruleCollections: [
             {
                 "name": "SensorDataAnalysis1",
@@ -481,14 +411,8 @@ function show() {
             }
         ]
     }
-    //ReactDOM.render(<Hello name={myObj.myArray[0].name}/>, document.getElementById("root"));
-    console.log("MyObj is : " + myObj)
-    ReactDOM.render(<TemplateManager ruleCollections={myObj.ruleCollections}/>, document.getElementById("root"));
-}
 
-// For testing
-function greet() {
-    console.log("Greet")
+    return receivedObject
 }
 
 /**
@@ -511,15 +435,6 @@ function load(elementTypeToLoad, content, parentName) {
          * content : The RuleCollection object, that contains array of RuleTemplate objects
          * parentName : null (extracted from the RuleCollection object) todo: haven't done. Do
          */
-        console.log("Went into 'load'");
-        console.log("Content is : ");
-        console.log(content);
-        console.log("props")
-        console.log("name : " + content.state.name);
-        console.log("description : " + content.state.description);
-        console.log("ruleTemplates : ");
-        console.log(content.state.ruleTemplates);
-
         ReactDOM.render(
             <RuleCollection
                 name={content.state.name}
@@ -534,7 +449,7 @@ function load(elementTypeToLoad, content, parentName) {
          */
         ReactDOM.render(
             <RuleTemplate
-                ruleCollectionName={parentName}
+                ruleCollectionName={content.state.ruleCollectionName}
                 name={content.state.name}
                 type={content.state.type}
                 instanceCount={content.state.instanceCount}
@@ -546,187 +461,14 @@ function load(elementTypeToLoad, content, parentName) {
     }
 }
 
-show();
-//////////////////////////////////////////////////////////////
+/**
+ * Starts Template Manager
+ */
+function startTemplateManager() {
+    // Recieve from API
+    var retrievedObject = getRuleCollections()
+    ReactDOM.render(<TemplateManager
+        ruleCollections={retrievedObject.ruleCollections}/>, document.getElementById("root"));
+}
 
-
-// ReactDOM.render(
-//     <TemplateManager
-//         ruleCollections={[
-//             {
-//                 "name": "SensorDataAnalysis",
-//                 "description": "Domain for sensor data analysis",
-//                 "ruleTemplates": [
-//                     {
-//                         "name": "SensorAnalytics",
-//                         "type": "app",
-//                         "instanceCount": "many",
-//                         "script": "<script> (optional)",
-//                         "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
-//                         "templates": [
-//                             {
-//                                 "type": "siddhiApp",
-//                                 "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-//                             },
-//                             {
-//                                 "type": "siddhiApp",
-//                                 "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
-//                             }
-//                         ],
-//                         "properties": {
-//                             "inStream1": {
-//                                 "description": "Input Stream",
-//                                 "defaultValue": "myInputStream1",
-//                                 "type": "options",
-//                                 "options": ["myInputStream1", "myInputStream2"]
-//                             },
-//                             "property1": {
-//                                 "description": "Unique Identifier for the sensor",
-//                                 "defaultValue": "sensorName",
-//                                 "type": "options",
-//                                 "options": ["sensorID", "sensorName"]
-//                             },
-//                             "property2": {
-//                                 "description": "Type of value, the sensor measures",
-//                                 "defaultValue": "sensorValue",
-//                                 "type": "String"
-//                             },
-//                             "outStream1": {
-//                                 "description": "Output Stream 1",
-//                                 "defaultValue": "myOutputStream1",
-//                                 "type": "options",
-//                                 "options": ["myOutputStream1", "myOutputStream2"]
-//                             },
-//                             "outStream2": {
-//                                 "description": "Output Stream 2",
-//                                 "defaultValue": "myOutputStream2",
-//                                 "type": "options",
-//                                 "options": ["myOutputStream1", "myOutputStream2"]
-//                             }
-//                         }
-//                     },
-//                     {
-//                         "name": "SensorLoggings",
-//                         "type": "<app>",
-//                         "instanceCount": "many",
-//                         "script": "<script> (optional)",
-//                         "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
-//                         "templates": [
-//                             {
-//                                 "type": "siddhiApp",
-//                                 "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-//                             }
-//                         ],
-//                         "properties": {
-//                             "inStream1": {
-//                                 "description": "Input Stream",
-//                                 "defaultValue": "myInputStream1",
-//                                 "type": "options",
-//                                 "options": ["myInputStream1", "myInputStream2"]
-//                             },
-//                             "property1": {
-//                                 "description": "Unique Identifier for the sensor",
-//                                 "defaultValue": "sensorName",
-//                                 "type": "options",
-//                                 "options": ["sensorID", "sensorName"]
-//                             },
-//                             "outStream1": {
-//                                 "description": "Output Stream 1",
-//                                 "defaultValue": "myOutputStream1",
-//                                 "type": "options",
-//                                 "options": ["myOutputStream1", "myOutputStream2"]
-//                             }
-//                         }
-//                     }
-//                 ]
-//             },
-//             {
-//                 "name": "SensorDataAnalysis2",
-//                 "description": "Domain for sensor data analysis",
-//                 "ruleTemplates": [
-//                     {
-//                         "name": "SensorAnalytics",
-//                         "type": "app",
-//                         "instanceCount": "many",
-//                         "script": "<script> (optional)",
-//                         "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
-//                         "templates": [
-//                             {
-//                                 "type": "siddhiApp",
-//                                 "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-//                             },
-//                             {
-//                                 "type": "siddhiApp",
-//                                 "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
-//                             }
-//                         ],
-//                         "properties": {
-//                             "inStream1": {
-//                                 "description": "Input Stream",
-//                                 "defaultValue": "myInputStream1",
-//                                 "type": "options",
-//                                 "options": ["myInputStream1", "myInputStream2"]
-//                             },
-//                             "property1": {
-//                                 "description": "Unique Identifier for the sensor",
-//                                 "defaultValue": "sensorName",
-//                                 "type": "options",
-//                                 "options": ["sensorID", "sensorName"]
-//                             },
-//                             "property2": {
-//                                 "description": "Type of value, the sensor measures",
-//                                 "defaultValue": "sensorValue",
-//                                 "type": "String"
-//                             },
-//                             "outStream1": {
-//                                 "description": "Output Stream 1",
-//                                 "defaultValue": "myOutputStream1",
-//                                 "type": "options",
-//                                 "options": ["myOutputStream1", "myOutputStream2"]
-//                             },
-//                             "outStream2": {
-//                                 "description": "Output Stream 2",
-//                                 "defaultValue": "myOutputStream2",
-//                                 "type": "options",
-//                                 "options": ["myOutputStream1", "myOutputStream2"]
-//                             }
-//                         }
-//                     },
-//                     {
-//                         "name": "SensorLoggings",
-//                         "type": "<app>",
-//                         "instanceCount": "many",
-//                         "script": "<script> (optional)",
-//                         "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice",
-//                         "templates": [
-//                             {
-//                                 "type": "siddhiApp",
-//                                 "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-//                             }
-//                         ],
-//                         "properties": {
-//                             "inStream1": {
-//                                 "description": "Input Stream",
-//                                 "defaultValue": "myInputStream1",
-//                                 "type": "options",
-//                                 "options": ["myInputStream1", "myInputStream2"]
-//                             },
-//                             "property1": {
-//                                 "description": "Unique Identifier for the sensor",
-//                                 "defaultValue": "sensorName",
-//                                 "type": "options",
-//                                 "options": ["sensorID", "sensorName"]
-//                             },
-//                             "outStream1": {
-//                                 "description": "Output Stream 1",
-//                                 "defaultValue": "myOutputStream1",
-//                                 "type": "options",
-//                                 "options": ["myOutputStream1", "myOutputStream2"]
-//                             }
-//                         }
-//                     }
-//                 ]
-//             }
-//         ]}
-//     />, document.getElementById("root")
-// );
+startTemplateManager();

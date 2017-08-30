@@ -49,3 +49,37 @@ ol, ul {
     margin-left: 20px;
 }
 
+/*my style sheet*/
+
+.ruleCollectionCard{
+    padding: 10px;
+    background-color: lightgrey;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.ruleCollectionCard:hover{
+    padding: 10px;
+    color: #df5028;
+    background-color: #dfdfdf;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    transition-duration: 0.2s;
+}
+
+.ruleTemplateCard{
+    padding: 10px;
+    background-color: lightgrey;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.ruleTemplateCard:hover{
+    padding: 10px;
+    color: #144284;
+    background-color: #dfdfdf;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    transition-duration: 0.2s;
+}
+
