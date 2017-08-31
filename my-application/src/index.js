@@ -2,44 +2,43 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class TemplateManager extends React.Component {
+class BusinessRules extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ruleCollections: props.ruleCollections
+            templateGroups: props.templateGroups
         }
     }
 
-    // Renders available RuleCollections as thumbnails
+    // Renders available TemplateGroups as thumbnails
     render() {
-        const ruleCollections = this.state.ruleCollections.map((ruleCollection) =>
-            <RuleCollection
-                key={ruleCollection.name}
-                name={ruleCollection.name}
-                description={ruleCollection.description}
-                ruleTemplates={ruleCollection.ruleTemplates}
+        const templateGroups = this.state.templateGroups.map((templateGroup) =>
+            <TemplateGroup
+                key={templateGroup.name}
+                name={templateGroup.name}
+                description={templateGroup.description}
+                ruleTemplates={templateGroup.ruleTemplates}
                 viewAs="thumbnail"
             />
         );
 
         return (
             <div>
-                <h2>Rule Collections</h2>
-                <div>{ruleCollections}</div>
+                <h2>Template Groups</h2>
+                <div>{templateGroups}</div>
             </div>
         );
     }
-
 }
 
-class RuleCollection extends React.Component {
+class TemplateGroup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             name: props.name,
             description: props.description,
-            ruleTemplates: props.ruleTemplates, // todo: **************************************** FROM HERE ************
-            // 'thumbnail' when displaying available RuleCollections
+            ruleTemplates: props.ruleTemplates,
+            // 'thumbnail' when displaying available TemplateGroups
             // 'parent' when displaying available RuleTemplates under this
             viewAs: props.viewAs
         }
@@ -47,26 +46,29 @@ class RuleCollection extends React.Component {
 
     // Handles Click on thumbnail
     loadRuleTemplates() {
+        //load("ruleTemplates", this, this.state.name)
+        // Get RuleTemplates of this TemplateGroup
+        var ruleTemplates = getRuleTemplates(this.state.name)
         load("ruleTemplates", this, this.state.name)
     }
 
-    // Renders each available RuleCollection as thumbnail, or
-    // RuleTemplates under a given RuleCollection as thumbnails (RuleCollection as parent)
+    // Renders each available TemplateGroup as thumbnail, or
+    // RuleTemplates under a given TemplateGroup as thumbnails (TemplateGroup as parent)
     render() {
-        // View available RuleCollections as Thumbnails
+        // View available TemplateGroups as Thumbnails
         if (this.state.viewAs === "thumbnail") {
             return (
-                <div className="ruleCollectionCard" onClick={(e) => this.loadRuleTemplates(e)}>
+                <div className="templateGroupCard" onClick={(e) => this.loadRuleTemplates(e)}>
                     <h3>{this.state.name}</h3>
                     <p>{this.state.description}</p>
                 </div>
             );
         } else {
-            // View RuleTemplates, available under this RuleCollection
+            // View RuleTemplates, available under this TemplateGroup
             const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
-                <RuleTemplate // todo: ******************************************************* THROUGH HERE ************
+                <RuleTemplate
                     key={ruleTemplate.name}
-                    ruleCollectionName={this.state.name}
+                    templateGroupName={this.state.name}
                     name={ruleTemplate.name}
                     type={ruleTemplate.type}
                     instanceCount={ruleTemplate.instanceCount}
@@ -93,8 +95,8 @@ class RuleCollection extends React.Component {
 class RuleTemplate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { // todo: ************************************************************* TO HERE ******************
-            ruleCollectionName: props.ruleCollectionName,
+        this.state = {
+            templateGroupName: props.templateGroupName,
             name: props.name,
             type: props.type,
             instanceCount: props.instanceCount,
@@ -148,7 +150,7 @@ class RuleTemplate extends React.Component {
                 <div>
                     <h3>Property values for Template</h3>
                     <p>
-                        {this.state.ruleCollectionName} > {this.state.name}
+                        {this.state.templateGroupName} > {this.state.name}
                     </p>
                     <form>
                         {properties}<br/>
@@ -228,13 +230,12 @@ class Property extends React.Component {
 }
 
 /**
- * Gets available RuleCollections as from the API and returns
- * @returns {{ruleCollections: [null,null]}} JSON array, containing RuleCollections
+ * Gets available TemplateGroups from the API and returns them todo: implement with API
+ * @returns {{templateGroups: [null,null]}} JSON array, containing TemplateGroups
  */
-function getRuleCollections() {
-    // todo: this should be retrieved from API
-    var receivedObject = {
-        ruleCollections: [
+function getTemplateGroups() {
+    var receivedTemplateGroups = {
+        templateGroups: [
             {
                 "name": "SensorDataAnalysis1",
                 "description": "Collection for sensor data analysis(1)",
@@ -412,31 +413,60 @@ function getRuleCollections() {
         ]
     }
 
-    return receivedObject
+    return receivedTemplateGroups
+}
+
+/**
+ * Gives RuleTemplates, available under given TemplateGroup todo: implement with API
+ * @param templateGroupName
+ * @returns {*|Array}
+ */
+function getRuleTemplates(templateGroupName){
+    var templateGroups = getTemplateGroups().templateGroups
+    for(var templateGroup in templateGroups){
+        if(templateGroup.name === templateGroupName){
+            return templateGroup.ruleTemplates
+        }
+    }
+}
+
+/**
+ * Gives Properties of a given RuleTemplate, which belongs to a given TemplateGroup
+ * @param templateGroupName
+ * @param ruleTemplateName
+ * @returns {*|Array}
+ */
+function getProperties(templateGroupName,ruleTemplateName){
+    var ruleTemplates = getRuleTemplates(templateGroupName);
+    for(var ruleTemplate in ruleTemplates){
+        if(ruleTemplate.name === ruleTemplateName){
+            return ruleTemplate.properties
+        }
+    }
 }
 
 /**
  * Renders an element / a list of elements, as specified
  *
- * @param elementTypeToLoad Type of element (ruleCollections, ruleTemplates, ruleTemplateForm)
+ * @param elementTypeToLoad Type of element (templateGroups, ruleTemplates, ruleTemplateForm)
  * @param parent The object, from which the elementTypeToLoad's details are loaded
  * @param parentName Name of the parent
  */
 function load(elementTypeToLoad, content, parentName) {
-    if (elementTypeToLoad === "ruleCollections") {
+    if (elementTypeToLoad === "templateGroups") {
         /**
-         * content : Contains array of RuleCollection Objects
+         * content : Contains array of TemplateGroup Objects
          * parentName : null
          */
-        ReactDOM.render(<TemplateManager ruleCollections={content.ruleCollections}/>, document.getElementById("root"));
+        ReactDOM.render(<BusinessRules templateGroups={content.templateGroups}/>, document.getElementById("root"));
     } else if (elementTypeToLoad === "ruleTemplates") {
-        // content is the RuleCollection Object
+        // content is the TemplateGroup Object
         /**
-         * content : The RuleCollection object, that contains array of RuleTemplate objects
-         * parentName : null (extracted from the RuleCollection object) todo: haven't done. Do
+         * content : The TemplateGroup object, that contains array of RuleTemplate objects
+         * parentName : null (extracted from the TemplateGroup object) todo: haven't done. Do
          */
         ReactDOM.render(
-            <RuleCollection
+            <TemplateGroup
                 name={content.state.name}
                 description={content.state.description}
                 ruleTemplates={content.state.ruleTemplates}
@@ -445,11 +475,11 @@ function load(elementTypeToLoad, content, parentName) {
         // content is the RuleTemplate Object
         /**
          * content : The RuleTemplate object, of which the properties are going to be loaded
-         * parentName : RuleCollection object's name
+         * parentName : TemplateGroup object's name
          */
         ReactDOM.render(
             <RuleTemplate
-                ruleCollectionName={content.state.ruleCollectionName}
+                templateGroupName={content.state.templateGroupName}
                 name={content.state.name}
                 type={content.state.type}
                 instanceCount={content.state.instanceCount}
@@ -461,14 +491,27 @@ function load(elementTypeToLoad, content, parentName) {
     }
 }
 
-/**
- * Starts Template Manager
- */
-function startTemplateManager() {
-    // Recieve from API
-    var retrievedObject = getRuleCollections()
-    ReactDOM.render(<TemplateManager
-        ruleCollections={retrievedObject.ruleCollections}/>, document.getElementById("root"));
+// Renders given Template Groups
+function loadTemplateGroups(templateGroups){
+ const mappedTemplateGroups = templateGroups.map((templateGroup) =>
+     <TemplateGroup
+         key={templateGroup.name}
+         name={templateGroup.name}
+         description={templateGroup.description}
+         ruleTemplates={templateGroup.ruleTemplates}
+         viewAs="thumbnail"
+     />
+ );
 }
 
-startTemplateManager();
+/**
+ * Starts BusinessRules
+ */
+function startBusinessRules() {
+    // Recieve TemplateGroups from API
+    var receivedTemplateGroups = getTemplateGroups()
+    ReactDOM.render(<BusinessRules
+        templateGroups={receivedTemplateGroups.templateGroups}/>, document.getElementById("root"));
+}
+
+startBusinessRules();

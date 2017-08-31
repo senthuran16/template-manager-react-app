@@ -51,14 +51,14 @@ ol, ul {
 
 /*my style sheet*/
 
-.ruleCollectionCard{
+.templateGroupCard{
     padding: 10px;
     background-color: lightgrey;
     margin-bottom: 15px;
     border-radius: 3px;
 }
 
-.ruleCollectionCard:hover{
+.templateGroupCard:hover{
     padding: 10px;
     color: #df5028;
     background-color: #dfdfdf;

@@ -91,7 +91,7 @@ class RuleCollection1 extends React.Component {
     constructor() {
         super();
         this.state = {
-            // Rule Templates of a RuleCollection todo: remove hardcode
+            // Rule Templates of a TemplateGroup todo: remove hardcode
             ruleTemplates: [
                 {
                     name: "SensorAnalytics",
@@ -148,7 +148,7 @@ class RuleCollection extends React.Component {
     constructor() {
         super();
         this.state = {
-            // Rule Templates of a RuleCollection todo: remove hardcode
+            // Rule Templates of a TemplateGroup todo: remove hardcode
             ruleTemplates: [
                 {
                     name: "SensorAnalytics",
