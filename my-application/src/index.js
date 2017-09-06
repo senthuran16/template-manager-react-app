@@ -24,7 +24,10 @@ class BusinessRules extends React.Component {
 
         return (
             <div>
-                {templateGroups}
+                <h2>Template Groups</h2>
+                <div>
+                    {templateGroups}
+                </div>
             </div>
         );
     }
@@ -50,7 +53,7 @@ class TemplateGroup extends React.Component {
         // View Template Group as a thumbnail
         if (this.state.viewAs === "thumbnail") {
             return (
-                <div className="templateGroupCard" onClick={(e) => displayRuleTemplates(this.state.name)}>
+                <div className="templateGroupCard" onClick={(e) => displayRuleTemplates(this.state)}>
                     <h3>{this.state.name}</h3>
                     <p>{this.state.description}</p>
                 </div>
@@ -61,7 +64,8 @@ class TemplateGroup extends React.Component {
             const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
                 <RuleTemplate
                     key={ruleTemplate.name}
-                    templateGroupName={this.state.name}
+                    templateGroup = {this.state}
+                    // templateGroupName={this.state.name}
                     name={ruleTemplate.name}
                     type={ruleTemplate.type}
                     instanceCount={ruleTemplate.instanceCount}
@@ -73,7 +77,12 @@ class TemplateGroup extends React.Component {
                 />);
             return (
                 <div>
-                    {ruleTemplates}
+                    <h2>Rule Templates</h2>
+                    <p><b>{this.state.name}</b><br/>
+                        {this.state.description}</p>
+                    <div>
+                        {ruleTemplates}
+                    </div>
                 </div>);
         }
     }
@@ -86,6 +95,7 @@ class RuleTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            templateGroup: props.templateGroup, // Parent object
             templateGroupName: props.templateGroupName,
             name: props.name,
             type: props.type,
@@ -106,8 +116,7 @@ class RuleTemplate extends React.Component {
                 <div className="ruleTemplateCard"
                      onClick={(e) =>
                          displayForm(
-                             this.state.templateGroupName,
-                             this.state.name,
+                             this.state,
                              this.state.properties)}>
                     <h3>{this.state.name}</h3>
                     <p>{this.state.description}</p>
@@ -125,6 +134,8 @@ class BusinessRuleForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            templateGroup: props.templateGroup,
+            ruleTemplate: props.ruleTemplate,
             templateGroupName: props.templateGroupName,
             ruleTemplateName: props.ruleTemplateName,
             properties: props.properties
@@ -159,7 +170,9 @@ class BusinessRuleForm extends React.Component {
         return (
             <div>
                 <h3>Business Rule</h3>
-                <h4>{this.state.templateGroupName} > {this.state.ruleTemplateName}</h4>
+                <p><b>{this.state.templateGroupName} > {this.state.ruleTemplateName}</b><br/>
+
+                </p>
                 <br/>
                 <form>
                     {properties}<br/>
@@ -218,17 +231,8 @@ class Property extends React.Component {
 }
 
 /**
- * Starts BusinessRules
- */
-function startBusinessRules() {
-    // Recieve TemplateGroups from API
-    var receivedTemplateGroups = getTemplateGroups()
-    // ReactDOM.render(<BusinessRules
-    //     templateGroups={receivedTemplateGroups.templateGroups}/>, document.getElementById("root"));
-}
-
-/**
  * Get available TemplateGroups todo: from API
+ *
  * @returns {Array}
  */
 function getTemplateGroups() {
@@ -412,10 +416,12 @@ function getTemplateGroups() {
     }
 
     return receivedTemplateGroups.templateGroups
+    // todo: Rule Templates will be actually returned from API
 }
 
 /**
- * Get availanle RuleTemplates from given TemplateGroup todo: from API
+ * Get available RuleTemplates, belong to the given TemplateGroup todo: from API
+ *
  * @param templateGroupName
  */
 function getRuleTemplates(templateGroupName) {
@@ -425,14 +431,21 @@ function getRuleTemplates(templateGroupName) {
         if (templateGroup.name === templateGroupName) {
             console.log("Returned RuleTemplates : ")
             console.log(templateGroup.ruleTemplates)
+
             return templateGroup.ruleTemplates
         }
     }
+    // todo: Rule Templates will be actually returned from API
 }
 
+// Load available Template Groups and store
+const availableTemplateGroups = getTemplateGroups()
+
+/**
+ * Starts and runs Business Rules
+ */
 function run() {
     console.log("[Started Business Rules]")
-    var availableTemplateGroups = getTemplateGroups()
     console.log("Available Template Groups : ")
     console.log(availableTemplateGroups)
 
@@ -440,6 +453,11 @@ function run() {
     displayTemplateGroups(availableTemplateGroups)
 }
 
+/**
+ * Displays available Template Groups, as thumbnails
+ *
+ * @param availableTemplateGroups
+ */
 function displayTemplateGroups(availableTemplateGroups) {
     ReactDOM.render(
         <BusinessRules
@@ -447,28 +465,52 @@ function displayTemplateGroups(availableTemplateGroups) {
         />, document.getElementById("root"))
 }
 
-function displayRuleTemplates(templateGroupName) {
+/**
+ * Displays available Rule Templates that belong to the given Template Group name, as thumbnails
+ *
+ * @param templateGroupName
+ */
+function displayRuleTemplates(templateGroup) {
     ReactDOM.render(
         <TemplateGroup
-            key={templateGroupName}
-            name={templateGroupName}
-            ruleTemplates={getRuleTemplates(templateGroupName)}
+            key={templateGroup.name}
+            name={templateGroup.name}
+            description={templateGroup.description}
+            ruleTemplates={getRuleTemplates(templateGroup.name)}
             viewAs="parent"
         />, document.getElementById("root")
     )
 }
 
-function displayForm(templateGroupName, ruleTemplateName, properties) {
-    // console.log("Displaying Form")
-    // console.log("RuleTemplate : "+ruleTemplateName)
-    // console.log("Properties : ")
-    // console.log(properties)
+/**
+ * Displays a form to fill in data for given properties, in order to create a Business Rule
+ *
+ * @param templateGroupName Given Template Group name, which the Business Rule uses
+ * @param ruleTemplateName Given Rule Template name, which the Business Rule uses
+ * @param properties Default elements for templated properties, as specified in the Rule Template
+ */
+function displayForm(ruleTemplate, properties) {
     ReactDOM.render(
         <BusinessRuleForm
-            templateGroupName={templateGroupName}
-            ruleTemplateName={ruleTemplateName}
+            templateGroup={ruleTemplate.templateGroup}
+            ruleTemplate={ruleTemplate}
+            templateGroupName={ruleTemplate.templateGroup.name}
+            ruleTemplateName={ruleTemplate.name}
             properties={properties}
         />, document.getElementById("root"));
+}
+
+/**
+ * Gives the Template Group that has the given name, from the list of loaded Template Groups
+ *
+ * @param templateGroupName
+ */
+function findTemplateGroup(templateGroupName) {
+    for (let templateGroup of availableTemplateGroups) {
+        if (templateGroup.name === templateGroupName) {
+            return templateGroup
+        }
+    }
 }
 
 run();
