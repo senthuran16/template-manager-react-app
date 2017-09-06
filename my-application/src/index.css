@@ -53,33 +53,28 @@ ol, ul {
 
 .templateGroupCard{
     padding: 10px;
-    background-color: lightgrey;
+    color: white;
+    background-color: #242424;
     margin-bottom: 15px;
-    border-radius: 3px;
+    border-radius: 5px;
+    width: 40%
 }
 
 .templateGroupCard:hover{
-    padding: 10px;
     color: #df5028;
-    background-color: #dfdfdf;
-    margin-bottom: 15px;
-    border-radius: 3px;
     transition-duration: 0.2s;
 }
 
 .ruleTemplateCard{
     padding: 10px;
-    background-color: lightgrey;
+    color: white;
+    background-color: #2A2D40;
     margin-bottom: 15px;
-    border-radius: 3px;
+    border-radius: 5px;
+    width: 40%
 }
 
 .ruleTemplateCard:hover{
-    padding: 10px;
-    color: #144284;
-    background-color: #dfdfdf;
-    margin-bottom: 15px;
-    border-radius: 3px;
+    background-color: #007F7D;
     transition-duration: 0.2s;
 }
-
