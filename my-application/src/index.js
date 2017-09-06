@@ -500,17 +500,4 @@ function displayForm(ruleTemplate, properties) {
         />, document.getElementById("root"));
 }
 
-/**
- * Gives the Template Group that has the given name, from the list of loaded Template Groups
- *
- * @param templateGroupName
- */
-function findTemplateGroup(templateGroupName) {
-    for (let templateGroup of availableTemplateGroups) {
-        if (templateGroup.name === templateGroupName) {
-            return templateGroup
-        }
-    }
-}
-
 run();
