@@ -309,7 +309,6 @@ class Property extends React.Component {
                             key={this.state.name}
                             name={this.state.render}
                             value={this.state.value}
-                            className="c182"
                             onChange={this.handleChange}
                         >
                             {options}
