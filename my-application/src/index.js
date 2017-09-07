@@ -12,6 +12,7 @@ import FormControl from 'material-ui/Form/FormControl';
 import Radio, {RadioGroup} from 'material-ui/Radio';
 import Card, {CardContent, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
+import { SnackbarContent } from 'material-ui/Snackbar';
 
 /**
  * Business Rules run within this
@@ -710,8 +711,47 @@ function displayForm(ruleTemplate, properties) {
  * @param filledValues
  */
 function prepareBusinessRule() {
+    var isRequiredIncomplete = false
+    for (let property in businessRuleEnteredProperties) {
+        if ((!(businessRuleEnteredProperties[property] != null)) || (businessRuleEnteredProperties[property] == "")) {
+            isRequiredIncomplete = true
+            break
+        }
+    }
+
+    if (isRequiredIncomplete) {
+        fillInRequiredFieldsError()
+    } else {
+        createObjectForBusinessRuleCreation()
+    }
+}
+
+/**
+ * Represents a Snackbar prompt
+ */
+class Prompt extends React.Component{
+    render(){
+        return (
+            <SnackbarContent message={this.props.message}/>
+        );
+    }
+}
+
+/**
+ * Gives error when all the required fields are not filled //todo: implement properly
+ */
+function fillInRequiredFieldsError() {
+    console.log("Please fill in all the fields")
+    ReactDOM.render(<Prompt message="Please fill in all the fields"/>,document.getElementById("errors"))
+}
+
+/**
+ * Gives the mapped properties, to send to the API to create Business Rule
+ */
+function createObjectForBusinessRuleCreation(){
     console.log("Business Rule Properties :")
     console.log(businessRuleEnteredProperties)
+    ReactDOM.render(<Prompt message="Check console for the object"/>,document.getElementById("errors"))
 }
 
 run();
