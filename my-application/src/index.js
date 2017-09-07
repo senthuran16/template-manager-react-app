@@ -294,11 +294,13 @@ class Property extends React.Component {
             name: props.name,
             description: props.description,
             defaultValue: props.defaultValue,
+            value: props.defaultValue,
             type: props.type,
             options: props.options,
         }
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
+        businessRuleEnteredProperties[this.state.name] = this.state.defaultValue
     }
 
     handleRadioChange(event, value) {
@@ -314,7 +316,11 @@ class Property extends React.Component {
         businessRuleEnteredProperties = businessRuleProperties
     }
 
-    handleTextChange(event) {
+    handleTextChange(event, value) {
+        this.setState({
+            value: value
+        })
+
         // todo: (!) Look into this
         // Get properties available until now
         let businessRuleProperties = businessRuleEnteredProperties
@@ -323,7 +329,6 @@ class Property extends React.Component {
 
         // Update the existing properties object
         businessRuleEnteredProperties = businessRuleProperties
-
     }
 
     // Renders each element either as a TextField or Radio Group
@@ -351,7 +356,6 @@ class Property extends React.Component {
                 </div>
             );
         } else {
-
             return (
                 <div>
                     <TextField
@@ -642,7 +646,9 @@ const availableTemplateGroups = getTemplateGroups()
 
 // todo: (!) look into this. Seems not good
 // Properties given in the form, for Creating a Business Rule
-var businessRuleEnteredProperties = {}
+var businessRuleEnteredProperties = {
+    businessRuleName: null
+}
 
 /**
  * Starts and runs Business Rules
