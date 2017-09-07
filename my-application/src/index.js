@@ -1,6 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
+// Material-UI
+import Button from 'material-ui/Button';
+import Card, {CardContent, CardHeader} from 'material-ui/Card';
+// import SelectField from 'material-ui/SelectField';
+// import MenuItem from 'material-ui/MenuItem';
+import Typography from 'material-ui/Typography';
+import * as classes from "react/lib/ReactDOMFactories";
+import FormControl from 'material-ui/Form/FormControl';
+import Radio, {RadioGroup} from 'material-ui/Radio';
+import {FormControlLabel, FormLabel} from 'material-ui/Form';
+import Avatar from 'material-ui/Avatar';
+import TextField from 'material-ui/TextField';
 
 /**
  * Business Rules run within this
@@ -27,7 +39,10 @@ class BusinessRules extends React.Component {
 
         return (
             <div>
-                <h2>Template Groups</h2>
+                <Typography type="headline" component="h2">
+                    Template Groups
+                </Typography>
+                <br/>
                 <div>
                     {templateGroups}
                 </div>
@@ -56,9 +71,28 @@ class TemplateGroup extends React.Component {
         // View Template Group as a thumbnail
         if (this.state.viewAs === "thumbnail") {
             return (
-                <div className="templateGroupCard" onClick={(e) => displayRuleTemplates(this.state)}>
-                    <h3>{this.state.name}</h3>
-                    <p>{this.state.description}</p>
+                <div>
+                    <Card>
+                        <CardHeader
+                            avatar={
+                                <Avatar aria-label="Recipe" className={classes.avatar}>
+                                    {this.state.name[0]}
+                                </Avatar>
+                            }
+                            title={this.state.name}
+                        />
+                        <CardContent>
+                            <Typography component="p">
+                                {this.state.description}
+                            </Typography>
+                            <br/>
+                            <Button dense color="primary" onClick={(e) => displayRuleTemplates(this.state)}>
+                                View Rule Templates
+                            </Button>
+                        </CardContent>
+
+                    </Card>
+                    <br/>
                 </div>
             );
         } else {
@@ -67,7 +101,7 @@ class TemplateGroup extends React.Component {
             const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
                 <RuleTemplate
                     key={ruleTemplate.name}
-                    templateGroup = {this.state}
+                    templateGroup={this.state}
                     name={ruleTemplate.name}
                     type={ruleTemplate.type}
                     instanceCount={ruleTemplate.instanceCount}
@@ -79,9 +113,17 @@ class TemplateGroup extends React.Component {
                 />);
             return (
                 <div>
-                    <h2>Rule Templates</h2>
-                    <p><b>{this.state.name}</b><br/>
-                        {this.state.description}</p>
+                    <Typography type="headline" component="h2">
+                        Rule Templates
+                    </Typography>
+                    <Typography type="subheading" color="secondary">
+                        {this.state.name}
+                    </Typography>
+                    <Typography component="p">
+                        {this.state.description}
+                    </Typography>
+                    <br/>
+
                     <div>
                         {ruleTemplates}
                     </div>
@@ -114,20 +156,44 @@ class RuleTemplate extends React.Component {
 
     render() {
         if (this.state.viewAs === "thumbnail") {
+
             return (
-                <div className="ruleTemplateCard"
-                     onClick={(e) =>
-                         displayForm(
-                             this.state,
-                             this.state.properties)}>
-                    <h3>{this.state.name}</h3>
-                    <p>{this.state.description}</p>
-                    <p>
-                        Type : {this.state.type}<br/>
-                        Instance Count : {this.state.instanceCount}<br/>
-                    </p>
+                <div>
+                    <Card onClick={(e) =>
+                        displayForm(
+                            this.state,
+                            this.state.properties)}>
+                        <CardHeader
+                            avatar={
+                                <Avatar aria-label="Recipe" className={classes.avatar}>
+                                    {this.state.name[0]}
+                                </Avatar>
+                            }
+                            title={this.state.name}
+                        />
+                        <CardContent>
+                            <Typography component="p">
+                                {this.state.description}
+                            </Typography>
+                            <br/>
+                            <Typography component="p">
+                                Type : {this.state.type}<br/>
+                                Instance Count : {this.state.instanceCount}<br/>
+                            </Typography>
+                            <br/>
+                            <Button dense color="primary" onClick={(e) =>
+                                displayForm(
+                                    this.state,
+                                    this.state.properties)}>
+                                Create Business Rule
+                            </Button>
+                        </CardContent>
+                    </Card>
+                    <br/>
                 </div>
             );
+
+
         }
     }
 }
@@ -172,15 +238,30 @@ class BusinessRuleForm extends React.Component {
         );
         return (
             <div>
-                <h3>Properties for creating Business Rule</h3>
-                <p><b>{this.state.templateGroup.name} -> {this.state.ruleTemplate.name}</b><br/>
+                <Typography type="headline" component="h2">
+                    Create Business Rule
+                </Typography>
+                <Typography type="subheading" color="secondary">
+                    {this.state.templateGroup.name} -> {this.state.ruleTemplate.name}
+                </Typography>
+                <Typography component="p">
                     {this.state.ruleTemplate.description}
-                </p>
+                </Typography>
                 <br/>
-                <form>
+                <div>
+                    <TextField
+                        label="Business Rule name"
+                        placeholder="Please enter"
+                        className={classes.textField}
+                    />
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+                <div>
                     {properties}<br/>
-                    <input type="submit" value="Submit"/>
-                </form>
+                    <Button raised color="primary">Create</Button>
+                </div>
             </div>
         );
     }
@@ -191,6 +272,13 @@ class BusinessRuleForm extends React.Component {
  * Represents Property, which is going to be shown as an input element
  */
 class Property extends React.Component {
+    handleChange = (event, value) => {
+        this.setState({
+            value: value
+        });
+        console.log(value + "CLICKED")
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -198,33 +286,79 @@ class Property extends React.Component {
             description: props.description,
             defaultValue: props.defaultValue,
             type: props.type,
-            options: props.options
+            options: props.options,
+            value: ''
         }
     }
 
-    // Renders each element either as a TextField or Select box
+    // Renders each element either as a TextField or Radio Group
     render() {
-        var htmlSource = "";
-        htmlSource += this.state.description + " : <br/>";
-        if (this.state.type === "options") {
-            // Options : List view
-            htmlSource += "<select name=" + this.state.name + " value=" + this.state.defaultValue + ">";
-
-            // Each given option
-            for (let option of this.state.options) {
-                htmlSource += "<option value=" + option + ">" + option + "</option>";
-            }
-
-            htmlSource += "</select>";
-        } else {
-            // Text Field
-            htmlSource += "<input type=text name=" + this.state.name + " value=" + this.state.defaultValue + " required >";
+        function compare(defaultOption, currentOption) {
+            return (currentOption === defaultOption)
         }
-        htmlSource += "<br/><br/>"
-        return (
-            <div dangerouslySetInnerHTML={this.toHTML(htmlSource)}/>
-        );
+
+        if (this.state.type === "options") {
+            const options = this.state.options.map((option) => (
+                <FormControlLabel key={option} value={option} control={<Radio/>} label={option}/>))
+            return (
+                <div>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend">{this.state.name}</FormLabel>
+                        <RadioGroup
+                            aria-label={this.state.name}
+                            key={this.state.name}
+                            name={this.state.render}
+                            value={this.state.value}
+                            selectedValue={this.state.defaultValue}
+                            className="c182"
+                            onChange={this.handleChange}
+                        >
+                            {options}
+                        </RadioGroup>
+                    </FormControl>
+                    <br/>
+                    <br/>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <TextField
+                        required
+                        id={this.state.name}
+                        label={this.state.name}
+                        defaultValue={this.state.defaultValue}
+                        margin="normal"
+                    />
+                    <br/>
+                    <br/>
+                </div>
+            );
+        }
     }
+
+    // render() {
+    //     var htmlSource = "";
+    //     htmlSource += this.state.description + " : <br/>";
+    //     if (this.state.type === "options") {
+    //         // Options : List view
+    //         htmlSource += "<select name=" + this.state.name + " value=" + this.state.defaultValue + ">";
+    //
+    //         // Each given option
+    //         for (let option of this.state.options) {
+    //             htmlSource += "<option value=" + option + ">" + option + "</option>";
+    //         }
+    //
+    //         htmlSource += "</select>";
+    //     } else {
+    //         // Text Field
+    //         htmlSource += "<input type=text name=" + this.state.name + " value=" + this.state.defaultValue + " required >";
+    //     }
+    //     htmlSource += "<br/><br/>"
+    //     return (
+    //         <div dangerouslySetInnerHTML={this.toHTML(htmlSource)}/>
+    //     );
+    // }
 
     toHTML(inputString) {
         return {
@@ -446,6 +580,7 @@ function getRuleTemplates(templateGroupName) {
     // todo: Return RuleTemplates from API
 }
 
+
 /* End of Methods related with API calls */
 
 // Load available Template Groups and store
@@ -501,7 +636,7 @@ function displayForm(ruleTemplate, properties) {
         <BusinessRuleForm
             templateGroup={ruleTemplate.templateGroup}
             ruleTemplate={ruleTemplate}
-            properties={properties}
+            properties={properties} // todo: get this from API
         />, document.getElementById("root"));
 }
 
