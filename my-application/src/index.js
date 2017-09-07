@@ -1,18 +1,17 @@
+// todo: bind handleClicks in the new way
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
 // Material-UI
-import Button from 'material-ui/Button';
-import Card, {CardContent, CardHeader} from 'material-ui/Card';
-// import SelectField from 'material-ui/SelectField';
-// import MenuItem from 'material-ui/MenuItem';
-import Typography from 'material-ui/Typography';
 import * as classes from "react/lib/ReactDOMFactories";
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import {FormControlLabel, FormLabel} from 'material-ui/Form';
 import FormControl from 'material-ui/Form/FormControl';
 import Radio, {RadioGroup} from 'material-ui/Radio';
-import {FormControlLabel, FormLabel} from 'material-ui/Form';
+import Card, {CardContent, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
-import TextField from 'material-ui/TextField';
 
 /**
  * Business Rules run within this
@@ -123,7 +122,6 @@ class TemplateGroup extends React.Component {
                         {this.state.description}
                     </Typography>
                     <br/>
-
                     <div>
                         {ruleTemplates}
                     </div>
@@ -208,23 +206,20 @@ class BusinessRuleForm extends React.Component {
             templateGroup: props.templateGroup,
             ruleTemplate: props.ruleTemplate,
             properties: props.properties,
-            // Following States are maintained. Those will be created at the time of entering
-            // businessRuleName
         }
-        this.handleTextChange=this.handleTextChange.bind(this);
+        this.handleTextChange = this.handleTextChange.bind(this);
     }
 
-    handleTextChange(event){
-        // Get current state
-        let currentState = this.state;
-        // Update the variable that has the same name as target's name,
-        // with the new value
-        currentState[event.target.name.toString()] = event.target.value
-        // Update state with the modified one
-        this.setState({
-            currentState
-        });
-        console.log(this.state[event.target.name.toString()])
+    // Handle text field change
+    handleTextChange(event) {
+        // todo: (!) Look into this
+        // Get properties available until now
+        let businessRuleProperties = businessRuleEnteredProperties
+        // Add a new Key Value pair denoting the target's name & value,
+        businessRuleProperties[event.target.name.toString()] = event.target.value
+
+        // Update the existing properties object
+        businessRuleEnteredProperties = businessRuleProperties
     }
 
     render() {
@@ -281,8 +276,7 @@ class BusinessRuleForm extends React.Component {
                 <div>
                     {properties}<br/>
                     <Button raised color="primary"
-                            onClick={(e) =>
-                                prepareBusinessRule()}>Create</Button>
+                            onClick={(e) => prepareBusinessRule()}>Create</Button>
                 </div>
             </div>
         );
@@ -294,13 +288,6 @@ class BusinessRuleForm extends React.Component {
  * Represents Property, which is going to be shown as an input element
  */
 class Property extends React.Component {
-    handleRadioChange = (event, value) => {
-        this.setState({
-            value: value
-        });
-        console.log(value + "CLICKED")
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -309,16 +296,38 @@ class Property extends React.Component {
             defaultValue: props.defaultValue,
             type: props.type,
             options: props.options,
-            value: ''
         }
+        this.handleRadioChange = this.handleRadioChange.bind(this);
+        this.handleTextChange = this.handleTextChange.bind(this);
+    }
+
+    handleRadioChange(event, value) {
+        this.setState({
+            value: value
+        });
+        // Get properties available until now
+        let businessRuleProperties = businessRuleEnteredProperties
+        // Add a new Key Value pair denoting the target's name & value,
+        businessRuleProperties[event.target.name.toString()] = value
+
+        // Update the existing properties object
+        businessRuleEnteredProperties = businessRuleProperties
+    }
+
+    handleTextChange(event) {
+        // todo: (!) Look into this
+        // Get properties available until now
+        let businessRuleProperties = businessRuleEnteredProperties
+        // Add a new Key Value pair denoting the target's name & value,
+        businessRuleProperties[event.target.name.toString()] = event.target.value
+
+        // Update the existing properties object
+        businessRuleEnteredProperties = businessRuleProperties
+
     }
 
     // Renders each element either as a TextField or Radio Group
     render() {
-        function compare(defaultOption, currentOption) {
-            return (currentOption === defaultOption)
-        }
-
         if (this.state.type === "options") {
             const options = this.state.options.map((option) => (
                 <FormControlLabel key={option} value={option} control={<Radio/>} label={option}/>))
@@ -329,8 +338,9 @@ class Property extends React.Component {
                         <RadioGroup
                             aria-label={this.state.name}
                             key={this.state.name}
-                            name={this.state.render}
+                            name={this.state.name}
                             value={this.state.value}
+                            className="c182"
                             onChange={this.handleRadioChange}
                         >
                             {options}
@@ -351,6 +361,7 @@ class Property extends React.Component {
                         label={this.state.name}
                         defaultValue={this.state.defaultValue}
                         margin="normal"
+                        onChange={this.handleTextChange}
                     />
                     <br/>
                     <br/>
@@ -629,6 +640,10 @@ function getProperties(templateGroupName, ruleTemplateName) {
 // Load available Template Groups and store
 const availableTemplateGroups = getTemplateGroups()
 
+// todo: (!) look into this. Seems not good
+// Properties given in the form, for Creating a Business Rule
+var businessRuleEnteredProperties = {}
+
 /**
  * Starts and runs Business Rules
  */
@@ -688,9 +703,9 @@ function displayForm(ruleTemplate, properties) {
  *
  * @param filledValues
  */
-function prepareBusinessRule(filledValues) {
-    console.log("Preparing Business Rule Properties ...")
-    console.log(document.getElementById("businessRuleName"))
+function prepareBusinessRule() {
+    console.log("Business Rule Properties :")
+    console.log(businessRuleEnteredProperties)
 }
 
 run();
