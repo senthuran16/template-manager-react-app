@@ -309,7 +309,6 @@ class Property extends React.Component {
                             key={this.state.name}
                             name={this.state.render}
                             value={this.state.value}
-                            selectedValue={this.state.defaultValue}
                             className="c182"
                             onChange={this.handleChange}
                         >
@@ -570,9 +569,6 @@ function getRuleTemplates(templateGroupName) {
     var templateGroups = availableTemplateGroups
     for (let templateGroup of templateGroups) {
         if (templateGroup.name === templateGroupName) {
-            console.log("Returned RuleTemplates : ")
-            console.log(templateGroup.ruleTemplates)
-
             return templateGroup.ruleTemplates
         }
     }
@@ -580,6 +576,30 @@ function getRuleTemplates(templateGroupName) {
     // todo: Return RuleTemplates from API
 }
 
+/**
+ * Get available Properties, belong to the given RuleTemplate
+ *
+ * @param templateGroupName
+ * @param ruleTemplateName
+ * @returns {*|Array}
+ */
+function getProperties(templateGroupName, ruleTemplateName) {
+    // todo: remove hardcode ******************************
+    var ruleTemplates
+    for (let templateGroup of availableTemplateGroups) {
+        if (templateGroup.name === templateGroupName) {
+            ruleTemplates = templateGroup.ruleTemplates
+            break
+        }
+    }
+    for (let ruleTemplate of ruleTemplates) {
+        if (ruleTemplate.name === ruleTemplateName) {
+            return ruleTemplate.properties
+        }
+    }
+    // todo: **********************************************
+    // todo: Return Properties from API
+}
 
 /* End of Methods related with API calls */
 
@@ -636,7 +656,7 @@ function displayForm(ruleTemplate, properties) {
         <BusinessRuleForm
             templateGroup={ruleTemplate.templateGroup}
             ruleTemplate={ruleTemplate}
-            properties={properties} // todo: get this from API
+            properties={getProperties(ruleTemplate.templateGroup.name, ruleTemplate.name)}
         />, document.getElementById("root"));
 }
 
