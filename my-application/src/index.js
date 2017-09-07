@@ -207,8 +207,24 @@ class BusinessRuleForm extends React.Component {
         this.state = {
             templateGroup: props.templateGroup,
             ruleTemplate: props.ruleTemplate,
-            properties: props.properties
+            properties: props.properties,
+            // Following States are maintained. Those will be created at the time of entering
+            // businessRuleName
         }
+        this.handleTextChange=this.handleTextChange.bind(this);
+    }
+
+    handleTextChange(event){
+        // Get current state
+        let currentState = this.state;
+        // Update the variable that has the same name as target's name,
+        // with the new value
+        currentState[event.target.name.toString()] = event.target.value
+        // Update state with the modified one
+        this.setState({
+            currentState
+        });
+        console.log(this.state[event.target.name.toString()])
     }
 
     render() {
@@ -236,6 +252,7 @@ class BusinessRuleForm extends React.Component {
                 options={property.propertyObject.options}
             />
         );
+
         return (
             <div>
                 <Typography type="headline" component="h2">
@@ -250,9 +267,12 @@ class BusinessRuleForm extends React.Component {
                 <br/>
                 <div>
                     <TextField
+                        id="businessRuleName"
+                        name="businessRuleName"
                         label="Business Rule name"
                         placeholder="Please enter"
-                        className={classes.textField}
+                        required={true}
+                        onChange={this.handleTextChange}
                     />
                     <br/>
                     <br/>
@@ -260,7 +280,9 @@ class BusinessRuleForm extends React.Component {
                 </div>
                 <div>
                     {properties}<br/>
-                    <Button raised color="primary">Create</Button>
+                    <Button raised color="primary"
+                            onClick={(e) =>
+                                prepareBusinessRule()}>Create</Button>
                 </div>
             </div>
         );
@@ -272,7 +294,7 @@ class BusinessRuleForm extends React.Component {
  * Represents Property, which is going to be shown as an input element
  */
 class Property extends React.Component {
-    handleChange = (event, value) => {
+    handleRadioChange = (event, value) => {
         this.setState({
             value: value
         });
@@ -309,7 +331,7 @@ class Property extends React.Component {
                             key={this.state.name}
                             name={this.state.render}
                             value={this.state.value}
-                            onChange={this.handleChange}
+                            onChange={this.handleRadioChange}
                         >
                             {options}
                         </RadioGroup>
@@ -319,11 +341,13 @@ class Property extends React.Component {
                 </div>
             );
         } else {
+
             return (
                 <div>
                     <TextField
                         required
                         id={this.state.name}
+                        name={this.state.name}
                         label={this.state.name}
                         defaultValue={this.state.defaultValue}
                         margin="normal"
@@ -657,6 +681,16 @@ function displayForm(ruleTemplate, properties) {
             ruleTemplate={ruleTemplate}
             properties={getProperties(ruleTemplate.templateGroup.name, ruleTemplate.name)}
         />, document.getElementById("root"));
+}
+
+/**
+ * Sends the form filled values as Key Value pairs, to the API
+ *
+ * @param filledValues
+ */
+function prepareBusinessRule(filledValues) {
+    console.log("Preparing Business Rule Properties ...")
+    console.log(document.getElementById("businessRuleName"))
 }
 
 run();
