@@ -360,7 +360,7 @@ class BusinessRuleForm extends React.Component {
                 />
             submitButton =
                 <Button raised color="primary"
-                        onClick={(e) => console.log("TODO: Edit Business Rule")}>Edit</Button>
+                        onClick={(e) => console.log("TODO: Edit Business Rule")}>Update</Button>
         }
 
 

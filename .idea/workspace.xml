@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/index.js" afterPath="$PROJECT_DIR$/my-application/src/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,15 +19,15 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="1064" column="1" lean-forward="true" selection-start-line="1064" selection-start-column="1" selection-end-line="1064" selection-end-column="1" />
+            <state relative-caret-position="528">
+              <caret line="362" column="87" lean-forward="false" selection-start-line="362" selection-start-column="87" selection-end-line="362" selection-end-column="87" />
               <folding>
                 <element signature="e#42#68#0" expanded="true" />
                 <element signature="e#143#198#0" expanded="true" />
                 <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-                <element signature="e#19860#28256#0" expanded="false" />
+                <element signature="e#19862#28258#0" expanded="false" />
                 <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-                <element signature="e#28603#29534#0" expanded="false" />
+                <element signature="e#28605#29536#0" expanded="false" />
                 <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
                 <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
                 <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -188,12 +187,12 @@
       <workItem from="1504680072220" duration="34862000" />
       <workItem from="1504759020180" duration="9168000" />
       <workItem from="1504768733260" duration="25468000" />
-      <workItem from="1504846203277" duration="27078000" />
+      <workItem from="1504846203277" duration="27467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220262000" />
+    <option name="totallyTimeSpent" value="220651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
@@ -266,9 +265,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -286,9 +285,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -329,9 +328,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -367,9 +366,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -387,9 +386,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -407,9 +406,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -427,9 +426,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -454,9 +453,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -481,9 +480,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -501,9 +500,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -532,9 +531,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -563,9 +562,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -601,9 +600,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -635,9 +634,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -655,9 +654,9 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
@@ -783,15 +782,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="1064" column="1" lean-forward="true" selection-start-line="1064" selection-start-column="1" selection-end-line="1064" selection-end-column="1" />
+        <state relative-caret-position="528">
+          <caret line="362" column="87" lean-forward="false" selection-start-line="362" selection-start-column="87" selection-end-line="362" selection-end-column="87" />
           <folding>
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19860#28256#0" expanded="false" />
+            <element signature="e#19862#28258#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28603#29534#0" expanded="false" />
+            <element signature="e#28605#29536#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
