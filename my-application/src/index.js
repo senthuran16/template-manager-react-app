@@ -51,55 +51,6 @@ class BusinessRules extends React.Component {
 }
 
 /**
- * Listing Business Rules in order to Edit and Delete,
- * will happen within this component
- */
-class BusinessRulesModifier extends React.Component { //todo: just hard coded. remove them
-    render() {
-        const hardCodedBRs = [
-            {
-                uuid: 'abc123',
-                name: 'MyHardCodedBR1',
-                templateGroupName: 'someTemplateGroup',
-                ruleTemplateName: 'someRuleTemplateName',
-                type: 'template',
-                properties: null
-            },
-            {
-                uuid: 'def456',
-                name: 'MyHardCodedBR2',
-                templateGroupName: 'someTemplateGroup',
-                ruleTemplateName: 'someRuleTemplateName',
-                type: 'template',
-                properties: null
-            }
-        ]
-        const gotBRs = hardCodedBRs.map((br) =>
-            <BusinessRule
-                key={br.uuid}
-                uuid={br.uuid}
-                name={br.name}
-                templateGroupName={br.templateGroupName}
-                ruleTemplateName={br.ruleTemplateName}
-                type={br.type}
-                properties={br.properties}
-            />
-        )
-
-        return (
-            <div>
-                <Typography type="headline" component="h2">
-                    Business Rules
-                </Typography>
-                <br/>
-                <div>
-                    {gotBRs}
-                </div>
-            </div>);
-    }
-}
-
-/**
  * Listing Template Groups and filtering them for creating Business Rules,
  * will happen within this component
  */
@@ -134,6 +85,45 @@ class BusinessRulesCreator extends React.Component {
                 </div>
             </div>
         );
+    }
+}
+
+/**
+ * Listing Business Rules in order to Edit and Delete,
+ * will happen within this component
+ */
+class BusinessRulesModifier extends React.Component { //todo: just hard coded. remove them
+    constructor(props) {
+        super(props);
+        this.state = {
+            businessRules: props.businessRules
+        }
+    }
+
+    render() {
+        // Display available Business Rules as thumbnails
+        const businessRules = this.state.businessRules.map((businessRule) =>
+            <BusinessRule
+                key={businessRule.uuid}
+                uuid={businessRule.uuid}
+                name={businessRule.name}
+                templateGroupName={businessRule.templateGroupName}
+                ruleTemplateName={businessRule.ruleTemplateName}
+                type={businessRule.type}
+                properties={businessRule.properties}
+            />
+        )
+
+        return (
+            <div>
+                <Typography type="headline" component="h2">
+                    Business Rules
+                </Typography>
+                <br/>
+                <div>
+                    {businessRules}
+                </div>
+            </div>);
     }
 }
 
@@ -263,10 +253,10 @@ class RuleTemplate extends React.Component {
                                 Instance Count : {this.state.instanceCount}<br/>
                             </Typography>
                             <br/>
-                            <Button dense color="primary" onClick={(e) =>
-                                displayForm(
-                                    this.state,
-                                    this.state.properties)}>
+                            <Button dense color="primary"
+                                    onClick={(e) =>
+                                        displayCreateBusinessRuleForm(this.state)
+                                    }>
                                 Create Business Rule
                             </Button>
                         </CardContent>
@@ -290,11 +280,13 @@ class BusinessRuleForm extends React.Component {
             templateGroup: props.templateGroup,
             ruleTemplate: props.ruleTemplate,
             properties: props.properties,
+            mode: props.mode,
+            businessRuleName: props.businessRuleName // Only available when mode is 'edit'
         }
         this.handleTextChange = this.handleTextChange.bind(this);
     }
 
-    // Handle text field change
+    // Handles text field change for Business Rule name
     handleTextChange(event) {
         // todo: (!) Look into this
         // Get properties available until now
@@ -332,10 +324,50 @@ class BusinessRuleForm extends React.Component {
             />
         );
 
+        var displayMode // For the heading
+        var businessRuleNameTextField // For the businessRuleName text field
+        var submitButton // For the button at the end of form
+
+        // Create BusinessRule
+        if (this.state.mode == "create") {
+            displayMode = "Create"
+            businessRuleNameTextField =
+                <TextField
+                    id="businessRuleName"
+                    name="businessRuleName"
+                    label="Business Rule name"
+                    placeholder="Please enter"
+                    required={true}
+                    onChange={this.handleTextChange}
+                />
+            submitButton =
+                <Button raised color="primary"
+                        onClick={(e) => prepareBusinessRule()}>Create</Button>
+        } else {
+            // Edit BusinessRule
+
+            displayMode = "Edit"
+            businessRuleNameTextField =
+                <TextField
+                    id="businessRuleName"
+                    name="businessRuleName"
+                    label="Business Rule name"
+                    placeholder="Please enter"
+                    value={this.state.businessRuleName}
+                    required={true}
+                    onChange={this.handleTextChange}
+                    disabled={true}
+                />
+            submitButton =
+                <Button raised color="primary"
+                        onClick={(e) => console.log("TODO: Edit Business Rule")}>Edit</Button>
+        }
+
+
         return (
             <div>
                 <Typography type="headline" component="h2">
-                    Create Business Rule
+                    {displayMode} Business Rule
                 </Typography>
                 <Typography type="subheading" color="secondary">
                     {this.state.templateGroup.name} -> {this.state.ruleTemplate.name}
@@ -345,22 +377,14 @@ class BusinessRuleForm extends React.Component {
                 </Typography>
                 <br/>
                 <div>
-                    <TextField
-                        id="businessRuleName"
-                        name="businessRuleName"
-                        label="Business Rule name"
-                        placeholder="Please enter"
-                        required={true}
-                        onChange={this.handleTextChange}
-                    />
+                    {businessRuleNameTextField}
                     <br/>
                     <br/>
                     <br/>
                 </div>
                 <div>
                     {properties}<br/>
-                    <Button raised color="primary"
-                            onClick={(e) => prepareBusinessRule()}>Create</Button>
+                    {submitButton}
                 </div>
             </div>
         );
@@ -387,6 +411,7 @@ class Property extends React.Component {
         businessRuleEnteredProperties[this.state.name] = this.state.defaultValue
     }
 
+    // Handles onChange of Radio button
     handleRadioChange(event, value) {
         this.setState({
             value: value
@@ -400,6 +425,7 @@ class Property extends React.Component {
         businessRuleEnteredProperties = businessRuleProperties
     }
 
+    // Handles onChange of Text Fields
     handleTextChange(event, value) {
         this.setState({
             value: value
@@ -415,13 +441,14 @@ class Property extends React.Component {
         businessRuleEnteredProperties = businessRuleProperties
     }
 
-    // Renders each element either as a TextField or Radio Group
+    // Renders each Property either as a TextField or Radio Group, with default values and elements as specified
     render() {
         if (this.state.type === "options") {
             const options = this.state.options.map((option) => (
                 <FormControlLabel key={option} value={option} control={<Radio/>} label={option}/>))
             return (
                 <div>
+                    <br/>
                     <FormControl component="fieldset" required>
                         <FormLabel component="legend">{this.state.name}</FormLabel>
                         <RadioGroup
@@ -434,6 +461,11 @@ class Property extends React.Component {
                         >
                             {options}
                         </RadioGroup>
+
+                        {/*todo: No description prop available for this element*/}
+                        <Typography component="p" color="secondary">
+                            {this.state.description}
+                        </Typography>
                     </FormControl>
                     <br/>
                     <br/>
@@ -448,6 +480,7 @@ class Property extends React.Component {
                         name={this.state.name}
                         label={this.state.name}
                         defaultValue={this.state.defaultValue}
+                        helperText={this.state.description}
                         margin="normal"
                         onChange={this.handleTextChange}
                     />
@@ -457,39 +490,10 @@ class Property extends React.Component {
             );
         }
     }
-
-    // render() {
-    //     var htmlSource = "";
-    //     htmlSource += this.state.description + " : <br/>";
-    //     if (this.state.type === "options") {
-    //         // Options : List view
-    //         htmlSource += "<select name=" + this.state.name + " value=" + this.state.defaultValue + ">";
-    //
-    //         // Each given option
-    //         for (let option of this.state.options) {
-    //             htmlSource += "<option value=" + option + ">" + option + "</option>";
-    //         }
-    //
-    //         htmlSource += "</select>";
-    //     } else {
-    //         // Text Field
-    //         htmlSource += "<input type=text name=" + this.state.name + " value=" + this.state.defaultValue + " required >";
-    //     }
-    //     htmlSource += "<br/><br/>"
-    //     return (
-    //         <div dangerouslySetInnerHTML={this.toHTML(htmlSource)}/>
-    //     );
-    // }
-
-    toHTML(inputString) {
-        return {
-            __html: inputString
-        }
-    }
 }
 
 /**
- * Represents a BusinessRule, that is already created and available todo: Roughly done. Implement properly
+ * Represents a BusinessRule, that is already created and available
  */
 class BusinessRule extends React.Component {
     constructor(props) {
@@ -504,6 +508,7 @@ class BusinessRule extends React.Component {
         }
     }
 
+    // Displays each available Business Rule as a thumbnail, with options to Edit & Delete
     render() {
         return (
             <div>
@@ -521,8 +526,13 @@ class BusinessRule extends React.Component {
                             Type : {this.state.type}<br/>
                         </Typography>
                         <br/>
+
                         <IconButton aria-label="Edit"
-                                    onClick={(e) => console.log("[Test] Sent request for BR data, to API")}>
+                                    onClick={(e) =>
+                                        displayEditBusinessRuleForm(
+                                            this.state.templateGroupName,
+                                            this.state.ruleTemplateName,
+                                            this.state)}>
                             <ModeEditIcon/>
                         </IconButton>
                         <IconButton aria-label="Delete"
@@ -538,201 +548,243 @@ class BusinessRule extends React.Component {
 
 }
 
-/* Start of Methods related with API calls */
+/* Start of Methods related to API calls **************************************/
 
 /**
- * Get available TemplateGroups todo: from API
+ * Gets available TemplateGroups
+ * todo: from API
  *
  * @returns {Array}
  */
 function getTemplateGroups() {
     // todo: remove hardcode *****************************
-    var receivedTemplateGroups = {
-        templateGroups: [
-            {
-                "name": "SensorDataAnalysis1",
-                "description": "Collection for sensor data analysis(1)",
-                "ruleTemplates": [
-                    {
-                        "name": "SensorAnalytics1",
-                        "type": "app",
-                        "instanceCount": "many",
-                        "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (1)",
-                        "templates": [
-                            {
-                                "type": "siddhiApp",
-                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-                            },
-                            {
-                                "type": "siddhiApp",
-                                "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
-                            }
-                        ],
-                        "properties": {
-                            "inStream1": {
-                                "description": "Input Stream",
-                                "defaultValue": "myInputStream1",
-                                "type": "options",
-                                "options": ["myInputStream1", "myInputStream2"]
-                            },
-                            "property1": {
-                                "description": "Unique Identifier for the sensor",
-                                "defaultValue": "sensorName",
-                                "type": "options",
-                                "options": ["sensorID", "sensorName"]
-                            },
-                            "property2": {
-                                "description": "Type of value, the sensor measures",
-                                "defaultValue": "sensorValue",
-                                "type": "String"
-                            },
-                            "outStream1": {
-                                "description": "Output Stream 1",
-                                "defaultValue": "myOutputStream1",
-                                "type": "options",
-                                "options": ["myOutputStream1", "myOutputStream2"]
-                            },
-                            "outStream2": {
-                                "description": "Output Stream 2",
-                                "defaultValue": "myOutputStream2",
-                                "type": "options",
-                                "options": ["myOutputStream1", "myOutputStream2"]
-                            }
+    var receivedTemplateGroups = [
+        {
+            "name": "SensorDataAnalysis1",
+            "description": "Collection for sensor data analysis(1)",
+            "ruleTemplates": [
+                {
+                    "name": "SensorAnalytics1",
+                    "type": "app",
+                    "instanceCount": "many",
+                    "script": "<script> (optional)",
+                    "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (1)",
+                    "templates": [
+                        {
+                            "type": "siddhiApp",
+                            "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                        },
+                        {
+                            "type": "siddhiApp",
+                            "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
                         }
-                    },
-                    {
-                        "name": "SensorLoggings1",
-                        "type": "<app>",
-                        "instanceCount": "many",
-                        "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (1)",
-                        "templates": [
-                            {
-                                "type": "siddhiApp",
-                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-                            }
-                        ],
-                        "properties": {
-                            "inStream1": {
-                                "description": "Input Stream",
-                                "defaultValue": "myInputStream1",
-                                "type": "options",
-                                "options": ["myInputStream1", "myInputStream2"]
-                            },
-                            "property1": {
-                                "description": "Unique Identifier for the sensor",
-                                "defaultValue": "sensorName",
-                                "type": "options",
-                                "options": ["sensorID", "sensorName"]
-                            },
-                            "outStream1": {
-                                "description": "Output Stream 1",
-                                "defaultValue": "myOutputStream1",
-                                "type": "options",
-                                "options": ["myOutputStream1", "myOutputStream2"]
-                            }
+                    ],
+                    "properties": {
+                        "inStream1": {
+                            "description": "Input Stream",
+                            "defaultValue": "myInputStream1",
+                            "type": "options",
+                            "options": ["myInputStream1", "myInputStream2"]
+                        },
+                        "property1": {
+                            "description": "Unique Identifier for the sensor",
+                            "defaultValue": "sensorName",
+                            "type": "options",
+                            "options": ["sensorID", "sensorName"]
+                        },
+                        "property2": {
+                            "description": "Type of value, the sensor measures",
+                            "defaultValue": "sensorValue",
+                            "type": "String"
+                        },
+                        "outStream1": {
+                            "description": "Output Stream 1",
+                            "defaultValue": "myOutputStream1",
+                            "type": "options",
+                            "options": ["myOutputStream1", "myOutputStream2"]
+                        },
+                        "outStream2": {
+                            "description": "Output Stream 2",
+                            "defaultValue": "myOutputStream2",
+                            "type": "options",
+                            "options": ["myOutputStream1", "myOutputStream2"]
                         }
                     }
-                ]
-            },
-            {
-                "name": "SensorDataAnalysis2",
-                "description": "Collection for sensor data analysis(2)",
-                "ruleTemplates": [
-                    {
-                        "name": "SensorAnalytics2",
-                        "type": "app",
-                        "instanceCount": "many",
-                        "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (2)",
-                        "templates": [
-                            {
-                                "type": "siddhiApp",
-                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-                            },
-                            {
-                                "type": "siddhiApp",
-                                "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
-                            }
-                        ],
-                        "properties": {
-                            "inStream1": {
-                                "description": "Input Stream",
-                                "defaultValue": "myInputStream1",
-                                "type": "options",
-                                "options": ["myInputStream1", "myInputStream2"]
-                            },
-                            "property1": {
-                                "description": "Unique Identifier for the sensor",
-                                "defaultValue": "sensorName",
-                                "type": "options",
-                                "options": ["sensorID", "sensorName"]
-                            },
-                            "property2": {
-                                "description": "Type of value, the sensor measures",
-                                "defaultValue": "sensorValue",
-                                "type": "String"
-                            },
-                            "outStream1": {
-                                "description": "Output Stream 1",
-                                "defaultValue": "myOutputStream1",
-                                "type": "options",
-                                "options": ["myOutputStream1", "myOutputStream2"]
-                            },
-                            "outStream2": {
-                                "description": "Output Stream 2",
-                                "defaultValue": "myOutputStream2",
-                                "type": "options",
-                                "options": ["myOutputStream1", "myOutputStream2"]
-                            }
+                },
+                {
+                    "name": "SensorLoggings1",
+                    "type": "<app>",
+                    "instanceCount": "many",
+                    "script": "<script> (optional)",
+                    "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (1)",
+                    "templates": [
+                        {
+                            "type": "siddhiApp",
+                            "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
                         }
-                    },
-                    {
-                        "name": "SensorLoggings2",
-                        "type": "<app>",
-                        "instanceCount": "many",
-                        "script": "<script> (optional)",
-                        "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (2)",
-                        "templates": [
-                            {
-                                "type": "siddhiApp",
-                                "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
-                            }
-                        ],
-                        "properties": {
-                            "inStream1": {
-                                "description": "Input Stream",
-                                "defaultValue": "myInputStream1",
-                                "type": "options",
-                                "options": ["myInputStream1", "myInputStream2"]
-                            },
-                            "property1": {
-                                "description": "Unique Identifier for the sensor",
-                                "defaultValue": "sensorName",
-                                "type": "options",
-                                "options": ["sensorID", "sensorName"]
-                            },
-                            "outStream1": {
-                                "description": "Output Stream 1",
-                                "defaultValue": "myOutputStream1",
-                                "type": "options",
-                                "options": ["myOutputStream1", "myOutputStream2"]
-                            }
+                    ],
+                    "properties": {
+                        "inStream1": {
+                            "description": "Input Stream",
+                            "defaultValue": "myInputStream1",
+                            "type": "options",
+                            "options": ["myInputStream1", "myInputStream2"]
+                        },
+                        "property1": {
+                            "description": "Unique Identifier for the sensor",
+                            "defaultValue": "sensorName",
+                            "type": "options",
+                            "options": ["sensorID", "sensorName"]
+                        },
+                        "outStream1": {
+                            "description": "Output Stream 1",
+                            "defaultValue": "myOutputStream1",
+                            "type": "options",
+                            "options": ["myOutputStream1", "myOutputStream2"]
                         }
                     }
-                ]
-            }
-        ]
-    }
+                }
+            ]
+        },
+        {
+            "name": "SensorDataAnalysis2",
+            "description": "Collection for sensor data analysis(2)",
+            "ruleTemplates": [
+                {
+                    "name": "SensorAnalytics2",
+                    "type": "app",
+                    "instanceCount": "many",
+                    "script": "<script> (optional)",
+                    "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (2)",
+                    "templates": [
+                        {
+                            "type": "siddhiApp",
+                            "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                        },
+                        {
+                            "type": "siddhiApp",
+                            "content": "<from ${inStream1} select ${property2} insert into ${outStream2}>"
+                        }
+                    ],
+                    "properties": {
+                        "inStream1": {
+                            "description": "Input Stream",
+                            "defaultValue": "myInputStream1",
+                            "type": "options",
+                            "options": ["myInputStream1", "myInputStream2"]
+                        },
+                        "property1": {
+                            "description": "Unique Identifier for the sensor",
+                            "defaultValue": "sensorName",
+                            "type": "options",
+                            "options": ["sensorID", "sensorName"]
+                        },
+                        "property2": {
+                            "description": "Type of value, the sensor measures",
+                            "defaultValue": "sensorValue",
+                            "type": "String"
+                        },
+                        "outStream1": {
+                            "description": "Output Stream 1",
+                            "defaultValue": "myOutputStream1",
+                            "type": "options",
+                            "options": ["myOutputStream1", "myOutputStream2"]
+                        },
+                        "outStream2": {
+                            "description": "Output Stream 2",
+                            "defaultValue": "myOutputStream2",
+                            "type": "options",
+                            "options": ["myOutputStream1", "myOutputStream2"]
+                        }
+                    }
+                },
+                {
+                    "name": "SensorLoggings2",
+                    "type": "<app>",
+                    "instanceCount": "many",
+                    "script": "<script> (optional)",
+                    "description": "Configure a sensor analytics scenario to display statistics for a given stream of your choice (2)",
+                    "templates": [
+                        {
+                            "type": "siddhiApp",
+                            "content": "<from ${inStream1} select ${property1} insert into ${outStream1}>"
+                        }
+                    ],
+                    "properties": {
+                        "inStream1": {
+                            "description": "Input Stream",
+                            "defaultValue": "myInputStream1",
+                            "type": "options",
+                            "options": ["myInputStream1", "myInputStream2"]
+                        },
+                        "property1": {
+                            "description": "Unique Identifier for the sensor",
+                            "defaultValue": "sensorName",
+                            "type": "options",
+                            "options": ["sensorID", "sensorName"]
+                        },
+                        "outStream1": {
+                            "description": "Output Stream 1",
+                            "defaultValue": "myOutputStream1",
+                            "type": "options",
+                            "options": ["myOutputStream1", "myOutputStream2"]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
 
-    return receivedTemplateGroups.templateGroups
+    return receivedTemplateGroups
     // todo: *********************************************
     // todo: Get TemplateGroups from API
 }
 
 /**
- * Get available RuleTemplates, belong to the given TemplateGroup todo: from API
+ * Gets available BusinessRules
+ * todo: from API
+ *
+ * @returns {[null,null]}
+ */
+function getBusinessRules() {
+    // todo: remove hardcode *****************************
+    var receivedBusinessRules = [
+        {
+            "uuid": "aaabbbcccddd",
+            "name": "TemperatureLoggings",
+            "templateGroupName": "SensorDataAnalysis1",
+            "ruleTemplateName": "SensorLoggings1",
+            "type": "template",
+            "properties": {
+                "inStream1": "myInputStream1",
+                "property1": "sensorName",
+                "outStream1": "myOutputStream1"
+            }
+        },
+        {
+            "uuid": "eeefffggghhh",
+            "name": "HumidityAnalytics",
+            "templateGroupName": "SensorDataAnalysis1",
+            "ruleTemplateName": "SensorAnalytics1",
+            "type": "template",
+            "properties": {
+                "inStream1": "myInputStream1",
+                "property1": "sensorID",
+                "property2": "humidity",
+                "outStream1": "myOutputStream1",
+                "outStream2": "myOutputStream2"
+            }
+        }
+    ]
+
+    return receivedBusinessRules
+    // todo: *********************************************
+    // todo: Get BusinessRules from API ******************
+}
+
+/**
+ * Get available RuleTemplates, belong to the given TemplateGroup
+ * todo: from API
  *
  * @param templateGroupName
  */
@@ -749,13 +801,58 @@ function getRuleTemplates(templateGroupName) {
 }
 
 /**
- * Get available Properties, belong to the given RuleTemplate
+ * Gets the TemplateGroup with the given name
+ * todo: from API
+ *
+ * @param templateGroupName
+ * @returns {*}
+ */
+function getTemplateGroup(templateGroupName) {
+    // todo: remove hardcode ******************************
+    for (let templateGroup of availableTemplateGroups) {
+        if (templateGroup.name === templateGroupName) {
+            return templateGroup
+        }
+    }
+    // todo: **********************************************
+    // todo: Return TemplateGroup from API
+}
+
+/**
+ * Gets the RuleTemplate with the given name, that belongs to the given TemplateGroup name
+ * todo: from API
+ *
+ * @param templateGroupName
+ * @param ruleTemplateName
+ * @returns {*}
+ */
+function getRuleTemplate(templateGroupName, ruleTemplateName) {
+    // todo: remove hardcode ******************************
+    var ruleTemplates
+    for (let templateGroup of availableTemplateGroups) {
+        if (templateGroup.name === templateGroupName) {
+            ruleTemplates = templateGroup.ruleTemplates
+            break
+        }
+    }
+    for (let ruleTemplate of ruleTemplates) {
+        if (ruleTemplate.name === ruleTemplateName) {
+            return ruleTemplate
+        }
+    }
+    // todo: **********************************************
+    // todo: Return RuleTemplate from API
+}
+
+/**
+ * Get available Properties, belong to the given TemplateGroup and RuleTemplate
+ * todo: from API
  *
  * @param templateGroupName
  * @param ruleTemplateName
  * @returns {*|Array}
  */
-function getProperties(templateGroupName, ruleTemplateName) {
+function getRuleTemplateProperties(templateGroupName, ruleTemplateName) {
     // todo: remove hardcode ******************************
     var ruleTemplates
     for (let templateGroup of availableTemplateGroups) {
@@ -773,21 +870,55 @@ function getProperties(templateGroupName, ruleTemplateName) {
     // todo: Return Properties from API
 }
 
-/* End of Methods related with API calls */
+/**
+ * Gets properties of the RuleTemplate specified in the BusinessRule,
+ * with defaultValues replaced with the entered properties in the BusinessRule
+ * todo: from API
+ *
+ * @param businessRuleUUID
+ * @returns {*|Array}
+ */
+function getBusinessRuleProperties(businessRuleUUID) {
+    // todo: remove hardcode ******************************
+    var foundBusinessRule
+    for (let businessRule of availableBusinessRules) {
+        if (businessRuleUUID === businessRule.uuid) {
+            foundBusinessRule = businessRule
+            break
+        }
+    }
+    var foundBusinessRuleProperties = foundBusinessRule.properties
 
-// Load available Template Groups and store
-const availableTemplateGroups = getTemplateGroups()
+    if (foundBusinessRule.type == "template") { //todo: confirm the string
+        // Get property type, description and etc. from specified RuleTemplate
+        var templateGroupName = foundBusinessRule.templateGroupName
+        var ruleTemplateName = foundBusinessRule.ruleTemplateName
 
-// todo: (!) look into this. Seems not good
-// Properties given in the form, for Creating a Business Rule
-var businessRuleEnteredProperties = {
-    businessRuleName: null
+        var ruleTemplateProperties = getRuleTemplateProperties(templateGroupName, ruleTemplateName)
+
+        var modifiedProperties = ruleTemplateProperties
+        // Replace each property's default value with entered values
+        // because, entered values are going to be displayed todo: (Q) Is this ok
+        for (let propertyName in modifiedProperties) {
+            // Update defaultValue with entered value
+            modifiedProperties[propertyName]["defaultValue"] = foundBusinessRuleProperties[propertyName]
+        }
+
+        return modifiedProperties
+    } else {
+        console.log("From Scratch is not supported yet") // todo
+    }
+    // todo: **********************************************
+    // todo: Return Properties from API
 }
 
+/* End of Methods related to API calls ****************************************/
+
 /**
- * Starts and runs Business Rules, which consists of BR Creator & Modifier todo: Hard coded. Remove
+ * Starts and runs Business Rules,
+ * which consists of BusinessRules Creator & BusinessRules Modifier
  */
-function runBusinessRules() {
+function startBusinessRules() {
     console.log("[Started Business Rules]")
     ReactDOM.render(<BusinessRules/>, document.getElementById("root"))
 }
@@ -798,16 +929,18 @@ function runBusinessRules() {
 function runBusinessRuleCreator() {
     console.log("[Started Business Rules Creator]")
 
-    // Pass available Template Groups into BusinessRules
+    // Get available Template Groups and display
     displayTemplateGroups(availableTemplateGroups)
 }
 
 /**
- * Starts and runs Business Rules Modifier todo: Hard Coded. Remove
+ * Starts and runs Business Rules Modifier
  */
 function runBusinessRuleModifier() {
     console.log("[Started Business Rules Modifier]")
-    displayBusinessRules()
+
+    // Get available Business Rules and display
+    displayBusinessRules(availableBusinessRules)
 }
 
 /**
@@ -823,13 +956,15 @@ function displayTemplateGroups(availableTemplateGroups) {
 }
 
 /**
- * Displays available Business Rules, as thumbnails todo: Hard coded. Remove
+ * Displays available Business Rules, as thumbnails
  *
  * @param availableTemplateGroups
  */
 function displayBusinessRules() {
     ReactDOM.render(
-        <BusinessRulesModifier/>, document.getElementById("root"))
+        <BusinessRulesModifier
+            businessRules={availableBusinessRules}
+        />, document.getElementById("root"))
 }
 
 /**
@@ -850,17 +985,42 @@ function displayRuleTemplates(templateGroup) {
 }
 
 /**
- * Displays a form to fill in data for given properties, in order to create a Business Rule
+ * Displays a form to fill in properties data, in order to create a Business Rule
  *
  * @param ruleTemplate Given Rule Template object, which the Business Rule uses
- * @param properties Default elements for templated properties, as specified in the Rule Template
  */
-function displayForm(ruleTemplate, properties) {
+function displayCreateBusinessRuleForm(ruleTemplate) {
     ReactDOM.render(
         <BusinessRuleForm
             templateGroup={ruleTemplate.templateGroup}
             ruleTemplate={ruleTemplate}
-            properties={getProperties(ruleTemplate.templateGroup.name, ruleTemplate.name)}
+            properties={getRuleTemplateProperties(ruleTemplate.templateGroup.name, ruleTemplate.name)}
+            mode="create"
+        />, document.getElementById("root"));
+}
+
+/**
+ * Displays a form with property data, got from the given Business Rule
+ *
+ * @param templateGroupName
+ * @param ruleTemplateName
+ * @param businessRuleUUID
+ */
+function displayEditBusinessRuleForm(templateGroupName, ruleTemplateName, businessRule) {
+    // Get from loaded Available Business Rules
+    var properties = getBusinessRuleProperties(businessRule.uuid)
+    var ruleTemplate = getRuleTemplate(templateGroupName, ruleTemplateName)
+
+    // Get from loaded Available Template Groups
+    ruleTemplate['templateGroup'] = getTemplateGroup(templateGroupName)
+
+    ReactDOM.render(
+        <BusinessRuleForm
+            templateGroup={ruleTemplate.templateGroup}
+            ruleTemplate={ruleTemplate}
+            properties={properties}
+            mode="edit"
+            businessRuleName={businessRule.name}
         />, document.getElementById("root"));
 }
 
@@ -904,5 +1064,15 @@ function createObjectForBusinessRuleCreation() {
         message="Properties are ready for sending to API"/>, document.getElementById("errors"))
 }
 
-// runBusinessRuleCreator();
-runBusinessRules();
+// Load from API and store
+var availableTemplateGroups = getTemplateGroups()
+var availableBusinessRules = getBusinessRules()
+
+// todo: (!) look into this. Seems not a good practise
+// Properties given in the form, for Creating a Business Rule
+var businessRuleEnteredProperties = {
+    businessRuleName: null
+}
+
+// Start & Run BusinessRuleCreator();
+startBusinessRules();
