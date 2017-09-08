@@ -11,13 +11,99 @@ import {FormControlLabel, FormLabel} from 'material-ui/Form';
 import FormControl from 'material-ui/Form/FormControl';
 import Radio, {RadioGroup} from 'material-ui/Radio';
 import Card, {CardContent, CardHeader} from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import DeleteIcon from 'material-ui-icons/Delete';
 import Avatar from 'material-ui/Avatar';
-import { SnackbarContent } from 'material-ui/Snackbar';
+import {SnackbarContent} from 'material-ui/Snackbar';
 
 /**
- * Business Rules run within this
+ * Starting point of Creating / Modifying Business Rules
  */
 class BusinessRules extends React.Component {
+    render() {
+        return (
+            <div>
+                <Typography type="headline" component="h2">
+                    Business Rules
+                </Typography>
+                <br/>
+                <div>
+                    <Card>
+                        <CardHeader title="Select one of the following two options"/>
+                        <CardContent>
+                            <Button raised color="primary"
+                                    onClick={(e) => runBusinessRuleCreator()}>
+                                Create a Business Rule
+                            </Button>
+                            &nbsp;&nbsp;
+                            {/*todo: Remove hard code*/}
+                            <Button raised color="default"
+                                    onClick={(e) => runBusinessRuleModifier()}>
+                                Modify a Business Rule
+                            </Button>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        );
+    }
+}
+
+/**
+ * Listing Business Rules in order to Edit and Delete,
+ * will happen within this component
+ */
+class BusinessRulesModifier extends React.Component { //todo: just hard coded. remove them
+    render() {
+        const hardCodedBRs = [
+            {
+                uuid: 'abc123',
+                name: 'MyHardCodedBR1',
+                templateGroupName: 'someTemplateGroup',
+                ruleTemplateName: 'someRuleTemplateName',
+                type: 'template',
+                properties: null
+            },
+            {
+                uuid: 'def456',
+                name: 'MyHardCodedBR2',
+                templateGroupName: 'someTemplateGroup',
+                ruleTemplateName: 'someRuleTemplateName',
+                type: 'template',
+                properties: null
+            }
+        ]
+        const gotBRs = hardCodedBRs.map((br) =>
+            <BusinessRule
+                key={br.uuid}
+                uuid={br.uuid}
+                name={br.name}
+                templateGroupName={br.templateGroupName}
+                ruleTemplateName={br.ruleTemplateName}
+                type={br.type}
+                properties={br.properties}
+            />
+        )
+
+        return (
+            <div>
+                <Typography type="headline" component="h2">
+                    Business Rules
+                </Typography>
+                <br/>
+                <div>
+                    {gotBRs}
+                </div>
+            </div>);
+    }
+}
+
+/**
+ * Listing Template Groups and filtering them for creating Business Rules,
+ * will happen within this component
+ */
+class BusinessRulesCreator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,7 +161,7 @@ class TemplateGroup extends React.Component {
                     <Card>
                         <CardHeader
                             avatar={
-                                <Avatar aria-label="Recipe" className={classes.avatar}>
+                                <Avatar aria-label="TemplateGroup" className={classes.avatar}>
                                     {this.state.name[0]}
                                 </Avatar>
                             }
@@ -158,13 +244,10 @@ class RuleTemplate extends React.Component {
 
             return (
                 <div>
-                    <Card onClick={(e) =>
-                        displayForm(
-                            this.state,
-                            this.state.properties)}>
+                    <Card>
                         <CardHeader
                             avatar={
-                                <Avatar aria-label="Recipe" className={classes.avatar}>
+                                <Avatar aria-label="RuleTemplate" className={classes.avatar}>
                                     {this.state.name[0]}
                                 </Avatar>
                             }
@@ -403,6 +486,56 @@ class Property extends React.Component {
             __html: inputString
         }
     }
+}
+
+/**
+ * Represents a BusinessRule, that is already created and available todo: Roughly done. Implement properly
+ */
+class BusinessRule extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            uuid: this.props.uuid,
+            name: this.props.name,
+            templateGroupName: this.props.templateGroupName,
+            ruleTemplateName: this.props.ruleTemplateName,
+            type: this.props.type,
+            properties: this.props.properties
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <Card>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="BusinessRule" className={classes.avatar}>
+                                {this.state.name[0]}
+                            </Avatar>
+                        }
+                        title={this.state.name}
+                    />
+                    <CardContent>
+                        <Typography component="p">
+                            Type : {this.state.type}<br/>
+                        </Typography>
+                        <br/>
+                        <IconButton aria-label="Edit"
+                                    onClick={(e) => console.log("[Test] Sent request for BR data, to API")}>
+                            <ModeEditIcon/>
+                        </IconButton>
+                        <IconButton aria-label="Delete"
+                                    onClick={(e) => console.log("[Test] Sent delete request for BR data, to API")}>
+                            <DeleteIcon/>
+                        </IconButton>
+                    </CardContent>
+                </Card>
+                <br/>
+            </div>
+        );
+    }
+
 }
 
 /* Start of Methods related with API calls */
@@ -652,13 +785,29 @@ var businessRuleEnteredProperties = {
 }
 
 /**
- * Starts and runs Business Rules
+ * Starts and runs Business Rules, which consists of BR Creator & Modifier todo: Hard coded. Remove
  */
-function run() {
+function runBusinessRules() {
     console.log("[Started Business Rules]")
+    ReactDOM.render(<BusinessRules/>, document.getElementById("root"))
+}
+
+/**
+ * Starts and runs Business Rules Creator
+ */
+function runBusinessRuleCreator() {
+    console.log("[Started Business Rules Creator]")
 
     // Pass available Template Groups into BusinessRules
     displayTemplateGroups(availableTemplateGroups)
+}
+
+/**
+ * Starts and runs Business Rules Modifier todo: Hard Coded. Remove
+ */
+function runBusinessRuleModifier() {
+    console.log("[Started Business Rules Modifier]")
+    displayBusinessRules()
 }
 
 /**
@@ -668,9 +817,19 @@ function run() {
  */
 function displayTemplateGroups(availableTemplateGroups) {
     ReactDOM.render(
-        <BusinessRules
+        <BusinessRulesCreator
             templateGroups={availableTemplateGroups}
         />, document.getElementById("root"))
+}
+
+/**
+ * Displays available Business Rules, as thumbnails todo: Hard coded. Remove
+ *
+ * @param availableTemplateGroups
+ */
+function displayBusinessRules() {
+    ReactDOM.render(
+        <BusinessRulesModifier/>, document.getElementById("root"))
 }
 
 /**
@@ -727,31 +886,23 @@ function prepareBusinessRule() {
 }
 
 /**
- * Represents a Snackbar prompt
- */
-class Prompt extends React.Component{
-    render(){
-        return (
-            <SnackbarContent message={this.props.message}/>
-        );
-    }
-}
-
-/**
  * Gives error when all the required fields are not filled //todo: implement properly
  */
 function fillInRequiredFieldsError() {
     console.log("Please fill in all the fields")
-    ReactDOM.render(<Prompt message="Please fill in all the fields"/>,document.getElementById("errors"))
+    ReactDOM.render(<SnackbarContent
+        message="Please fill in all the fields"/>, document.getElementById("errors"))
 }
 
 /**
  * Gives the mapped properties, to send to the API to create Business Rule
  */
-function createObjectForBusinessRuleCreation(){
+function createObjectForBusinessRuleCreation() {
     console.log("Business Rule Properties :")
     console.log(businessRuleEnteredProperties)
-    ReactDOM.render(<Prompt message="Check console for the object"/>,document.getElementById("errors"))
+    ReactDOM.render(<SnackbarContent
+        message="Properties are ready for sending to API"/>, document.getElementById("errors"))
 }
 
-run();
+// runBusinessRuleCreator();
+runBusinessRules();
