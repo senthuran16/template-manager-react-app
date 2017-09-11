@@ -550,7 +550,7 @@ class BusinessRule extends React.Component {
 
 /* Start of Methods related to API calls **************************************/
 
-/**
+/** [1]
  * Gets available TemplateGroups
  * todo: from API
  *
@@ -740,7 +740,53 @@ function getTemplateGroups() {
     // todo: Get TemplateGroups from API
 }
 
-/**
+/** [2]
+ * Get available RuleTemplates, belong to the given TemplateGroup
+ * todo: from API
+ *
+ * @param templateGroupName
+ */
+function getRuleTemplates(templateGroupName) {
+    // todo: remove hardcode ******************************
+    var templateGroups = availableTemplateGroups
+    for (let templateGroup of templateGroups) {
+        if (templateGroup.name === templateGroupName) {
+            return templateGroup.ruleTemplates
+        }
+    }
+    // todo: **********************************************
+    // todo: Return RuleTemplates from API
+}
+
+/** [3]
+ * Get available Properties, belong to the given TemplateGroup and RuleTemplate
+ * todo: from API
+ *
+ * @param templateGroupName
+ * @param ruleTemplateName
+ * @returns {*|Array}
+ */
+function getRuleTemplateProperties(templateGroupName, ruleTemplateName) {
+    // todo: remove hardcode ******************************
+    var ruleTemplates
+    for (let templateGroup of availableTemplateGroups) {
+        if (templateGroup.name === templateGroupName) {
+            ruleTemplates = templateGroup.ruleTemplates
+            break
+        }
+    }
+    for (let ruleTemplate of ruleTemplates) {
+        if (ruleTemplate.name === ruleTemplateName) {
+            return ruleTemplate.properties
+        }
+    }
+    // todo: **********************************************
+    // todo: Return Properties from API
+}
+
+// API [4] is the POST for CreateBusinessRule
+
+/** [5]
  * Gets available BusinessRules
  * todo: from API
  *
@@ -782,27 +828,63 @@ function getBusinessRules() {
     // todo: Get BusinessRules from API ******************
 }
 
-/**
- * Get available RuleTemplates, belong to the given TemplateGroup
+/** [6]
+ * Gets the BusinessRule with the given UUID
  * todo: from API
  *
- * @param templateGroupName
+ * @param businessRuleUUID
+ * @returns {null|null}
  */
-function getRuleTemplates(templateGroupName) {
+function getBusinessRule(businessRuleUUID) {
     // todo: remove hardcode ******************************
-    var templateGroups = availableTemplateGroups
-    for (let templateGroup of templateGroups) {
-        if (templateGroup.name === templateGroupName) {
-            return templateGroup.ruleTemplates
+    for (let businessRule of availableBusinessRules) {
+        if (businessRuleUUID === businessRule.uuid) {
+            return businessRule
         }
     }
-    // todo: **********************************************
-    // todo: Return RuleTemplates from API
+    // todo: *********************************************
+    // todo: Get BusinessRule from API *******************
+
 }
 
 /**
+ * Gets properties of the RuleTemplate specified in the BusinessRule,
+ * with defaultValues replaced with the entered properties in the BusinessRule
+ * todo: (Q) Can we have an API for this and do this in backend? (better)
+ * todo: name can be 'getBusinessRulePropertiesMapped'
+ *
+ * @param businessRuleUUID
+ * @returns {*|Array}
+ */
+function getBusinessRuleProperties(businessRuleUUID) {
+    var foundBusinessRule = getBusinessRule(businessRuleUUID)
+    var foundBusinessRuleProperties = foundBusinessRule.properties
+
+    if (foundBusinessRule.type === "template") { //todo: confirm the string
+        // Get property type, description and etc. from specified RuleTemplate
+        var templateGroupName = foundBusinessRule.templateGroupName
+        var ruleTemplateName = foundBusinessRule.ruleTemplateName
+
+        var ruleTemplateProperties = getRuleTemplateProperties(templateGroupName, ruleTemplateName)
+
+        var modifiedProperties = ruleTemplateProperties
+        // Replace each property's default value with entered values
+        // because, entered values are going to be displayed todo: (Q) Is this ok
+        for (let propertyName in modifiedProperties) {
+            // Update defaultValue with entered value
+            modifiedProperties[propertyName]["defaultValue"] = foundBusinessRuleProperties[propertyName]
+        }
+
+        return modifiedProperties
+    } else {
+        console.log("From Scratch is not supported yet") // todo
+    }
+}
+
+// Functions that have API calls unnecessarily
+/**
  * Gets the TemplateGroup with the given name
- * todo: from API
+ * todo: from API (We have available templateGroups in front end itself)
  *
  * @param templateGroupName
  * @returns {*}
@@ -820,7 +902,7 @@ function getTemplateGroup(templateGroupName) {
 
 /**
  * Gets the RuleTemplate with the given name, that belongs to the given TemplateGroup name
- * todo: from API
+ * todo: from API (We have available templateGroups in front end itself)
  *
  * @param templateGroupName
  * @param ruleTemplateName
@@ -844,73 +926,7 @@ function getRuleTemplate(templateGroupName, ruleTemplateName) {
     // todo: Return RuleTemplate from API
 }
 
-/**
- * Get available Properties, belong to the given TemplateGroup and RuleTemplate
- * todo: from API
- *
- * @param templateGroupName
- * @param ruleTemplateName
- * @returns {*|Array}
- */
-function getRuleTemplateProperties(templateGroupName, ruleTemplateName) {
-    // todo: remove hardcode ******************************
-    var ruleTemplates
-    for (let templateGroup of availableTemplateGroups) {
-        if (templateGroup.name === templateGroupName) {
-            ruleTemplates = templateGroup.ruleTemplates
-            break
-        }
-    }
-    for (let ruleTemplate of ruleTemplates) {
-        if (ruleTemplate.name === ruleTemplateName) {
-            return ruleTemplate.properties
-        }
-    }
-    // todo: **********************************************
-    // todo: Return Properties from API
-}
-
-/**
- * Gets properties of the RuleTemplate specified in the BusinessRule,
- * with defaultValues replaced with the entered properties in the BusinessRule
- * todo: from API
- *
- * @param businessRuleUUID
- * @returns {*|Array}
- */
-function getBusinessRuleProperties(businessRuleUUID) {
-    // todo: remove hardcode ******************************
-    var foundBusinessRule
-    for (let businessRule of availableBusinessRules) {
-        if (businessRuleUUID === businessRule.uuid) {
-            foundBusinessRule = businessRule
-            break
-        }
-    }
-    var foundBusinessRuleProperties = foundBusinessRule.properties
-
-    if (foundBusinessRule.type === "template") { //todo: confirm the string
-        // Get property type, description and etc. from specified RuleTemplate
-        var templateGroupName = foundBusinessRule.templateGroupName
-        var ruleTemplateName = foundBusinessRule.ruleTemplateName
-
-        var ruleTemplateProperties = getRuleTemplateProperties(templateGroupName, ruleTemplateName)
-
-        var modifiedProperties = ruleTemplateProperties
-        // Replace each property's default value with entered values
-        // because, entered values are going to be displayed todo: (Q) Is this ok
-        for (let propertyName in modifiedProperties) {
-            // Update defaultValue with entered value
-            modifiedProperties[propertyName]["defaultValue"] = foundBusinessRuleProperties[propertyName]
-        }
-
-        return modifiedProperties
-    } else {
-        console.log("From Scratch is not supported yet") // todo
-    }
-    // todo: **********************************************
-    // todo: Return Properties from API
-}
+// End of Functions that have API calls unnecessarily
 
 /* End of Methods related to API calls ****************************************/
 

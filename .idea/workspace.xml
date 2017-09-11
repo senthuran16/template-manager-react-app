@@ -20,19 +20,19 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="1034" column="112" lean-forward="false" selection-start-line="1034" selection-start-column="112" selection-end-line="1034" selection-end-column="112" />
+            <state relative-caret-position="401">
+              <caret line="554" column="17" lean-forward="true" selection-start-line="554" selection-start-column="17" selection-end-line="554" selection-end-column="17" />
               <folding>
                 <element signature="e#42#68#0" expanded="true" />
                 <element signature="e#143#198#0" expanded="true" />
                 <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-                <element signature="e#19863#28259#0" expanded="false" />
-                <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-                <element signature="e#28606#29537#0" expanded="false" />
+                <element signature="e#19867#28263#0" expanded="false" />
                 <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+                <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+                <element signature="e#30028#30959#0" expanded="false" />
+                <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
                 <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
                 <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-                <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -110,10 +110,10 @@
     <handled-path value="$PROJECT_DIR$/my-application/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="553" />
-    <option name="y" value="24" />
-    <option name="width" value="1367" />
-    <option name="height" value="1056" />
+    <option name="x" value="1132" />
+    <option name="y" value="67" />
+    <option name="width" value="788" />
+    <option name="height" value="1020" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -188,34 +188,34 @@
       <workItem from="1504759020180" duration="9168000" />
       <workItem from="1504768733260" duration="25468000" />
       <workItem from="1504846203277" duration="27663000" />
-      <workItem from="1505104885847" duration="413000" />
+      <workItem from="1505104885847" duration="3752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221260000" />
+    <option name="totallyTimeSpent" value="224599000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="553" y="24" width="1851" height="1092" extended-state="6" />
+    <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1892915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -258,13 +258,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -284,13 +284,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -303,13 +303,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -343,13 +343,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -380,13 +380,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -399,13 +399,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -418,13 +418,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -437,13 +437,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -463,13 +463,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -489,13 +489,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -508,13 +508,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -538,13 +538,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -568,13 +568,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -605,13 +605,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -638,13 +638,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,13 +657,13 @@
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -779,19 +779,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="1034" column="112" lean-forward="false" selection-start-line="1034" selection-start-column="112" selection-end-line="1034" selection-end-column="112" />
+        <state relative-caret-position="401">
+          <caret line="554" column="17" lean-forward="true" selection-start-line="554" selection-start-column="17" selection-end-line="554" selection-end-column="17" />
           <folding>
             <element signature="e#42#68#0" expanded="true" />
             <element signature="e#143#198#0" expanded="true" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19863#28259#0" expanded="false" />
-            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#28606#29537#0" expanded="false" />
+            <element signature="e#19867#28263#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#30028#30959#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRuleProperties#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
           </folding>
         </state>
       </provider>
