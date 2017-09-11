@@ -7,9 +7,10 @@ import * as classes from "react/lib/ReactDOMFactories";
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import {FormControlLabel, FormLabel} from 'material-ui/Form';
-import FormControl from 'material-ui/Form/FormControl';
-import Radio, {RadioGroup} from 'material-ui/Radio';
+import {FormControl, FormHelperText} from 'material-ui/Form';
+import Input, {InputLabel} from 'material-ui/Input';
+import {MenuItem} from 'material-ui/Menu';
+import Select from 'material-ui/Select';
 import Card, {CardContent, CardHeader} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
@@ -379,8 +380,6 @@ class BusinessRuleForm extends React.Component {
                 <div>
                     {businessRuleNameTextField}
                     <br/>
-                    <br/>
-                    <br/>
                 </div>
                 <div>
                     {properties}<br/>
@@ -396,6 +395,20 @@ class BusinessRuleForm extends React.Component {
  * Represents Property, which is going to be shown as an input element
  */
 class Property extends React.Component {
+    // Handles onChange of Radio button
+    handleSelectChange = name => event => {
+        this.setState(
+            {value: event.target.value}
+        )
+        // Get properties available until now
+        let businessRuleProperties = businessRuleEnteredProperties
+        // Add a new Key Value pair denoting the target's name & value,
+        businessRuleProperties[name] = event.target.value
+
+        // Update the existing properties object
+        businessRuleEnteredProperties = businessRuleProperties
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -406,23 +419,9 @@ class Property extends React.Component {
             type: props.type,
             options: props.options,
         }
-        this.handleRadioChange = this.handleRadioChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         businessRuleEnteredProperties[this.state.name] = this.state.defaultValue
-    }
-
-    // Handles onChange of Radio button
-    handleRadioChange(event, value) {
-        this.setState({
-            value: value
-        });
-        // Get properties available until now
-        let businessRuleProperties = businessRuleEnteredProperties
-        // Add a new Key Value pair denoting the target's name & value,
-        businessRuleProperties[event.target.name.toString()] = value
-
-        // Update the existing properties object
-        businessRuleEnteredProperties = businessRuleProperties
     }
 
     // Handles onChange of Text Fields
@@ -445,29 +444,21 @@ class Property extends React.Component {
     render() {
         if (this.state.type === "options") {
             const options = this.state.options.map((option) => (
-                <FormControlLabel key={option} value={option} control={<Radio/>} label={option}/>))
+                <MenuItem key={option} name={option} value={option}>{option}</MenuItem>))
             return (
                 <div>
                     <br/>
-                    <FormControl component="fieldset" required>
-                        <FormLabel component="legend">{this.state.name}</FormLabel>
-                        <RadioGroup
-                            aria-label={this.state.name}
-                            key={this.state.name}
-                            name={this.state.name}
+                    <FormControl className={classes.formControl}>
+                        <InputLabel htmlFor={this.state.name}>{this.state.name}</InputLabel>
+                        <Select
                             value={this.state.value}
-                            className="c182"
-                            onChange={this.handleRadioChange}
+                            onChange={this.handleSelectChange(this.state.name)}
+                            input={<Input id={this.state.name}/>}
                         >
                             {options}
-                        </RadioGroup>
-
-                        {/*todo: No description prop available for this element*/}
-                        <Typography component="p" color="secondary">
-                            {this.state.description}
-                        </Typography>
+                        </Select>
+                        <FormHelperText>{this.state.description}</FormHelperText>
                     </FormControl>
-                    <br/>
                     <br/>
                 </div>
             );
@@ -484,7 +475,6 @@ class Property extends React.Component {
                         margin="normal"
                         onChange={this.handleTextChange}
                     />
-                    <br/>
                     <br/>
                 </div>
             );
@@ -814,11 +804,11 @@ function getBusinessRules() {
             "ruleTemplateName": "SensorAnalytics1",
             "type": "template",
             "properties": {
-                "inStream1": "myInputStream1",
+                "inStream1": "myInputStream2",
                 "property1": "sensorID",
                 "property2": "humidity",
-                "outStream1": "myOutputStream1",
-                "outStream2": "myOutputStream2"
+                "outStream1": "myOutputStream2",
+                "outStream2": "myOutputStream1"
             }
         }
     ]
