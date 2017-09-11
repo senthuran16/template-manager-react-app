@@ -856,7 +856,7 @@ function getBusinessRule(businessRuleUUID) {
  * @param businessRuleUUID
  * @returns {*|Array}
  */
-function getBusinessRuleProperties(businessRuleUUID) {
+function getMappedProperties(businessRuleUUID) {
     var foundBusinessRule = getBusinessRule(businessRuleUUID)
     var foundBusinessRuleProperties = foundBusinessRule.properties
 
@@ -881,7 +881,7 @@ function getBusinessRuleProperties(businessRuleUUID) {
     }
 }
 
-// Functions that have API calls unnecessarily
+// Functions that have API calls unnecessarily /////////////////////////////////
 /**
  * Gets the TemplateGroup with the given name
  * todo: from API (We have available templateGroups in front end itself)
@@ -926,7 +926,7 @@ function getRuleTemplate(templateGroupName, ruleTemplateName) {
     // todo: Return RuleTemplate from API
 }
 
-// End of Functions that have API calls unnecessarily
+// End of Functions that have API calls unnecessarily //////////////////////////
 
 /* End of Methods related to API calls ****************************************/
 
@@ -1024,7 +1024,7 @@ function displayCreateBusinessRuleForm(ruleTemplate) {
  */
 function displayEditBusinessRuleForm(templateGroupName, ruleTemplateName, businessRule) {
     // Get from loaded Available Business Rules
-    var properties = getBusinessRuleProperties(businessRule.uuid)
+    var properties = getMappedProperties(businessRule.uuid)
     var ruleTemplate = getRuleTemplate(templateGroupName, ruleTemplateName)
 
     // Get from loaded Available Template Groups
