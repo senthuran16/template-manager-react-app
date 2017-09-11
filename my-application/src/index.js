@@ -329,7 +329,7 @@ class BusinessRuleForm extends React.Component {
         var submitButton // For the button at the end of form
 
         // Create BusinessRule
-        if (this.state.mode == "create") {
+        if (this.state.mode === "create") {
             displayMode = "Create"
             businessRuleNameTextField =
                 <TextField
@@ -889,7 +889,7 @@ function getBusinessRuleProperties(businessRuleUUID) {
     }
     var foundBusinessRuleProperties = foundBusinessRule.properties
 
-    if (foundBusinessRule.type == "template") { //todo: confirm the string
+    if (foundBusinessRule.type === "template") { //todo: confirm the string
         // Get property type, description and etc. from specified RuleTemplate
         var templateGroupName = foundBusinessRule.templateGroupName
         var ruleTemplateName = foundBusinessRule.ruleTemplateName
@@ -1032,7 +1032,7 @@ function displayEditBusinessRuleForm(templateGroupName, ruleTemplateName, busine
 function prepareBusinessRule() {
     var isRequiredIncomplete = false
     for (let property in businessRuleEnteredProperties) {
-        if ((!(businessRuleEnteredProperties[property] != null)) || (businessRuleEnteredProperties[property] == "")) {
+        if ((!(businessRuleEnteredProperties[property] != null)) || (businessRuleEnteredProperties[property] === "")) {
             isRequiredIncomplete = true
             break
         }
