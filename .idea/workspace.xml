@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/package-lock.json" afterPath="$PROJECT_DIR$/my-application/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/package.json" afterPath="$PROJECT_DIR$/my-application/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/public/index.html" afterPath="$PROJECT_DIR$/my-application/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/index.js" afterPath="$PROJECT_DIR$/my-application/src/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/reactImplementation1.js" afterPath="$PROJECT_DIR$/my-application/src/reactImplementation1.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,35 +18,81 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="783">
-              <caret line="455" column="29" lean-forward="false" selection-start-line="455" selection-start-column="29" selection-end-line="455" selection-end-column="29" />
-              <folding>
-                <element signature="e#42#68#0" expanded="true" />
-                <element signature="e#143#198#0" expanded="true" />
-                <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-                <element signature="e#19512#27908#0" expanded="false" />
-                <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-                <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.3207139">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="cardImplementation.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/my-application/src/cardImplementation.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="445" column="0" lean-forward="false" selection-start-line="445" selection-start-column="0" selection-end-line="446" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="393">
+                  <caret line="830" column="0" lean-forward="true" selection-start-line="830" selection-start-column="0" selection-end-line="830" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                    <element signature="e#207#233#0" expanded="true" />
+                    <element signature="e#308#356#0" expanded="true" />
+                    <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
+                    <element signature="e#16327#24723#0" expanded="false" />
+                    <element signature="e#26495#27426#0" expanded="false" />
+                    <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
+                    <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+                    <marker date="1505306224627" expanded="true" signature="15049:15166" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-9473">
+                  <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                    <element signature="e#207#233#0" expanded="true" />
+                    <element signature="n#BusinessRulesCreator#0" expanded="false" />
+                    <element signature="n#BusinessRulesModifier#0" expanded="false" />
+                    <element signature="n#Property#0" expanded="false" />
+                    <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
+                    <element signature="e#16327#24723#0" expanded="false" />
+                    <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+                    <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+                    <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+                    <element signature="e#26495#27426#0" expanded="false" />
+                    <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
+                    <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
+                    <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+                    <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+                    <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+                    <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+                    <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+                    <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+                    <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+                    <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>parent</find>
-      <find>rule templ</find>
-      <find>console</find>
-      <find>greet</find>
-      <find>input</find>
-      <find>ruleCollection</find>
-      <find>Rule Collection</find>
       <find>RuleCollection</find>
       <find>&gt;</find>
       <find>submi</find>
@@ -65,8 +111,18 @@
       <find>getBusinessRu</find>
       <find>options:</find>
       <find>getRuleTemplate(</find>
-      <find>=&gt;</find>
       <find>&quot;create</find>
+      <find>templateGroup</find>
+      <find>=&gt;</find>
+      <find>select a</find>
+      <find>getTemplate</find>
+      <find>Property ex</find>
+      <find>values</find>
+      <find>prepareBusiness</find>
+      <find>entered</find>
+      <find>console.log(</find>
+      <find>let state</find>
+      <find>prepareBusinessRule</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -108,9 +164,9 @@
     <handled-path value="$PROJECT_DIR$/my-application/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
+    <option name="x" value="712" />
     <option name="y" value="-4" />
-    <option name="width" value="967" />
+    <option name="width" value="1208" />
     <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -136,6 +192,11 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="nodejs_interpreter_path" value="/usr/bin/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-application/src" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -186,20 +247,23 @@
       <workItem from="1504759020180" duration="9168000" />
       <workItem from="1504768733260" duration="25468000" />
       <workItem from="1504846203277" duration="27663000" />
-      <workItem from="1505104885847" duration="13274000" />
+      <workItem from="1505104885847" duration="24968000" />
+      <workItem from="1505194474099" duration="7188000" />
+      <workItem from="1505276461030" duration="28136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234121000" />
+    <option name="totallyTimeSpent" value="281139000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
+    <frame x="712" y="-4" width="1851" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1892915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -212,7 +276,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -253,12 +316,95 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
+            <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
+            <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -275,12 +421,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -290,12 +451,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -326,12 +502,27 @@
         <state relative-caret-position="864">
           <caret line="204" column="3" lean-forward="false" selection-start-line="204" selection-start-column="3" selection-end-line="204" selection-end-column="3" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -359,12 +550,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -374,12 +580,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -389,12 +610,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -404,12 +640,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -426,12 +677,27 @@
         <state relative-caret-position="27">
           <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -448,12 +714,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -463,12 +744,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -489,12 +785,27 @@
         <state relative-caret-position="1296">
           <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -515,12 +826,27 @@
         <state relative-caret-position="1215">
           <caret line="47" column="46" lean-forward="false" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -548,12 +874,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -577,12 +918,27 @@
         <state relative-caret-position="725">
           <caret line="46" column="35" lean-forward="false" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -592,12 +948,27 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -697,13 +1068,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="32" column="9" lean-forward="false" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/node_modules/material-ui/TextField/TextField.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="888">
@@ -711,17 +1075,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/cardImplementation">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="55" lean-forward="true" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="34" column="10" lean-forward="true" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/cardImplementation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="445" column="0" lean-forward="false" selection-start-line="445" selection-start-column="0" selection-end-line="446" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="455" column="29" lean-forward="false" selection-start-line="455" selection-start-column="29" selection-end-line="455" selection-end-column="29" />
+        <state relative-caret-position="-9473">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
-            <element signature="e#143#198#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#207#233#0" expanded="true" />
+            <element signature="n#BusinessRulesCreator#0" expanded="false" />
+            <element signature="n#BusinessRulesModifier#0" expanded="false" />
+            <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#19512#27908#0" expanded="false" />
+            <element signature="e#16327#24723#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
+            <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
+            <element signature="e#26495#27426#0" expanded="false" />
+            <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
+            <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
+            <element signature="n#!!block;n#displayBusinessRules#0" expanded="false" />
+            <element signature="n#!!block;n#prepareBusinessRule#0" expanded="false" />
+            <element signature="n#!!block;n#createObjectForBusinessRuleCreation#0" expanded="false" />
+            <element signature="n#!!block;n#clearSnackBar#0" expanded="false" />
           </folding>
         </state>
       </provider>

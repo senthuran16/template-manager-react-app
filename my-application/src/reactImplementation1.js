@@ -505,7 +505,7 @@ function loadTemplateGroups(templateGroups){
 }
 
 /**
- * Starts BusinessRules
+ * Starts BusinessRulesCreator
  */
 function startBusinessRules() {
     // Recieve TemplateGroups from API

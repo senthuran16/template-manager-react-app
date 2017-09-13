@@ -1,9 +1,10 @@
 // todo: bind handleClicks in the new way
+// todo: refactor TemplateGroup as BusinessDomain
+// todo: No cards for RuleTemplates. Replace with Selects. Show description and preview form below to give an idea
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
 // Material-UI
-import * as classes from "react/lib/ReactDOMFactories";
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
@@ -11,40 +12,32 @@ import {FormControl, FormHelperText} from 'material-ui/Form';
 import Input, {InputLabel} from 'material-ui/Input';
 import {MenuItem} from 'material-ui/Menu';
 import Select from 'material-ui/Select';
-import Card, {CardContent, CardHeader} from 'material-ui/Card';
-import IconButton from 'material-ui/IconButton';
-import ModeEditIcon from 'material-ui-icons/ModeEdit';
-import DeleteIcon from 'material-ui-icons/Delete';
-import Avatar from 'material-ui/Avatar';
 import {SnackbarContent} from 'material-ui/Snackbar';
 
 /**
  * Starting point of Creating / Modifying Business Rules
  */
-class BusinessRules extends React.Component {
+class BusinessRulesCreator extends React.Component {
     render() {
         return (
             <div>
                 <Typography type="headline" component="h2">
-                    Business Rules
+                    Let's create a business rule
                 </Typography>
                 <br/>
                 <div>
-                    <Card>
-                        <CardHeader title="Select one of the following two options"/>
-                        <CardContent>
-                            <Button raised color="primary"
-                                    onClick={(e) => runBusinessRuleCreator()}>
-                                Create a Business Rule
-                            </Button>
-                            &nbsp;&nbsp;
-                            {/*todo: Remove hard code*/}
-                            <Button raised color="default"
-                                    onClick={(e) => runBusinessRuleModifier()}>
-                                Modify a Business Rule
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    <Button raised color="primary"
+                            onClick={(e) => runBusinessRuleCreatorFromTemplate()}>
+                        From Template
+                    </Button>
+                    &nbsp;&nbsp;
+                    {/*todo: Remove hard code*/}
+                    <Button raised color="default"
+                        //onClick={(e) => runBusinessRuleModifier()}
+                            onClick={(e) => console.log("Not implemented yet")} //todo: implement this
+                    >
+                        From the scratch
+                    </Button>
                 </div>
             </div>
         );
@@ -52,45 +45,222 @@ class BusinessRules extends React.Component {
 }
 
 /**
- * Listing Template Groups and filtering them for creating Business Rules,
- * will happen within this component
+ * List TemplateGroups and RuleTemplates in order to create Business Rule from Template
  */
-class BusinessRulesCreator extends React.Component {
+class BusinessRulesCreatorFromTemplate extends React.Component {
+    /**
+     * Updates selected Templated Group in the state,
+     * and loads Rule Templates that belong to the selected Template Group,
+     * when Template Group is selected from the list
+     */
+    handleTemplateGroupSelected = name => event => {
+        // Update Selected Template Group
+        let state = this.state
+        state[name] = getTemplateGroup(event.target.value)
+        // Load Rule Templates under the selected Template Group
+        state['ruleTemplates'] = getRuleTemplates(this.state.selectedTemplateGroup.name)
+        this.setState(state)
+    };
+    /**
+     * Updates selected Rule Template in the state,
+     * when Rule Template is selected from the list
+     */
+    handleRuleTemplateSelected = name => event => {
+        let state = this.state
+        state[name] = getRuleTemplate(state.selectedTemplateGroup.name, event.target.value)
+        state['ruleTemplates'] = getRuleTemplates(this.state.selectedTemplateGroup.name)
+        // Update selected Template Group & Rule Template names for the Business Rule
+        state['businessRuleEnteredValues']['templateGroupName'] = this.state.selectedTemplateGroup.name
+        state['businessRuleEnteredValues']['ruleTemplateName'] = this.state.selectedRuleTemplate.name
+        this.setState(state)
+    };
+    /**
+     * Updates the Business Rule name in the maintained states, on change of the text field which allows to enter Business Rule Name
+     */
+    handleBusinessRuleNameChange = event => {
+        let state = this.state
+        state.businessRuleEnteredValues['businessRuleName'] = event.target.value
+        this.setState(
+            {state}
+        )
+        businessRuleEnteredProperties = this.state.businessRuleEnteredValues
+    }
+
     constructor(props) {
         super(props);
         this.state = {
-            templateGroups: props.templateGroups
+            // To store loaded object arrays
+            templateGroups: getTemplateGroups(), // Get from API and store
+            ruleTemplates: null,
+            // To store selected Strings
+            // Name & description entered to prevent null display value of Select box
+            selectedTemplateGroup: {'name': '', 'description': 'Please select a Business Domain'},
+            selectedRuleTemplate: {'name': '', 'description': 'Please select a Rule Template'},
+            // To store entered properties entered for the Business Rule
+            businessRuleEnteredValues: {
+                'businessRuleName': null,
+            }
+        }
+    }
+
+    /**
+     * Validates the Business Rule properties todo: implement
+     */
+    validateBusinessRule() {
+        console.log("[TODO] Validate. (Q: How?)")
+        // Check external validation (Internal validation is with the JS) todo: (Q) is this correct?
+        if (!validateBusinessRule()) {
+            var dismissButton =
+                <Button color="accent" onClick={e => clearSnackBar()} dense>
+                    Dismiss
+                </Button>;
+            console.log("Fill in all the fields (Only done this validation for now)")
+            ReactDOM.render(<SnackbarContent
+                message="Invalid Business Rule"
+                action={dismissButton}
+            />, document.getElementById("snackbar"))
+        }else{
+            var dismissButton =
+                <Button color="primary" onClick={e => clearSnackBar()} dense>
+                    Dismiss
+                </Button>;
+            ReactDOM.render(<SnackbarContent
+                message="Valid Business Rule [TODO]"
+                action={dismissButton}
+            />, document.getElementById("snackbar"))
         }
     }
 
     render() {
-        // Display available Template Groups as thumbnails
-        const templateGroups = this.state.templateGroups.map((templateGroup) =>
-            <TemplateGroup
-                key={templateGroup.name}
-                name={templateGroup.name}
-                description={templateGroup.description}
-                ruleTemplates={templateGroup.ruleTemplates}
-                viewAs="thumbnail"
-            />
-        );
+        var templateGroupSelection
+        var loadedRuleTemplates
+        var ruleTemplateSelection
+        var businessRuleForm // To display Business Rules form
+
+        // To display each item in TemplateGroup selection todo: BusinessDomain refactor if needed
+        var loadedTemplateGroups = this.state.templateGroups.map((loadedTemplateGroup) =>
+            <MenuItem key={loadedTemplateGroup.name}
+                      value={loadedTemplateGroup.name}>{loadedTemplateGroup.name}</MenuItem>
+        )
+
+        // To display TemplateGroup selection
+        templateGroupSelection = <FormControl>
+            <InputLabel htmlFor="templateGroup">Business Domain</InputLabel>
+            <Select
+                value={this.state.selectedTemplateGroup.name}
+                onChange={this.handleTemplateGroupSelected('selectedTemplateGroup')}
+                input={<Input id="templateGroup"/>}
+            >
+                {loadedTemplateGroups}
+            </Select>
+            <FormHelperText>{this.state.selectedTemplateGroup.description}</FormHelperText>
+        </FormControl>
+
+        // To display each item in RuleTemplate selection
+        if (this.state.ruleTemplates !== null) {
+            loadedRuleTemplates = this.state.ruleTemplates.map((loadedRuleTemplate) =>
+                <MenuItem key={loadedRuleTemplate.name} value={loadedRuleTemplate.name}>
+                    {loadedRuleTemplate.name}
+                </MenuItem>
+            )
+
+            // To display RuleTemplate selection
+            ruleTemplateSelection = <FormControl>
+                <InputLabel htmlFor="ruleTemplate">Rule Template</InputLabel>
+                <Select
+                    value={this.state.selectedRuleTemplate.name}
+                    onChange={this.handleRuleTemplateSelected('selectedRuleTemplate')}
+                    input={<Input id="ruleTemplate"/>}
+                >
+                    {loadedRuleTemplates}
+                </Select>
+                <FormHelperText>{this.state.selectedRuleTemplate.description}</FormHelperText>
+            </FormControl>
+
+            // To display Form
+
+            // Update selected form values in state
+            let state = this.state
+            state['formProperties'] = this.state.selectedRuleTemplate.properties
+            // this.state.formProperties = this.state.selectedRuleTemplate.properties
+            this.state = state
+
+            // Form can be displayed only if a Rule Template name exists
+            if (this.state.selectedRuleTemplate.name !== '') {
+                // To store property objects in a re-arranged format
+                var propertiesArray = []
+                for (var propertyKey in this.state.selectedRuleTemplate.properties) {
+                    // Push as an object,
+                    // which has the original object's Key & Value
+                    // denoted by new Keys : 'propertyName' & 'propertyObject'
+                    propertiesArray.push(
+                        {
+                            propertyName: propertyKey,
+                            propertyObject: this.state.selectedRuleTemplate.properties[propertyKey.toString()]
+                        }
+                    )
+                }
+
+                // Map each property as input field
+                const properties = propertiesArray.map((property) =>
+                    <Property
+                        key={property.propertyName}
+                        name={property.propertyName}
+                        description={property.propertyObject.description}
+                        defaultValue={property.propertyObject.defaultValue}
+                        type={property.propertyObject.type}
+                        options={property.propertyObject.options}
+                        enteredValues={this.state.businessRuleEnteredValues}
+                    />
+                );
+
+                // To display the form
+                businessRuleForm =
+                    <div>
+                        <TextField
+                            id="businessRuleName"
+                            name="businessRuleName"
+                            label="Business Rule name"
+                            placeholder="Please enter"
+                            value={this.state.businessRuleName}
+                            required={true}
+                            onChange={this.handleBusinessRuleNameChange}
+                        />
+                        <br/>
+                        {properties}
+                        <br/>
+                        <Button raised color="default"
+                                onClick={(e) => this.validateBusinessRule(e)} //todo: what about a public method
+                        >Validate</Button>
+                        &nbsp;&nbsp;
+                        <Button raised color="primary"
+                                onClick={(e) => prepareBusinessRule(e)} //todo: what about a public method
+                        >Create</Button>
+                    </div>
+            }
+        }
 
         return (
             <div>
                 <Typography type="headline" component="h2">
-                    Template Groups
+                    Let's create a business rule from template
                 </Typography>
                 <br/>
-                <div>
-                    {templateGroups}
-                </div>
+                {templateGroupSelection}
+                <br/>
+                <br/>
+                {ruleTemplateSelection}
+                <br/>
+                <br/>
+                {businessRuleForm}
+
             </div>
         );
     }
 }
 
 /**
- * Listing Business Rules in order to Edit and Delete,
+ * Listing Business Rules in order to Edit and Delete, todo: Implement properly
  * will happen within this component
  */
 class BusinessRulesModifier extends React.Component { //todo: just hard coded. remove them
@@ -102,19 +272,6 @@ class BusinessRulesModifier extends React.Component { //todo: just hard coded. r
     }
 
     render() {
-        // Display available Business Rules as thumbnails
-        const businessRules = this.state.businessRules.map((businessRule) =>
-            <BusinessRule
-                key={businessRule.uuid}
-                uuid={businessRule.uuid}
-                name={businessRule.name}
-                templateGroupName={businessRule.templateGroupName}
-                ruleTemplateName={businessRule.ruleTemplateName}
-                type={businessRule.type}
-                properties={businessRule.properties}
-            />
-        )
-
         return (
             <div>
                 <Typography type="headline" component="h2">
@@ -122,273 +279,25 @@ class BusinessRulesModifier extends React.Component { //todo: just hard coded. r
                 </Typography>
                 <br/>
                 <div>
-                    {businessRules}
+                    <FormControl>
+                        <InputLabel htmlFor="age-helper">Age</InputLabel>
+                        <Select
+                            value={this.state.age}
+                            onChange={this.handleChange('age')}
+                            input={<Input id="age-helper"/>}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                        <FormHelperText>Some important helper text</FormHelperText>
+                    </FormControl>
                 </div>
             </div>);
     }
-}
-
-/**
- * Represents Template Group
- */
-class TemplateGroup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: props.name,
-            description: props.description,
-            ruleTemplates: props.ruleTemplates,
-            // "thumbnail" when displaying available Template Groups
-            // "parent" when displaying available Rule Templates under this
-            viewAs: props.viewAs
-        }
-    }
-
-    render() {
-        // View Template Group as a thumbnail
-        if (this.state.viewAs === "thumbnail") {
-            return (
-                <div>
-                    <Card>
-                        <CardHeader
-                            avatar={
-                                <Avatar aria-label="TemplateGroup" className={classes.avatar}>
-                                    {this.state.name[0]}
-                                </Avatar>
-                            }
-                            title={this.state.name}
-                        />
-                        <CardContent>
-                            <Typography component="p">
-                                {this.state.description}
-                            </Typography>
-                            <br/>
-                            <Button dense color="primary" onClick={(e) => displayRuleTemplates(this.state)}>
-                                View Rule Templates
-                            </Button>
-                        </CardContent>
-
-                    </Card>
-                    <br/>
-                </div>
-            );
-        } else {
-            // View each Rule Template under this Template Group, as a thumbnail
-            // todo: map and return Rule Templates under this
-            const ruleTemplates = this.state.ruleTemplates.map((ruleTemplate) =>
-                <RuleTemplate
-                    key={ruleTemplate.name}
-                    templateGroup={this.state}
-                    name={ruleTemplate.name}
-                    type={ruleTemplate.type}
-                    instanceCount={ruleTemplate.instanceCount}
-                    script={ruleTemplate.script}
-                    description={ruleTemplate.description}
-                    templates={ruleTemplate.templates}
-                    properties={ruleTemplate.properties}
-                    viewAs="thumbnail"
-                />);
-            return (
-                <div>
-                    <Typography type="headline" component="h2">
-                        Rule Templates
-                    </Typography>
-                    <Typography type="subheading" color="secondary">
-                        {this.state.name}
-                    </Typography>
-                    <Typography component="p">
-                        {this.state.description}
-                    </Typography>
-                    <br/>
-                    <div>
-                        {ruleTemplates}
-                    </div>
-                </div>);
-        }
-    }
-}
-
-/**
- * Represents Rule Template
- */
-class RuleTemplate extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            templateGroup: props.templateGroup, // Parent object
-            templateGroupName: props.templateGroupName,
-            name: props.name,
-            type: props.type,
-            instanceCount: props.instanceCount,
-            script: props.script,
-            description: props.description,
-            templates: props.templates,
-            properties: props.properties,
-            // "thumbnail" when displaying available Template Groups
-            // "parent" when displaying available Rule Templates under this
-            viewAs: props.viewAs
-        }
-    }
-
-    render() {
-        if (this.state.viewAs === "thumbnail") {
-
-            return (
-                <div>
-                    <Card>
-                        <CardHeader
-                            avatar={
-                                <Avatar aria-label="RuleTemplate" className={classes.avatar}>
-                                    {this.state.name[0]}
-                                </Avatar>
-                            }
-                            title={this.state.name}
-                        />
-                        <CardContent>
-                            <Typography component="p">
-                                {this.state.description}
-                            </Typography>
-                            <br/>
-                            <Typography component="p">
-                                Type : {this.state.type}<br/>
-                                Instance Count : {this.state.instanceCount}<br/>
-                            </Typography>
-                            <br/>
-                            <Button dense color="primary"
-                                    onClick={(e) =>
-                                        displayCreateBusinessRuleForm(this.state)
-                                    }>
-                                Create Business Rule
-                            </Button>
-                        </CardContent>
-                    </Card>
-                    <br/>
-                </div>
-            );
-
-
-        }
-    }
-}
-
-/**
- * Represents Business Rule form
- */
-class BusinessRuleForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            templateGroup: props.templateGroup,
-            ruleTemplate: props.ruleTemplate,
-            properties: props.properties,
-            mode: props.mode,
-            businessRuleName: props.businessRuleName // Only available when mode is 'edit'
-        }
-        this.handleTextChange = this.handleTextChange.bind(this);
-    }
-
-    // Handles text field change for Business Rule name
-    handleTextChange(event) {
-        // todo: (!) Look into this
-        // Get properties available until now
-        let businessRuleProperties = businessRuleEnteredProperties
-        // Add a new Key Value pair denoting the target's name & value,
-        businessRuleProperties[event.target.name.toString()] = event.target.value
-
-        // Update the existing properties object
-        businessRuleEnteredProperties = businessRuleProperties
-    }
-
-    render() {
-        // Convert objects, to an objects array
-        var propertiesArray = []
-        for (var propertyKey in this.state.properties) {
-            var propertyKeyString = propertyKey.toString()
-            // Push as an object,
-            // which has the original object's Key & Value
-            // denoted by new Keys : 'propertyName' & 'propertyObject
-            propertiesArray.push(
-                {
-                    propertyName: propertyKey,
-                    propertyObject: this.state.properties[propertyKeyString]
-                }
-            )
-        }
-        const properties = propertiesArray.map((property) =>
-            <Property
-                key={property.propertyName}
-                name={property.propertyName}
-                description={property.propertyObject.description}
-                defaultValue={property.propertyObject.defaultValue}
-                type={property.propertyObject.type}
-                options={property.propertyObject.options}
-            />
-        );
-
-        var displayMode // For the heading
-        var businessRuleNameTextField // For the businessRuleName text field
-        var submitButton // For the button at the end of form
-
-        // Create BusinessRule
-        if (this.state.mode === "create") {
-            displayMode = "Create"
-            businessRuleNameTextField =
-                <TextField
-                    id="businessRuleName"
-                    name="businessRuleName"
-                    label="Business Rule name"
-                    placeholder="Please enter"
-                    required={true}
-                    onChange={this.handleTextChange}
-                />
-            submitButton =
-                <Button raised color="primary"
-                        onClick={(e) => prepareBusinessRule()}>Create</Button>
-        } else {
-            // Edit BusinessRule
-
-            displayMode = "Edit"
-            businessRuleNameTextField =
-                <TextField
-                    id="businessRuleName"
-                    name="businessRuleName"
-                    label="Business Rule name"
-                    placeholder="Please enter"
-                    value={this.state.businessRuleName}
-                    required={true}
-                    onChange={this.handleTextChange}
-                    disabled={true}
-                />
-            submitButton =
-                <Button raised color="primary"
-                        onClick={(e) => console.log("TODO: Edit Business Rule")}>Update</Button>
-        }
-
-
-        return (
-            <div>
-                <Typography type="headline" component="h2">
-                    {displayMode} Business Rule
-                </Typography>
-                <Typography type="subheading" color="secondary">
-                    {this.state.templateGroup.name} -> {this.state.ruleTemplate.name}
-                </Typography>
-                <Typography component="p">
-                    {this.state.ruleTemplate.description}
-                </Typography>
-                <br/>
-                <div>
-                    {businessRuleNameTextField}
-                    <br/>
-                </div>
-                <div>
-                    {properties}<br/>
-                    {submitButton}
-                </div>
-            </div>
-        );
-    }
-
 }
 
 /**
@@ -400,13 +309,11 @@ class Property extends React.Component {
         this.setState(
             {value: event.target.value}
         )
-        // Get properties available until now
-        let businessRuleProperties = businessRuleEnteredProperties
-        // Add a new Key Value pair denoting the target's name & value,
-        businessRuleProperties[name] = event.target.value
-
-        // Update the existing properties object
-        businessRuleEnteredProperties = businessRuleProperties
+        // Update / add entered value for this property to the state
+        let state = this.state
+        state['enteredValues'][this.state.name] = event.target.value
+        this.setState({state})
+        businessRuleEnteredProperties = this.state.enteredValues
     }
 
     constructor(props) {
@@ -418,10 +325,20 @@ class Property extends React.Component {
             value: props.defaultValue,
             type: props.type,
             options: props.options,
+            enteredValues: props.enteredValues
         }
+        // Update default values as selected values in the state
+        // todo: Mutating state directly. Otherwise the following error is thrown :
+
+        // Can only update a mounted or mounting component.
+        // This usually means you called setState() on an unmounted component.
+        // This is a no-op. Please check the code for the undefined component.
+        // fix => https://www.npmjs.com/package/react-safe-promise
+        this.state.enteredValues[this.state.name] = this.state.defaultValue
+        businessRuleEnteredProperties = this.state.enteredValues
+
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
-        businessRuleEnteredProperties[this.state.name] = this.state.defaultValue
     }
 
     // Handles onChange of Text Fields
@@ -429,15 +346,11 @@ class Property extends React.Component {
         this.setState({
             value: value
         })
-
-        // todo: (!) Look into this
-        // Get properties available until now
-        let businessRuleProperties = businessRuleEnteredProperties
-        // Add a new Key Value pair denoting the target's name & value,
-        businessRuleProperties[event.target.name.toString()] = event.target.value
-
-        // Update the existing properties object
-        businessRuleEnteredProperties = businessRuleProperties
+        // Update / add entered value for this property
+        let state = this.state
+        state['enteredValues'][this.state.name] = event.target.value
+        this.setState(state)
+        businessRuleEnteredProperties = this.state.enteredValues
     }
 
     // Renders each Property either as a TextField or Radio Group, with default values and elements as specified
@@ -448,7 +361,7 @@ class Property extends React.Component {
             return (
                 <div>
                     <br/>
-                    <FormControl className={classes.formControl}>
+                    <FormControl>
                         <InputLabel htmlFor={this.state.name}>{this.state.name}</InputLabel>
                         <Select
                             value={this.state.value}
@@ -480,62 +393,6 @@ class Property extends React.Component {
             );
         }
     }
-}
-
-/**
- * Represents a BusinessRule, that is already created and available
- */
-class BusinessRule extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            uuid: this.props.uuid,
-            name: this.props.name,
-            templateGroupName: this.props.templateGroupName,
-            ruleTemplateName: this.props.ruleTemplateName,
-            type: this.props.type,
-            properties: this.props.properties
-        }
-    }
-
-    // Displays each available Business Rule as a thumbnail, with options to Edit & Delete
-    render() {
-        return (
-            <div>
-                <Card>
-                    <CardHeader
-                        avatar={
-                            <Avatar aria-label="BusinessRule" className={classes.avatar}>
-                                {this.state.name[0]}
-                            </Avatar>
-                        }
-                        title={this.state.name}
-                    />
-                    <CardContent>
-                        <Typography component="p">
-                            Type : {this.state.type}<br/>
-                        </Typography>
-                        <br/>
-
-                        <IconButton aria-label="Edit"
-                                    onClick={(e) =>
-                                        displayEditBusinessRuleForm(
-                                            this.state.templateGroupName,
-                                            this.state.ruleTemplateName,
-                                            this.state)}>
-                            <ModeEditIcon/>
-                        </IconButton>
-                        <IconButton aria-label="Delete"
-                                    onClick={(e) => console.log("[Test] Sent delete request for BR data, to API")}>
-                            <DeleteIcon/>
-                        </IconButton>
-                    </CardContent>
-                </Card>
-                <br/>
-            </div>
-        );
-    }
-
 }
 
 /* Start of Methods related to API calls **************************************/
@@ -777,7 +634,7 @@ function getRuleTemplateProperties(templateGroupName, ruleTemplateName) {
 // API [4] is the POST for CreateBusinessRule
 
 /** [5]
- * Gets available BusinessRules
+ * Gets available BusinessRulesCreator
  * todo: from API
  *
  * @returns {[null,null]}
@@ -815,7 +672,7 @@ function getBusinessRules() {
 
     return receivedBusinessRules
     // todo: *********************************************
-    // todo: Get BusinessRules from API ******************
+    // todo: Get BusinessRulesCreator from API ******************
 }
 
 /** [6]
@@ -835,40 +692,6 @@ function getBusinessRule(businessRuleUUID) {
     // todo: *********************************************
     // todo: Get BusinessRule from API *******************
 
-}
-
-/**
- * Gets properties of the RuleTemplate specified in the BusinessRule,
- * with defaultValues replaced with the entered properties in the BusinessRule
- * todo: (Q) Can we have an API for this and do this in backend? (better)
- * todo: name can be 'getBusinessRulePropertiesMapped'
- *
- * @param businessRuleUUID
- * @returns {*|Array}
- */
-function getMappedProperties(businessRuleUUID) {
-    var foundBusinessRule = getBusinessRule(businessRuleUUID)
-    var foundBusinessRuleProperties = foundBusinessRule.properties
-
-    if (foundBusinessRule.type === "template") { //todo: confirm the string
-        // Get property type, description and etc. from specified RuleTemplate
-        var templateGroupName = foundBusinessRule.templateGroupName
-        var ruleTemplateName = foundBusinessRule.ruleTemplateName
-
-        var ruleTemplateProperties = getRuleTemplateProperties(templateGroupName, ruleTemplateName)
-
-        var modifiedProperties = ruleTemplateProperties
-        // Replace each property's default value with entered values
-        // because, entered values are going to be displayed todo: (Q) Is this ok
-        for (let propertyName in modifiedProperties) {
-            // Update defaultValue with entered value
-            modifiedProperties[propertyName]["defaultValue"] = foundBusinessRuleProperties[propertyName]
-        }
-
-        return modifiedProperties
-    } else {
-        console.log("From Scratch is not supported yet") // todo
-    }
 }
 
 // Functions that have API calls unnecessarily /////////////////////////////////
@@ -893,6 +716,7 @@ function getTemplateGroup(templateGroupName) {
 /**
  * Gets the RuleTemplate with the given name, that belongs to the given TemplateGroup name
  * todo: from API (We have available templateGroups in front end itself)
+ * todo: make sure to assign the belonging templateGroup for ruleTemplate
  *
  * @param templateGroupName
  * @param ruleTemplateName
@@ -903,12 +727,16 @@ function getRuleTemplate(templateGroupName, ruleTemplateName) {
     var ruleTemplates
     for (let templateGroup of availableTemplateGroups) {
         if (templateGroup.name === templateGroupName) {
+            var foundTemplateGroupObject = templateGroup
             ruleTemplates = templateGroup.ruleTemplates
             break
         }
     }
     for (let ruleTemplate of ruleTemplates) {
         if (ruleTemplate.name === ruleTemplateName) {
+            var foundRuleTemplateObject = ruleTemplate
+            // Assign belonging TemplateGroup
+            foundRuleTemplateObject['templateGroup'] = foundTemplateGroupObject
             return ruleTemplate
         }
     }
@@ -921,22 +749,23 @@ function getRuleTemplate(templateGroupName, ruleTemplateName) {
 /* End of Methods related to API calls ****************************************/
 
 /**
- * Starts and runs Business Rules,
- * which consists of BusinessRules Creator & BusinessRules Modifier
+ * Starts and runs Business Rules Creator
  */
-function startBusinessRules() {
-    console.log("[Started Business Rules]")
-    ReactDOM.render(<BusinessRules/>, document.getElementById("root"))
+function startBusinessRulesCreator() {
+    console.log("[Started Business Rules Creator]")
+    ReactDOM.render(<BusinessRulesCreator/>, document.getElementById("root"))
 }
 
 /**
- * Starts and runs Business Rules Creator
+ * Starts and runs Business Rules Creator from Template
  */
-function runBusinessRuleCreator() {
-    console.log("[Started Business Rules Creator]")
+function runBusinessRuleCreatorFromTemplate() {
+    console.log("[Started Create Business Rule from Template]")
 
-    // Get available Template Groups and display
-    displayTemplateGroups(availableTemplateGroups)
+    ReactDOM.render(
+        <BusinessRulesCreatorFromTemplate
+            templateGroups={availableTemplateGroups}
+        />, document.getElementById("root"))
 }
 
 /**
@@ -947,18 +776,6 @@ function runBusinessRuleModifier() {
 
     // Get available Business Rules and display
     displayBusinessRules(availableBusinessRules)
-}
-
-/**
- * Displays available Template Groups, as thumbnails
- *
- * @param availableTemplateGroups
- */
-function displayTemplateGroups(availableTemplateGroups) {
-    ReactDOM.render(
-        <BusinessRulesCreator
-            templateGroups={availableTemplateGroups}
-        />, document.getElementById("root"))
 }
 
 /**
@@ -974,91 +791,43 @@ function displayBusinessRules() {
 }
 
 /**
- * Displays available Rule Templates that belong to the given Template Group name, as thumbnails
- *
- * @param templateGroup Given Template Group object
- */
-function displayRuleTemplates(templateGroup) {
-    ReactDOM.render(
-        <TemplateGroup
-            key={templateGroup.name}
-            name={templateGroup.name}
-            description={templateGroup.description}
-            ruleTemplates={getRuleTemplates(templateGroup.name)}
-            viewAs="parent"
-        />, document.getElementById("root")
-    )
-}
-
-/**
- * Displays a form to fill in properties data, in order to create a Business Rule
- *
- * @param ruleTemplate Given Rule Template object, which the Business Rule uses
- */
-function displayCreateBusinessRuleForm(ruleTemplate) {
-    ReactDOM.render(
-        <BusinessRuleForm
-            templateGroup={ruleTemplate.templateGroup}
-            ruleTemplate={ruleTemplate}
-            properties={getRuleTemplateProperties(ruleTemplate.templateGroup.name, ruleTemplate.name)}
-            mode="create"
-        />, document.getElementById("root"));
-}
-
-/**
- * Displays a form with property data, got from the given Business Rule
- *
- * @param templateGroupName
- * @param ruleTemplateName
- * @param businessRuleUUID
- */
-function displayEditBusinessRuleForm(templateGroupName, ruleTemplateName, businessRule) {
-    // Get from loaded Available Business Rules
-    var properties = getMappedProperties(businessRule.uuid)
-    var ruleTemplate = getRuleTemplate(templateGroupName, ruleTemplateName)
-
-    // Get from loaded Available Template Groups
-    ruleTemplate['templateGroup'] = getTemplateGroup(templateGroupName)
-
-    ReactDOM.render(
-        <BusinessRuleForm
-            templateGroup={ruleTemplate.templateGroup}
-            ruleTemplate={ruleTemplate}
-            properties={properties}
-            mode="edit"
-            businessRuleName={businessRule.name}
-        />, document.getElementById("root"));
-}
-
-/**
- * Sends the form filled values as Key Value pairs, to the API
+ * Prepares the Business Rule object to send the form element names & filled values as Key Value pairs, to the API
  *
  * @param filledValues
  */
 function prepareBusinessRule() {
-    var isRequiredIncomplete = false
-    for (let property in businessRuleEnteredProperties) {
-        if ((!(businessRuleEnteredProperties[property] != null)) || (businessRuleEnteredProperties[property] === "")) {
-            isRequiredIncomplete = true
-            break
-        }
-    }
-
-    if (isRequiredIncomplete) {
-        fillInRequiredFieldsError()
-    } else {
+    if (validateBusinessRule()) {
         createObjectForBusinessRuleCreation()
+    } else {
+        var dismissButton =
+            <Button color="accent" onClick={e => clearSnackBar()} dense>
+                Dismiss
+            </Button>;
+        console.log("Fill in all the fields (Only done this validation for now)")
+        ReactDOM.render(<SnackbarContent
+            message="Invalid Business Rule"
+            action={dismissButton}
+        />, document.getElementById("snackbar"))
     }
 }
 
 /**
- * Gives error when all the required fields are not filled //todo: implement properly
+ * Validates the Business Rule before creating
+ * No JS validation to be done here. That'll be in internal method
  */
-function fillInRequiredFieldsError() {
-    console.log("Please fill in all the fields")
-    ReactDOM.render(<SnackbarContent
-        message="Please fill in all the fields"/>, document.getElementById("errors"))
+function validateBusinessRule() {
+    var isRequiredIncomplete = false
+    for (let property in businessRuleEnteredProperties) {
+        if ((!(businessRuleEnteredProperties[property] != null)) || (businessRuleEnteredProperties[property] === "")) {
+            isRequiredIncomplete = true
+            return false
+        }
+    }
+
+    return true
 }
+
+/* Roughly implemented functions *//////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Gives the mapped properties, to send to the API to create Business Rule
@@ -1066,19 +835,32 @@ function fillInRequiredFieldsError() {
 function createObjectForBusinessRuleCreation() {
     console.log("Business Rule Properties :")
     console.log(businessRuleEnteredProperties)
+    var dismissButton =
+        <Button color="primary" onClick={e => clearSnackBar()} dense>
+            Dismiss
+        </Button>;
     ReactDOM.render(<SnackbarContent
-        message="Properties are ready for sending to API"/>, document.getElementById("errors"))
+        message="Properties are ready for sending to API"
+        action={dismissButton}
+    />, document.getElementById("snackbar"))
 }
+
+/**
+ * Clears the Snackbar from 'snackbars' div element
+ */
+function clearSnackBar() {
+    ReactDOM.render(<br/>, document.getElementById("snackbar"))
+}
+
+/* End of Roughly implemented functions *///////////////////////////////////////////////////////////////////////////////
 
 // Load from API and store
 var availableTemplateGroups = getTemplateGroups()
 var availableBusinessRules = getBusinessRules()
 
-// todo: (!) look into this. Seems not a good practise
+// todo: ((!)Q) look into this. Seems not a good practise. If so, solution?
 // Properties given in the form, for Creating a Business Rule
-var businessRuleEnteredProperties = {
-    businessRuleName: null
-}
+var businessRuleEnteredProperties
 
-// Start & Run BusinessRuleCreator();
-startBusinessRules();
+// Start & Run BusinessRulesCreator();
+startBusinessRulesCreator();
