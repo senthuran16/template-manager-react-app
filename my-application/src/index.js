@@ -15,7 +15,7 @@ import Select from 'material-ui/Select';
 import {SnackbarContent} from 'material-ui/Snackbar';
 
 /**
- * Starting point of Creating / Modifying Business Rules
+ * Used to create Business Rule from template / from scratch
  */
 class BusinessRulesCreator extends React.Component {
     render() {
@@ -104,12 +104,21 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
     }
 
     /**
-     * Validates the Business Rule properties todo: implement
+     * Validates the Business Rule properties (with the internal JS specified in the template todo: implement & (Q) is the JS thing correct?
      */
     validateBusinessRule() {
         console.log("[TODO] Validate. (Q: How?)")
         // Check external validation (Internal validation is with the JS) todo: (Q) is this correct?
-        if (!validateBusinessRule()) {
+        if (validateBusinessRule()) {
+            var dismissButton =
+                <Button color="primary" onClick={e => clearSnackBar()} dense>
+                    Dismiss
+                </Button>;
+            ReactDOM.render(<SnackbarContent
+                message="Valid Business Rule [TODO]"
+                action={dismissButton}
+            />, document.getElementById("snackbar"))
+        } else {
             var dismissButton =
                 <Button color="accent" onClick={e => clearSnackBar()} dense>
                     Dismiss
@@ -117,15 +126,6 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
             console.log("Fill in all the fields (Only done this validation for now)")
             ReactDOM.render(<SnackbarContent
                 message="Invalid Business Rule"
-                action={dismissButton}
-            />, document.getElementById("snackbar"))
-        }else{
-            var dismissButton =
-                <Button color="primary" onClick={e => clearSnackBar()} dense>
-                    Dismiss
-                </Button>;
-            ReactDOM.render(<SnackbarContent
-                message="Valid Business Rule [TODO]"
                 action={dismissButton}
             />, document.getElementById("snackbar"))
         }
