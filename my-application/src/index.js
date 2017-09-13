@@ -110,7 +110,7 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
         console.log("[TODO] Validate. (Q: How?)")
         // Check external validation (Internal validation is with the JS) todo: (Q) is this correct?
         if (validateBusinessRule()) {
-            var dismissButton =
+            let dismissButton =
                 <Button color="primary" onClick={e => clearSnackBar()} dense>
                     Dismiss
                 </Button>;
@@ -119,7 +119,7 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
                 action={dismissButton}
             />, document.getElementById("snackbar"))
         } else {
-            var dismissButton =
+            let dismissButton =
                 <Button color="accent" onClick={e => clearSnackBar()} dense>
                     Dismiss
                 </Button>;
