@@ -19,24 +19,23 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="636">
-              <caret line="125" column="77" lean-forward="false" selection-start-line="125" selection-start-column="77" selection-end-line="125" selection-end-column="77" />
+            <state relative-caret-position="-1255">
+              <caret line="746" column="0" lean-forward="true" selection-start-line="746" selection-start-column="0" selection-end-line="746" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#207#233#0" expanded="true" />
-                <element signature="e#308#356#0" expanded="true" />
+                <element signature="e#208#234#0" expanded="true" />
+                <element signature="e#309#357#0" expanded="true" />
                 <element signature="n#BusinessRulesCreator#0" expanded="false" />
                 <element signature="n#BusinessRulesModifier#0" expanded="false" />
                 <element signature="n#Property#0" expanded="false" />
                 <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-                <element signature="e#16411#24807#0" expanded="false" />
+                <element signature="e#16488#24884#0" expanded="false" />
                 <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
                 <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
                 <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-                <element signature="e#26579#27510#0" expanded="false" />
+                <element signature="e#26662#27593#0" expanded="false" />
                 <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
                 <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-                <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
                 <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
                 <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
                 <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -53,8 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&gt;</find>
-      <find>submi</find>
       <find>form</find>
       <find>but</find>
       <find>Rule Templates</find>
@@ -83,6 +80,8 @@
       <find>prepareBusinessRule</find>
       <find>createObject</find>
       <find>entered</find>
+      <find>TemplateGroup</find>
+      <find>RuleTemplate</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -90,6 +89,7 @@
       <replace>templateGroup</replace>
       <replace>TemplateGroup</replace>
       <replace>Template Group</replace>
+      <replace>Rule Template</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -209,12 +209,12 @@
       <workItem from="1504846203277" duration="27663000" />
       <workItem from="1505104885847" duration="24968000" />
       <workItem from="1505194474099" duration="7188000" />
-      <workItem from="1505276461030" duration="28859000" />
+      <workItem from="1505276461030" duration="29282000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281862000" />
+    <option name="totallyTimeSpent" value="282285000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="712" y="-4" width="1851" height="1092" extended-state="6" />
@@ -277,20 +277,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -316,20 +315,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -347,20 +345,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -385,20 +382,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -416,20 +412,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -468,20 +463,19 @@
           <caret line="204" column="3" lean-forward="false" selection-start-line="204" selection-start-column="3" selection-end-line="204" selection-end-column="3" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -517,20 +511,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -548,20 +541,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -579,20 +571,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -610,20 +601,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -648,20 +638,19 @@
           <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -686,20 +675,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -717,20 +705,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -759,20 +746,19 @@
           <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -801,20 +787,19 @@
           <caret line="47" column="46" lean-forward="false" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -850,20 +835,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -895,20 +879,19 @@
           <caret line="46" column="35" lean-forward="false" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -926,20 +909,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />
@@ -1079,24 +1061,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="125" column="77" lean-forward="false" selection-start-line="125" selection-start-column="77" selection-end-line="125" selection-end-column="77" />
+        <state relative-caret-position="-1255">
+          <caret line="746" column="0" lean-forward="true" selection-start-line="746" selection-start-column="0" selection-end-line="746" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#207#233#0" expanded="true" />
-            <element signature="e#308#356#0" expanded="true" />
+            <element signature="e#208#234#0" expanded="true" />
+            <element signature="e#309#357#0" expanded="true" />
             <element signature="n#BusinessRulesCreator#0" expanded="false" />
             <element signature="n#BusinessRulesModifier#0" expanded="false" />
             <element signature="n#Property#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0" expanded="false" />
-            <element signature="e#16411#24807#0" expanded="false" />
+            <element signature="e#16488#24884#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplates#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0" expanded="false" />
-            <element signature="e#26579#27510#0" expanded="false" />
+            <element signature="e#26662#27593#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0" expanded="false" />
-            <element signature="n#!!block;n#getRuleTemplate#0" expanded="false" />
             <element signature="n#!!block;n#startBusinessRulesCreator#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleCreatorFromTemplate#0" expanded="false" />
             <element signature="n#!!block;n#runBusinessRuleModifier#0" expanded="false" />

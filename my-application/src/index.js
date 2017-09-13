@@ -1,6 +1,6 @@
 // todo: bind handleClicks in the new way
 // todo: refactor TemplateGroup as BusinessDomain
-// todo: No cards for RuleTemplates. Replace with Selects. Show description and preview form below to give an idea
+// todo: No cards for Rule Templates. Replace with Selects. Show description and preview form below to give an idea
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
@@ -45,7 +45,7 @@ class BusinessRulesCreator extends React.Component {
 }
 
 /**
- * List TemplateGroups and RuleTemplates in order to create Business Rule from Template
+ * List TemplateGroups and Rule Templates in order to create Business Rule from Template
  */
 class BusinessRulesCreatorFromTemplate extends React.Component {
     /**
@@ -132,9 +132,9 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
     }
 
     render() {
-        var templateGroupSelection
-        var loadedRuleTemplates
-        var ruleTemplateSelection
+        var templateGroupSelection // To display Template Group selection box
+        var loadedRuleTemplates // To store Rule Templates of the selected Template Group
+        var ruleTemplateSelection // To display Rule Template selection box
         var businessRuleForm // To display Business Rules form
 
         // To display each item in TemplateGroup selection todo: BusinessDomain refactor if needed
@@ -156,7 +156,7 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
             <FormHelperText>{this.state.selectedTemplateGroup.description}</FormHelperText>
         </FormControl>
 
-        // To display each item in RuleTemplate selection
+        // To display each item in Rule Template selection
         if (this.state.ruleTemplates !== null) {
             loadedRuleTemplates = this.state.ruleTemplates.map((loadedRuleTemplate) =>
                 <MenuItem key={loadedRuleTemplate.name} value={loadedRuleTemplate.name}>
@@ -164,7 +164,7 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
                 </MenuItem>
             )
 
-            // To display RuleTemplate selection
+            // To display Rule Template selection
             ruleTemplateSelection = <FormControl>
                 <InputLabel htmlFor="ruleTemplate">Rule Template</InputLabel>
                 <Select
@@ -177,12 +177,11 @@ class BusinessRulesCreatorFromTemplate extends React.Component {
                 <FormHelperText>{this.state.selectedRuleTemplate.description}</FormHelperText>
             </FormControl>
 
-            // To display Form
+            // To display Business Rules form
 
             // Update selected form values in state
             let state = this.state
             state['formProperties'] = this.state.selectedRuleTemplate.properties
-            // this.state.formProperties = this.state.selectedRuleTemplate.properties
             this.state = state
 
             // Form can be displayed only if a Rule Template name exists
@@ -398,7 +397,7 @@ class Property extends React.Component {
 /* Start of Methods related to API calls **************************************/
 
 /** [1]
- * Gets available TemplateGroups
+ * Gets available Template Groups
  * todo: from API
  *
  * @returns {Array}
@@ -584,11 +583,11 @@ function getTemplateGroups() {
 
     return receivedTemplateGroups
     // todo: *********************************************
-    // todo: Get TemplateGroups from API
+    // todo: Get Template Groups from API
 }
 
 /** [2]
- * Get available RuleTemplates, belong to the given TemplateGroup
+ * Get available Rule Templates, belong to the given Template Group
  * todo: from API
  *
  * @param templateGroupName
@@ -602,11 +601,11 @@ function getRuleTemplates(templateGroupName) {
         }
     }
     // todo: **********************************************
-    // todo: Return RuleTemplates from API
+    // todo: Return Rule Templates from API
 }
 
 /** [3]
- * Get available Properties, belong to the given TemplateGroup and RuleTemplate
+ * Get available Properties, belong to the given Template Group and Rule Template
  * todo: from API
  *
  * @param templateGroupName
@@ -696,7 +695,7 @@ function getBusinessRule(businessRuleUUID) {
 
 // Functions that have API calls unnecessarily /////////////////////////////////
 /**
- * Gets the TemplateGroup with the given name
+ * Gets the Template Group with the given name
  * todo: from API (We have available templateGroups in front end itself)
  *
  * @param templateGroupName
@@ -710,11 +709,11 @@ function getTemplateGroup(templateGroupName) {
         }
     }
     // todo: **********************************************
-    // todo: Return TemplateGroup from API
+    // todo: Return Template Group from API
 }
 
 /**
- * Gets the RuleTemplate with the given name, that belongs to the given TemplateGroup name
+ * Gets the Rule Template with the given name, that belongs to the given Template Group name
  * todo: from API (We have available templateGroups in front end itself)
  * todo: make sure to assign the belonging templateGroup for ruleTemplate
  *
@@ -735,13 +734,13 @@ function getRuleTemplate(templateGroupName, ruleTemplateName) {
     for (let ruleTemplate of ruleTemplates) {
         if (ruleTemplate.name === ruleTemplateName) {
             var foundRuleTemplateObject = ruleTemplate
-            // Assign belonging TemplateGroup
+            // Assign belonging Template Group
             foundRuleTemplateObject['templateGroup'] = foundTemplateGroupObject
             return ruleTemplate
         }
     }
     // todo: **********************************************
-    // todo: Return RuleTemplate from API
+    // todo: Return Rule Template from API
 }
 
 // End of Functions that have API calls unnecessarily //////////////////////////
@@ -781,7 +780,7 @@ function runBusinessRuleModifier() {
 /**
  * Displays available Business Rules, as thumbnails
  *
- * @param availableTemplateGroups
+ * @param availableTemplate Groups
  */
 function displayBusinessRules() {
     ReactDOM.render(
