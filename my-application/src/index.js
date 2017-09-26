@@ -257,11 +257,9 @@ class RuleTemplates extends React.Component {
 class Property extends React.Component {
     // Handles onChange of Selection field
     handleSelectChange = name => event => {
-        this.setState(
-            {value: event.target.value}
-        )
         // Update / add entered value for this property to the state
         let state = this.state
+        state['value'] = event.target.value
         state['enteredValues']['properties'][this.state.name] = event.target.value
         this.setState(state)
         businessRuleEnteredValues = this.state.enteredValues
