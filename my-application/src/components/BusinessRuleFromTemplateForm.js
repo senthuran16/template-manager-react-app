@@ -51,10 +51,14 @@ class BusinessRuleFromTemplateForm extends React.Component {
             businessRuleProperties: props.businessRuleProperties // To store values given for properties displayed in the form
         }
 
-        // To prevent 'undefined' when updating properties, when no properties are passed during 'create' mode
-        if (!this.state.businessRuleProperties) {
+        // To assign default values of properties as entered values in create mode
+        if(this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
             let state = this.state
             state['businessRuleProperties'] = {}
+            for (let propertyKey in this.state.ruleTemplate.properties) {
+                state['businessRuleProperties'][propertyKey] =
+                    this.state.ruleTemplate.properties[propertyKey.toString()]['defaultValue']
+            }
             this.state = state
         }
     }
@@ -90,6 +94,8 @@ class BusinessRuleFromTemplateForm extends React.Component {
             // which has the original object's Key & Value
             // denoted by new Keys : 'propertyName' & 'propertyObject'
             for (let propertyKey in this.state.ruleTemplate.properties) {
+                // Modify default value, as the entered property value,
+                // in order to display initially in the form
                 properties.push({
                     propertyName: propertyKey,
                     propertyObject: this.state.ruleTemplate.properties[propertyKey.toString()]
@@ -103,7 +109,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     name={property.propertyName}
                     fieldName={property.propertyObject.fieldName}
                     description={property.propertyObject.description}
-                    value={property.propertyObject.defaultValue}
+                    value={this.state['businessRuleProperties'][property.propertyName]}
                     options={property.propertyObject.options}
                     onValueChange={this.handleValueChange(property.propertyName)}
                 />
@@ -151,7 +157,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     name={property.propertyName}
                     fieldName={property.propertyObject.fieldName}
                     description={property.propertyObject.description}
-                    value={property.propertyObject.defaultValue}
+                    value={this.state['businessRuleProperties'][property.propertyName]}
                     options={property.propertyObject.options}
                     onValueChange={this.handleValueChange(property.propertyName)}
                 />

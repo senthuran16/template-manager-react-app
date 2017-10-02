@@ -37,9 +37,7 @@ class RuleTemplateSelector extends React.Component {
             selectedTemplateGroup: props.selectedTemplateGroup,
             ruleTemplateTypeFilter: props.ruleTemplateTypeFilter, // 'template', 'input' or 'output'
             ruleTemplates: props.ruleTemplates,
-            // selectedRuleTemplate: null, // Initialize with no Rule Template selected
             selectedRuleTemplate: {name: '', uuid: ''}, // Initialize with no Rule Template selected
-            // something: ''
         }
     }
 
@@ -68,13 +66,15 @@ class RuleTemplateSelector extends React.Component {
         // To store Business Rule form of the selected Rule Template
         var businessRuleForm;
 
+        // If a rule template has been already selected
         if (this.state.selectedRuleTemplate.name != '') {
             ruleTemplateSelectionHelperText = this.state.selectedRuleTemplate.description
-            businessRuleForm = <BusinessRuleFromTemplateForm
-                businessRuleType={BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE}
-                formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
-                templateGroup={this.state.selectedTemplateGroup}
-                ruleTemplate={this.state.selectedRuleTemplate}/>
+            businessRuleForm =
+                <BusinessRuleFromTemplateForm
+                    businessRuleType={BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE}
+                    formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
+                    templateGroup={this.state.selectedTemplateGroup}
+                    ruleTemplate={this.state.selectedRuleTemplate}/>
         } else {
             // Otherwise, show default helper text
             ruleTemplateSelectionHelperText = "Select a rule template of type - " + this.state.ruleTemplateTypeFilter

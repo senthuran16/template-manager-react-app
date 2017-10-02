@@ -173,48 +173,89 @@ class BusinessRuleFromScratchForm extends React.Component {
      * @param propertiesType
      * @returns {Array}
      */
-    reArrangePropertiesForDisplay(propertiesType) {
+    reArrangePropertiesForDisplay(propertiesType, formMode) {
         // To store values that are going to be used
         let unArrangedPropertiesFromTemplate
         let businessRulePropertiesSubset // To get initial values with this
         let reArrangedProperties = []// To store after arranging
+        // To store mapped properties as input fields
+        let propertiesToDisplay
 
-        if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT) {
-            unArrangedPropertiesFromTemplate = this.state.inputRuleTemplate.properties
-            businessRulePropertiesSubset =
-                this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
-        } else if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT) {
-            unArrangedPropertiesFromTemplate = this.state.outputRuleTemplate.properties
-            businessRulePropertiesSubset =
-                this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT]
+        if (formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
+            if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT) {
+                unArrangedPropertiesFromTemplate = this.state.inputRuleTemplate.properties
+                businessRulePropertiesSubset =
+                    this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
+            } else if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT) {
+                unArrangedPropertiesFromTemplate = this.state.outputRuleTemplate.properties
+                businessRulePropertiesSubset =
+                    this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT]
+            }
+
+            // Re-arrange properties
+            for (let propertyKey in unArrangedPropertiesFromTemplate) {
+                // Modify default value, as the entered property value,
+                // in order to display initially in the form
+                let property = unArrangedPropertiesFromTemplate[propertyKey.toString()]
+                property['defaultValue'] =
+                    businessRulePropertiesSubset[propertyKey.toString()]
+
+                reArrangedProperties.push({
+                    propertyName: propertyKey,
+                    propertyObject: property
+                })
+            }
+
+            // Map each re-arranged property as an input field
+            propertiesToDisplay = reArrangedProperties.map((property) =>
+                <Property
+                    key={property.propertyName}
+                    name={property.propertyName}
+                    fieldName={property.propertyObject.fieldName}
+                    description={property.propertyObject.description}
+                    value={property.propertyObject.defaultValue}
+                    options={property.propertyObject.options}
+                    onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+                />
+            )
+        } else if (formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
+            if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT) {
+                unArrangedPropertiesFromTemplate = this.state.inputRuleTemplate.properties
+                // businessRulePropertiesSubset =
+                //     this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
+            } else if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT) {
+                unArrangedPropertiesFromTemplate = this.state.outputRuleTemplate.properties
+                // businessRulePropertiesSubset =
+                //     this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT]
+            }
+
+            // Re-arrange properties
+            for (let propertyKey in unArrangedPropertiesFromTemplate) {
+                // Modify default value, as the entered property value,
+                // in order to display initially in the form
+                let property = unArrangedPropertiesFromTemplate[propertyKey.toString()]
+                property['defaultValue'] =
+                    businessRulePropertiesSubset[propertyKey.toString()]
+
+                reArrangedProperties.push({
+                    propertyName: propertyKey,
+                    propertyObject: property
+                })
+            }
+
+            // Map each re-arranged property as an input field
+            propertiesToDisplay = reArrangedProperties.map((property) =>
+                <Property
+                    key={property.propertyName}
+                    name={property.propertyName}
+                    fieldName={property.propertyObject.fieldName}
+                    description={property.propertyObject.description}
+                    value={property.propertyObject.defaultValue}
+                    options={property.propertyObject.options}
+                    onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+                />
+            )
         }
-
-        // Re-arrange properties
-        for (let propertyKey in unArrangedPropertiesFromTemplate) {
-            // Modify default value, as the entered property value,
-            // in order to display initially in the form
-            let property = unArrangedPropertiesFromTemplate[propertyKey.toString()]
-            property['defaultValue'] =
-                businessRulePropertiesSubset[propertyKey.toString()]
-
-            reArrangedProperties.push({
-                propertyName: propertyKey,
-                propertyObject: property
-            })
-        }
-
-        // To display each re-arranged property as an input field
-        let propertiesToDisplay = reArrangedProperties.map((property) =>
-            <Property
-                key={property.propertyName}
-                name={property.propertyName}
-                fieldName={property.propertyObject.fieldName}
-                description={property.propertyObject.description}
-                value={property.propertyObject.defaultValue}
-                options={property.propertyObject.options}
-                onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
-            />
-        )
 
         return propertiesToDisplay
     }
@@ -239,7 +280,7 @@ class BusinessRuleFromScratchForm extends React.Component {
         businessRuleObject['ruleTemplateUUID'] = this.state.ruleTemplate.uuid
         businessRuleObject['properties'] = this.state.businessRuleProperties
     }
-    
+
     render() {
         // To display properties
         var inputDataPropertiesToDisplay
