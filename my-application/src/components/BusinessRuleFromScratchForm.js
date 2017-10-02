@@ -110,7 +110,6 @@ class BusinessRuleFromScratchForm extends React.Component {
     handleValueChange = (property, propertyType) => value => {
         let state = this.state
         state['businessRuleProperties'][propertyType][property] = value
-        //state['outputToDisplay'] = this.reArrangeForDisplay(state.outputRuleTemplate.properties, state.businessRuleProperties)
         this.setState(state)
     }
 
@@ -131,21 +130,12 @@ class BusinessRuleFromScratchForm extends React.Component {
      */
     removeFilterRule = index => value => {
         let state = this.state
-        console.log("BEFORE")
-        console.log(state.businessRuleProperties['ruleComponents']['filterRules'])
         state.businessRuleProperties['ruleComponents']['filterRules'].splice(index, 1)
-        console.log("AFTER")
-        console.log(state.businessRuleProperties['ruleComponents']['filterRules'])
-
         this.setState(state)
-        //console.log("Removed " + index)
     }
 
     constructor(props) {
         super(props);
-        // this.handleValueChange = this.handleValueChange.bind(this);
-        // this.addFilterRule = this.addFilterRule.bind(this);
-        // this.removeFilterRule = this.removeFilterRule.bind(this);
 
         this.state = {
             formMode: props.formMode, // 'create' or 'edit'
@@ -300,9 +290,12 @@ class BusinessRuleFromScratchForm extends React.Component {
 
             // Add properties of input & output templates in re-organized form to display
             inputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
-                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT)
+                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT,
+                BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT)
+            console.log(inputDataPropertiesToDisplay)
             outputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
-                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT)
+                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT,
+                BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT)
 
             var outputMappings = [] // Key: input Value: output
             for (let inputKey in this.state.businessRuleProperties.outputMappings) {

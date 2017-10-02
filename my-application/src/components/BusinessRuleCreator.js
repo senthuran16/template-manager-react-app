@@ -5,6 +5,7 @@ import Typography from 'material-ui/Typography';
 import CreateButton from "./CreateButton";
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import Header from "./Header";
+import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 
 /**
  * Allows to create a Business Rule either from scratch or from a Template
