@@ -4,11 +4,6 @@
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/Property.js" afterPath="$PROJECT_DIR$/my-application/src/components/Property.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesConstants.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesConstants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +22,8 @@
           <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1699">
-                  <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+                <state relative-caret-position="-1487">
+                  <caret line="241" column="4" lean-forward="false" selection-start-line="241" selection-start-column="4" selection-end-line="241" selection-end-column="4" />
                   <folding>
                     <element signature="e#67#101#0" expanded="true" />
                     <element signature="e#4736#4962#0" expanded="false" />
@@ -145,9 +140,9 @@
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/Property.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesConstants.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
       </list>
     </option>
   </component>
@@ -271,12 +266,20 @@
       <workItem from="1506690852696" duration="13453000" />
       <workItem from="1506744788643" duration="26710000" />
       <workItem from="1506873009700" duration="7574000" />
-      <workItem from="1506920368398" duration="20645000" />
+      <workItem from="1506920368398" duration="20935000" />
     </task>
+    <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
+      <created>1506944452636</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1506944452636</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="499949000" />
+    <option name="totallyTimeSpent" value="500239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1088" y="24" width="1851" height="1092" extended-state="6" />
@@ -306,6 +309,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -635,8 +642,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1699">
-          <caret line="401" column="25" lean-forward="false" selection-start-line="401" selection-start-column="25" selection-end-line="401" selection-end-column="25" />
+        <state relative-caret-position="-1487">
+          <caret line="241" column="4" lean-forward="false" selection-start-line="241" selection-start-column="4" selection-end-line="241" selection-end-column="4" />
           <folding>
             <element signature="e#67#101#0" expanded="true" />
             <element signature="e#4736#4962#0" expanded="false" />

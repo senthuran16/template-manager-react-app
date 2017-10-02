@@ -239,8 +239,7 @@ class BusinessRuleFromScratchForm extends React.Component {
         businessRuleObject['ruleTemplateUUID'] = this.state.ruleTemplate.uuid
         businessRuleObject['properties'] = this.state.businessRuleProperties
     }
-
-
+    
     render() {
         // To display properties
         var inputDataPropertiesToDisplay
