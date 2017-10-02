@@ -19,43 +19,59 @@ class FilterRule extends React.Component {
             color: '#EF6C00'
         }
     }
+
     /**
-     * Handles onChange of each property
+     * Gives an array, which has Attribute, Logic, AttributeOrValue elements seperated from the given filter rule
      *
-     * @param property
+     * @param filterRule
+     * @returns {*}
      */
-    handleValueChange = property => value => {
-        let state = this.state
-        state[property] = value
-        this.setState(state)
+    deriveElementsFromFilterRule = filterRule => {
+        let initialSplitArray = filterRule.split(" ")
+        let newSplitArray = []
+
+        // If more than 3 members available after splitting
+        if (initialSplitArray.length > 3) {
+            // Push first two members as they are
+            for (let i = 0; i < 2; i++) {
+                newSplitArray.push(initialSplitArray[i])
+            }
+            // Push rest of the members concatenated with space
+            newSplitArray.push(initialSplitArray.slice(2, initialSplitArray.length).join(" "))
+
+            return newSplitArray
+        }
+
+        return initialSplitArray
     }
+
+    // To store Attribute, Operator and AttributeOrValue elements of the filter, when a change occurs
+    onAttributeChange = value => {
+        this.props.onAttributeChange(this.props.filterRuleIndex, value)
+    }
+    onOperatorChange = value => {
+        this.props.onOperatorChange(this.props.filterRuleIndex, value)
+    }
+    onAttributeOrValueChange = value => {
+        this.props.onAttributeOrValueChange(this.props.filterRuleIndex, value)
+    }
+
     /**
-     * Handles onClick of remove button against the filter rule
+     * Handles onClick of remove button of the filter rule
      *
      * @param event
      */
     handleRemoveFilterRuleButtonClick = index => event => {
-        console.log("INNER")
-        this.props.handleRemoveFilterRule(index) // todo: make sure to pass
+        this.props.handleRemoveFilterRule(index)
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            filterRuleNumber: props.filterRuleNumber,
-            filterRuleAttribute: props.filterRuleAttribute,
-            operator: props.operator,
-            attributeOrValue: props.attributeOrValue
-        }
-    }
 
     render() {
         return (
-
             <TableRow>
                 <TableCell>
                     <Typography>
-                        {this.state.filterRuleNumber}
+                        {this.props.filterRuleIndex + 1}
                     </Typography>
                 </TableCell>
                 <TableCell>
@@ -63,8 +79,8 @@ class FilterRule extends React.Component {
                         name="filterRuleAttribute"
                         fieldName=""
                         description=""
-                        initialValue={this.state.filterRuleAttribute}
-                        onValueChange={this.handleValueChange("filterRuleAttribute")}
+                        value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}
+                        onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}
                     />
                 </TableCell>
                 <TableCell>
@@ -72,9 +88,9 @@ class FilterRule extends React.Component {
                         name="operator"
                         fieldName=""
                         description=""
-                        initialValue={this.state.operator}
+                        value={this.deriveElementsFromFilterRule(this.props.filterRule)[1]}
                         options={BusinessRulesConstants.BUSINESS_RULE_FILTER_RULE_OPERATORS}
-                        onValueChange={this.handleValueChange("operator")}
+                        onValueChange={(modifiedValue) => this.onOperatorChange(modifiedValue)}
                     />
                 </TableCell>
                 <TableCell>
@@ -82,8 +98,8 @@ class FilterRule extends React.Component {
                         name="attributeOrValue"
                         fieldName=""
                         description=""
-                        initialValue={this.state.attributeOrValue}
-                        onValueChange={this.handleValueChange("attributeOrValue")}
+                        value={this.deriveElementsFromFilterRule(this.props.filterRule)[2]}
+                        onValueChange={(modifiedValue) => this.onAttributeOrValueChange(modifiedValue)}
                     />
                 </TableCell>
                 <TableCell>

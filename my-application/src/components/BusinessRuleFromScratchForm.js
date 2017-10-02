@@ -22,14 +22,82 @@ class BusinessRuleFromScratchForm extends React.Component {
             backgroundColor: '#EF6C00',
             color: 'white'
         },
+        button: {
+            backgroundColor: '#EF6C00',
+            color: 'white'
+        },
         paper: {
             padding: 10,
             paddingTop: 15,
             paddingBottom: 15
         }
     }
+
     /**
-     * Handles onChange of each property
+     * Handles onChange of any Attribute, of a filter rule
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleAttributeChange = (filterRuleIndex, value) => {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            value + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any Operator, of a filter rule
+     *
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleOperatorChange = (filterRuleIndex, value) => {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
+            value + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any AttributeOrValue, of a filter
+     *
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleAttributeOrValueChange = (filterRuleIndex, value) => {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
+            value
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of the RuleLogic
+     * @param value
+     */
+    handleRuleLogicChange = value => {
+        let state = this.state
+        state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] = value
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any input / output property
      *
      * @param property
      */
@@ -38,6 +106,14 @@ class BusinessRuleFromScratchForm extends React.Component {
         state['businessRuleProperties'][property] = value
         this.setState(state)
     }
+
+    handleValueChange = (property, propertyType) => value => {
+        let state = this.state
+        state['businessRuleProperties'][propertyType][property] = value
+        //state['outputToDisplay'] = this.reArrangeForDisplay(state.outputRuleTemplate.properties, state.businessRuleProperties)
+        this.setState(state)
+    }
+
     /**
      * Handles onChange of Business Rule name text field
      *
@@ -49,12 +125,27 @@ class BusinessRuleFromScratchForm extends React.Component {
         state['businessRuleUUID'] = BusinessRulesFunctions.generateBusinessRuleUUID(event.target.value)
         this.setState(state)
     }
+    /**
+     * Removes the filter rule given by index
+     * @param index
+     */
+    removeFilterRule = index => value => {
+        let state = this.state
+        console.log("BEFORE")
+        console.log(state.businessRuleProperties['ruleComponents']['filterRules'])
+        state.businessRuleProperties['ruleComponents']['filterRules'].splice(index, 1)
+        console.log("AFTER")
+        console.log(state.businessRuleProperties['ruleComponents']['filterRules'])
+
+        this.setState(state)
+        //console.log("Removed " + index)
+    }
 
     constructor(props) {
         super(props);
-        this.handleValueChange = this.handleValueChange.bind(this);
-        this.addFilterRule = this.addFilterRule.bind(this);
-        this.removeFilterRule = this.removeFilterRule.bind(this);
+        // this.handleValueChange = this.handleValueChange.bind(this);
+        // this.addFilterRule = this.addFilterRule.bind(this);
+        // this.removeFilterRule = this.removeFilterRule.bind(this);
 
         this.state = {
             formMode: props.formMode, // 'create' or 'edit'
@@ -78,28 +169,63 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
 
     /**
+     * Re-arranges the structure of property objects of the given type, and returns them as input fields
+     * @param propertiesType
+     * @returns {Array}
+     */
+    reArrangePropertiesForDisplay(propertiesType) {
+        // To store values that are going to be used
+        let unArrangedPropertiesFromTemplate
+        let businessRulePropertiesSubset // To get initial values with this
+        let reArrangedProperties = []// To store after arranging
+
+        if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT) {
+            unArrangedPropertiesFromTemplate = this.state.inputRuleTemplate.properties
+            businessRulePropertiesSubset =
+                this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
+        } else if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT) {
+            unArrangedPropertiesFromTemplate = this.state.outputRuleTemplate.properties
+            businessRulePropertiesSubset =
+                this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT]
+        }
+
+        // Re-arrange properties
+        for (let propertyKey in unArrangedPropertiesFromTemplate) {
+            // Modify default value, as the entered property value,
+            // in order to display initially in the form
+            let property = unArrangedPropertiesFromTemplate[propertyKey.toString()]
+            property['defaultValue'] =
+                businessRulePropertiesSubset[propertyKey.toString()]
+
+            reArrangedProperties.push({
+                propertyName: propertyKey,
+                propertyObject: property
+            })
+        }
+
+        // To display each re-arranged property as an input field
+        let propertiesToDisplay = reArrangedProperties.map((property) =>
+            <Property
+                key={property.propertyName}
+                name={property.propertyName}
+                fieldName={property.propertyObject.fieldName}
+                description={property.propertyObject.description}
+                value={property.propertyObject.defaultValue}
+                options={property.propertyObject.options}
+                onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+            />
+        )
+
+        return propertiesToDisplay
+    }
+
+    /**
      * Adds a new filter rule
      */
     addFilterRule() {
         let state = this.state
         state.businessRuleProperties['ruleComponents']['filterRules'].push("  ")
         this.setState(state)
-    }
-
-    /**
-     * Removes the filter rule given by index
-     * @param index
-     */
-    removeFilterRule = index => value => {
-        let state = this.state
-        console.log("BEFORE")
-        console.log(state.businessRuleProperties['ruleComponents']['filterRules'])
-        state.businessRuleProperties['ruleComponents']['filterRules'].splice(index,1)
-        console.log("AFTER")
-        console.log(state.businessRuleProperties['ruleComponents']['filterRules'])
-
-        this.setState(state)
-        //console.log("Removed " + index)
     }
 
     /** todo:different for BR from scratch
@@ -114,158 +240,97 @@ class BusinessRuleFromScratchForm extends React.Component {
         businessRuleObject['properties'] = this.state.businessRuleProperties
     }
 
-    render() {
-        // To store properties that should be displayed, mapped as Property components
-        var propertiesToDisplay
 
+    render() {
+        // To display properties
         var inputDataPropertiesToDisplay
         var outputDataPropertiesToDisplay
-        var ruleComponentPropertiesToDisplay
         var filterRulesToDisplay
         var ruleLogicToDisplay
+        var outputMappingsToDisplay
 
-        // To store properties in re-arranged format, in order to generate fields
-        var properties = []
-
-        // Sub arrays to store each type of properties in re-arranged format
-        var inputDataProperties = []
-        var outputDataProperties = []
-        var ruleComponentProperties = []
-        var filterRules = []
-
-
-        // Business Rule Name text field
-        var businessRuleNameTextField
         // Submit button
         var submitButton
 
-        // Business rule has been created from scratch
+        // If form should be displayed to create business rule
+        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
+            // todo: implement
+        } else if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
+            // If form should be displayed to edit business rule
 
-        // If form should be displayed to edit business rule
-        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
             // Add properties of input & output templates in re-organized form to display
+            inputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
+                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT)
+            outputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
+                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT)
 
-            // inputRuleTemplate properties
-            for (let propertyKey in this.state.inputRuleTemplate.properties) {
-                // Modify default value, as the entered property value,
-                // in order to display initially in the form
-                let property = this.state.inputRuleTemplate.properties[propertyKey.toString()]
-                property['defaultValue'] = this.state.businessRuleProperties['inputData'][propertyKey.toString()]
-
-                inputDataProperties.push({
-                    propertyName: propertyKey,
-                    propertyObject: property
+            var outputMappings = [] // Key: input Value: output
+            for (let inputKey in this.state.businessRuleProperties.outputMappings) {
+                outputMappings.push({
+                    propertyName: inputKey,
+                    propertyObject: {
+                        "fieldName": "",
+                        "description": "",
+                        "defaultValue": this.state.businessRuleProperties.outputMappings[inputKey.toString()]
+                    }
                 })
             }
-
-            // To display each input data property as an input field
-            inputDataPropertiesToDisplay = inputDataProperties.map((property) =>
-                <Property
-                    key={property.propertyName}
-                    name={property.propertyName}
-                    fieldName={property.propertyObject.fieldName}
-                    description={property.propertyObject.description}
-                    initialValue={property.propertyObject.defaultValue}
-                    options={property.propertyObject.options}
-                    onValueChange={this.handleValueChange(property.propertyName)}
-                />
+            outputMappingsToDisplay = outputMappings.map((mapping, index) =>
+                <TableRow key={index}>
+                    <TableCell>
+                        <TextField
+                            id={mapping.propertyName}
+                            name={mapping.propertyName}
+                            label=""
+                            placeholder={mapping.propertyName}
+                            value={mapping.propertyName}
+                            onChange={this.handleBusinessRuleNameChange}
+                            disabled={true}
+                        />
+                    </TableCell>
+                    <TableCell>
+                        As
+                    </TableCell>
+                    <TableCell>
+                        <Property
+                            key={index}
+                            name={mapping['propertyObject']['defaultValue']}
+                            fieldName={mapping['propertyObject']['fieldName']}
+                            description={mapping['propertyObject']['description']}
+                            value={mapping['propertyObject']['defaultValue']}
+                            onValueChange={this.handleValueChange(
+                                mapping.propertyName,
+                                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_PROPERTY_TYPE_OUTPUT_MAPPINGS
+                            )}
+                        />
+                    </TableCell>
+                </TableRow>
             )
 
-            // outputRuleTemplate properties
-            for (let propertyKey in this.state.outputRuleTemplate.properties) {
-                // Modify default value, as the entered property value,
-                // in order to display initially in the form
-                let property = this.state.outputRuleTemplate.properties[propertyKey.toString()]
-                property['defaultValue'] = this.state.businessRuleProperties['outputData'][propertyKey.toString()]
+            filterRulesToDisplay =
+                this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS]
+                    [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES]
+                    .map((filterRule, index) =>
+                        <FilterRule
+                            key={index}
+                            filterRuleIndex={index}
+                            filterRule={filterRule}
+                            //filterRuleAttribute={filterRule.split(" ")[0]}
+                            //operator={filterRule.split(" ")[1]}
+                            //attributeOrValue={filterRule.split(" ")[2]}
+                            onAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
+                            onOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
+                            onAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}
+                            handleRemoveFilterRule={this.removeFilterRule(index)}
+                        />)
 
-                outputDataProperties.push({
-                    propertyName: propertyKey,
-                    propertyObject: property
-                })
-            }
-
-            // To display each output data property as an input field
-            outputDataPropertiesToDisplay = outputDataProperties.map((property) =>
-                <Property
-                    key={property.propertyName}
-                    name={property.propertyName}
-                    fieldName={property.propertyObject.fieldName}
-                    description={property.propertyObject.description}
-                    initialValue={property.propertyObject.defaultValue}
-                    options={property.propertyObject.options}
-                    onValueChange={this.handleValueChange(property.propertyName)}
-                />
-            )
-
-            // Rule Components
-            // Filter rules
-            // for (let i = 0; i < this.state.businessRuleProperties['ruleComponents']['filterRules'].length; i++) {
-            //     // Split and store each filter rule
-            //     // Elements : [0] Attribute, [1] Operator, [2] Attribute/Value
-            //     let filterRule =
-            //         this.state.businessRuleProperties['ruleComponents']['filterRules'][i].toString().split(" ")
-            //     filterRules.push(
-            //         filterRule
-            //     )
-            // }
-
-            // To display each filter rule
-            filterRulesToDisplay = this.state.businessRuleProperties['ruleComponents']['filterRules'].map((filterRule, index) =>
-                <FilterRule
-                    key={index}
-                    filterRuleNumber={index + 1}
-                    filterRuleAttribute={filterRule.split(" ")[0]}
-                    operator={filterRule.split(" ")[1]}
-                    attributeOrValue={filterRule.split(" ")[2]}
-                    handleRemoveFilterRule={this.removeFilterRule(index)}
-                />
-            )
-
-            // filterRulesToDisplay = filterRules.map((filterRule, index) =>
-            //     <FilterRule
-            //         key={index}
-            //         filterRuleNumber={index + 1}
-            //         filterRuleAttribute={filterRule[0]}
-            //         operator={filterRule[1]}
-            //         attributeOrValue={filterRule[2]}
-            //         handleRemoveFilterRule={this.removeFilterRule(index)}
-            //     />
-            // )
-
-            // Rule Logic
             ruleLogicToDisplay =
                 <Property
                     name="ruleLogic"
                     fieldName="Rule Logic"
                     description="Enter the Rule Logic, referring filter rule numbers"
-                    initialValue={this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0]}
-                    onValueChange={this.handleValueChange('ruleLogic')} //todo: MAKE A KEY, SUBKEY since we have some levels
-                />
-
-            // To display each rule component filter rule property as an input field
-            ruleComponentPropertiesToDisplay = ruleComponentProperties.map((property) =>
-                <Property
-                    key={property.propertyName}
-                    name={property.propertyName}
-                    fieldName={property.propertyObject.fieldName}
-                    description={property.propertyObject.description}
-                    initialValue={property.propertyObject.defaultValue}
-                    options={property.propertyObject.options}
-                    onValueChange={this.handleValueChange(property.propertyName)}
-                />
-            )
-
-            // Disabled text field that has Business Rule name
-            businessRuleNameTextField =
-                <TextField
-                    id="businessRuleName"
-                    name="businessRuleName"
-                    label="Business Rule name"
-                    placeholder="Please enter"
-                    value={this.state.businessRuleName}
-                    required={true}
-                    onChange={this.handleBusinessRuleNameChange}
-                    disabled={true}
+                    value={this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0]}
+                    onValueChange={this.handleRuleLogicChange}
                 />
 
             // Update button
@@ -279,57 +344,77 @@ class BusinessRuleFromScratchForm extends React.Component {
         return (
             <div>
                 <br/>
-                {businessRuleNameTextField}
+                {/*Text field for Business Rule name*/}
+                <TextField
+                    id="businessRuleName"
+                    name="businessRuleName"
+                    label="Business Rule name"
+                    placeholder="Please enter"
+                    value={this.state.businessRuleName}
+                    required={true}
+                    onChange={this.handleBusinessRuleNameChange}
+                    disabled={true}
+                />
                 <br/>
                 <br/>
                 <Paper style={this.styles.paper}>
-                    <Typography type="title">Input Data Properties</Typography>
+                    <Typography type="title">
+                        Input
+                    </Typography>
                     {inputDataPropertiesToDisplay}
                 </Paper>
                 <br/>
                 <Paper style={this.styles.paper}>
-                    <Typography type="title">Rule Component Properties</Typography>
+                    <Typography type="title">Filters</Typography>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell></TableCell>
+                                <TableCell>Attribute</TableCell>
+                                <TableCell>Operator</TableCell>
+                                <TableCell>Value/Attribute</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {filterRulesToDisplay}
+                        </TableBody>
+                    </Table>
                     <br/>
-                    <Typography type="subheading">Filter Rules</Typography>
-                    {/*<Table>*/}
-                        {/*<TableHead>*/}
-                            {/*<TableRow>*/}
-                                {/*<TableCell></TableCell>*/}
-                                {/*<TableCell>Attribute</TableCell>*/}
-                                {/*<TableCell>Operator</TableCell>*/}
-                                {/*<TableCell>Value/Attribute</TableCell>*/}
-                            {/*</TableRow>*/}
-                        {/*</TableHead>*/}
-                        {/*<TableBody>*/}
-                            {/*{filterRulesToDisplay}*/}
-                        {/*</TableBody>*/}
-                    {/*</Table>*/}
                     <IconButton color="primary" style={this.styles.addFilterRuleButton} aria-label="Remove"
                                 onClick={(e) => this.addFilterRule()}>
                         <AddIcon/>
                     </IconButton>
                     <br/>
-                    <h3>
-                        {this.state.businessRuleProperties['ruleComponents']['filterRules']}
-                    </h3>
-                    <div>
-                        {this.state.businessRuleProperties['ruleComponents']['filterRules'].map((filterRule, index) =>
-                        <FilterRule
-                            key={index}
-                            filterRuleNumber={index + 1}
-                            filterRuleAttribute={filterRule.split(" ")[0]}
-                            operator={filterRule.split(" ")[1]}
-                            attributeOrValue={filterRule.split(" ")[2]}
-                            handleRemoveFilterRule={this.removeFilterRule(index)}
-                        />)}
-                    </div>
                     <br/>
                     {ruleLogicToDisplay}
                 </Paper>
                 <br/>
                 <Paper style={this.styles.paper}>
-                    <Typography type="title">Output Data Properties</Typography>
+                    <Typography type="title">
+                        Output
+                    </Typography>
+                    <br/>
+                    <Typography type="subheading">
+                        Configurations
+                    </Typography>
                     {outputDataPropertiesToDisplay}
+                    <br/>
+                    <br/>
+                    <Typography type="subheading">
+                        Mappings
+                    </Typography>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Input</TableCell>
+                                <TableCell></TableCell>
+                                <TableCell>Output</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {outputMappingsToDisplay}
+                        </TableBody>
+                    </Table>
                 </Paper>
                 <br/>
                 {submitButton}

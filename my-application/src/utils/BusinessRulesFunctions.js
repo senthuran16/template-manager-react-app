@@ -588,7 +588,7 @@ class BusinessRulesFunctions {
                         "topicList": "SampleStockStream2"
                     },
                     "ruleComponents": {
-                        "filterRules": ["price > 1000", "volume < 50", "company == WSO2 Inc"],
+                        "filterRules": ["price > 1000", "volume < 50", "company == 'WSO2 Inc"],
                         "ruleLogic": ["1 OR (2 AND 3)"]
                     },
                     "outputData": {

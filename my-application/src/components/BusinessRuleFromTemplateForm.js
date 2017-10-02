@@ -103,7 +103,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     name={property.propertyName}
                     fieldName={property.propertyObject.fieldName}
                     description={property.propertyObject.description}
-                    initialValue={property.propertyObject.defaultValue}
+                    value={property.propertyObject.defaultValue}
                     options={property.propertyObject.options}
                     onValueChange={this.handleValueChange(property.propertyName)}
                 />
@@ -151,7 +151,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     name={property.propertyName}
                     fieldName={property.propertyObject.fieldName}
                     description={property.propertyObject.description}
-                    initialValue={property.propertyObject.defaultValue}
+                    value={property.propertyObject.defaultValue}
                     options={property.propertyObject.options}
                     onValueChange={this.handleValueChange(property.propertyName)}
                 />

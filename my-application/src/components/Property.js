@@ -8,60 +8,33 @@ import {MenuItem} from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 
 class Property extends React.Component {
-    handleSelectChange = name => event => {
-        // Update the selected content in state
-        let state = this.state
-        state['value'] = event.target.value
-        this.setState(state)
-        // Return selected value to the parent to store
+    /**
+     * Handles onChange action of a TextField or a Select
+     * @param name
+     */
+    handleOnChange = name => event => {
         this.props.onValueChange(event.target.value)
-    }
-    handleTextChange = name => event => {
-        // Update the selected content in state
-        let state = this.state
-        state['value'] = event.target.value
-        this.setState(state)
-        // Return selected value to the parent to store
-        this.props.onValueChange(event.target.value)
-    }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: props.name,
-            fieldName: props.fieldName,
-            description: props.description,
-            // Display initial value when iniitializing
-            // Initial value is :
-            // - Default value, when the form is in create mode
-            // - Already selected value, when the form is in edit mode
-            value: props.initialValue,
-            type: props.type,
-            options: props.options
-        };
-        // Update initial value for each property in the form
-        props.onValueChange(props.initialValue)
     }
 
     // Renders each Property either as a TextField or Radio Group, with default values and elements as specified
     render() {
         // If there are options specified, it is a dropdown
-        if (this.state.options) {
-            const options = this.state.options.map((option) => (
+        if (this.props.options) {
+            var options = this.props.options.map((option) => (
                 <MenuItem key={option} name={option} value={option}>{option}</MenuItem>))
             return (
                 <div>
                     <br/>
                     <FormControl>
-                        <InputLabel htmlFor={this.state.name}>{this.state.fieldName}</InputLabel>
+                        <InputLabel htmlFor={this.props.name}>{this.props.fieldName}</InputLabel>
                         <Select
-                            value={this.state.value}
-                            onChange={this.handleSelectChange(this.state.name)}
-                            input={<Input id={this.state.name}/>}
+                            value={this.props.value}
+                            onChange={this.handleOnChange(this.props.name)}
+                            input={<Input id={this.props.name}/>}
                         >
                             {options}
                         </Select>
-                        <FormHelperText>{this.state.description}</FormHelperText>
+                        <FormHelperText>{this.props.description}</FormHelperText>
                     </FormControl>
                     <br/>
                 </div>
@@ -71,13 +44,13 @@ class Property extends React.Component {
                 <div>
                     <TextField
                         required
-                        id={this.state.name}
-                        name={this.state.name}
-                        label={this.state.fieldName}
-                        defaultValue={this.state.value}
-                        helperText={this.state.description}
+                        id={this.props.name}
+                        name={this.props.name}
+                        label={this.props.fieldName}
+                        value={this.props.value}
+                        helperText={this.props.description}
                         margin="normal"
-                        onChange={this.handleTextChange(this.state.name)}
+                        onChange={this.handleOnChange(this.props.name)}
                     />
                     <br/>
                 </div>
