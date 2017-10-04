@@ -446,7 +446,7 @@ class BusinessRuleFromScratchForm extends React.Component {
         // BUSINESS RULE NAME //////////////////////////////////////////////////////////////////////////////////////////
         var businessRuleNameToDisplay
 
-        if (this.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
+        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
             businessRuleNameToDisplay =
                 <TextField
                     id="businessRuleName"
@@ -711,6 +711,49 @@ class BusinessRuleFromScratchForm extends React.Component {
         //     state.businessRuleProperties['ruleComponents']['ruleLogic'][0] = ""
         //     this.setState(state)
         // }
+
+        var exposedInputStreamFieldNames =
+            this.getFieldNames(this.state.selectedInputRuleTemplate['templates'][0]['exposedStreamDefinition'])
+
+        // Each drop down will have fields of the exposed input stream as options
+        var inputStreamFieldsToMap = exposedInputStreamFieldNames.map((fieldName, index) =>
+            <MenuItem key={index}
+                      value={fieldName}>
+                {fieldName}
+            </MenuItem>
+        )
+
+        // // To display a row for each output field map todo: remove this stuff after selecting is made sure
+        // let outputMappingElementsToDisplay = exposedOutputStreamFieldNames.map((fieldName, index) =>
+        //     <TableRow key={index}>
+        //         <TableCell>
+        //             <FormControl>
+        //                 <Select
+        //                     // No value when no mapping is specified
+        //                     // (used when a different output rule template is selected)
+        //                     value={(this.state['businessRuleProperties']['outputMappings'][fieldName]) ?
+        //                         (this.state['businessRuleProperties']['outputMappings'][fieldName]) : ''}
+        //                     onChange={this.handleOutputMappingChange(fieldName)} //todo: check the method
+        //                     input={<Input id="templateGroup"/>}
+        //                 >
+        //                     {inputStreamFieldsToMap}
+        //                 </Select>
+        //             </FormControl>
+        //         </TableCell>
+        //         <TableCell>
+        //             As
+        //         </TableCell>
+        //         <TableCell>
+        //             <TextField
+        //                 disabled
+        //                 id={fieldName}
+        //                 name={fieldName}
+        //                 value={fieldName}
+        //                 margin="normal"
+        //             />
+        //         </TableCell>
+        //     </TableRow>
+        // )
 
         //if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
         filterRulesToDisplay =

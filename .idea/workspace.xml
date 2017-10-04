@@ -4,7 +4,7 @@
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/index.js" afterPath="$PROJECT_DIR$/my-application/src/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.33477557">
+    <splitter split-orientation="horizontal" split-proportion="0.24121146">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="BusinessRuleEditor.js" pinned="false" current-in-tab="false">
@@ -62,13 +62,23 @@
           <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1971">
-                  <caret line="192" column="14" lean-forward="false" selection-start-line="192" selection-start-column="14" selection-end-line="192" selection-end-column="14" />
+                <state relative-caret-position="405">
+                  <caret line="460" column="16" lean-forward="false" selection-start-line="460" selection-start-column="16" selection-end-line="460" selection-end-column="16" />
                   <folding>
                     <element signature="e#67#101#0" expanded="true" />
                     <element signature="e#342#403#0" expanded="true" />
                     <element signature="e#1104#1426#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="81">
+                  <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -86,9 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>filterAttribute</find>
-      <find>Business</find>
-      <find>state.value</find>
       <find>initial</find>
       <find>initialValue</find>
       <find>Table</find>
@@ -116,6 +123,9 @@
       <find>input</find>
       <find>?</find>
       <find>output</find>
+      <find>handleInputRule</find>
+      <find>fieldName</find>
+      <find>FILTER RULES</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -299,7 +309,7 @@
       <workItem from="1506873009700" duration="7574000" />
       <workItem from="1506920368398" duration="39382000" />
       <workItem from="1507006022461" duration="35056000" />
-      <workItem from="1507092156528" duration="27057000" />
+      <workItem from="1507092156528" duration="28793000" />
     </task>
     <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
       <created>1506944452636</created>
@@ -336,11 +346,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507107145862</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed to set default values as initial values in the state, for CreateBRFromScratch">
+      <created>1507125638255</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1507125638255</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="580799000" />
+    <option name="totallyTimeSpent" value="582535000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
@@ -377,7 +394,8 @@
     <MESSAGE value="Changed properties to get values from state BusinessRule values in Create &amp; Edit BRFromTemplate, and few minor fixes" />
     <MESSAGE value="Fixed not displaying input &amp; output properties in BR From scratch form" />
     <MESSAGE value="Implemented Create Business Rule from scratch and few minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Create Business Rule from scratch and few minor fixes" />
+    <MESSAGE value="Fixed to set default values as initial values in the state, for CreateBRFromScratch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed to set default values as initial values in the state, for CreateBRFromScratch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -726,15 +744,15 @@
     <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
-          <caret line="8" column="69" lean-forward="false" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1971">
-          <caret line="192" column="14" lean-forward="false" selection-start-line="192" selection-start-column="14" selection-end-line="192" selection-end-column="14" />
+        <state relative-caret-position="405">
+          <caret line="460" column="16" lean-forward="false" selection-start-line="460" selection-start-column="16" selection-end-line="460" selection-end-column="16" />
           <folding>
             <element signature="e#67#101#0" expanded="true" />
             <element signature="e#342#403#0" expanded="true" />
