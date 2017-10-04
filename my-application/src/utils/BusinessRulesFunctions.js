@@ -212,6 +212,12 @@ class BusinessRulesFunctions {
                                 "description": "Name of the data source list that you want to subscribe",
                                 "defaultValue": "StockStream",
                                 "options": ["StockStream", "SampleStockStream2"]
+                            },
+                            "topicList2": {
+                                "fieldName": "Data source topic list",
+                                "description": "Name of the data source list that you want to subscribe",
+                                "defaultValue": "StockStream",
+                                "options": ["StockStream", "SampleStockStream2"]
                             }
                         }
                     },
@@ -508,7 +514,6 @@ class BusinessRulesFunctions {
      * @param templateGroupName
      */
     static getRuleTemplates(templateGroupUUID) {
-        console.log('getRuleTemplates called')
         // todo: remove hardcode ******************************
         var templateGroups = this.getTemplateGroups()
         for (let templateGroup of templateGroups) {
@@ -579,7 +584,8 @@ class BusinessRulesFunctions {
                 "type": "scratch",
                 "properties": {
                     "inputData": {
-                        "topicList": "SampleStockStream2"
+                        "topicList": "SampleStockStream2",
+                        "topicList2": "StockStream"
                     },
                     "ruleComponents": {
                         "filterRules": ["price > 1000", "volume < 50", "company == 'WSO2 Inc'"],
@@ -669,6 +675,7 @@ class BusinessRulesFunctions {
                 var foundRuleTemplateObject = ruleTemplate
                 // Assign belonging Template Group
                 foundRuleTemplateObject['templateGroup'] = foundTemplateGroupObject
+
                 return ruleTemplate
             }
         }
