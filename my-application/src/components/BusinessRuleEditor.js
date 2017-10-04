@@ -24,6 +24,7 @@ class BusinessRuleEditor extends React.Component {
         var templateGroup =
             BusinessRulesFunctions.getTemplateGroup(this.state.businessRule.templateGroupUUID)
 
+
         // If Business Rule has been created from a template
         if (this.state.businessRule.type === BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE) {
             var ruleTemplate =
@@ -41,7 +42,7 @@ class BusinessRuleEditor extends React.Component {
                     formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT}
                     businessRuleName={this.state.businessRule.name}
                     businessRuleUUID={this.state.businessRule.uuid}
-                    templateGroup={templateGroup}
+                    selectedTemplateGroup={templateGroup}
                     ruleTemplate={ruleTemplate}
                     businessRuleProperties={this.state.businessRule.properties}
                 />
@@ -63,9 +64,9 @@ class BusinessRuleEditor extends React.Component {
                     formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT}
                     businessRuleName={this.state.businessRule.name}
                     businessRuleUUID={this.state.businessRule.uuid}
-                    templateGroup={templateGroup}
-                    inputRuleTemplate={inputRuleTemplate}
-                    outputRuleTemplate={outputRuleTemplate}
+                    selectedTemplateGroup={templateGroup}
+                    selectedInputRuleTemplate={inputRuleTemplate}
+                    selectedOutputRuleTemplate={outputRuleTemplate}
                     businessRuleProperties={this.state.businessRule.properties}
                 />
         }

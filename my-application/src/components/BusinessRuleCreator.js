@@ -27,6 +27,7 @@ class BusinessRuleCreator extends React.Component {
                         text='From Template'
                     />
                     <CreateButton
+                        onClick={(e) => BusinessRulesFunctions.loadBusinessRuleFromScratchCreator()}
                         text='From The Scratch'
                     />
                 </center>

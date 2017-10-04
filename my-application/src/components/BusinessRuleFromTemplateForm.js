@@ -51,7 +51,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
             businessRuleProperties: props.businessRuleProperties // To store values given for properties displayed in the form
         }
 
-        // To assign default values of properties as entered values in create mode
+        // Assign default values of properties as entered values in create mode
         if(this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
             let state = this.state
             state['businessRuleProperties'] = {}
@@ -135,14 +135,11 @@ class BusinessRuleFromTemplateForm extends React.Component {
         } else if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
             // If form should be displayed for Editing a business rule
 
-            // Push each property in the rule template, as an object in a new format,
+            // Push each property in the rule template, as an object in a re-arranged format,
             // which has the original object's Key & Value
             // denoted by new Keys : 'propertyName' & 'propertyObject'
             for (let propertyKey in this.state.ruleTemplate.properties) {
-                // Modify default value, as the entered property value,
-                // in order to display initially in the form
                 let property = this.state.ruleTemplate.properties[propertyKey.toString()]
-                property['defaultValue'] = this.state.businessRuleProperties[propertyKey.toString()]
 
                 properties.push({
                     propertyName: propertyKey,

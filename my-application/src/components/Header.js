@@ -4,7 +4,7 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Logo from '../images/stream-processor-logo.png';
+import Logo from '../images/wso2-logo.svg';
 
 /**
  * Represents a Create Button used in the Business Rule Manager

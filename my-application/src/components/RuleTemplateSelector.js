@@ -21,13 +21,10 @@ class RuleTemplateSelector extends React.Component {
      * when Rule Template is selected from the list
      * @param name
      */
-    handleRuleTemplateSelected = name => event => {
+    handleRuleTemplateSelected = templateGroupUUID => event => {
         let state = this.state
         // Get selected rule template & update in the state
-        // state['selectedRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value.uuid)
-        state['selectedRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value)
-        // This always binds to the event. target. value
-        // state['something'] = event.target.value
+        state['selectedRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(templateGroupUUID, event.target.value)
         this.setState(state)
     }
 
@@ -35,7 +32,7 @@ class RuleTemplateSelector extends React.Component {
         super(props);
         this.state = {
             selectedTemplateGroup: props.selectedTemplateGroup,
-            ruleTemplateTypeFilter: props.ruleTemplateTypeFilter, // 'template', 'input' or 'output'
+            ruleTemplateTypeFilter: props.ruleTemplateTypeFilter, // 'template', 'input' or 'output'todo: only template
             ruleTemplates: props.ruleTemplates,
             selectedRuleTemplate: {name: '', uuid: ''}, // Initialize with no Rule Template selected
         }
@@ -95,7 +92,7 @@ class RuleTemplateSelector extends React.Component {
                     <InputLabel htmlFor="ruleTemplate">RuleTemplate</InputLabel>
                     <Select
                         value={this.state.selectedRuleTemplate.uuid}
-                        onChange={this.handleRuleTemplateSelected('selectedRuleTemplate')}
+                        onChange={this.handleRuleTemplateSelected(this.state.selectedTemplateGroup.uuid)}
                         input={<Input id="ruleTemplate"/>}
                     >
                         {ruleTemplatesToDisplay}
