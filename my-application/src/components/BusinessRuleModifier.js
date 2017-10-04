@@ -35,6 +35,7 @@ class BusinessRuleModifier extends React.Component {
                 <Header
                     title="Business Rule Manager"
                 />
+                <br/>
                 <center>
                     <Typography type="headline">
                         Business Rules

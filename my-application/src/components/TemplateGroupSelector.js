@@ -11,6 +11,12 @@ import BusinessRulesConstants from "../utils/BusinessRulesConstants";
  * Allows to select a Template Group, among Template Groups displayed as thumbnails
  */
 class TemplateGroupSelector extends React.Component {
+    styles = {
+        containerDiv: {
+            maxWidth: 750
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -38,11 +44,14 @@ class TemplateGroupSelector extends React.Component {
                     title="Business Rule Manager"
                 />
                 <center>
+                    <br/>
                     <Typography type="headline">
                         Select a Template Group
                     </Typography>
                     <br/>
-                    {templateGroups}
+                    <div style={this.styles.containerDiv}>
+                        {templateGroups}
+                    </div>
                 </center>
             </div>
         )

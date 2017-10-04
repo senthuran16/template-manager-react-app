@@ -76,6 +76,7 @@ class BusinessRuleEditor extends React.Component {
                 <Header
                     title="Business Rule Manager"
                 />
+                <br/>
                 <Typography type="headline">{this.state.businessRule.name}</Typography>
                 <Typography type="subheading">
                     Enter new values for this business rule properties

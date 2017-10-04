@@ -66,6 +66,7 @@ class BusinessRuleFromScratchCreator extends React.Component {
                 <Header
                     title="Business Rule Manager"
                 />
+                <br/>
                 <Typography type="headline">Create a business rule from scratch</Typography>
                 <Typography type="subheading">
                     Select a Template Group for choosing rule templates for input and output from

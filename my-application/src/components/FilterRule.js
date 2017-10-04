@@ -67,6 +67,36 @@ class FilterRule extends React.Component {
 
 
     render() {
+        // To display Attribute drop down
+        var filterRuleAttributeToDisplay
+
+        // If exposed input stream fields are passed through props
+        if (this.props.exposedInputStreamFields && (this.props.exposedInputStreamFields != null)) {
+            // To store options to display
+            let fieldNameOptions = []
+            for(let fieldName in this.props.exposedInputStreamFields){
+                fieldNameOptions.push(fieldName.toString())
+            }
+            filterRuleAttributeToDisplay =
+                <Property
+                    name="filterRuleAttribute"
+                    fieldName=""
+                    description=""
+                    value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}
+                    options={fieldNameOptions}
+                    onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}
+                />
+        } else {
+            filterRuleAttributeToDisplay =
+                <Property
+                    name="filterRuleAttribute"
+                    fieldName=""
+                    description=""
+                    value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}
+                    onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}
+                />
+        }
+
         return (
             <TableRow>
                 <TableCell>
@@ -75,13 +105,14 @@ class FilterRule extends React.Component {
                     </Typography>
                 </TableCell>
                 <TableCell>
-                    <Property
-                        name="filterRuleAttribute"
-                        fieldName=""
-                        description=""
-                        value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}
-                        onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}
-                    />
+                    {/*<Property*/}
+                        {/*name="filterRuleAttribute"*/}
+                        {/*fieldName=""*/}
+                        {/*description=""*/}
+                        {/*value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}*/}
+                        {/*onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}*/}
+                    {/*/>*/}
+                    {filterRuleAttributeToDisplay}
                 </TableCell>
                 <TableCell>
                     <Property

@@ -119,15 +119,7 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
     handleValueChange = (property, propertyType) => value => {
         let state = this.state
-        console.log("#property")
-        console.log(property)
-        console.log("#property type")
-        console.log(propertyType)
-        console.log("#value")
-        console.log(value)
         state['businessRuleProperties'][propertyType][property] = value
-        console.log("STATE")
-        console.log(state)
         this.setState(state)
     }
     /**
@@ -280,17 +272,34 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
 
     /**
-     * Gives field names of the given stream definition as an array
+     * Gives field names of the given stream definition, as an array
      * @param exposedStreamDefinition
      */
     getFieldNames(streamDefinition) {
+        let fieldNames = []
+        for (let field in this.getFields(streamDefinition)){
+            fieldNames.push(field.toString())
+        }
+
+        return fieldNames
+    }
+
+    /**
+     * Gives field names as keys and types as values, of the given stream definition, as an object
+     * @param streamDefinition
+     * @returns {{x: string}}
+     */
+    getFields(streamDefinition){
         let regExp = /\(([^)]+)\)/;
         let matches = regExp.exec(streamDefinition);
-        let fields = []
+        let fields = {}
 
-        // Keep only the field name for returning
+        // Keep the field name and type, as each element in an array
         for (let field of matches[1].split(",")) {
-            fields.push(field.trim().split(" ")[0])
+            // Key: name, Value: type
+            let fieldName = field.trim().split(" ")[0]
+            let fieldType = field.trim().split(" ")[1]
+            fields[fieldName.toString()] = fieldType
         }
 
         return fields
@@ -698,62 +707,18 @@ class BusinessRuleFromScratchForm extends React.Component {
 
         var filterRulesToDisplay
         var ruleLogicToDisplay
+        var propertyOptions = null
 
-        // todo: CREATE
-        // To display filter rules
-        // if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
-        //     let state = this.state
-        //     // One empty filter rule
-        //     state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS]
-        //         [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES]
-        //         = ["  "]
-        //     // Empty rule logic
-        //     state.businessRuleProperties['ruleComponents']['ruleLogic'][0] = ""
-        //     this.setState(state)
-        // }
+        var exposedInputStreamFields = null // To send selectable field options to each filter rule
 
-        var exposedInputStreamFieldNames =
-            this.getFieldNames(this.state.selectedInputRuleTemplate['templates'][0]['exposedStreamDefinition'])
-
-        // Each drop down will have fields of the exposed input stream as options
-        var inputStreamFieldsToMap = exposedInputStreamFieldNames.map((fieldName, index) =>
-            <MenuItem key={index}
-                      value={fieldName}>
-                {fieldName}
-            </MenuItem>
-        )
-
-        // // To display a row for each output field map todo: remove this stuff after selecting is made sure
-        // let outputMappingElementsToDisplay = exposedOutputStreamFieldNames.map((fieldName, index) =>
-        //     <TableRow key={index}>
-        //         <TableCell>
-        //             <FormControl>
-        //                 <Select
-        //                     // No value when no mapping is specified
-        //                     // (used when a different output rule template is selected)
-        //                     value={(this.state['businessRuleProperties']['outputMappings'][fieldName]) ?
-        //                         (this.state['businessRuleProperties']['outputMappings'][fieldName]) : ''}
-        //                     onChange={this.handleOutputMappingChange(fieldName)} //todo: check the method
-        //                     input={<Input id="templateGroup"/>}
-        //                 >
-        //                     {inputStreamFieldsToMap}
-        //                 </Select>
-        //             </FormControl>
-        //         </TableCell>
-        //         <TableCell>
-        //             As
-        //         </TableCell>
-        //         <TableCell>
-        //             <TextField
-        //                 disabled
-        //                 id={fieldName}
-        //                 name={fieldName}
-        //                 value={fieldName}
-        //                 margin="normal"
-        //             />
-        //         </TableCell>
-        //     </TableRow>
-        // )
+        // If a template group & input rule template has been selected
+        if ((this.state.selectedTemplateGroup.uuid !== '') &&
+            (this.state.selectedInputRuleTemplate.uuid !== '')) {
+            // Get field names and types from the exposed input stream
+            exposedInputStreamFields = this.getFields(this.state.selectedInputRuleTemplate['templates'][0]['exposedStreamDefinition'])
+        }
+        console.log("EXPOSED INPUT STREAM FIELDS")
+        console.log(exposedInputStreamFields)
 
         //if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
         filterRulesToDisplay =
@@ -764,6 +729,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                         key={index}
                         filterRuleIndex={index}
                         filterRule={filterRule}
+                        exposedInputStreamFields={exposedInputStreamFields}
                         onAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
                         onOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
                         onAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}

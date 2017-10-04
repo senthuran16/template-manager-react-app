@@ -70,7 +70,7 @@ class RuleTemplateSelector extends React.Component {
                 <BusinessRuleFromTemplateForm
                     businessRuleType={BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE}
                     formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
-                    templateGroup={this.state.selectedTemplateGroup}
+                    selectedTemplateGroup={this.state.selectedTemplateGroup}
                     ruleTemplate={this.state.selectedRuleTemplate}/>
         } else {
             // Otherwise, show default helper text
@@ -83,6 +83,7 @@ class RuleTemplateSelector extends React.Component {
                 <Header
                     title="Business Rule Manager"
                 />
+                <br/>
                 <Typography type="headline">{this.state.selectedTemplateGroup.name}</Typography>
                 <Typography type="subheading">
                     Select a template and fill in the form to create a business rule

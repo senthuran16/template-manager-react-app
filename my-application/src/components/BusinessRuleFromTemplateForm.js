@@ -46,7 +46,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
             formMode: props.formMode, // 'create' or 'edit'
             businessRuleName: props.businessRuleName,
             businessRuleUUID: props.businessRuleUUID,
-            templateGroup: props.templateGroup,
+            selectedTemplateGroup: props.selectedTemplateGroup,
             ruleTemplate: props.ruleTemplate, // Rule Templates, whose properties will be used to generate form
             businessRuleProperties: props.businessRuleProperties // To store values given for properties displayed in the form
         }
@@ -70,9 +70,10 @@ class BusinessRuleFromTemplateForm extends React.Component {
         var businessRuleObject = {}
         businessRuleObject['name'] = this.state.businessRuleName
         businessRuleObject['uuid'] = this.state.businessRuleUUID
-        businessRuleObject['templateGroupUUID'] = this.state.templateGroup.uuid
+        businessRuleObject['templateGroupUUID'] = this.state.selectedTemplateGroup.uuid
         businessRuleObject['ruleTemplateUUID'] = this.state.ruleTemplate.uuid
         businessRuleObject['properties'] = this.state.businessRuleProperties
+        console.log(businessRuleObject)
     }
 
     render() {
