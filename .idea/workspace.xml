@@ -3,17 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleEditor.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleEditor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/RuleTemplateSelector.js" afterPath="$PROJECT_DIR$/my-application/src/components/RuleTemplateSelector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" afterPath="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/index.js" afterPath="$PROJECT_DIR$/my-application/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4883721">
+    <splitter split-orientation="horizontal" split-proportion="0.29529476">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="BusinessRuleEditor.js" pinned="false" current-in-tab="false">
@@ -111,59 +101,15 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="852" column="21" lean-forward="true" selection-start-line="852" selection-start-column="21" selection-end-line="852" selection-end-column="21" />
+                <state relative-caret-position="432">
+                  <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
                   <folding>
                     <element signature="e#67#101#0" expanded="true" />
                     <element signature="e#342#403#0" expanded="true" />
                     <element signature="e#1104#1426#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BusinessRuleFromScratchCreator.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="344">
-                  <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FilterRule.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterRule.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="137">
-                  <caret line="74" column="42" lean-forward="false" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
-                  <folding>
-                    <element signature="e#67#121#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="81">
-                  <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BusinessRuleCreator.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="351">
-                  <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-                  <folding>
-                    <element signature="e#67#115#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -182,7 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>split</find>
       <find>WSO2 Inc</find>
       <find>inputRuleTemplate</find>
       <find>outputRuleTemplate</find>
@@ -212,6 +157,7 @@
       <find>Menu</find>
       <find>company ==</find>
       <find>&lt;Se</find>
+      <find>console.l</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -259,7 +205,6 @@
         <option value="$PROJECT_DIR$/my-application/src/components/Property.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesConstants.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/Header.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
@@ -271,6 +216,7 @@
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
       </list>
     </option>
   </component>
@@ -395,7 +341,7 @@
       <workItem from="1506873009700" duration="7574000" />
       <workItem from="1506920368398" duration="39382000" />
       <workItem from="1507006022461" duration="35056000" />
-      <workItem from="1507092156528" duration="37318000" />
+      <workItem from="1507092156528" duration="39474000" />
     </task>
     <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
       <created>1506944452636</created>
@@ -446,11 +392,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507137582436</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added filter attributes, shown as a drop down of input stream fields, and few minor fixes">
+      <created>1507150968007</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1507150968007</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="591060000" />
+    <option name="totallyTimeSpent" value="593216000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
@@ -489,7 +442,8 @@
     <MESSAGE value="Implemented Create Business Rule from scratch and few minor fixes" />
     <MESSAGE value="Fixed to set default values as initial values in the state, for CreateBRFromScratch" />
     <MESSAGE value="Fixed displaying business rule name as disabled, when editing a BRFromScratch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed displaying business rule name as disabled, when editing a BRFromScratch" />
+    <MESSAGE value="Added filter attributes, shown as a drop down of input stream fields, and few minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added filter attributes, shown as a drop down of input stream fields, and few minor fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -840,23 +794,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1289">
+          <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="852" column="21" lean-forward="true" selection-start-line="852" selection-start-column="21" selection-end-line="852" selection-end-column="21" />
+        <state relative-caret-position="432">
+          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding>
             <element signature="e#67#101#0" expanded="true" />
             <element signature="e#342#403#0" expanded="true" />
             <element signature="e#1104#1426#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -152,6 +152,13 @@ class BusinessRuleFromScratchForm extends React.Component {
         // Get selected template group & update in the state
         state['selectedTemplateGroup'] = BusinessRulesFunctions.getTemplateGroup(event.target.value)
 
+        // Deselect input & output rule templates
+        state['selectedInputRuleTemplate'] = {'name' : '', 'uuid' : ''}
+        state['selectedOutputRuleTemplate'] = {'name' : '', 'uuid' : ''}
+        state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT] = {}
+        state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT] = {}
+        state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_PROPERTY_TYPE_OUTPUT_MAPPINGS] = {}
+
         // Input & output rule templates available under the selected template group
         let loadedRuleTemplates = BusinessRulesFunctions.getRuleTemplates(event.target.value)
         let inputRuleTemplates = []
@@ -446,9 +453,6 @@ class BusinessRuleFromScratchForm extends React.Component {
         businessRuleObject['outputRuleTemplateUUID'] = state.selectedOutputRuleTemplate.uuid
         businessRuleObject['type'] = BusinessRulesConstants.BUSINESS_RULE_TYPE_SCRATCH
         businessRuleObject['properties'] = state.businessRuleProperties
-
-        console.log("CREATED BUSINESS RULE OBJECT")
-        console.log(businessRuleObject)
     }
 
     render() {
@@ -589,8 +593,6 @@ class BusinessRuleFromScratchForm extends React.Component {
                 // If an input rule template has been selected
                 if (this.state.selectedInputRuleTemplate.uuid != '') {
                     // To display input data properties
-                    console.log("To display input data properties")
-
                     inputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
                         BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT,
                         this.state.formMode)
@@ -677,8 +679,6 @@ class BusinessRuleFromScratchForm extends React.Component {
                 // If an output rule template has been selected
                 if (this.state.selectedOutputRuleTemplate.uuid != '') {
                     // To display output data properties
-                    console.log("To display output data properties")
-
                     outputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
                         BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT,
                         this.state.formMode)
@@ -717,8 +717,6 @@ class BusinessRuleFromScratchForm extends React.Component {
             // Get field names and types from the exposed input stream
             exposedInputStreamFields = this.getFields(this.state.selectedInputRuleTemplate['templates'][0]['exposedStreamDefinition'])
         }
-        console.log("EXPOSED INPUT STREAM FIELDS")
-        console.log(exposedInputStreamFields)
 
         //if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
         filterRulesToDisplay =
