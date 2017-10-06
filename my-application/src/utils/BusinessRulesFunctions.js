@@ -7,6 +7,7 @@ import BusinessRulesConstants from "./BusinessRulesConstants";
 import RuleTemplateSelector from "../components/RuleTemplateSelector";
 import BusinessRuleEditor from "../components/BusinessRuleEditor";
 import BusinessRuleFromScratchCreator from "../components/BusinessRuleFromScratchCreator";
+import BusinessRuleCreator from "../components/BusinessRuleCreator";
 
 class BusinessRulesFunctions {
     // Load from API and store
@@ -33,6 +34,13 @@ class BusinessRulesFunctions {
             <BusinessRuleEditor
                 businessRule={this.getBusinessRule(businessRuleUUID)}
             />, document.getElementById('root'));
+    }
+
+    static loadBusinessRuleCreator() {
+        ReactDOM.render(
+            <BusinessRuleCreator/>,
+            document.getElementById('root')
+        );
     }
 
     /**
@@ -596,9 +604,9 @@ class BusinessRulesFunctions {
                         "resultTopic2": "SampleResultTopic2_1"
                     },
                     "outputMappings": {
-                        "companyName" : "name",
-                        "companySymbol" : "symbol",
-                        "sellingPrice" : "price"
+                        "companyName": "name",
+                        "companySymbol": "symbol",
+                        "sellingPrice": "price"
                     }
                 }
             }

@@ -15,6 +15,10 @@ class BusinessRuleFromTemplateForm extends React.Component {
     styles = {
         button: {
             backgroundColor: '#EF6C00'
+        },
+        container: {
+            align: 'center',
+            maxWidth: 800
         }
     }
     /**
@@ -52,7 +56,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
         }
 
         // Assign default values of properties as entered values in create mode
-        if(this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
+        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
             let state = this.state
             state['businessRuleProperties'] = {}
             for (let propertyKey in this.state.ruleTemplate.properties) {

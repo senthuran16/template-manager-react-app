@@ -36,7 +36,7 @@ class BusinessRuleFromScratchForm extends React.Component {
         paper: {
             padding: 10,
             paddingTop: 15,
-            paddingBottom: 15
+            paddingBottom: 15,
         }
     }
     /**
