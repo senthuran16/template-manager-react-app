@@ -400,7 +400,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
                     <Select
                         value={this.state.selectedInputRuleTemplate.uuid}
-                        onChange={this.handleInputRuleTemplateSelected}
+                        onChange={(e)=>this.handleInputRuleTemplateSelected(e)}
                         input={<Input id="inputRuleTemplate"/>}
                     >
                         {inputRuleTemplateElements}

@@ -40,84 +40,16 @@ class BusinessRuleFromScratchForm extends React.Component {
         }
     }
     /**
-     * Handles onChange of any Attribute, of a filter rule
-     * @param filterRuleIndex
-     * @param value
-     */
-    handleAttributeChange = (filterRuleIndex, value) => {
-        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
-        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
-
-        let state = this.state
-        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
-            value + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
-        this.setState(state)
-    }
-    /**
-     * Handles onChange of any Operator, of a filter rule
-     *
-     * @param filterRuleIndex
-     * @param value
-     */
-    handleOperatorChange = (filterRuleIndex, value) => {
-        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
-        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
-
-        let state = this.state
-        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
-            value + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
-        this.setState(state)
-    }
-    /**
-     * Handles onChange of any AttributeOrValue, of a filter
-     *
-     * @param filterRuleIndex
-     * @param value
-     */
-    handleAttributeOrValueChange = (filterRuleIndex, value) => {
-        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
-        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
-
-        let state = this.state
-        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
-            value
-        this.setState(state)
-    }
-    /**
-     * Handles onChange of any value for an input field for output mapping
-     * @param outputFieldName
-     */
-    handleOutputMappingChange = (outputFieldName) => event => {
-        let state = this.state
-        state['businessRuleProperties']['outputMappings'][outputFieldName] = event.target.value
-        this.setState(state)
-    }
-    /**
      * Handles onChange of the RuleLogic
      * @param value
      */
-    handleRuleLogicChange = value => {
+    handleRuleLogicChange(value){
         let state = this.state
         state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] = value
         this.setState(state)
     }
-    /**
-     * Handles onChange of any input / output property
-     *
-     * @param property
-     */
-    handleValueChange = property => value => {
-        let state = this.state
-        state['businessRuleProperties'][property] = value
-        this.setState(state)
-    }
-    handleValueChange = (property, propertyType) => value => {
+
+    handleValueChange(property, propertyType,value){
         let state = this.state
         state['businessRuleProperties'][propertyType][property] = value
         this.setState(state)
@@ -127,7 +59,7 @@ class BusinessRuleFromScratchForm extends React.Component {
      *
      * @param event
      */
-    handleBusinessRuleNameChange = event => {
+    handleBusinessRuleNameChange(event){
         let state = this.state
         state['businessRuleName'] = event.target.value
         state['businessRuleUUID'] = BusinessRulesFunctions.generateBusinessRuleUUID(event.target.value)
@@ -137,7 +69,7 @@ class BusinessRuleFromScratchForm extends React.Component {
      * Removes the filter rule given by index
      * @param index
      */
-    removeFilterRule = index => value => {
+    removeFilterRule(index){
         let state = this.state
         state.businessRuleProperties['ruleComponents']['filterRules'].splice(index, 1)
         this.setState(state)
@@ -147,14 +79,14 @@ class BusinessRuleFromScratchForm extends React.Component {
      * when Rule Template is selected from the list
      * @param name
      */
-    handleTemplateGroupSelected = event => {
+    handleTemplateGroupSelected(event){
         let state = this.state
         // Get selected template group & update in the state
         state['selectedTemplateGroup'] = BusinessRulesFunctions.getTemplateGroup(event.target.value)
 
         // Deselect input & output rule templates
-        state['selectedInputRuleTemplate'] = {'name' : '', 'uuid' : ''}
-        state['selectedOutputRuleTemplate'] = {'name' : '', 'uuid' : ''}
+        state['selectedInputRuleTemplate'] = {'name': '', 'uuid': ''}
+        state['selectedOutputRuleTemplate'] = {'name': '', 'uuid': ''}
         state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT] = {}
         state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT] = {}
         state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_PROPERTY_TYPE_OUTPUT_MAPPINGS] = {}
@@ -178,11 +110,12 @@ class BusinessRuleFromScratchForm extends React.Component {
 
         this.setState(state)
     }
+
     /**
-     * Handles onChange of Input & Output rule templates selected
+     * Handles onChange of Input rule template selectio
      * @param event
      */
-    handleInputRuleTemplateSelected = event => {
+    handleInputRuleTemplateSelected(event) {
         let state = this.state
         state['selectedInputRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(
             this.state.selectedTemplateGroup.uuid, event.target.value
@@ -194,7 +127,12 @@ class BusinessRuleFromScratchForm extends React.Component {
         }
         this.setState(state)
     }
-    handleOutputRuleTemplateSelected = event => {
+
+    /**
+     * Handles onChange of Output rule template selection
+     * @param event
+     */
+    handleOutputRuleTemplateSelected(event){
         let state = this.state
         state['selectedOutputRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(
             this.state.selectedTemplateGroup.uuid, event.target.value
@@ -279,12 +217,76 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
 
     /**
+     * Handles onChange of any Attribute, of a filter rule
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleAttributeChange(filterRuleIndex, value) {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            value + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any Operator, of a filter rule
+     *
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleOperatorChange(filterRuleIndex, value) {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
+            value + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any AttributeOrValue, of a filter
+     *
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleAttributeOrValueChange(filterRuleIndex, value) {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
+            value
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any value for an input field for output mapping
+     * @param outputFieldName
+     */
+    handleOutputMappingChange(event,outputFieldName) {
+        console.log("HANDLE OUTPUT MAP")
+        let state = this.state
+        state['businessRuleProperties']['outputMappings'][outputFieldName] = event.target.value
+        this.setState(state)
+    }
+
+    /**
      * Gives field names of the given stream definition, as an array
      * @param exposedStreamDefinition
      */
     getFieldNames(streamDefinition) {
         let fieldNames = []
-        for (let field in this.getFields(streamDefinition)){
+        for (let field in this.getFields(streamDefinition)) {
             fieldNames.push(field.toString())
         }
 
@@ -296,7 +298,7 @@ class BusinessRuleFromScratchForm extends React.Component {
      * @param streamDefinition
      * @returns {{x: string}}
      */
-    getFields(streamDefinition){
+    getFields(streamDefinition) {
         let regExp = /\(([^)]+)\)/;
         let matches = regExp.exec(streamDefinition);
         let fields = {}
@@ -359,12 +361,12 @@ class BusinessRuleFromScratchForm extends React.Component {
                         description={property.propertyObject.description}
                         value={(this.state['businessRuleProperties']
                             [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
-                            [property.propertyName])?(this.state['businessRuleProperties']
+                            [property.propertyName]) ? (this.state['businessRuleProperties']
                             [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
-                            [property.propertyName]):(property.propertyObject.defaultValue)
+                            [property.propertyName]) : (property.propertyObject.defaultValue)
                         }
                         options={property.propertyObject.options}
-                        onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+                        onValueChange={(e) => this.handleValueChange(property.propertyName, propertiesType,e)}
                     />
                 )
             } else if (propertiesType === BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT) {
@@ -380,7 +382,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                             [property.propertyName]
                         }
                         options={property.propertyObject.options}
-                        onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+                        onValueChange={(e)=>this.handleValueChange(property.propertyName, propertiesType,e)}
                     />
                 )
             }
@@ -423,7 +425,8 @@ class BusinessRuleFromScratchForm extends React.Component {
                         (property.propertyObject.defaultValue)}
                     // value={property.propertyObject.defaultValue}
                     options={property.propertyObject.options}
-                    onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+                    // onValueChange={this.handleValueChange(property.propertyName, propertiesType)}
+                    onValueChange={(e) => this.handleValueChange(property.propertyName, propertiesType,e)}
                 />
             )
         }
@@ -468,7 +471,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     placeholder="Please enter"
                     value={this.state.businessRuleName}
                     required={true}
-                    onChange={this.handleBusinessRuleNameChange}
+                    onChange={(e)=>this.handleBusinessRuleNameChange(e)}
                     disabled={true}
                 />
         } else {
@@ -479,7 +482,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     label="Business Rule name"
                     placeholder="Please enter"
                     required={true}
-                    onChange={this.handleBusinessRuleNameChange}
+                    onChange={(e)=>this.handleBusinessRuleNameChange(e)}
                 />
         }
 
@@ -521,7 +524,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     <InputLabel htmlFor="templateGroup">Template Group</InputLabel>
                     <Select
                         value={this.state.selectedTemplateGroup.uuid}
-                        onChange={this.handleTemplateGroupSelected}
+                        onChange={(e)=>this.handleTemplateGroupSelected(e)}
                         input={<Input id="templateGroup"/>}
                     >
                         {templateGroupElementsToDisplay}
@@ -548,7 +551,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
                     <Select
                         value={this.state.selectedInputRuleTemplate.uuid}
-                        onChange={this.handleInputRuleTemplateSelected} // todo: recheck
+                        onChange={(e)=>this.handleInputRuleTemplateSelected(e)} // todo: recheck
                         input={<Input id="inputRuleTemplate"/>}
                     >
                         {inputRuleTemplateElements}
@@ -561,6 +564,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                 BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT,
                 this.state.formMode)
         } else {
+            //Create mode
             // To display the helper text
             let inputRuleTemplateHelperText
             if (this.state.selectedInputRuleTemplate.uuid === '') {
@@ -582,7 +586,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                         <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
                         <Select
                             value={this.state.selectedInputRuleTemplate['uuid']}
-                            onChange={this.handleInputRuleTemplateSelected} // todo: recheck
+                            onChange={(e)=>this.handleInputRuleTemplateSelected(e)} // todo: recheck
                             input={<Input id="inputRuleTemplate"/>}
                         >
                             {inputRuleTemplateElements}
@@ -731,7 +735,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                         onAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
                         onOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
                         onAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}
-                        handleRemoveFilterRule={this.removeFilterRule(index)}
+                        handleRemoveFilterRule={(e)=>this.removeFilterRule(index)}
                     />)
 
         ruleLogicToDisplay =
@@ -740,7 +744,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                 fieldName="Rule Logic"
                 description="Enter the Rule Logic, referring filter rule numbers"
                 value={this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0]}
-                onValueChange={this.handleRuleLogicChange}
+                onValueChange={(e)=>this.handleRuleLogicChange(e)}
             />
         //}
 
@@ -777,7 +781,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                                 // (used when a different output rule template is selected)
                                 value={(this.state['businessRuleProperties']['outputMappings'][fieldName]) ?
                                     (this.state['businessRuleProperties']['outputMappings'][fieldName]) : ''}
-                                onChange={this.handleOutputMappingChange(fieldName)} //todo: check the method
+                                onChange={(e) => this.handleOutputMappingChange(e,fieldName)} //todo: check the method
                                 input={<Input id="templateGroup"/>}
                             >
                                 {inputStreamFieldsToMap}

@@ -15,31 +15,6 @@ import BusinessRulesConstants from "../utils/BusinessRulesConstants";
  * which will then display the form with Rule Template's properties
  */
 class BusinessRuleFromScratchCreator extends React.Component {
-    /**
-     * Updates selected Rule Template in the state,
-     * when Rule Template is selected from the list
-     * @param name
-     */
-    handleRuleTemplateSelected = name => event => {
-        let state = this.state
-        // Get selected rule template & update in the state
-        // state['selectedRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value.uuid)
-        state['selectedRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value)
-        // This always binds to the event. target. value
-        // state['something'] = event.target.value
-        this.setState(state)
-    }
-    /**
-     * Updates selected Rule Template in the state,
-     * when Rule Template is selected from the list
-     * @param name
-     */
-    handleTemplateGroupSelected = event => {
-        let state = this.state
-        // Get selected template group & update in the state
-        state['selectedTemplateGroup'] = BusinessRulesFunctions.getTemplateGroup(event.target.value)
-        this.setState(state)
-    }
 
     constructor(props) {
         super(props);

@@ -21,7 +21,7 @@ class RuleTemplateSelector extends React.Component {
      * when Rule Template is selected from the list
      * @param name
      */
-    handleRuleTemplateSelected = templateGroupUUID => event => {
+    handleRuleTemplateSelected(templateGroupUUID,event){
         let state = this.state
         // Get selected rule template & update in the state
         state['selectedRuleTemplate'] = BusinessRulesFunctions.getRuleTemplate(templateGroupUUID, event.target.value)
@@ -93,7 +93,7 @@ class RuleTemplateSelector extends React.Component {
                     <InputLabel htmlFor="ruleTemplate">RuleTemplate</InputLabel>
                     <Select
                         value={this.state.selectedRuleTemplate.uuid}
-                        onChange={this.handleRuleTemplateSelected(this.state.selectedTemplateGroup.uuid)}
+                        onChange={(e)=>this.handleRuleTemplateSelected(this.state.selectedTemplateGroup.uuid,e)}
                         input={<Input id="ruleTemplate"/>}
                     >
                         {ruleTemplatesToDisplay}

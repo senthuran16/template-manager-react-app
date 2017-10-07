@@ -26,7 +26,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
      *
      * @param property
      */
-    handleValueChange = property => value => {
+    handleValueChange(property,value){
         let state = this.state
         state['businessRuleProperties'][property] = value
         this.setState(state)
@@ -36,7 +36,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
      *
      * @param event
      */
-    handleBusinessRuleNameChange = event => {
+    handleBusinessRuleNameChange(event){
         let state = this.state
         state['businessRuleName'] = event.target.value
         state['businessRuleUUID'] = BusinessRulesFunctions.generateBusinessRuleUUID(event.target.value)
@@ -45,7 +45,6 @@ class BusinessRuleFromTemplateForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleValueChange = this.handleValueChange.bind(this);
         this.state = {
             formMode: props.formMode, // 'create' or 'edit'
             businessRuleName: props.businessRuleName,
@@ -116,7 +115,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     description={property.propertyObject.description}
                     value={this.state['businessRuleProperties'][property.propertyName]}
                     options={property.propertyObject.options}
-                    onValueChange={this.handleValueChange(property.propertyName)}
+                    onValueChange={(e)=>this.handleValueChange(property.propertyName,e)}
                 />
             )
 
@@ -128,7 +127,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     label="Business Rule name"
                     placeholder="Please enter"
                     required={true}
-                    onChange={this.handleBusinessRuleNameChange}
+                    onChange={(e)=>this.handleBusinessRuleNameChange(e)}
                 />
 
             // Create button
@@ -161,7 +160,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     description={property.propertyObject.description}
                     value={this.state['businessRuleProperties'][property.propertyName]}
                     options={property.propertyObject.options}
-                    onValueChange={this.handleValueChange(property.propertyName)}
+                    onValueChange={(e)=>this.handleValueChange(property.propertyName,e)}
                 />
             )
 
@@ -174,7 +173,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     placeholder="Please enter"
                     value={this.state.businessRuleName}
                     required={true}
-                    onChange={this.handleBusinessRuleNameChange}
+                    onChange={(e)=>this.handleBusinessRuleNameChange(e)}
                     disabled={true}
                 />
 

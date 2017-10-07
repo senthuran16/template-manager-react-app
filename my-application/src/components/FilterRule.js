@@ -26,7 +26,7 @@ class FilterRule extends React.Component {
      * @param filterRule
      * @returns {*}
      */
-    deriveElementsFromFilterRule = filterRule => {
+    deriveElementsFromFilterRule(filterRule){
         let initialSplitArray = filterRule.split(" ")
         let newSplitArray = []
 
@@ -46,22 +46,22 @@ class FilterRule extends React.Component {
     }
 
     // To store Attribute, Operator and AttributeOrValue elements of the filter, when a change occurs
-    onAttributeChange = value => {
+    onAttributeChange(value) {
         this.props.onAttributeChange(this.props.filterRuleIndex, value)
     }
-    onOperatorChange = value => {
+    onOperatorChange(value) {
         this.props.onOperatorChange(this.props.filterRuleIndex, value)
     }
-    onAttributeOrValueChange = value => {
+    onAttributeOrValueChange(value) {
         this.props.onAttributeOrValueChange(this.props.filterRuleIndex, value)
     }
 
     /**
      * Handles onClick of remove button of the filter rule
      *
-     * @param event
+     * @param index : Index of the rule template, comes from prop
      */
-    handleRemoveFilterRuleButtonClick = index => event => {
+    handleRemoveFilterRuleButtonClick(index){
         this.props.handleRemoveFilterRule(index)
     }
 
@@ -135,7 +135,7 @@ class FilterRule extends React.Component {
                 </TableCell>
                 <TableCell>
                     <IconButton color="primary" style={this.styles.deployButton} aria-label="Remove"
-                                onClick={this.handleRemoveFilterRuleButtonClick('test')}>
+                                onClick={(e)=>this.handleRemoveFilterRuleButtonClick()}>
                         <ClearIcon/>
                     </IconButton>
                 </TableCell>

@@ -12,7 +12,7 @@ class Property extends React.Component {
      * Handles onChange action of a TextField or a Select
      * @param name
      */
-    handleOnChange = name => event => {
+    handleOnChange(event){
         this.props.onValueChange(event.target.value)
     }
 
@@ -29,7 +29,7 @@ class Property extends React.Component {
                         <InputLabel htmlFor={this.props.name}>{this.props.fieldName}</InputLabel>
                         <Select
                             value={this.props.value}
-                            onChange={this.handleOnChange(this.props.name)}
+                            onChange={(e)=>this.handleOnChange(e)}
                             input={<Input id={this.props.name}/>}
                         >
                             {options}
@@ -50,7 +50,7 @@ class Property extends React.Component {
                         value={this.props.value}
                         helperText={this.props.description}
                         margin="normal"
-                        onChange={this.handleOnChange(this.props.name)}
+                        onChange={(e)=>this.handleOnChange(e)}
                     />
                     <br/>
                 </div>

@@ -18,6 +18,7 @@ class BusinessRuleModifier extends React.Component {
         floatButton: {
             backgroundColor: '#EF6C00',
             color: 'white',
+            float: 'right'
         },
         raisedButton: {
             backgroundColor: '#EF6C00',
@@ -37,7 +38,7 @@ class BusinessRuleModifier extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //businessRules: props.businessRules // Available Business Rules
+            businessRules: props.businessRules // Available Business Rules
             //businessRules: props.businessRules // Available Business Rules
         }
     }
