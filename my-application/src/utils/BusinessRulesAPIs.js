@@ -1,13 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 // import './index.css';
 // Material-UI
-import TemplateGroupSelector from "../components/TemplateGroupSelector";
-import BusinessRulesConstants from "./BusinessRulesConstants";
-import RuleTemplateSelector from "../components/RuleTemplateSelector";
-import BusinessRuleEditor from "../components/BusinessRuleEditor";
-import BusinessRuleFromScratchCreator from "../components/BusinessRuleFromScratchCreator";
-
 // axios
 import axios from 'axios';
 
@@ -15,16 +8,17 @@ import axios from 'axios';
  * Used to call APIs, related to Business Rules
  */
 class BusinessRulesAPIs {
-    constructor(url){
+    constructor(url) {
         this.url = url
+        console.log("APIS CONSTRUCTOR CALLED WITH URL : " + url)
     }
 
     /**
      * Returns the axios http client
      */
-    getHTTPClient(){
+    getHTTPClient() {
         let httpClient = axios.create({
-            baseURL: this.url + '/template-manager',
+            baseURL: this.url + '/business-rule',
             timeout: 2000
         });
         httpClient.defaults.headers.post['Content-Type'] = 'application/json';
@@ -34,24 +28,28 @@ class BusinessRulesAPIs {
     /**
      * Returns available template groups
      */
-    getTemplateGroups(){
-        return this.getHTTPClient().get('/template-groups')
+    getTemplateGroups() {
+        console.log("GET TEMPLATE GROUPS CALLED")
+        console.log("HTTP CLIENT IS : ")
+        let client = this.getHTTPClient()
+        console.log(client)
+        return client.get('/template-groups')
     }
 
     /**
      * Returns the template group that has the given ID
      * @param templateGroupID
      */
-    getTemplateGroup(templateGroupID){
-        return this.getHTTPClient().get('/template-groups/'+templateGroupID)
+    getTemplateGroup(templateGroupID) {
+        return this.getHTTPClient().get('/template-groups/' + templateGroupID)
     }
 
     /**
      * Returns rule templates available under the given template group
-     * @param templateGroupName
+     * @param templateGroupID
      */
-    getRuleTemplates(templateGroupID){
-        return this.getHTTPClient().get('/template-groups/'+templateGroupID+'/rule-templates')
+    getRuleTemplates(templateGroupID) {
+        return this.getHTTPClient().get('/template-groups/' + templateGroupID + '/templates')
     }
 
     /**
@@ -61,8 +59,8 @@ class BusinessRulesAPIs {
      * @param templateGroupID
      * @param ruleTemplateID
      */
-    getRuleTemplate(templateGroupID, ruleTemplateID){
-        return this.getHTTPClient().get('/template-groups/'+templateGroupID+'/rule-templates/'+ruleTemplateID)
+    getRuleTemplate(templateGroupID, ruleTemplateID) {
+        return this.getHTTPClient().get('/template-groups/' + templateGroupID + '/templates/' + ruleTemplateID)
     }
 
     /**
@@ -71,14 +69,14 @@ class BusinessRulesAPIs {
      * @param businessRuleJSON
      * @returns {AxiosPromise}
      */
-    createBusinessRule(businessRuleJSON){
-        return this.getHTTPClient().post('',businessRuleJSON)
+    createBusinessRule(businessRuleJSON) {
+        return this.getHTTPClient().post('/instances', businessRuleJSON)
     }
 
     /**
      * Returns available business rules
      */
-    getBusinessRules(){
+    getBusinessRules() {
         return this.getHTTPClient().get('/instances')
     }
 
@@ -86,8 +84,8 @@ class BusinessRulesAPIs {
      * Returns the business rule with the given ID
      * @param businessRuleID
      */
-    getBusinessRule(businessRuleID){
-        return this.getHTTPClient().get('/instances/'+businessRuleID)
+    getBusinessRule(businessRuleID) {
+        return this.getHTTPClient().get('/instances/' + businessRuleID)
     }
 
     /**
@@ -96,11 +94,18 @@ class BusinessRulesAPIs {
      * @param businessRuleJSON
      * @returns {AxiosPromise}
      */
-    updateBusinessRule(businessRuleID, businessRuleJSON){
+    updateBusinessRule(businessRuleID, businessRuleJSON) {
         return this.getHTTPClient().put(businessRuleID, businessRuleJSON)
     }
 
-    deleteBusinessRule(businessRuleID, forceDeleteStatus){
+    /**
+     * Deletes the busingess rule with the given ID.
+     * Undeploys siddhiApps of the business rule only if force deletion status is false
+     *
+     * @param businessRuleID
+     * @param forceDeleteStatus
+     */
+    deleteBusinessRule(businessRuleID, forceDeleteStatus) {
         return this.getHTTPClient().delete(businessRuleID)
     }
 }

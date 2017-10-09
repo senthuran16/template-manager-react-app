@@ -46,7 +46,10 @@ const BusinessRulesConstants = {
     BUSINESS_RULE_DEPLOYMENT_STATUS_NOT_DEPLOYED: "notDeployed",
 
     // Business Rule Filter Rule operators
-    BUSINESS_RULE_FILTER_RULE_OPERATORS: ['<','<=','>','>=','==','!=']
+    BUSINESS_RULE_FILTER_RULE_OPERATORS: ['<','<=','>','>=','==','!='],
+
+    // URL for APIs
+    APIS_URL: "http://localhost:9090"
 }
 
 export default BusinessRulesConstants;

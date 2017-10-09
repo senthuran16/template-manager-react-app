@@ -8,6 +8,8 @@ import RuleTemplateSelector from "../components/RuleTemplateSelector";
 import BusinessRuleEditor from "../components/BusinessRuleEditor";
 import BusinessRuleFromScratchCreator from "../components/BusinessRuleFromScratchCreator";
 import BusinessRuleCreator from "../components/BusinessRuleCreator";
+import BusinessRulesAPIs from "./BusinessRulesAPIs";
+
 
 class BusinessRulesFunctions {
     // Load from API and store
@@ -88,7 +90,17 @@ class BusinessRulesFunctions {
      * @returns {Array}
      */
     static getTemplateGroups() {
-        // todo: remove hardcode *****************************
+        console.log("GET TEMPLATE GROUPS")
+        console.log("===================")
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let templateGroups = apis.getTemplateGroups();
+        templateGroups.then((response) => {
+            console.log("HOHO")
+            console.log(response)
+        });
+        console.log("===================")
+
+        // test
         var receivedTemplateGroups = [
             {
                 "name": "Stock Exchange",
@@ -511,8 +523,6 @@ class BusinessRulesFunctions {
         ]
 
         return receivedTemplateGroups
-        // todo: *********************************************
-        // todo: Get Template Groups from API
     }
 
     /** [2]
