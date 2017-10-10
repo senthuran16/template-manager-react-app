@@ -10,7 +10,6 @@ import axios from 'axios';
 class BusinessRulesAPIs {
     constructor(url) {
         this.url = url
-        console.log("APIS CONSTRUCTOR CALLED WITH URL : " + url)
     }
 
     /**
@@ -19,9 +18,9 @@ class BusinessRulesAPIs {
     getHTTPClient() {
         let httpClient = axios.create({
             baseURL: this.url + '/business-rule',
-            timeout: 2000
+            timeout: 8000
         });
-        httpClient.defaults.headers.post['Content-Type'] = 'application/json';
+        //httpClient.defaults.headers.post['Content-Type'] = 'multipart/form-data';
         return httpClient
     }
 
@@ -29,11 +28,9 @@ class BusinessRulesAPIs {
      * Returns available template groups
      */
     getTemplateGroups() {
-        console.log("GET TEMPLATE GROUPS CALLED")
-        console.log("HTTP CLIENT IS : ")
         let client = this.getHTTPClient()
-        console.log(client)
-        return client.get('/template-groups')
+        //return client.get('/template-groups')
+        return this.getHTTPClient().get('/template-groups')
     }
 
     /**
@@ -70,7 +67,13 @@ class BusinessRulesAPIs {
      * @returns {AxiosPromise}
      */
     createBusinessRule(businessRuleJSON) {
-        return this.getHTTPClient().post('/instances', businessRuleJSON)
+        // Hold sent JSON against the key 'businessRule'
+        var formData = new FormData();
+        formData.append("businessRule", JSON.stringify(businessRuleJSON));
+
+        // Send as multipart/form-data
+        let httpClient = this.getHTTPClient()
+        return httpClient.post('/instances', formData, {headers:{'content-type': 'multipart/form-data'}})
     }
 
     /**

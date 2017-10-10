@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "autosuggest-highlight": "^3.1.0",
     "axios": "^0.16.2",
     "material-design-icons": "^3.0.1",
     "material-ui": "^1.0.0-beta.12",
     "material-ui-icons": "^1.0.0-beta.5",
     "react": "^15.6.2",
+    "react-autosuggest": "^9.3.2",
     "react-dom": "^15.6.2",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.11",

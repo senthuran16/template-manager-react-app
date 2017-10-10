@@ -3,7 +3,8 @@ import React from 'react';
 // Material-UI
 import Typography from 'material-ui/Typography';
 import Card, {CardActions, CardContent} from 'material-ui/Card';
-import Cake from 'material-ui-icons/Cake'
+import Cake from 'material-ui-icons/Cake';
+import NoteAdd from 'material-ui-icons/ArrowForward'
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 
@@ -12,10 +13,17 @@ import IconButton from 'material-ui/IconButton';
  */
 class TemplateGroup extends React.Component {
     // Styles
-    card = {
-        width: 345,
-        float: 'left',
-        margin: 15
+    styles = {
+        card: {
+            width: 345,
+            height: 200,
+            margin: 15
+        },
+        avatarButton: {
+            color: 'white',
+            width: 55,
+            height: 55
+        }
     }
 
     constructor(props) {
@@ -83,30 +91,34 @@ class TemplateGroup extends React.Component {
             '#C51162',
         ];
         // Put the random color to an object
-        let style = {backgroundColor: colors[Math.floor(Math.random() * colors.length)]}
+        let style = {
+            backgroundColor: colors[Math.floor(Math.random() * colors.length)],
+            width: 55,
+            height: 55
+        }
         return {style}
     }
 
     render() {
         return (
-            <Card style={this.card}>
+            <Card style={this.styles.card}>
                 <CardContent>
-                    <Avatar style={this.generateAvatarColor()['style']}>
-                        {this.generateAvatarInitials()}
-                    </Avatar>
+                    <br/>
+                    <IconButton aria-label="Create" onClick={this.state.onClick} style={this.styles.avatarButton}>
+                        {/*<NoteAdd/>*/}
+                        <Avatar style={this.generateAvatarColor()['style']} onClick={this.state.onClick}>
+                            {this.generateAvatarInitials()}
+                        </Avatar>
+                    </IconButton>
+                    <br/>
                     <br/>
                     <Typography type="headline" component="h2">
                         {this.state.name}
                     </Typography>
-                    <Typography component="p">
+                    <Typography component="subheading" color="secondary">
                         {this.state.description}
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <IconButton aria-label="Create" onClick={this.state.onClick}>
-                        <Cake/>
-                    </IconButton>
-                </CardActions>
             </Card>
         )
     }

@@ -4,8 +4,16 @@ import React from 'react';
 import Property from './Property';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
+import Dialog, {
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+} from 'material-ui/Dialog';
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import BusinessRulesConstants from "../utils/BusinessRulesConstants";
+import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
+import axios from 'axios';
 
 /**
  * Represents a form, shown to for Business Rules from template
@@ -51,7 +59,8 @@ class BusinessRuleFromTemplateForm extends React.Component {
             businessRuleUUID: props.businessRuleUUID,
             selectedTemplateGroup: props.selectedTemplateGroup,
             ruleTemplate: props.ruleTemplate, // Rule Templates, whose properties will be used to generate form
-            businessRuleProperties: props.businessRuleProperties // To store values given for properties displayed in the form
+            // To store values given for properties displayed in the form
+            businessRuleProperties: props.businessRuleProperties,
         }
 
         // Assign default values of properties as entered values in create mode
@@ -73,10 +82,17 @@ class BusinessRuleFromTemplateForm extends React.Component {
         var businessRuleObject = {}
         businessRuleObject['name'] = this.state.businessRuleName
         businessRuleObject['uuid'] = this.state.businessRuleUUID
+        businessRuleObject['type'] = BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE
         businessRuleObject['templateGroupUUID'] = this.state.selectedTemplateGroup.uuid
         businessRuleObject['ruleTemplateUUID'] = this.state.ruleTemplate.uuid
         businessRuleObject['properties'] = this.state.businessRuleProperties
-        console.log(businessRuleObject)
+
+        // Send prepared business rule object to API
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+        apis.createBusinessRule(businessRuleObject).then(function(response){
+            console.log("RESPONSE")
+            console.log(response)
+        })
     }
 
     render() {

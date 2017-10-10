@@ -4,16 +4,22 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 import CreateButton from "./CreateButton";
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
+import Grid from 'material-ui/Grid';
 import Header from "./Header";
+import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 
 /**
  * Allows to create a Business Rule either from scratch or from a Template
  */
 class BusinessRuleCreator extends React.Component {
     styles = {
-        containerDiv: {
-            maxWidth: 500,
-        }
+        root: {
+            flexGrow: 1,
+        },
+        control: {
+            padding: 5,
+        },
+        spacing: '40'
     }
 
     render() {
@@ -28,16 +34,27 @@ class BusinessRuleCreator extends React.Component {
                         Let's create a business rule
                     </Typography>
                     <br/>
-                    <div style={this.styles.containerDiv}>
-                        <CreateButton
-                            onClick={(e) => BusinessRulesFunctions.loadTemplateGroupSelector()}
-                            text='From Template'
-                        />
-                        <CreateButton
-                            onClick={(e) => BusinessRulesFunctions.loadBusinessRuleFromScratchCreator()}
-                            text='From The Scratch'
-                        />
-                    </div>
+
+                    <Grid container style={this.styles.root}>
+                        <Grid item xs={12}>
+                            <Grid container justify="center" spacing={Number(this.styles.spacing)}>
+                                <Grid item>
+                                    <CreateButton
+                                        onClick={(e) => BusinessRulesFunctions.loadTemplateGroupSelector()}
+                                        mode={BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE}
+                                        text='From Template'
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <CreateButton
+                                        onClick={(e) => BusinessRulesFunctions.loadBusinessRuleFromScratchCreator()}
+                                        mode={BusinessRulesConstants.BUSINESS_RULE_TYPE_SCRATCH}
+                                        text='From The Scratch'
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </center>
             </div>
         );
