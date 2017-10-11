@@ -48,6 +48,10 @@ class BusinessRuleFromScratchForm extends React.Component {
             overflow: 'auto',
             maxHeight: 300,
         },
+        rootGrid: {
+            flexGrow: 1,
+            paddingTop: 20
+        },
         listSection: {
             background: 'inherit',
         }
@@ -670,16 +674,39 @@ class BusinessRuleFromScratchForm extends React.Component {
                     }
 
                     // To display exposed input stream fields
-                    exposedInputStreamFieldsToDisplay =
+                    let exposedInputStreamFieldElementsToDisplay =
                         <List subheader style={this.styles.root}>
                             {inputStreamFieldsToDisplay.map(field => (
                                 <div key={field} style={this.styles.listSection}>
                                     <ListItem button key={field[0]}>
                                         <ListItemText primary={field[0]} secondary={field[1]}/>
                                     </ListItem>
+                                    <ListItem button key={field[0]+'b'}>
+                                        <ListItemText primary={field[0]} secondary={field[1]}/>
+                                    </ListItem>
+                                    <ListItem button key={field[0]+'c'}>
+                                        <ListItemText primary={field[0]} secondary={field[1]}/>
+                                    </ListItem>
+                                    <ListItem button key={field[0]+'d'}>
+                                        <ListItemText primary={field[0]} secondary={field[1]}/>
+                                    </ListItem>
+                                    <ListItem button key={field[0]+'e'}>
+                                        <ListItemText primary={field[0]} secondary={field[1]}/>
+                                    </ListItem>
                                 </div>
                             ))}
                         </List>
+
+                    exposedInputStreamFieldsToDisplay =
+                        <Grid item>
+                            <Paper style={{padding: 10}}>
+                                <Typography type="subheading">
+                                    Exposed stream fields
+                                </Typography>
+                                <br/>
+                                {exposedInputStreamFieldElementsToDisplay}
+                            </Paper>
+                        </Grid>
 
                 } else {
                     inputDataPropertiesToDisplay =
@@ -948,16 +975,19 @@ class BusinessRuleFromScratchForm extends React.Component {
                     <br/>
                     <br/>
                     <br/>
-                    <Typography type="subheading">
-                        Configurations
-                    </Typography>
-                    {inputDataPropertiesToDisplay}
-                    <br/>
-                    <br/>
-                    <Typography type="subheading">
-                        Exposed stream fields
-                    </Typography>
-                    {exposedInputStreamFieldsToDisplay}
+                    <Grid container style={this.styles.rootGrid} wrap="wrap">
+                        <Grid item xs={12}>
+                            <Grid container spacing={40}>
+                                <Grid item style={{paddingRight: 90}} wrap="wrap">
+                                    <Typography type="subheading">
+                                        Configurations
+                                    </Typography>
+                                    {inputDataPropertiesToDisplay}
+                                </Grid>
+                                {exposedInputStreamFieldsToDisplay}
+                            </Grid>
+                        </Grid>
+                    </Grid>
                     <br/>
                 </Paper>
                 <br/>
