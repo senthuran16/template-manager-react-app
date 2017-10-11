@@ -95,8 +95,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
         // Send prepared business rule object to API
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
         apis.createBusinessRule(JSON.stringify(businessRuleObject)).then(function(response){
-            console.log("RESPONSE")
-            console.log(response)
+            alert(response.data)
         })
 
         // // Send prepared business rule object to API
