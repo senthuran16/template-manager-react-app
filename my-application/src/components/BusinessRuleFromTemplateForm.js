@@ -87,12 +87,24 @@ class BusinessRuleFromTemplateForm extends React.Component {
         businessRuleObject['ruleTemplateUUID'] = this.state.ruleTemplate.uuid
         businessRuleObject['properties'] = this.state.businessRuleProperties
 
+        console.log("JSON OBJECT")
+        console.log(businessRuleObject)
+        console.log("STRNGIFIED")
+        console.log(JSON.stringify(businessRuleObject))
+
         // Send prepared business rule object to API
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
         apis.createBusinessRule(JSON.stringify(businessRuleObject)).then(function(response){
             console.log("RESPONSE")
             console.log(response)
         })
+
+        // // Send prepared business rule object to API
+        // let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+        // apis.createBusinessRule(JSON.stringify(businessRuleObject)).then(function(response){
+        //     console.log("RESPONSE")
+        //     console.log(response)
+        // })
     }
 
     render() {

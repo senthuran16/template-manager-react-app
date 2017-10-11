@@ -55,6 +55,8 @@ class BusinessRulesFunctions {
             ReactDOM.render(<TemplateGroupSelector
                 templateGroups={response.data}
             />, document.getElementById('root'))
+        }).catch(error => {
+            console.log(error);
         });
     }
 

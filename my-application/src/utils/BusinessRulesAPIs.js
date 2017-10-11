@@ -69,11 +69,12 @@ class BusinessRulesAPIs {
     createBusinessRule(businessRuleJSON) {
         // Hold sent JSON against the key 'businessRule'
         var formData = new FormData();
-        formData.append("businessRule", JSON.stringify(businessRuleJSON));
+        formData.append("businessRule", (businessRuleJSON));
 
         // Send as multipart/form-data
         let httpClient = this.getHTTPClient()
         return httpClient.post('/instances', formData, {headers:{'content-type': 'multipart/form-data'}})
+
     }
 
     /**
