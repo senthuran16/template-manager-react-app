@@ -510,7 +510,7 @@ class BusinessRuleFromScratchForm extends React.Component {
 
         // Send prepared business rule object to API
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
-        apis.createBusinessRule(businessRuleObject).then(function (response) {
+        apis.createBusinessRule(JSON.stringify(businessRuleObject)).then(function (response) {
             console.log("RESPONSE")
             console.log(response)
         })

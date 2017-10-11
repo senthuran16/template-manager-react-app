@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/index.js" afterPath="$PROJECT_DIR$/my-application/src/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
     </list>
@@ -24,7 +24,7 @@
           <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="702">
+                <state relative-caret-position="0">
                   <caret line="29" column="49" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="49" />
                   <folding>
                     <element signature="e#67#115#0" expanded="true" />
@@ -36,8 +36,8 @@
           <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="13419">
-                  <caret line="512" column="50" lean-forward="false" selection-start-line="512" selection-start-column="50" selection-end-line="512" selection-end-column="50" />
+                <state relative-caret-position="432">
+                  <caret line="512" column="66" lean-forward="false" selection-start-line="512" selection-start-column="66" selection-end-line="512" selection-end-column="66" />
                   <folding>
                     <element signature="e#67#101#0" expanded="true" />
                     <element signature="e#342#403#0" expanded="true" />
@@ -46,11 +46,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="333">
-                  <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+                <state relative-caret-position="468">
+                  <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -68,21 +68,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BusinessRule.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="BusinessRule.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRule.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="574">
                   <caret line="113" column="55" lean-forward="false" selection-start-line="113" selection-start-column="55" selection-end-line="113" selection-end-column="55" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BusinessRuleFromTemplateForm.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="439">
-                  <caret line="96" column="66" lean-forward="false" selection-start-line="96" selection-start-column="66" selection-end-line="96" selection-end-column="66" />
                   <folding />
                 </state>
               </provider>
@@ -105,15 +95,6 @@
                   <caret line="57" column="27" lean-forward="false" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
                   <folding>
                     <element signature="e#101#173#0" expanded="true" />
-                    <marker date="1507710626869" expanded="true" signature="6221:8189" ph="[...]" />
-                    <marker date="1507710626869" expanded="true" signature="6238:6887" ph="{&quot;name&quot;: &quot;My Stock Data Analysis&quot;...}" />
-                    <marker date="1507710626869" expanded="true" signature="6538:6870" ph="{&quot;sourceTopicList&quot;: &quot;StockStream&quot;...}" />
-                    <marker date="1507710626869" expanded="true" signature="6904:8176" ph="{&quot;name&quot;: &quot;Custom Stock Exchange Analysis for WSO2&quot;...}" />
-                    <marker date="1507710626869" expanded="true" signature="7313:8159" ph="{...}" />
-                    <marker date="1507710626869" expanded="true" signature="7351:7494" ph="{&quot;topicList&quot;: &quot;SampleStockStream2&quot;...}" />
-                    <marker date="1507710626869" expanded="true" signature="7537:7719" ph="{...}" />
-                    <marker date="1507710626869" expanded="true" signature="7758:7914" ph="{&quot;resultTopic&quot;: &quot;SampleResultTopic2&quot;...}" />
-                    <marker date="1507710626869" expanded="true" signature="7957:8138" ph="{&quot;companyName&quot;: &quot;name&quot;...}" />
                   </folding>
                 </state>
               </provider>
@@ -138,8 +119,8 @@
           <file leaf-file-name="BusinessRulesFunctions.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="115" column="34" lean-forward="true" selection-start-line="115" selection-start-column="34" selection-end-line="115" selection-end-column="34" />
+                <state relative-caret-position="378">
+                  <caret line="207" column="21" lean-forward="false" selection-start-line="207" selection-start-column="21" selection-end-line="207" selection-end-column="21" />
                   <folding>
                     <element signature="e#101#173#0" expanded="true" />
                   </folding>
@@ -255,12 +236,12 @@
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
-        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
-        <option value="$PROJECT_DIR$/my-application/src/index.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
+        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
+        <option value="$PROJECT_DIR$/my-application/src/index.js" />
       </list>
     </option>
   </component>
@@ -398,7 +379,7 @@
       <workItem from="1507654870668" duration="2570000" />
       <workItem from="1507698173522" duration="2965000" />
       <workItem from="1507703148385" duration="4383000" />
-      <workItem from="1507710297086" duration="921000" />
+      <workItem from="1507710297086" duration="1184000" />
     </task>
     <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
       <created>1506944452636</created>
@@ -498,11 +479,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507708769116</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Done draft implementation for Delete Business Rule">
+      <created>1507711272315</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1507711272315</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="700653000" />
+    <option name="totallyTimeSpent" value="700916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="208" y="-4" width="1851" height="1092" extended-state="6" />
@@ -548,7 +536,8 @@
     <MESSAGE value="# Integrated CreateBR from scratch &amp; from template with API calls, and few minor fixes" />
     <MESSAGE value="# Stringified JSON objects that is to be sent to the API" />
     <MESSAGE value="Handled sending to API data properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Handled sending to API data properly" />
+    <MESSAGE value="Done draft implementation for Delete Business Rule" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done draft implementation for Delete Business Rule" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -724,7 +713,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
+        <state relative-caret-position="0">
           <caret line="29" column="49" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="49" />
           <folding>
             <element signature="e#67#115#0" expanded="true" />
@@ -757,41 +746,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13419">
-          <caret line="512" column="50" lean-forward="false" selection-start-line="512" selection-start-column="50" selection-end-line="512" selection-end-column="50" />
-          <folding>
-            <element signature="e#67#101#0" expanded="true" />
-            <element signature="e#342#403#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="24" selection-end-column="20" />
           <folding>
             <element signature="e#67#115#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="96" column="66" lean-forward="false" selection-start-line="96" selection-start-column="66" selection-end-line="96" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -818,15 +778,6 @@
           <caret line="57" column="27" lean-forward="false" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
           <folding>
             <element signature="e#101#173#0" expanded="true" />
-            <marker date="1507710626869" expanded="true" signature="6221:8189" ph="[...]" />
-            <marker date="1507710626869" expanded="true" signature="6238:6887" ph="{&quot;name&quot;: &quot;My Stock Data Analysis&quot;...}" />
-            <marker date="1507710626869" expanded="true" signature="6538:6870" ph="{&quot;sourceTopicList&quot;: &quot;StockStream&quot;...}" />
-            <marker date="1507710626869" expanded="true" signature="6904:8176" ph="{&quot;name&quot;: &quot;Custom Stock Exchange Analysis for WSO2&quot;...}" />
-            <marker date="1507710626869" expanded="true" signature="7313:8159" ph="{...}" />
-            <marker date="1507710626869" expanded="true" signature="7351:7494" ph="{&quot;topicList&quot;: &quot;SampleStockStream2&quot;...}" />
-            <marker date="1507710626869" expanded="true" signature="7537:7719" ph="{...}" />
-            <marker date="1507710626869" expanded="true" signature="7758:7914" ph="{&quot;resultTopic&quot;: &quot;SampleResultTopic2&quot;...}" />
-            <marker date="1507710626869" expanded="true" signature="7957:8138" ph="{&quot;companyName&quot;: &quot;name&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -839,11 +790,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="96" column="66" lean-forward="false" selection-start-line="96" selection-start-column="66" selection-end-line="96" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRule.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="574">
           <caret line="113" column="55" lean-forward="false" selection-start-line="113" selection-start-column="55" selection-end-line="113" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="512" column="66" lean-forward="false" selection-start-line="512" selection-start-column="66" selection-end-line="512" selection-end-column="66" />
+          <folding>
+            <element signature="e#67#101#0" expanded="true" />
+            <element signature="e#342#403#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

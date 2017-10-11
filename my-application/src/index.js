@@ -22,15 +22,15 @@ function test(){
 // test();
 
 // Load available Business Rules
-let businessRulesPromise = BusinessRulesFunctions.getBusinessRules()
-businessRulesPromise.then(function(response){
-    console.log("RECEIVED BUSINESS RULES")
-    ReactDOM.render(
-        <BusinessRuleModifier businessRules={response.data}/>, document.getElementById("root"))
-})
+// let businessRulesPromise = BusinessRulesFunctions.getBusinessRules()
+// businessRulesPromise.then(function(response){
+//     console.log("RECEIVED BUSINESS RULES")
+//     ReactDOM.render(
+//         <BusinessRuleModifier businessRules={response.data}/>, document.getElementById("root"))
+// })
 
 // ReactDOM.render(<BusinessRuleModifier businessRules={BusinessRulesFunctions.getBusinessRules()}/>, document.getElementById("root"))
-// ReactDOM.render(<BusinessRuleCreator/>, document.getElementById("root"))
+ReactDOM.render(<BusinessRuleCreator/>, document.getElementById("root"))
 
 // class Hello extends React.Component{
 //     render(){
