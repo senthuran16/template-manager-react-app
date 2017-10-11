@@ -157,59 +157,64 @@ class BusinessRulesFunctions {
     }
 
     /** [5]
-     * Gets available BusinessRulesCreator
+     * Returns promise for BusinessRulesCreator
      * todo: from API
      *
      * @returns {[null,null]}
      */
     static getBusinessRules() {
-        // todo: remove hardcode *****************************
-        var receivedBusinessRules = [
-            {
-                "uuid": "my-stock-data-analysis",
-                "name": "My Stock Data Analysis",
-                "templateGroupUUID": "stock-exchange",
-                "ruleTemplateUUID": "stock-data-analysis",
-                "type": "template",
-                "properties": {
-                    "sourceTopicList": "StockStream",
-                    "sourceMapType": "xml",
-                    "sinkTopic": "resultTopic",
-                    "sinkMapType": "xml",
-                    "minShareVolumesMargin": "20",
-                    "maxShareVolumesMargin": "10000"
-                }
-            },
-            {
-                "uuid": "custom-stock-exchange-analysis-for-wso2",
-                "name": "Custom Stock Exchange Analysis for WSO2",
-                "templateGroupUUID": "stock-exchange",
-                "inputRuleTemplateUUID": "stock-exchange-input",
-                "outputRuleTemplateUUID": "stock-exchange-output",
-                "type": "scratch",
-                "properties": {
-                    "inputData": {
-                        "topicList": "SampleStockStream2",
-                        "topicList2": "StockStream"
-                    },
-                    "ruleComponents": {
-                        "filterRules": ["price > 1000", "volume < 50", "name == 'WSO2 Inc'"],
-                        "ruleLogic": ["1 OR (2 AND 3)"]
-                    },
-                    "outputData": {
-                        "resultTopic": "SampleResultTopic2",
-                        "resultTopic2": "SampleResultTopic2_1"
-                    },
-                    "outputMappings": {
-                        "companyName": "name",
-                        "companySymbol": "symbol",
-                        "sellingPrice": "price"
-                    }
-                }
-            }
-        ]
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let gotBusinessRules = apis.getBusinessRules();
 
-        return receivedBusinessRules
+        return gotBusinessRules;
+
+        // // todo: remove hardcode *****************************
+        // var receivedBusinessRules = [
+        //     {
+        //         "uuid": "my-stock-data-analysis",
+        //         "name": "My Stock Data Analysis",
+        //         "templateGroupUUID": "stock-exchange",
+        //         "ruleTemplateUUID": "stock-data-analysis",
+        //         "type": "template",
+        //         "properties": {
+        //             "sourceTopicList": "StockStream",
+        //             "sourceMapType": "xml",
+        //             "sinkTopic": "resultTopic",
+        //             "sinkMapType": "xml",
+        //             "minShareVolumesMargin": "20",
+        //             "maxShareVolumesMargin": "10000"
+        //         }
+        //     },
+        //     {
+        //         "uuid": "custom-stock-exchange-analysis-for-wso2",
+        //         "name": "Custom Stock Exchange Analysis for WSO2",
+        //         "templateGroupUUID": "stock-exchange",
+        //         "inputRuleTemplateUUID": "stock-exchange-input",
+        //         "outputRuleTemplateUUID": "stock-exchange-output",
+        //         "type": "scratch",
+        //         "properties": {
+        //             "inputData": {
+        //                 "topicList": "SampleStockStream2",
+        //                 "topicList2": "StockStream"
+        //             },
+        //             "ruleComponents": {
+        //                 "filterRules": ["price > 1000", "volume < 50", "name == 'WSO2 Inc'"],
+        //                 "ruleLogic": ["1 OR (2 AND 3)"]
+        //             },
+        //             "outputData": {
+        //                 "resultTopic": "SampleResultTopic2",
+        //                 "resultTopic2": "SampleResultTopic2_1"
+        //             },
+        //             "outputMappings": {
+        //                 "companyName": "name",
+        //                 "companySymbol": "symbol",
+        //                 "sellingPrice": "price"
+        //             }
+        //         }
+        //     }
+        // ]
+        //
+        // return receivedBusinessRules
         // todo: *********************************************
         // todo: Get BusinessRulesCreator from API ******************
     }

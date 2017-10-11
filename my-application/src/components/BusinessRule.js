@@ -8,6 +8,7 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import {TableCell, TableRow,} from 'material-ui/Table';
 import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
+import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
 
 /**
  * Represent each Business Rule, that is shown as a row, in order to edit, delete / re-deploy Business Rules
@@ -108,7 +109,10 @@ class BusinessRule extends React.Component {
      * Handles onClick action of the 'Delete' button
      */
     handleDeleteButtonClick() {
-        BusinessRulesConstants
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'false').then(
+            alert('BusinessRule \''+this.state.name+'\' has been successfully deleted!')
+        )
     }
 
     render() {
