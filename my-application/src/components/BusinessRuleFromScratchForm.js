@@ -86,7 +86,8 @@ class BusinessRuleFromScratchForm extends React.Component {
             state['businessRuleProperties'] = {
                 'inputData': {},
                 'ruleComponents': {
-                    'filterRules': ['  '],
+                    // 'filterRules': ['  '],
+                    'filterRules': [],
                     'ruleLogic': ['']
                 },
                 'outputData': {},
@@ -164,6 +165,29 @@ class BusinessRuleFromScratchForm extends React.Component {
         let state = this.state
         state.businessRuleProperties['ruleComponents']['filterRules'].splice(index, 1)
         this.setState(state)
+    }
+
+    /**
+     * Returns rule logic when not present, which is filter rules concatenated by AND when there is no rule logic
+     * present; or the existing rule logic, when present
+     *
+     * @param existingRuleLogic
+     * @returns {*}
+     */
+    getFilterRule(existingRuleLogic){
+        // If a rule logic is present
+        if(existingRuleLogic !== ""){
+            return existingRuleLogic
+        }else{
+            // No rule logic is present
+            // Concatenate each filter rule numbers with AND and return
+            let numbers = []
+            for(let i=0 ; i<this.state['businessRuleProperties']['ruleComponents']['filterRules'].length ; i++){
+                numbers.push(i+1)
+            }
+
+            return numbers.join(" AND ")
+        }
     }
 
     /**
@@ -824,6 +848,7 @@ class BusinessRuleFromScratchForm extends React.Component {
         var filterRulesToDisplay
         var ruleLogicToDisplay
         var propertyOptions = null
+        var isRuleLogicDisabled = false // To disable the field when no filter rules are present
 
         var exposedInputStreamFields = null // To send selectable field options to each filter rule
 
@@ -850,14 +875,19 @@ class BusinessRuleFromScratchForm extends React.Component {
                         handleRemoveFilterRule={(e) => this.removeFilterRule(index)}
                     />)
 
-        ruleLogicToDisplay =
-            <Property
-                name="ruleLogic"
-                fieldName="Rule Logic"
-                description="Enter the Rule Logic, referring filter rule numbers"
-                value={this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0]}
-                onValueChange={(e) => this.handleRuleLogicChange(e)}
-            />
+        // Display rule logic, when at least one rule logic is present
+        if(this.state['businessRuleProperties']['ruleComponents']['filterRules'].length>0){
+            ruleLogicToDisplay =
+                <Property
+                    name="ruleLogic"
+                    fieldName="Rule Logic"
+                    description="Enter the Rule Logic, referring filter rule numbers. Eg: (1 OR 2) AND (NOT(3))"
+                    value={this.getFilterRule(this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0])}
+                    // value={this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0]}
+                    onValueChange={(e) => this.handleRuleLogicChange(e)}
+                />
+        }
+
         //}
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -978,7 +1008,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     <Grid container style={this.styles.rootGrid} wrap="wrap">
                         <Grid item xs={12}>
                             <Grid container spacing={40}>
-                                <Grid item style={{paddingRight: 90}} wrap="wrap">
+                                <Grid item style={{paddingRight: 90}}>
                                     <Typography type="subheading">
                                         Configurations
                                     </Typography>
