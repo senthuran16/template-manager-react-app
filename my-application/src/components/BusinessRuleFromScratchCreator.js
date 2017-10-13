@@ -19,7 +19,10 @@ class BusinessRuleFromScratchCreator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            templateGroups: props.templateGroups
+            templateGroups: props.templateGroups, //todo: remove
+            templateGroup: props.templateGroup,
+            inputRuleTemplates: props.inputRuleTemplates,
+            outputRuleTemplates: props.outputRuleTemplates
         }
     }
 
@@ -28,11 +31,15 @@ class BusinessRuleFromScratchCreator extends React.Component {
      * And displays a form on selecting a Rule Template
      */
     render() {
+        // todo: get rule templates related to selected tempGroup and pass
+        // todo: as 'input rule templates' and 'output rule templates'
         // To display the business Rule form
         var businessRuleForm =
             <BusinessRuleFromScratchForm
                 formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
-                templateGroups={this.state.templateGroups}
+                selectedTemplateGroup={this.state.templateGroup}
+                inputRuleTemplates={this.state.inputRuleTemplates}
+                outputRuleTemplates={this.state.outputRuleTemplates}
             />
 
 

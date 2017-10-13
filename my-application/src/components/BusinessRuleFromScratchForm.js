@@ -11,6 +11,7 @@ import {FormControl, FormHelperText} from 'material-ui/Form';
 import Input, {InputLabel} from 'material-ui/Input';
 import Select from 'material-ui/Select';
 import {MenuItem} from 'material-ui/Menu';
+import Collapse from 'material-ui/transitions/Collapse';
 import Grid from 'material-ui/Grid';
 import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
@@ -21,6 +22,9 @@ import Paper from 'material-ui/Paper';
 import FilterRule from "./FilterRule";
 import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
 import List, {ListItem, ListItemText} from 'material-ui/List';
+import InputComponent from "./InputComponent";
+import OutputComponent from "./OutputComponent";
+import FilterComponent from "./FilterComponent";
 
 /**
  * Represents a form, shown to for Business Rules from scratch
@@ -54,7 +58,7 @@ class BusinessRuleFromScratchForm extends React.Component {
         },
         listSection: {
             background: 'inherit',
-        }
+        },
     }
 
     constructor(props) {
@@ -73,20 +77,25 @@ class BusinessRuleFromScratchForm extends React.Component {
             selectedInputRuleTemplate: props.selectedInputRuleTemplate,
             selectedOutputRuleTemplate: props.selectedOutputRuleTemplate,
 
-            businessRuleProperties: props.businessRuleProperties // To store values given for properties displayed in the form
+            // To store values given for properties displayed in the form
+            businessRuleProperties: props.businessRuleProperties,
+
+            // Expanded states of components
+            isInputComponentExpanded: false,
+            isFilterComponentExpanded: false,
+            isOutputComponentExpanded: false,
         }
 
         // Assign default values of properties as entered values in create mode
         if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
+            // Create mode
             let state = this.state
-            state['selectedTemplateGroup'] = {'name': '', 'uuid': ''}
-
-            state['selectedInputRuleTemplate'] = {'name': '', 'uuid': ''}
-            state['selectedOutputRuleTemplate'] = {'name': '', 'uuid': ''}
+            // Set an empty business rule object
+            state['selectedInputRuleTemplate'] = {}
+            state['selectedOutputRuleTemplate'] = {}
             state['businessRuleProperties'] = {
                 'inputData': {},
                 'ruleComponents': {
-                    // 'filterRules': ['  '],
                     'filterRules': [],
                     'ruleLogic': ['']
                 },
@@ -95,54 +104,8 @@ class BusinessRuleFromScratchForm extends React.Component {
             }
             this.state = state
         } else {
-            // To load input & output templates available under the selected template group in Edit mode
-            // Input & output rule templates available under the selected template group
-            let loadedRuleTemplates = BusinessRulesFunctions.getRuleTemplates(this.state.selectedTemplateGroup.uuid)
-            let inputRuleTemplates = []
-            let outputRuleTemplates = []
 
-            // Get input & output templates into different arrays
-            for (let ruleTemplate of loadedRuleTemplates) {
-                if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_INPUT) {
-                    inputRuleTemplates.push(ruleTemplate)
-                } else if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_OUTPUT) {
-                    outputRuleTemplates.push(ruleTemplate)
-                }
-            }
-
-            // Update state with input & output rule templates
-            let state = this.state
-            state['inputRuleTemplates'] = inputRuleTemplates
-            state['outputRuleTemplates'] = outputRuleTemplates
         }
-
-        // To display filter rules
-        // if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
-        //     let state = this.state
-        //     // One empty filter rule
-        //     state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS]
-        //         [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES]
-        //         = ["  "]
-        //     // Empty rule logic
-        //     state.businessRuleProperties['ruleComponents']['ruleLogic'][0] = ""
-        //     this.setState(state)
-        // }
-    }
-
-    /**
-     * Handles onChange of the RuleLogic
-     * @param value
-     */
-    handleRuleLogicChange(value) {
-        let state = this.state
-        state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] = value
-        this.setState(state)
-    }
-
-    handleValueChange(property, propertyType, value) {
-        let state = this.state
-        state['businessRuleProperties'][propertyType][property] = value
-        this.setState(state)
     }
 
     /**
@@ -158,221 +121,15 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
 
     /**
-     * Removes the filter rule given by index
-     * @param index
-     */
-    removeFilterRule(index) {
-        let state = this.state
-        state.businessRuleProperties['ruleComponents']['filterRules'].splice(index, 1)
-        this.setState(state)
-    }
-
-    /**
-     * Returns rule logic when not present, which is filter rules concatenated by AND when there is no rule logic
-     * present; or the existing rule logic, when present
-     *
-     * @param existingRuleLogic
-     * @returns {*}
-     */
-    getFilterRule(existingRuleLogic){
-        // If a rule logic is present
-        if(existingRuleLogic !== ""){
-            return existingRuleLogic
-        }else{
-            // No rule logic is present
-            // Concatenate each filter rule numbers with AND and return
-            let numbers = []
-            for(let i=0 ; i<this.state['businessRuleProperties']['ruleComponents']['filterRules'].length ; i++){
-                numbers.push(i+1)
-            }
-
-            return numbers.join(" AND ")
-        }
-    }
-
-    /**
-     * Updates selected Rule Template in the state,
-     * when Rule Template is selected from the list
-     * @param name
-     */
-    handleTemplateGroupSelected(event) {
-        let state = this.state
-        var that = this
-
-        // Get selected template group & update in the state
-        state['selectedTemplateGroup'] = BusinessRulesFunctions.getTemplateGroup(event.target.value)
-        let loadedTemplateGroupPromise = BusinessRulesFunctions.getTemplateGroup(event.target.value)
-        let templateGroup = loadedTemplateGroupPromise.then(function (loadedTemplateGroupResponse) {
-            state['selectedTemplateGroup'] = loadedTemplateGroupResponse.data
-
-            // Deselect input & output rule templates
-            state['selectedInputRuleTemplate'] = {'name': '', 'uuid': ''}
-            state['selectedOutputRuleTemplate'] = {'name': '', 'uuid': ''}
-            state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT] = {}
-            state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT] = {}
-            state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_PROPERTY_TYPE_OUTPUT_MAPPINGS] = {}
-
-            // Input & output rule templates available under the selected template group
-            let loadedRuleTemplatesPromise = BusinessRulesFunctions.getRuleTemplates(event.target.value)
-            let loadedRuleTemplates = loadedRuleTemplatesPromise.then(function (loadedRuleTemplatesResponse) {
-                let inputRuleTemplates = []
-                let outputRuleTemplates = []
-
-                // Get input & output templates into different arrays
-                for (let ruleTemplate of loadedRuleTemplatesResponse.data) {
-                    if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_INPUT) {
-                        inputRuleTemplates.push(ruleTemplate)
-                    } else if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_OUTPUT) {
-                        outputRuleTemplates.push(ruleTemplate)
-                    }
-                }
-
-                state.inputRuleTemplates = inputRuleTemplates
-                state.outputRuleTemplates = outputRuleTemplates
-
-                that.setState(state)
-            });
-        })
-    }
-
-    /**
-     * Handles onChange of Input rule template selectio
-     * @param event
-     */
-    handleInputRuleTemplateSelected(event) {
-        console.log("THIS STATE INPUT")
-        console.log(this.state)
-        let state = this.state
-        var that = this
-        let selectedInputRuleTemplatePromise =
-            BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value)
-        let selectedInputRuleTemplate = selectedInputRuleTemplatePromise.then(function (response) {
-            state['selectedInputRuleTemplate'] = response.data
-            // Set default values as inputData values in state
-            for (let propertyKey in state['selectedInputRuleTemplate']['properties']) {
-                state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT][propertyKey.toString()] =
-                    state['selectedInputRuleTemplate']['properties'][propertyKey.toString()]['defaultValue']
-            }
-            that.setState(state)
-        })
-    }
-
-    /**
-     * Handles onChange of Output rule template selection
-     * @param event
-     */
-    handleOutputRuleTemplateSelected(event) {
-        let state = this.state
-        let that = this
-        let selectedOutputRuleTemplatePromise =
-            BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value)
-        let selectedOutputRuleTemplate = selectedOutputRuleTemplatePromise.then(function (response) {
-            state['selectedOutputRuleTemplate'] = response.data
-            // Set default values as outputData values in state
-            for (let propertyKey in state['selectedOutputRuleTemplate']['properties']) {
-                state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT][propertyKey.toString()] =
-                    state['selectedOutputRuleTemplate']['properties'][propertyKey.toString()]['defaultValue']
-            }
-            that.setState(state)
-        })
-    }
-
-    /**
-     * Handles onChange of any Attribute, of a filter rule
-     * @param filterRuleIndex
+     * Updates value change of any property, of the given type, to the state
+     * @param property
+     * @param propertyType
      * @param value
      */
-    handleAttributeChange(filterRuleIndex, value) {
-        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
-        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
-
+    handleValueChange(property, propertyType, value) {
         let state = this.state
-        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
-            value + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        state['businessRuleProperties'][propertyType][property] = value
         this.setState(state)
-    }
-
-    /**
-     * Handles onChange of any Operator, of a filter rule
-     *
-     * @param filterRuleIndex
-     * @param value
-     */
-    handleOperatorChange(filterRuleIndex, value) {
-        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
-        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
-
-        let state = this.state
-        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
-            value + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
-        this.setState(state)
-    }
-
-    /**
-     * Handles onChange of any AttributeOrValue, of a filter
-     *
-     * @param filterRuleIndex
-     * @param value
-     */
-    handleAttributeOrValueChange(filterRuleIndex, value) {
-        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
-        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
-
-        let state = this.state
-        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
-            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
-            value
-        this.setState(state)
-    }
-
-    /**
-     * Handles onChange of any value for an input field for output mapping
-     * @param outputFieldName
-     */
-    handleOutputMappingChange(event, outputFieldName) {
-        console.log("HANDLE OUTPUT MAP")
-        let state = this.state
-        state['businessRuleProperties']['outputMappings'][outputFieldName] = event.target.value
-        this.setState(state)
-    }
-
-    /**
-     * Gives field names of the given stream definition, as an array
-     * @param exposedStreamDefinition
-     */
-    getFieldNames(streamDefinition) {
-        let fieldNames = []
-        for (let field in this.getFields(streamDefinition)) {
-            fieldNames.push(field.toString())
-        }
-
-        return fieldNames
-    }
-
-    /**
-     * Gives field names as keys and types as values, of the given stream definition, as an object
-     * @param streamDefinition
-     * @returns {{x: string}}
-     */
-    getFields(streamDefinition) {
-        let regExp = /\(([^)]+)\)/;
-        let matches = regExp.exec(streamDefinition);
-        let fields = {}
-
-        // Keep the field name and type, as each element in an array
-        for (let field of matches[1].split(",")) {
-            // Key: name, Value: type
-            let fieldName = field.trim().split(" ")[0]
-            let fieldType = field.trim().split(" ")[1]
-            fields[fieldName.toString()] = fieldType
-        }
-
-        return fields
     }
 
     /**
@@ -426,6 +183,9 @@ class BusinessRuleFromScratchForm extends React.Component {
                             [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
                             [property.propertyName]) : (property.propertyObject.defaultValue)
                         }
+                        errorState={this.state['businessRuleProperties']
+                            [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT]
+                            [property.propertyName]}
                         options={property.propertyObject.options}
                         onValueChange={(e) => this.handleValueChange(property.propertyName, propertiesType, e)}
                     />
@@ -442,6 +202,9 @@ class BusinessRuleFromScratchForm extends React.Component {
                             [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT]
                             [property.propertyName]
                         }
+                        errorState={this.state['businessRuleProperties']
+                            [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT]
+                            [property.propertyName]}
                         options={property.propertyObject.options}
                         onValueChange={(e) => this.handleValueChange(property.propertyName, propertiesType, e)}
                     />
@@ -514,15 +277,249 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
 
     /**
+     * Gives field names of the given stream definition, as an array
+     * @param exposedStreamDefinition
+     */
+    getFieldNames(streamDefinition) {
+        let fieldNames = []
+        for (let field in this.getFields(streamDefinition)) {
+            fieldNames.push(field.toString())
+        }
+
+        return fieldNames
+    }
+
+    /**
+     * Gives field names as keys and types as values, of the given stream definition, as an object
+     * @param streamDefinition
+     * @returns {{x: string}}
+     */
+    getFields(streamDefinition) {
+        let regExp = /\(([^)]+)\)/;
+        let matches = regExp.exec(streamDefinition);
+        let fields = {}
+
+        // Keep the field name and type, as each element in an array
+        for (let field of matches[1].split(",")) {
+            // Key: name, Value: type
+            let fieldName = field.trim().split(" ")[0]
+            let fieldType = field.trim().split(" ")[1]
+            fields[fieldName.toString()] = fieldType
+        }
+
+        return fields
+    }
+
+    /**
+     * Toggles expansion of the input component
+     */
+    toggleInputComponentExpansion(){
+        this.setState({isInputComponentExpanded : !this.state.isInputComponentExpanded})
+    }
+
+    /**
+     * Handles onChange of Input rule template selectio
+     * @param event
+     */
+    handleInputRuleTemplateSelected(event) {
+        console.log("THIS STATE INPUT")
+        console.log(this.state)
+        let state = this.state
+        var that = this
+        let selectedInputRuleTemplatePromise =
+            BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value)
+        let selectedInputRuleTemplate = selectedInputRuleTemplatePromise.then(function (response) {
+            state['selectedInputRuleTemplate'] = response.data
+            // Set default values as inputData values in state
+            for (let propertyKey in state['selectedInputRuleTemplate']['properties']) {
+                state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT][propertyKey.toString()] =
+                    state['selectedInputRuleTemplate']['properties'][propertyKey.toString()]['defaultValue']
+            }
+            that.setState(state)
+        })
+    }
+
+    /**
+     * Toggles expansion of the filter component
+     */
+    toggleFilterComponentExpansion(){
+        this.setState({isFilterComponentExpanded : !this.state.isFilterComponentExpanded})
+    }
+
+    /**
+     * Handles onChange of any Attribute, of a filter rule
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleAttributeChange(filterRuleIndex, value) {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            value + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any Operator, of a filter rule
+     *
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleOperatorChange(filterRuleIndex, value) {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
+            value + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[2]
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of any AttributeOrValue, of a filter
+     *
+     * @param filterRuleIndex
+     * @param value
+     */
+    handleAttributeOrValueChange(filterRuleIndex, value) {
+        var ruleComponentType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS
+        var ruleComponentFilterRuleType = BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES
+
+        let state = this.state
+        state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex] =
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[0] + " " +
+            state.businessRuleProperties[ruleComponentType][ruleComponentFilterRuleType][filterRuleIndex].split(" ")[1] + " " +
+            value
+        this.setState(state)
+    }
+
+    /**
+     * Handles onChange of the RuleLogic
+     * @param value
+     */
+    handleRuleLogicChange(value) {
+        //this.generateRuleLogic(value)
+        let state = this.state
+        state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] = value
+        this.setState(state)
+    }
+
+    /**
+     * Updates the rule logic by adding the latest rule logic number with an 'AND' in between
+     */
+    generateRuleLogic() {
+        let state = this.state
+        let existingRuleLogic = state['businessRuleProperties']['ruleComponents']['ruleLogic'][0]
+        // If a rule logic is not present
+        if (existingRuleLogic == "") {
+            // No rule logic is present
+            // Concatenate each filter rule numbers with AND and return
+            let numbers = []
+            for (let i = 0; i < this.state['businessRuleProperties']['ruleComponents']['filterRules'].length; i++) {
+                numbers.push(i + 1)
+            }
+
+            state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] = numbers.join(" AND ")
+        } else {
+            state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] =
+                existingRuleLogic + ' AND ' + this.state['businessRuleProperties']['ruleComponents']['filterRules'].length
+        }
+
+        this.setState(state)
+    }
+
+    /**
      * Adds a new filter rule
      */
     addFilterRule() {
         let state = this.state
         state.businessRuleProperties['ruleComponents']['filterRules'].push("  ")
         this.setState(state)
+
+        // Check the rule logic, and update auto generated logic, if it's empty
+        this.generateRuleLogic()
     }
 
-    /** todo:different for BR from scratch
+    /**
+     * Removes the filter rule given by index
+     * @param index
+     */
+    removeFilterRule(index) {
+        let state = this.state
+        state.businessRuleProperties['ruleComponents']['filterRules'].splice(index, 1)
+        this.setState(state)
+    }
+
+    /**
+     * Returns whether the rule logic has a warning, if any of the entered number has exceeded the number of the
+     * latest filter rule, or not
+     * @returns {boolean}
+     */
+    warnOnRuleLogic(){
+        // If rule logic exists
+        if(this.state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] &&
+            this.state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] != null &&
+            this.state['businessRuleProperties']['ruleComponents']['ruleLogic'][0] !== "") {
+            let ruleLogic = this.state['businessRuleProperties']['ruleComponents']['ruleLogic'][0]
+
+            // Get all the numbers, mentioned in the rule logic
+            var numberPattern = /\d+/g;
+            for (let number of ruleLogic.match(numberPattern)) {
+                // If a number exceeds the latest filter rule's number, a corresponding filter rule can not be found
+                if (number > this.state['businessRuleProperties']['ruleComponents']['filterRules'].length) {
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
+
+    /**
+     * Toggles expansion of the output component
+     */
+    toggleOutputComponentExpansion(){
+        this.setState({isOutputComponentExpanded : !this.state.isOutputComponentExpanded})
+    }
+
+    /**
+     * Handles onChange of Output rule template selection
+     * @param event
+     */
+    handleOutputRuleTemplateSelected(event) {
+        let state = this.state
+        let that = this
+        let selectedOutputRuleTemplatePromise =
+            BusinessRulesFunctions.getRuleTemplate(this.state.selectedTemplateGroup.uuid, event.target.value)
+        let selectedOutputRuleTemplate = selectedOutputRuleTemplatePromise.then(function (response) {
+            state['selectedOutputRuleTemplate'] = response.data
+            // Set default values as outputData values in state
+            for (let propertyKey in state['selectedOutputRuleTemplate']['properties']) {
+                state['businessRuleProperties'][BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT][propertyKey.toString()] =
+                    state['selectedOutputRuleTemplate']['properties'][propertyKey.toString()]['defaultValue']
+            }
+            that.setState(state)
+        })
+    }
+
+    /**
+     * Handles onChange of any value for an input field for output mapping
+     * @param outputFieldName
+     */
+    handleOutputMappingChange(event, outputFieldName) {
+        console.log("HANDLE OUTPUT MAP")
+        let state = this.state
+        state['businessRuleProperties']['outputMappings'][outputFieldName] = event.target.value
+        this.setState(state)
+    }
+
+    /**
      * Creates a Business Rule object from the form filled properties
      */
     createBusinessRuleObject() {
@@ -544,427 +541,19 @@ class BusinessRuleFromScratchForm extends React.Component {
     }
 
     render() {
-        // BUSINESS RULE NAME //////////////////////////////////////////////////////////////////////////////////////////
-        var businessRuleNameToDisplay
+        // Business Rule Name
+        var businessRuleNameToDisplay =
+            <TextField
+                id="businessRuleName"
+                name="businessRuleName"
+                label="Business Rule name"
+                placeholder="Please enter"
+                required={true}
+                onChange={(e) => this.handleBusinessRuleNameChange(e)}
+                disabled={(this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT)}
+            />
 
-        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
-            businessRuleNameToDisplay =
-                <TextField
-                    id="businessRuleName"
-                    name="businessRuleName"
-                    label="Business Rule name"
-                    placeholder="Please enter"
-                    value={this.state.businessRuleName}
-                    required={true}
-                    onChange={(e) => this.handleBusinessRuleNameChange(e)}
-                    disabled={true}
-                />
-        } else {
-            businessRuleNameToDisplay =
-                <TextField
-                    id="businessRuleName"
-                    name="businessRuleName"
-                    label="Business Rule name"
-                    placeholder="Please enter"
-                    required={true}
-                    onChange={(e) => this.handleBusinessRuleNameChange(e)}
-                />
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // TEMPLATE GROUP //////////////////////////////////////////////////////////////////////////////////////////////
-        var templateGroupsToDisplay
-
-        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
-            // Disabled for Edit mode
-            templateGroupsToDisplay =
-                <TextField
-                    id="templateGroup"
-                    name="templateGroup"
-                    label="Template Group"
-                    placeholder="Template Group"
-                    value={this.state.selectedTemplateGroup.name}
-                    helperText={this.state.selectedTemplateGroup.description}
-                    required={true}
-                    disabled={true}
-                />
-        } else {
-            let templateGroupElementsToDisplay = this.state.templateGroups.map((templateGroup) =>
-                <MenuItem key={templateGroup.uuid}
-                          value={templateGroup.uuid}>
-                    {templateGroup.name}
-                </MenuItem>
-            )
-
-            let templateGroupHelperText = "Please select a template group"
-
-            if (this.state.selectedTemplateGroup.uuid != '') {
-                templateGroupHelperText = this.state.selectedTemplateGroup.description
-            }
-
-            templateGroupsToDisplay =
-                <FormControl>
-                    <InputLabel htmlFor="templateGroup">Template Group</InputLabel>
-                    <Select
-                        value={this.state.selectedTemplateGroup.uuid}
-                        onChange={(e) => this.handleTemplateGroupSelected(e)}
-                        input={<Input id="templateGroup"/>}
-                    >
-                        {templateGroupElementsToDisplay}
-                    </Select>
-                    <FormHelperText>{templateGroupHelperText}</FormHelperText>
-                </FormControl>
-        }
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // INPUT PROPERTIES ////////////////////////////////////////////////////////////////////////////////////////////
-        // To display input properties
-        var inputRuleTemplatesToDisplay
-        var inputDataPropertiesToDisplay
-        var exposedInputStreamFieldsToDisplay
-
-        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
-            var inputRuleTemplateElements = this.state.inputRuleTemplates.map((inputRuleTemplate) =>
-                <MenuItem key={inputRuleTemplate.uuid} value={inputRuleTemplate.uuid}>
-                    {inputRuleTemplate.name}
-                </MenuItem>)
-
-            // To display input rule templates drop down
-            inputRuleTemplatesToDisplay =
-                <FormControl>
-                    <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
-                    <Select
-                        value={this.state.selectedInputRuleTemplate.uuid}
-                        onChange={(e) => this.handleInputRuleTemplateSelected(e)} // todo: recheck
-                        input={<Input id="inputRuleTemplate"/>}
-                    >
-                        {inputRuleTemplateElements}
-                    </Select>
-                    <FormHelperText>{this.state.selectedInputRuleTemplate.description}</FormHelperText>
-                </FormControl>
-
-            // To display input data properties
-            inputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
-                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT,
-                this.state.formMode)
-
-            // todo: exposed stream fields
-        } else {
-            //Create mode
-            // To display the helper text
-            let inputRuleTemplateHelperText
-            if (this.state.selectedInputRuleTemplate.uuid === '') {
-                inputRuleTemplateHelperText = 'Select an input rule template'
-            } else {
-                inputRuleTemplateHelperText = this.state.selectedInputRuleTemplate.description
-            }
-
-            // If a template group has been selected
-            if (this.state.selectedTemplateGroup.uuid !== '') {
-                var inputRuleTemplateElements = this.state.inputRuleTemplates.map((inputRuleTemplate) =>
-                    <MenuItem key={inputRuleTemplate.uuid} value={inputRuleTemplate.uuid}>
-                        {inputRuleTemplate.name}
-                    </MenuItem>)
-
-                // To display input rule templates drop down
-                inputRuleTemplatesToDisplay =
-                    <FormControl>
-                        <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
-                        <Select
-                            value={this.state.selectedInputRuleTemplate['uuid']}
-                            onChange={(e) => this.handleInputRuleTemplateSelected(e)} // todo: recheck
-                            input={<Input id="inputRuleTemplate"/>}
-                        >
-                            {inputRuleTemplateElements}
-                        </Select>
-                        <FormHelperText>{inputRuleTemplateHelperText}</FormHelperText>
-                    </FormControl>
-
-                // If an input rule template has been selected
-                if (this.state.selectedInputRuleTemplate.uuid != '') {
-                    // To display input data properties
-                    inputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
-                        BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT,
-                        this.state.formMode)
-
-                    // Store as a 2 dimensional array of [fieldName, fieldType]s
-                    let inputStreamFields =
-                        this.getFields(this.state.selectedInputRuleTemplate.templates[0]['exposedStreamDefinition'])
-                    let inputStreamFieldsToDisplay = []
-                    for (let field in inputStreamFields) {
-                        inputStreamFieldsToDisplay.push([field, inputStreamFields[field]])
-                    }
-
-                    // To display exposed input stream fields
-                    let exposedInputStreamFieldElementsToDisplay =
-                        <List subheader style={this.styles.root}>
-                            {inputStreamFieldsToDisplay.map(field => (
-                                <div key={field} style={this.styles.listSection}>
-                                    <ListItem button key={field[0]}>
-                                        <ListItemText primary={field[0]} secondary={field[1]}/>
-                                    </ListItem>
-                                    <ListItem button key={field[0]+'b'}>
-                                        <ListItemText primary={field[0]} secondary={field[1]}/>
-                                    </ListItem>
-                                    <ListItem button key={field[0]+'c'}>
-                                        <ListItemText primary={field[0]} secondary={field[1]}/>
-                                    </ListItem>
-                                    <ListItem button key={field[0]+'d'}>
-                                        <ListItemText primary={field[0]} secondary={field[1]}/>
-                                    </ListItem>
-                                    <ListItem button key={field[0]+'e'}>
-                                        <ListItemText primary={field[0]} secondary={field[1]}/>
-                                    </ListItem>
-                                </div>
-                            ))}
-                        </List>
-
-                    exposedInputStreamFieldsToDisplay =
-                        <Grid item>
-                            <Paper style={{padding: 10}}>
-                                <Typography type="subheading">
-                                    Exposed stream fields
-                                </Typography>
-                                <br/>
-                                {exposedInputStreamFieldElementsToDisplay}
-                            </Paper>
-                        </Grid>
-
-                } else {
-                    inputDataPropertiesToDisplay =
-                        <Typography type="body2">
-                            Please select an input rule template
-                        </Typography>
-                }
-
-            } else {
-                inputRuleTemplatesToDisplay =
-                    <Typography type="body2">
-                        Please select a template group
-                    </Typography>
-                inputDataPropertiesToDisplay =
-                    <Typography type="body2">
-                        Please select a template group and an input rule template
-                    </Typography>
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // OUTPUT PROPERTIES ////////////////////////////////////////////////////////////////////////////////////////////
-        // To display output properties
-        var outputRuleTemplatesToDisplay
-        var outputDataPropertiesToDisplay
-
-        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
-            // Edit mode
-
-            var outputRuleTemplateElements = this.state.outputRuleTemplates.map((outputRuleTemplate) =>
-                <MenuItem key={outputRuleTemplate.uuid} value={outputRuleTemplate.uuid}>
-                    {outputRuleTemplate.name}
-                </MenuItem>)
-
-            // To display output rule templates drop down
-            outputRuleTemplatesToDisplay =
-                <FormControl>
-                    <InputLabel htmlFor="outputRuleTemplate">Rule Template</InputLabel>
-                    <Select
-                        value={this.state.selectedOutputRuleTemplate.uuid}
-                        onChange={(e) => this.handleOutputRuleTemplateSelected(e)} // todo: recheck
-                        input={<Input id="outputRuleTemplate"/>}
-                    >
-                        {outputRuleTemplateElements}
-                    </Select>
-                    <FormHelperText>{this.state.selectedOutputRuleTemplate.description}</FormHelperText>
-                </FormControl>
-
-            // To display output data properties
-            outputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
-                BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT,
-                this.state.formMode)
-        } else {
-            // Create mode
-
-            // To display the helper text
-            let outputRuleTemplateHelperText
-            if (this.state.selectedOutputRuleTemplate.uuid === '') {
-                outputRuleTemplateHelperText = 'Select an output rule template'
-            } else {
-                outputRuleTemplateHelperText = this.state.selectedOutputRuleTemplate.description
-            }
-
-            // If a template group has been selected
-            if (this.state.selectedTemplateGroup.uuid !== '') {
-                var outputRuleTemplateElements = this.state.outputRuleTemplates.map((outputRuleTemplate) =>
-                    <MenuItem key={outputRuleTemplate.uuid} value={outputRuleTemplate.uuid}>
-                        {outputRuleTemplate.name}
-                    </MenuItem>)
-
-                // To display output rule templates drop down
-                outputRuleTemplatesToDisplay =
-                    <FormControl>
-                        <InputLabel htmlFor="outputRuleTemplate">Rule Template</InputLabel>
-                        <Select
-                            value={this.state.selectedOutputRuleTemplate['uuid']}
-                            onChange={(e) => this.handleOutputRuleTemplateSelected(e)} // todo: recheck
-                            input={<Input id="outputRuleTemplate"/>}
-                        >
-                            {outputRuleTemplateElements}
-                        </Select>
-                        <FormHelperText>{outputRuleTemplateHelperText}</FormHelperText>
-                    </FormControl>
-
-                // If an output rule template has been selected
-                if (this.state.selectedOutputRuleTemplate.uuid != '') {
-                    // To display output data properties
-                    outputDataPropertiesToDisplay = this.reArrangePropertiesForDisplay(
-                        BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT,
-                        this.state.formMode)
-                } else {
-                    outputDataPropertiesToDisplay =
-                        <Typography type="body2">
-                            Please select an output rule template
-                        </Typography>
-                }
-
-            } else {
-                outputRuleTemplatesToDisplay =
-                    <Typography type="body2">
-                        Please select a template group
-                    </Typography>
-                outputDataPropertiesToDisplay =
-                    <Typography type="body2">
-                        Please select a template group and an output rule template
-                    </Typography>
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // FILTERS /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        var filterRulesToDisplay
-        var ruleLogicToDisplay
-        var propertyOptions = null
-        var isRuleLogicDisabled = false // To disable the field when no filter rules are present
-
-        var exposedInputStreamFields = null // To send selectable field options to each filter rule
-
-        // If a template group & input rule template has been selected
-        if ((this.state.selectedTemplateGroup.uuid !== '') &&
-            (this.state.selectedInputRuleTemplate.uuid !== '')) {
-            // Get field names and types from the exposed input stream
-            exposedInputStreamFields = this.getFields(this.state.selectedInputRuleTemplate['templates'][0]['exposedStreamDefinition'])
-        }
-
-        //if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
-        filterRulesToDisplay =
-            this.state.businessRuleProperties[BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_RULE_COMPONENTS]
-                [BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_RULE_COMPONENT_PROPERTY_TYPE_FILTER_RULES]
-                .map((filterRule, index) =>
-                    <FilterRule
-                        key={index}
-                        filterRuleIndex={index}
-                        filterRule={filterRule}
-                        exposedInputStreamFields={exposedInputStreamFields}
-                        onAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
-                        onOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
-                        onAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}
-                        handleRemoveFilterRule={(e) => this.removeFilterRule(index)}
-                    />)
-
-        // Display rule logic, when at least one rule logic is present
-        if(this.state['businessRuleProperties']['ruleComponents']['filterRules'].length>0){
-            ruleLogicToDisplay =
-                <Property
-                    name="ruleLogic"
-                    fieldName="Rule Logic"
-                    description="Enter the Rule Logic, referring filter rule numbers. Eg: (1 OR 2) AND (NOT(3))"
-                    value={this.getFilterRule(this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0])}
-                    // value={this.state.businessRuleProperties['ruleComponents']['ruleLogic'][0]}
-                    onValueChange={(e) => this.handleRuleLogicChange(e)}
-                />
-        }
-
-        //}
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // OUTPUT MAPPINGS /////////////////////////////////////////////////////////////////////////////////////////////
-        var outputMappingsToDisplay
-
-        // If a template group, an input rule template, and an output rule template have been selected
-        if ((this.state.selectedTemplateGroup.uuid !== '') &&
-            (this.state.selectedInputRuleTemplate.uuid !== '') &&
-            (this.state.selectedOutputRuleTemplate.uuid !== '')) {
-            // Each field of the exposed output stream, must be mapped with an available field in the exposed input stream
-            var exposedOutputStreamFieldNames =
-                this.getFieldNames(this.state.selectedOutputRuleTemplate['templates'][0]['exposedStreamDefinition'])
-            var exposedInputStreamFieldNames =
-                this.getFieldNames(this.state.selectedInputRuleTemplate['templates'][0]['exposedStreamDefinition'])
-
-            // Each drop down will have fields of the exposed input stream as options
-            var inputStreamFieldsToMap = exposedInputStreamFieldNames.map((fieldName, index) =>
-                <MenuItem key={index}
-                          value={fieldName}>
-                    {fieldName}
-                </MenuItem>
-            )
-
-            // To display a row for each output field map
-            let outputMappingElementsToDisplay = exposedOutputStreamFieldNames.map((fieldName, index) =>
-                <TableRow key={index}>
-                    <TableCell>
-                        <FormControl>
-                            <Select
-                                // No value when no mapping is specified
-                                // (used when a different output rule template is selected)
-                                value={(this.state['businessRuleProperties']['outputMappings'][fieldName]) ?
-                                    (this.state['businessRuleProperties']['outputMappings'][fieldName]) : ''}
-                                onChange={(e) => this.handleOutputMappingChange(e, fieldName)} //todo: check the method
-                                input={<Input id="templateGroup"/>}
-                            >
-                                {inputStreamFieldsToMap}
-                            </Select>
-                        </FormControl>
-                    </TableCell>
-                    <TableCell>
-                        As
-                    </TableCell>
-                    <TableCell>
-                        {fieldName}
-                    </TableCell>
-                </TableRow>
-            )
-
-            outputMappingsToDisplay =
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Input</TableCell>
-                            <TableCell></TableCell>
-                            <TableCell>Output</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {outputMappingElementsToDisplay}
-                    </TableBody>
-                </Table>
-        } else {
-            outputMappingsToDisplay =
-                <Typography type="body2">
-                    Please select an input rule template and an output rule template
-                </Typography>
-
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        // SUBMIT BUTTON ///////////////////////////////////////////////////////////////////////////////////////////////
-
-        // Submit button
+        // Submit Button
         var submitButton
 
         if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_EDIT) {
@@ -974,7 +563,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                         onClick={(e) => this.createBusinessRuleObject()}>
                     Update
                 </Button>
-        } else {
+        } if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
             // Create button
             submitButton =
                 <Button raised color="primary" style={this.styles.button}
@@ -983,89 +572,56 @@ class BusinessRuleFromScratchForm extends React.Component {
                 </Button>
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
         return (
             <div>
-                <br/>
                 {businessRuleNameToDisplay}
                 <br/>
                 <br/>
-                <Paper style={this.styles.paper}>
-                    {templateGroupsToDisplay}
-                </Paper>
+                <InputComponent
+                    mode={this.state.formMode}
+                    inputRuleTemplates={this.state.inputRuleTemplates}
+                    getFields={(streamDefinition) => this.getFields(streamDefinition)}
+                    selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
+                    handleInputRuleTemplateSelected={(e) => this.handleInputRuleTemplateSelected(e)}
+                    reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
+                    style={this.styles}
+                    isExpanded={this.state.isInputComponentExpanded}
+                    toggleExpansion={(e)=>this.toggleInputComponentExpansion()}
+                />
                 <br/>
-                <Paper style={this.styles.paper}>
-                    <Typography type="title">
-                        Input
-                    </Typography>
-                    <br/>
-                    {inputRuleTemplatesToDisplay}
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Grid container style={this.styles.rootGrid} wrap="wrap">
-                        <Grid item xs={12}>
-                            <Grid container spacing={40}>
-                                <Grid item style={{paddingRight: 90}}>
-                                    <Typography type="subheading">
-                                        Configurations
-                                    </Typography>
-                                    {inputDataPropertiesToDisplay}
-                                </Grid>
-                                {exposedInputStreamFieldsToDisplay}
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <br/>
-                </Paper>
+                <FilterComponent
+                    mode={this.state.formMode}
+                    selectedInputRuleTemplate = {this.state.selectedInputRuleTemplate}
+                    getFields={(streamDefinition)=>this.getFields(streamDefinition)}
+                    businessRuleProperties = {this.state.businessRuleProperties}
+                    handleAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
+                    handleOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
+                    handleAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}
+                    handleRemoveFilterRule={(index) => this.removeFilterRule(index)}
+                    handleRuleLogicChange = {(value) => this.handleRuleLogicChange(value)}
+                    addFilterRule = {(e) => this.addFilterRule()}
+                    onFilterRuleAddition = {(e) => this.generateRuleLogic()}
+                    ruleLogicWarn = {this.warnOnRuleLogic()}
+                    isExpanded={this.state.isFilterComponentExpanded}
+                    toggleExpansion={(e)=>this.toggleFilterComponentExpansion()}
+                    style = {this.styles}
+                />
                 <br/>
-                <Paper style={this.styles.paper}>
-                    <Typography type="title">Filters</Typography>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell>Attribute</TableCell>
-                                <TableCell>Operator</TableCell>
-                                <TableCell>Value/Attribute</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {filterRulesToDisplay}
-                        </TableBody>
-                    </Table>
-                    <br/>
-                    <IconButton color="primary" style={this.styles.addFilterRuleButton} aria-label="Remove"
-                                onClick={(e) => this.addFilterRule()}>
-                        <AddIcon/>
-                    </IconButton>
-                    <br/>
-                    <br/>
-                    {ruleLogicToDisplay}
-                </Paper>
-                <br/>
-                <Paper style={this.styles.paper}>
-                    <Typography type="title">
-                        Output
-                    </Typography>
-                    <br/>
-                    {outputRuleTemplatesToDisplay}
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Typography type="subheading">
-                        Configurations
-                    </Typography>
-                    {outputDataPropertiesToDisplay}
-                    <br/>
-                    <br/>
-                    <Typography type="subheading">
-                        Mappings
-                    </Typography>
-                    {outputMappingsToDisplay}
-                </Paper>
+                <OutputComponent
+                    mode={this.state.formMode}
+                    outputRuleTemplates={this.state.outputRuleTemplates}
+                    getFields={(streamDefinition) => this.getFields(streamDefinition)}
+                    getFieldNames={(streamDefinition) => this.getFieldNames(streamDefinition)}
+                    selectedOutputRuleTemplate={this.state.selectedOutputRuleTemplate}
+                    selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
+                    handleOutputRuleTemplateSelected={(e) => this.handleOutputRuleTemplateSelected(e)}
+                    handleOutputMappingChange={(e, fieldName) => this.handleOutputMappingChange(e, fieldName)}
+                    reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
+                    businessRuleProperties={this.state['businessRuleProperties']}
+                    isExpanded={this.state.isOutputComponentExpanded}
+                    toggleExpansion={(e)=>this.toggleOutputComponentExpansion()}
+                    style={this.styles}
+                />
                 <br/>
                 {submitButton}
             </div>

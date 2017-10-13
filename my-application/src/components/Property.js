@@ -25,7 +25,10 @@ class Property extends React.Component {
             return (
                 <div>
                     <br/>
-                    <FormControl>
+                    <FormControl
+                        error={(this.props.errorState)?(this.props.errorState):false}
+                        disabled={(this.props.disabledState)?(this.props.disabledState):false}
+                    >
                         <InputLabel htmlFor={this.props.name}>{this.props.fieldName}</InputLabel>
                         <Select
                             value={this.props.value}
@@ -44,6 +47,8 @@ class Property extends React.Component {
                 <div>
                     <TextField
                         required
+                        error={(this.props.errorState)?(this.props.errorState):false}
+                        disabled={(this.props.disabledState)?(this.props.disabledState):false}
                         id={this.props.name}
                         name={this.props.name}
                         label={this.props.fieldName}

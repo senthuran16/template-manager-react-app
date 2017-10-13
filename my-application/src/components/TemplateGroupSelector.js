@@ -28,26 +28,47 @@ class TemplateGroupSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mode: props.mode, // 'template' or 'scratch'
             templateGroups: props.templateGroups // Available Template Groups
         }
     }
 
     render() {
-        var templateGroups = this.state.templateGroups.map((templateGroup) =>
+        var templateGroups
 
-            <Grid item key={templateGroup.uuid}>
-                <TemplateGroup
-                    key={templateGroup.uuid}
-                    name={templateGroup.name}
-                    uuid={templateGroup.uuid}
-                    description={templateGroup.description}
-                    onClick={(e) =>
-                        BusinessRulesFunctions.loadRuleTemplateSelector(
-                            templateGroup.uuid, BusinessRulesConstants.RULE_TEMPLATE_TYPE_TEMPLATE)
-                    }
-                />
-            </Grid>
-        )
+        // Business rule will be created from template
+        if(this.state.mode === BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE){
+            templateGroups = this.state.templateGroups.map((templateGroup) =>
+                <Grid item key={templateGroup.uuid}>
+                    <TemplateGroup
+                        key={templateGroup.uuid}
+                        name={templateGroup.name}
+                        uuid={templateGroup.uuid}
+                        description={templateGroup.description}
+                        onClick={(e) =>
+                            BusinessRulesFunctions.loadRuleTemplateSelector(templateGroup.uuid)
+                        }
+                    />
+                </Grid>
+            )
+        }else{
+            // Business rule will be created from scratch
+            templateGroups = this.state.templateGroups.map((templateGroup) =>
+                <Grid item key={templateGroup.uuid}>
+                    <TemplateGroup
+                        key={templateGroup.uuid}
+                        name={templateGroup.name}
+                        uuid={templateGroup.uuid}
+                        description={templateGroup.description}
+                        onClick={(e) =>
+                            BusinessRulesFunctions.loadBusinessRuleFromScratchCreator(templateGroup.uuid)
+                        }
+                    />
+                </Grid>
+            )
+        }
+
+
 
         return (
             <div>

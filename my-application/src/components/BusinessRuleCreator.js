@@ -40,18 +40,25 @@ class BusinessRuleCreator extends React.Component {
                             <Grid container justify="center" spacing={Number(this.styles.spacing)}>
                                 <Grid item>
                                     <CreateButton
-                                        onClick={(e) => BusinessRulesFunctions.loadTemplateGroupSelector()}
+                                        onClick={(e) => BusinessRulesFunctions.loadTemplateGroupSelector(BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE)}
                                         mode={BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE}
                                         text='From Template'
                                     />
                                 </Grid>
                                 <Grid item>
                                     <CreateButton
-                                        onClick={(e) => BusinessRulesFunctions.loadBusinessRuleFromScratchCreator()}
+                                        onClick={(e) => BusinessRulesFunctions.loadTemplateGroupSelector(BusinessRulesConstants.BUSINESS_RULE_TYPE_SCRATCH)}
                                         mode={BusinessRulesConstants.BUSINESS_RULE_TYPE_SCRATCH}
                                         text='From The Scratch'
                                     />
                                 </Grid>
+                                {/*<Grid item>*/}
+                                    {/*<CreateButton*/}
+                                        {/*onClick={(e) => BusinessRulesFunctions.loadBusinessRuleFromScratchCreator()}*/}
+                                        {/*mode={BusinessRulesConstants.BUSINESS_RULE_TYPE_SCRATCH}*/}
+                                        {/*text='From The Scratch'*/}
+                                    {/*/>*/}
+                                {/*</Grid>*/}
                             </Grid>
                         </Grid>
                     </Grid>

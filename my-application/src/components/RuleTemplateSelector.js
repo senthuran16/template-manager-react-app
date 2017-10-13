@@ -37,21 +37,20 @@ class RuleTemplateSelector extends React.Component {
         super(props);
         this.state = {
             selectedTemplateGroup: props.selectedTemplateGroup,
-            ruleTemplateTypeFilter: props.ruleTemplateTypeFilter, // 'template', 'input' or 'output'todo: only template
             ruleTemplates: props.ruleTemplates,
             selectedRuleTemplate: {name: '', uuid: ''}, // Initialize with no Rule Template selected
         }
     }
 
     /**
-     * Renders a drop down which displays available Rule Templates of filtered types,
+     * Renders a drop down which displays available Rule Templates of type 'template',
      * And displays a form on selecting a Rule Template
      */
     render() {
-        // Only add Rule Templates of required type
+        // Only add Rule Templates of type 'template'
         var filteredRuleTemplates = []
         for (let ruleTemplate of this.state.ruleTemplates) {
-            if (ruleTemplate.type === this.state.ruleTemplateTypeFilter) {
+            if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_TEMPLATE) {
                 filteredRuleTemplates.push(ruleTemplate)
             }
         }
@@ -79,7 +78,8 @@ class RuleTemplateSelector extends React.Component {
                     ruleTemplate={this.state.selectedRuleTemplate}/>
         } else {
             // Otherwise, show default helper text
-            ruleTemplateSelectionHelperText = "Select a rule template of type - " + this.state.ruleTemplateTypeFilter
+            ruleTemplateSelectionHelperText = "Select a rule template of type - " +
+                BusinessRulesConstants.RULE_TEMPLATE_TYPE_TEMPLATE
             businessRuleForm = <div></div>
         }
 

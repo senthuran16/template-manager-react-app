@@ -29,6 +29,36 @@ class BusinessRuleFromTemplateForm extends React.Component {
             maxWidth: 800
         }
     }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            formMode: props.formMode, // 'create', 'edit' or todo: 'view'
+            businessRuleName: props.businessRuleName,
+            businessRuleUUID: props.businessRuleUUID,
+            selectedTemplateGroup: props.selectedTemplateGroup,
+            ruleTemplate: props.ruleTemplate, // Rule Templates, whose properties will be used to generate form
+            // To store values given for properties displayed in the form
+            businessRuleProperties: props.businessRuleProperties,
+
+            // For displaying messages / errors
+            displayMessage: false,
+            messageToDisplay: '',
+            messagePrimaryButtonText: ''
+        }
+
+        // Assign default values of properties as entered values in create mode
+        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
+            let state = this.state
+            state['businessRuleProperties'] = {}
+            for (let propertyKey in this.state.ruleTemplate.properties) {
+                state['businessRuleProperties'][propertyKey] =
+                    this.state.ruleTemplate.properties[propertyKey.toString()]['defaultValue']
+            }
+            this.state = state
+        }
+    }
+
     /**
      * Handles onChange of each property
      *
@@ -51,30 +81,6 @@ class BusinessRuleFromTemplateForm extends React.Component {
         this.setState(state)
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            formMode: props.formMode, // 'create' or 'edit'
-            businessRuleName: props.businessRuleName,
-            businessRuleUUID: props.businessRuleUUID,
-            selectedTemplateGroup: props.selectedTemplateGroup,
-            ruleTemplate: props.ruleTemplate, // Rule Templates, whose properties will be used to generate form
-            // To store values given for properties displayed in the form
-            businessRuleProperties: props.businessRuleProperties,
-        }
-
-        // Assign default values of properties as entered values in create mode
-        if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
-            let state = this.state
-            state['businessRuleProperties'] = {}
-            for (let propertyKey in this.state.ruleTemplate.properties) {
-                state['businessRuleProperties'][propertyKey] =
-                    this.state.ruleTemplate.properties[propertyKey.toString()]['defaultValue']
-            }
-            this.state = state
-        }
-    }
-
     /**
      * Creates a Business Rule object from the form filled properties
      */
@@ -87,23 +93,15 @@ class BusinessRuleFromTemplateForm extends React.Component {
         businessRuleObject['ruleTemplateUUID'] = this.state.ruleTemplate.uuid
         businessRuleObject['properties'] = this.state.businessRuleProperties
 
-        console.log("JSON OBJECT")
+        console.log("BUSINESS RULE OBJECT IS")
         console.log(businessRuleObject)
-        console.log("STRNGIFIED")
-        console.log(JSON.stringify(businessRuleObject))
 
         // Send prepared business rule object to API
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
         apis.createBusinessRule(JSON.stringify(businessRuleObject)).then(function(response){
-            alert(response.data)
+            console.log("RESPONSE DATA AFTER CREATION")
+            console.log(response)
         })
-
-        // // Send prepared business rule object to API
-        // let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
-        // apis.createBusinessRule(JSON.stringify(businessRuleObject)).then(function(response){
-        //     console.log("RESPONSE")
-        //     console.log(response)
-        // })
     }
 
     render() {
@@ -143,6 +141,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     value={this.state['businessRuleProperties'][property.propertyName]}
                     options={property.propertyObject.options}
                     onValueChange={(e)=>this.handleValueChange(property.propertyName,e)}
+                    errorState={this.state['businessRuleProperties'][property.propertyName]==''}
                 />
             )
 

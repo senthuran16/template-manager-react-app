@@ -47,14 +47,16 @@ class BusinessRulesFunctions {
 
     /**
      * Shows available Template Groups to select one,
-     * for creating a Business Rule from template
+     * for creating a Business Rule in the given mode
      */
-    static loadTemplateGroupSelector() {
+    static loadTemplateGroupSelector(mode) {
         let responseData = this.getTemplateGroups()
-        responseData.then(function(response){
-            ReactDOM.render(<TemplateGroupSelector
-                templateGroups={response.data}
-            />, document.getElementById('root'))
+        responseData.then(function (response) {
+            ReactDOM.render(
+                <TemplateGroupSelector
+                    templateGroups={response.data}
+                    mode={mode}
+                />, document.getElementById('root'))
         }).catch(error => {
             console.log(error);
         });
@@ -64,22 +66,40 @@ class BusinessRulesFunctions {
      * Shows form to create a BusinessRule from scratch,
      * by selecting input & output rule templates from a list of available ones
      */
-    static loadBusinessRuleFromScratchCreator() {
-        let responseData = this.getTemplateGroups()
-        responseData.then(function(response){
-            ReactDOM.render(
-                <BusinessRuleFromScratchCreator
-                    templateGroups={response.data}/>,
-                document.getElementById('root')
-            )
-        });
+    static loadBusinessRuleFromScratchCreator(templateGroupUUID) {
+        let that = this
+        let templateGroupPromise = this.getTemplateGroup(templateGroupUUID)
+        templateGroupPromise.then(function(templateGroupResponse){
+            // template group is loaded
+            let templateGroup = templateGroupResponse.data //todo: what if this api call fails? no 'data'!
+            let ruleTemplatesPromise = that.getRuleTemplates(templateGroupUUID)
+            ruleTemplatesPromise.then(function(ruleTemplatesResponse){
+                let inputRuleTemplates = []
+                let outputRuleTemplates = []
+
+                // Get input & output templates into different arrays
+                for (let ruleTemplate of ruleTemplatesResponse.data) {
+                    if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_INPUT) {
+                        inputRuleTemplates.push(ruleTemplate)
+                    } else if (ruleTemplate.type === BusinessRulesConstants.RULE_TEMPLATE_TYPE_OUTPUT) {
+                        outputRuleTemplates.push(ruleTemplate)
+                    }
+                }
+                ReactDOM.render(
+                    <BusinessRuleFromScratchCreator
+                        templateGroup={templateGroup}
+                        inputRuleTemplates={inputRuleTemplates}
+                        outputRuleTemplates={outputRuleTemplates}
+                    />, document.getElementById('root'))
+            });
+        })
     }
 
     /**
-     * Shows available Rule Templates of given type under given templateGroup,
+     * Shows available Rule Templates of type 'template' under given templateGroup,
      * to select one and generate a form out of that
      */
-    static loadRuleTemplateSelector(templateGroupUUID, ruleTemplateTypeFilter) {
+    static loadRuleTemplateSelector(templateGroupUUID) {
         let templateGroupPromise = this.getTemplateGroup(templateGroupUUID)
         templateGroupPromise.then(function(templateGroupResponse){
             console.log("TEMPLATE GROUP PROMISE")
@@ -90,7 +110,6 @@ class BusinessRulesFunctions {
                 console.log(ruleTemplatesResponse.data)
                 ReactDOM.render(<RuleTemplateSelector
                     selectedTemplateGroup={templateGroupResponse.data}
-                    ruleTemplateTypeFilter={ruleTemplateTypeFilter}
                     ruleTemplates={ruleTemplatesResponse.data}
                 />, document.getElementById('root'));
             })
@@ -163,58 +182,58 @@ class BusinessRulesFunctions {
      * @returns {[null,null]}
      */
     static getBusinessRules() {
-        // let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
-        // let gotBusinessRules = apis.getBusinessRules();
-        //
-        // return gotBusinessRules;
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let gotBusinessRules = apis.getBusinessRules();
+
+        return gotBusinessRules;
 
         // todo: remove hardcode *****************************
-        var receivedBusinessRules = [
-            {
-                "uuid": "my-stock-data-analysis",
-                "name": "My Stock Data Analysis",
-                "templateGroupUUID": "stock-exchange",
-                "ruleTemplateUUID": "stock-data-analysis",
-                "type": "template",
-                "properties": {
-                    "sourceTopicList": "StockStream",
-                    "sourceMapType": "xml",
-                    "sinkTopic": "resultTopic",
-                    "sinkMapType": "xml",
-                    "minShareVolumesMargin": "20",
-                    "maxShareVolumesMargin": "10000"
-                }
-            },
-            {
-                "uuid": "custom-stock-exchange-analysis-for-wso2",
-                "name": "Custom Stock Exchange Analysis for WSO2",
-                "templateGroupUUID": "stock-exchange",
-                "inputRuleTemplateUUID": "stock-exchange-input",
-                "outputRuleTemplateUUID": "stock-exchange-output",
-                "type": "scratch",
-                "properties": {
-                    "inputData": {
-                        "topicList": "SampleStockStream2",
-                        "topicList2": "StockStream"
-                    },
-                    "ruleComponents": {
-                        "filterRules": ["price > 1000", "volume < 50", "name == 'WSO2 Inc'"],
-                        "ruleLogic": ["1 OR (2 AND 3)"]
-                    },
-                    "outputData": {
-                        "resultTopic": "SampleResultTopic2",
-                        "resultTopic2": "SampleResultTopic2_1"
-                    },
-                    "outputMappings": {
-                        "companyName": "name",
-                        "companySymbol": "symbol",
-                        "sellingPrice": "price"
-                    }
-                }
-            }
-        ]
-
-        return receivedBusinessRules
+        // var receivedBusinessRules = [
+        //     {
+        //         "uuid": "my-stock-data-analysis",
+        //         "name": "My Stock Data Analysis",
+        //         "templateGroupUUID": "stock-exchange",
+        //         "ruleTemplateUUID": "stock-data-analysis",
+        //         "type": "template",
+        //         "properties": {
+        //             "sourceTopicList": "StockStream",
+        //             "sourceMapType": "xml",
+        //             "sinkTopic": "resultTopic",
+        //             "sinkMapType": "xml",
+        //             "minShareVolumesMargin": "20",
+        //             "maxShareVolumesMargin": "10000"
+        //         }
+        //     },
+        //     {
+        //         "uuid": "custom-stock-exchange-analysis-for-wso2",
+        //         "name": "Custom Stock Exchange Analysis for WSO2",
+        //         "templateGroupUUID": "stock-exchange",
+        //         "inputRuleTemplateUUID": "stock-exchange-input",
+        //         "outputRuleTemplateUUID": "stock-exchange-output",
+        //         "type": "scratch",
+        //         "properties": {
+        //             "inputData": {
+        //                 "topicList": "SampleStockStream2",
+        //                 "topicList2": "StockStream"
+        //             },
+        //             "ruleComponents": {
+        //                 "filterRules": ["price > 1000", "volume < 50", "name == 'WSO2 Inc'"],
+        //                 "ruleLogic": ["1 OR (2 AND 3)"]
+        //             },
+        //             "outputData": {
+        //                 "resultTopic": "SampleResultTopic2",
+        //                 "resultTopic2": "SampleResultTopic2_1"
+        //             },
+        //             "outputMappings": {
+        //                 "companyName": "name",
+        //                 "companySymbol": "symbol",
+        //                 "sellingPrice": "price"
+        //             }
+        //         }
+        //     }
+        // ]
+        //
+        // return receivedBusinessRules
         // todo: *********************************************
         // todo: Get BusinessRulesCreator from API ******************
     }
@@ -301,6 +320,20 @@ class BusinessRulesFunctions {
      */
     static generateBusinessRuleUUID(businessRuleName) {
         return businessRuleName.toLowerCase().split(' ').join('-')
+    }
+
+    /**
+     * Checks whether a given object is empty or not
+     *
+     * @param object
+     * @returns {boolean}
+     */
+    static isEmpty(object) {
+        for(var key in object) {
+            if(object.hasOwnProperty(key))
+                return false;
+        }
+        return true;
     }
 }
 
