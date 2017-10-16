@@ -46,7 +46,7 @@ class TemplateGroupSelector extends React.Component {
                         uuid={templateGroup.uuid}
                         description={templateGroup.description}
                         onClick={(e) =>
-                            BusinessRulesFunctions.loadRuleTemplateSelector(templateGroup.uuid)
+                            BusinessRulesFunctions.loadBusinessRulesFromTemplateCreator(templateGroup.uuid)
                         }
                     />
                 </Grid>
@@ -63,6 +63,7 @@ class TemplateGroupSelector extends React.Component {
                         onClick={(e) =>
                             BusinessRulesFunctions.loadBusinessRuleFromScratchCreator(templateGroup.uuid)
                         }
+                        // todo: loadBusinessRuleFromScratchForm.. no creator anymore
                     />
                 </Grid>
             )

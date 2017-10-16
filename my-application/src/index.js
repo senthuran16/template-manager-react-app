@@ -33,23 +33,27 @@ const styles = {
     },
 }
 
-// Load available Business Rules
-let businessRulesPromise = BusinessRulesFunctions.getBusinessRules()
-businessRulesPromise.then(function(response){
-    console.log("BUSINESS RULES MANAGER STARTED")
-    ReactDOM.render(
-        <BusinessRuleModifier businessRules={response.data}/>, document.getElementById("root"))
-}).catch(function(error){
-    console.log(error)
-    ReactDOM.render(
-        <Typography type="title">
-            {BusinessRulesMessageStringConstants.CONNECTION_FAILURE}
-        </Typography>, document.getElementById("root"))
-})
-ReactDOM.render(
-    <div>
-        <CircularProgress color="accent" style={styles.progress} size={50} />
-    </div>, document.getElementById("root"))
+// Load business rule modifier, initially without any snackbar
+BusinessRulesFunctions.loadBusinessRuleModifier(false,'');
+
+// // Load available Business Rules
+// let businessRulesPromise = BusinessRulesFunctions.getBusinessRules()
+// businessRulesPromise.then(function(response){
+//     console.log("BUSINESS RULES MANAGER STARTED")
+//     ReactDOM.render(
+//         <BusinessRuleModifier businessRules={response.data}/>, document.getElementById("root"))
+// }).catch(function(error){
+//     console.log(error)
+//     ReactDOM.render(
+//         <Typography type="title">
+//             {BusinessRulesMessageStringConstants.CONNECTION_FAILURE}
+//         </Typography>, document.getElementById("root"))
+// })
+
+// ReactDOM.render(
+//     <div>
+//         <CircularProgress color="accent" style={styles.progress} size={50} />
+//     </div>, document.getElementById("root"))
 
 // ReactDOM.render(<BusinessRuleModifier businessRules={BusinessRulesFunctions.getBusinessRules()}/>,
 // document.getElementById("root"))

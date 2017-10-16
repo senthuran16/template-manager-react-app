@@ -28,6 +28,7 @@ const BusinessRulesConstants = {
     // Mode of Business Rule form
     BUSINESS_RULE_FORM_MODE_CREATE: "create",
     BUSINESS_RULE_FORM_MODE_EDIT: "edit",
+    BUSINESS_RULE_FORM_MODE_VIEW: "view",
 
     // Business Rule types
     BUSINESS_RULE_TYPE_TEMPLATE: "template",
@@ -47,6 +48,14 @@ const BusinessRulesConstants = {
 
     // Business Rule Filter Rule operators
     BUSINESS_RULE_FILTER_RULE_OPERATORS: ['<','<=','>','>=','==','!='],
+
+    // Business Rule deployment statuses
+    BUSINESS_RULE_STATUS_DEPLOYED: 3,
+    BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED: 1,
+
+    BUSINESS_RULE_STATUS_DEPLOYED_STRING: 'Deployed',
+    BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED_STRING: 'Deployment Failed',
+
 
     // URL for APIs
     APIS_URL: "http://localhost:9090"

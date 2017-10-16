@@ -33,7 +33,7 @@ import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageSt
 
 /**
  * Represents the input component of the business rule from scratch form,
- * which will contain input rule template selection, input configuration and input exposed stream fields
+ * which will contain input rule template selection, input configurations and input exposed stream fields
  */
 class InputComponent extends React.Component {
     render() {
@@ -48,7 +48,7 @@ class InputComponent extends React.Component {
             </MenuItem>
         )
         inputRuleTemplatesToDisplay =
-            <FormControl>
+            <FormControl disabled={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}>
                 <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
                 <Select
                     value={(!BusinessRulesFunctions.isEmpty(this.props.selectedInputRuleTemplate)) ?
@@ -62,7 +62,7 @@ class InputComponent extends React.Component {
                 <FormHelperText>
                     {(!BusinessRulesFunctions.isEmpty(this.props.selectedInputRuleTemplate)) ?
                         this.props.selectedInputRuleTemplate.description :
-                        (BusinessRulesMessageStringConstants.RULE_TEMPLATE_NOT_SELECTED)
+                        (BusinessRulesMessageStringConstants.SELECT_RULE_TEMPLATE)
                     }
                 </FormHelperText>
             </FormControl>
@@ -107,7 +107,7 @@ class InputComponent extends React.Component {
             // Input rule template has not been selected
             inputDataPropertiesToDisplay =
                 <Typography type="body2">
-                    {BusinessRulesMessageStringConstants.RULE_TEMPLATE_NOT_SELECTED}
+                    {BusinessRulesMessageStringConstants.SELECT_RULE_TEMPLATE}
                 </Typography>
         }
 

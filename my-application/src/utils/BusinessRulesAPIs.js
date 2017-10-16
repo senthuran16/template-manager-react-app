@@ -66,14 +66,23 @@ class BusinessRulesAPIs {
      * @param businessRuleJSON
      * @returns {AxiosPromise}
      */
-    createBusinessRule(businessRuleJSON) {
+    /**
+     * Creates a business rule with the given business rule JSON.
+     * Deploying enabled or disabled according to the given deployStatus
+     *
+     * @param businessRuleJSON
+     * @param deployStatus Deploy if true, Do not deploy if false
+     * @returns {AxiosPromise}
+     */
+    createBusinessRule(businessRuleJSON, deployStatus) {
         // Hold sent JSON against the key 'businessRule'
         var formData = new FormData();
         formData.append("businessRule", (businessRuleJSON));
 
         // Send as multipart/form-data
-        let httpClient = this.getHTTPClient()
-        return httpClient.post('/instances', formData, {headers:{'content-type': 'multipart/form-data'}})
+        let httpClient = this.getHTTPClient() //todo: confirm how does the parameter look like
+        // return httpClient.post('/instances?deploy='+deployStatus, formData, {headers:{'content-type': 'multipart/form-data'}})
+        return httpClient.post('/instances?deploy='+deployStatus,formData,{headers:{'Content-Type': 'multipart/form-data'}})
 
     }
 

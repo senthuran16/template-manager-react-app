@@ -9,6 +9,7 @@ import {TableCell, TableRow,} from 'material-ui/Table';
 import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
+import Tooltip from 'material-ui/Tooltip';
 
 /**
  * Represent each Business Rule, that is shown as a row, in order to edit, delete / re-deploy Business Rules
@@ -18,7 +19,14 @@ class BusinessRule extends React.Component {
     styles = {
         deployButton: {
             color: '#EF6C00'
-        }
+        },
+        hyperlink: {
+            color: 'inherit',
+            textDecoration: 'inherit',
+            ':hover': {
+                textDecoration: 'underline',
+            },
+        },
     }
 
 
@@ -27,7 +35,6 @@ class BusinessRule extends React.Component {
         this.state = {
             name: props.name,
             uuid: props.uuid,
-            templateGroup: props.templateGroup,
             type: props.type,
             status: props.status,
         }
@@ -92,6 +99,12 @@ class BusinessRule extends React.Component {
     }
 
     /**
+     * Views the business rule form with disabled properties
+     */
+    viewBusinessRule() {
+        BusinessRulesFunctions.viewBusinessRuleForm(false, this.state.uuid)
+    }
+    /**
      * Handles onClick action of the 'Re-deploy' button
      */
     handleReDeployButtonClick() {
@@ -102,7 +115,9 @@ class BusinessRule extends React.Component {
      * Handles onClick action of the 'Edit' button
      */
     handleEditButtonClick() {
-        BusinessRulesFunctions.loadBusinessRuleEditor(this.state.uuid)
+        //BusinessRulesFunctions.loadBusinessRuleEditor(this.state.uuid)
+        // Open form to edit
+        BusinessRulesFunctions.viewBusinessRuleForm(true, this.state.uuid)
     }
 
     /**
@@ -111,7 +126,7 @@ class BusinessRule extends React.Component {
     handleDeleteButtonClick() {
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
         let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'false').then(
-            alert('BusinessRule \''+this.state.name+'\' has been successfully deleted!')
+            alert('BusinessRule \'' + this.state.name + '\' has been successfully deleted!')
         )
     }
 
@@ -130,10 +145,12 @@ class BusinessRule extends React.Component {
                         <DeleteIcon/>
                     </IconButton>
                     &nbsp;
-                    <IconButton color="primary" style={this.styles.deployButton} aria-label="Refresh"
-                                onClick={(e) => this.handleReDeployButtonClick()}>
-                        <RefreshIcon/>
-                    </IconButton>
+                    <Tooltip id="tooltip-right" title="Redeploy" placement="right">
+                        <IconButton color="primary" style={this.styles.deployButton} aria-label="Refresh"
+                                    onClick={(e) => this.handleReDeployButtonClick()}>
+                            <RefreshIcon/>
+                        </IconButton>
+                    </Tooltip>
                 </TableCell>
         } else {
             actionButtonsCell =
@@ -150,15 +167,19 @@ class BusinessRule extends React.Component {
 
         // Deployed status string
         var deployedStatus
-        if (this.state.status === BusinessRulesConstants.BUSINESS_RULE_DEPLOYMENT_STATUS_DEPLOYED) {
-            deployedStatus = "Deployed"
-        } else {
-            deployedStatus = "Not Deployed"
+        if(this.state.status === BusinessRulesConstants.BUSINESS_RULE_DEPLOYMENT_STATUS_DEPLOYED){
+
         }
+
+        // if (this.state.status === BusinessRulesConstants.BUSINESS_RULE_DEPLOYMENT_STATUS_DEPLOYED) {
+        //     deployedStatus = "Deployed"
+        // } else {
+        //     deployedStatus = "Not Deployed"
+        // }
         return (
             <TableRow>
-                <TableCell>{this.state.name}</TableCell>
-                <TableCell>{this.state.templateGroup.name}</TableCell>
+                <TableCell>
+                    <a onClick={(e) => this.viewBusinessRule()} style={this.styles.hyperlink}>{this.state.name}</a></TableCell>
                 <TableCell>{deployedStatus}</TableCell>
                 {actionButtonsCell}
             </TableRow>

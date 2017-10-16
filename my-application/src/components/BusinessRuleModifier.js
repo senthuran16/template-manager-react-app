@@ -9,6 +9,9 @@ import Table, {TableBody, TableCell, TableHead, TableRow,} from 'material-ui/Tab
 import Button from "material-ui/Button";
 import AddIcon from "material-ui-icons/Add";
 import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
+import Slide from 'material-ui/transitions/Slide';
+import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
 
 /**
  * Allows to select a Business Rule among Business Rules displayed as table rows and re-deploy, edit or delete each
@@ -31,15 +34,20 @@ class BusinessRuleModifier extends React.Component {
             maxWidth: 400,
             paddingTop: 30,
             paddingBottom: 30
+        },
+        snackbar: {
+            direction: 'up'
         }
-
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            businessRules: props.businessRules // Available Business Rules
-            //businessRules: props.businessRules // Available Business Rules
+            businessRules: props.businessRules, // Available Business Rules
+
+            // To show the snackbar, after deployment / save
+            displaySnackBar: this.props.displaySnackBar,
+            snackbarMessageStatus: this.props.snackbarMessageStatus
         }
     }
 
@@ -62,15 +70,18 @@ class BusinessRuleModifier extends React.Component {
         }
 
         if (!isNoneAvailable) {
+            console.log("RESPONSES")
+            console.log(this.state.businessRules)
+
             // Show available business rules
             let businessRules = this.state.businessRules.map((businessRule) =>
                 <BusinessRule
-                    key={businessRule.uuid}
-                    name={businessRule.name}
-                    uuid={businessRule.uuid}
-                    templateGroup={BusinessRulesFunctions.getTemplateGroup(businessRule.templateGroupUUID)}
-                    type={businessRule.type}
-                    status={BusinessRulesFunctions.getBusinessRuleDeploymentStatus(businessRule.uuid)}
+                    key={businessRule[0].uuid}
+                    name={businessRule[0].name}
+                    uuid={businessRule[0].uuid}
+                    type={businessRule[0].type}
+                    //status={BusinessRulesFunctions.getBusinessRuleDeploymentStatus(businessRule.uuid)}
+                    status={businessRule[1].toString()}
                 />
             )
 
@@ -80,7 +91,6 @@ class BusinessRuleModifier extends React.Component {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Business Rule</TableCell>
-                                <TableCell>Template Group</TableCell>
                                 <TableCell>Status</TableCell>
                                 <TableCell>Actions</TableCell>
                             </TableRow>
@@ -89,11 +99,6 @@ class BusinessRuleModifier extends React.Component {
                             {businessRules}
                         </TableBody>
                     </Table>
-                    <br/>
-                    <Button fab color="primary" style={this.styles.floatButton} aria-label="Remove"
-                            onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
-                        <AddIcon/>
-                    </Button>
                 </div>
             )
         } else {
@@ -108,7 +113,7 @@ class BusinessRuleModifier extends React.Component {
                             Get started by creating one
                         </Typography>
                         <br/>
-                        <Button color="primary" style={this.styles.floatButton} aria-label="Remove"
+                        <Button color="primary" style={this.styles.raisedButton} aria-label="Remove"
                                 onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
                             Create
                         </Button>
@@ -118,11 +123,49 @@ class BusinessRuleModifier extends React.Component {
         }
     }
 
+    handleRequestClose(){
+        this.setState({ displaySnackBar: false });
+    };
+
     render() {
+
+        let snackBar =
+            <Snackbar
+                open={this.state.displaySnackBar}
+                onRequestClose={(e)=>this.handleRequestClose()}
+                transition={<Slide direction={this.styles.snackbar.direction} />}
+                SnackbarContentProps={{
+                    'aria-describedby': 'snackbarMessage',
+                }}
+                message={
+                    <span id="snackbarMessage">
+                        {(this.state.snackbarMessageStatus ===
+                            BusinessRulesMessageStringConstants.BUSINESS_RULE_SAVE_SUCCESSFUL) ?
+                            (BusinessRulesMessageStringConstants.BUSINESS_RULE_SAVE_SUCCESSFUL_MESSAGE) :
+                            (this.state.snackbarMessageStatus ===
+                                BusinessRulesMessageStringConstants
+                                    .BUSINESS_RULE_SAVE_AND_DEPLOYMENT_SUCCESS) ?
+                                (BusinessRulesMessageStringConstants
+                                    .BUSINESS_RULE_SAVE_AND_DEPLOYMENT_SUCCESS_MESSAGE) :
+                                (this.state.snackbarMessageStatus ===
+                                    BusinessRulesMessageStringConstants
+                                        .BUSINESS_RULE_SAVE_SUCCESSFUL_DEPLOYMENT_FAILURE) ?
+                                    (BusinessRulesMessageStringConstants
+                                        .BUSINESS_RULE_SAVE_SUCCESSFUL_DEPLOYMENT_FAILURE_MESSAGE) :
+                                    (this.state.snackbarMessageStatus ===
+                                        BusinessRulesMessageStringConstants
+                                            .BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE) ?
+                                        (BusinessRulesMessageStringConstants
+                                            .BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE_MESSAGE) :
+                                        ('')}
+                    </span>
+                }
+            />
 
 
         return (
             <div>
+                {snackBar}
                 <center>
                     <Header
                         title="Business Rule Manager"
@@ -130,9 +173,17 @@ class BusinessRuleModifier extends React.Component {
                     <br/>
                     <br/>
                     <div>
-                        <Typography type="headline">
-                            Business Rules
-                        </Typography>
+                        {
+                            (this.state.businessRules.length > 0)?
+                                (<Typography type="headline">
+                                    Business Rules
+                                    <Button fab color="primary" style={this.styles.floatButton} aria-label="Remove"
+                                            onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
+                                        <AddIcon/>
+                                    </Button>
+                                </Typography>):
+                                (<div></div>)
+                        }
                     </div>
                     <br/>
                     {this.loadAvailableBusinessRules()}

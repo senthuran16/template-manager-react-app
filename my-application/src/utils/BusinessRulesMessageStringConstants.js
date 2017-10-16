@@ -20,16 +20,38 @@ import TemplateGroupSelector from "../components/TemplateGroupSelector";
  * Has values for all the string constants related to displaying messages to the user
  */
 const BusinessRulesMessageStringConstants = {
-    // Common errors
-    CONNECTION_FAILURE: 'Error connecting to the server',
-    SELECT_TEMPLATE_GROUP: 'Please select a template group',
-    // Business Rule from scratch
-    RULE_TEMPLATE_NOT_SELECTED: 'Please select a rule template',
+    // Business Rule form (common)
+    SELECT_RULE_TEMPLATE: 'Please select a rule template',
+    BUSINESS_RULE_NAME_FIELD_NAME: 'Business rule name',
+    BUSINESS_RULE_NAME_FIELD_DESCRIPTION: 'Please enter',
+    // Errors
+    ALL_FIELDS_REQUIRED_ERROR_TITLE: 'Error submitting your form',
+    ALL_FIELDS_REQUIRED_ERROR_CONTENT: 'Please fill in all the required values',
+    ALL_FIELDS_REQUIRED_ERROR_PRIMARY_BUTTON: 'OK',
+
+    // Business Rule from scratch form
     // Filter component
     RULE_LOGIC_HELPER_TEXT: "Enter the Rule Logic, referring filter rule numbers. Eg: (1 OR 2) AND (NOT(3))",
     RULE_LOGIC_WARNING: "Rule logic contains invalid number(s) for filter rules",
     // Output component
     MAPPING_NOT_AVAILABLE: 'Please select both input & output rule templates',
+
+    // Error codes related to save & deployment
+    BUSINESS_RULE_SAVE_SUCCESSFUL : 200,
+    BUSINESS_RULE_SAVE_AND_DEPLOYMENT_SUCCESS: 201,
+    BUSINESS_RULE_SAVE_SUCCESSFUL_DEPLOYMENT_FAILURE: 501,
+    BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE: 500,
+
+    // Messages related to save & deployment
+    BUSINESS_RULE_SAVE_SUCCESSFUL_MESSAGE : 'Successfully saved business rule',
+    BUSINESS_RULE_SAVE_AND_DEPLOYMENT_SUCCESS_MESSAGE: 'Successfully deployed business rule',
+    BUSINESS_RULE_SAVE_SUCCESSFUL_DEPLOYMENT_FAILURE_MESSAGE: 'Saved, and failed to deploy business rule',
+    BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE_MESSAGE: 'Failed to save and deploy business rule',
+
+    // Common errors
+    CONNECTION_FAILURE: 'There was an error while connecting to the server',
+    ERROR_PROCESSING_YOUR_REQUEST: 'Error processing your request',
+    API_FAILURE: 'There was some problem in sending data through the API'
 }
 
 export default BusinessRulesMessageStringConstants;

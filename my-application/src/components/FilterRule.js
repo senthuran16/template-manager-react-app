@@ -114,6 +114,7 @@ class FilterRule extends React.Component {
                     value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}
                     options={fieldNameOptions}
                     onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}
+                    disabledState={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}
                 />
         } else {
             filterRuleAttributeToDisplay =
@@ -123,7 +124,20 @@ class FilterRule extends React.Component {
                     description=""
                     value={this.deriveElementsFromFilterRule(this.props.filterRule)[0]}
                     onValueChange={(modifiedValue) => this.onAttributeChange(modifiedValue)}
+                    disabledState={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}
                 />
+        }
+
+        let deleteButton
+        // Display only in 'create' or 'edit' modes
+        if(this.props.mode !== BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW){
+            deleteButton =
+                <TableCell>
+                <IconButton color="primary" style={this.styles.deployButton} aria-label="Remove"
+                            onClick={(e)=>this.handleRemoveFilterRuleButtonClick()}>
+                    <ClearIcon/>
+                </IconButton>
+            </TableCell>
         }
 
         return (
@@ -144,6 +158,7 @@ class FilterRule extends React.Component {
                         value={this.deriveElementsFromFilterRule(this.props.filterRule)[1]}
                         options={BusinessRulesConstants.BUSINESS_RULE_FILTER_RULE_OPERATORS}
                         onValueChange={(modifiedValue) => this.onOperatorChange(modifiedValue)}
+                        disabledState={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}
                     />
                 </TableCell>
                 <TableCell>
@@ -153,14 +168,10 @@ class FilterRule extends React.Component {
                         description=""
                         value={this.deriveElementsFromFilterRule(this.props.filterRule)[2]}
                         onValueChange={(modifiedValue) => this.onAttributeOrValueChange(modifiedValue)}
+                        disabledState={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}
                     />
                 </TableCell>
-                <TableCell>
-                    <IconButton color="primary" style={this.styles.deployButton} aria-label="Remove"
-                                onClick={(e)=>this.handleRemoveFilterRuleButtonClick()}>
-                        <ClearIcon/>
-                    </IconButton>
-                </TableCell>
+                {deleteButton}
             </TableRow>
         )
     }

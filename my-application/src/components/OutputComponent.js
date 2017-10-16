@@ -31,21 +31,20 @@ import BusinessRuleFromScratchForm from "./BusinessRuleFromScratchForm";
 import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
 
 /**
- * Represents the input component of the business rule from scratch form,
- * which will contain input rule template selection, input configuration and input exposed stream fields
+ * Represents the output component of the business rule from scratch form,
+ * which will contain output rule template selection, output configurations and input-as-output mappings
  */
 class OutputComponent extends React.Component {
     render() {
         let outputRuleTemplatesToDisplay
         let outputDataPropertiesToDisplay
-        let exposedInputStreamFieldsToDisplay
         let outputMappingsToDisplay
 
         // Messages to display initially
         // Output rule template has not been selected
         outputDataPropertiesToDisplay =
             <Typography type="body2">
-                {BusinessRulesMessageStringConstants.RULE_TEMPLATE_NOT_SELECTED}
+                {BusinessRulesMessageStringConstants.SELECT_RULE_TEMPLATE}
             </Typography>
 
         // Output & Input rule templates has not been selected
@@ -61,13 +60,15 @@ class OutputComponent extends React.Component {
             </MenuItem>
         )
         outputRuleTemplatesToDisplay =
-            <FormControl>
+            <FormControl
+                disabled={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}
+            >
                 <InputLabel htmlFor="inputRuleTemplate">Rule Template</InputLabel>
                 <Select
                     value={(!BusinessRulesFunctions.isEmpty(this.props.selectedOutputRuleTemplate)) ?
                         this.props.selectedOutputRuleTemplate.uuid : ''
                     }
-                    onChange={(e) => this.props.handleOutputRuleTemplateSelected(e)} // todo: recheck
+                    onChange={(e) => this.props.handleOutputRuleTemplateSelected(e)}
                     input={<Input id="inputRuleTemplate"/>}
                 >
                     {outputRuleTemplateElements}
@@ -75,7 +76,7 @@ class OutputComponent extends React.Component {
                 <FormHelperText>
                     {(!BusinessRulesFunctions.isEmpty(this.props.selectedOutputRuleTemplate)) ?
                         this.props.selectedOutputRuleTemplate.description :
-                        (BusinessRulesMessageStringConstants.RULE_TEMPLATE_NOT_SELECTED)
+                        (BusinessRulesMessageStringConstants.SELECT_RULE_TEMPLATE)
                     }
                 </FormHelperText>
             </FormControl>
@@ -108,7 +109,6 @@ class OutputComponent extends React.Component {
                     inputStreamFieldsToDisplay.push([field, inputStreamFields[field]])
                 }
 
-                // todo: auto-complete
                 let inputStreamFieldsToMap = exposedInputStreamFieldNames.map((fieldName, index) =>
                     <MenuItem key={index}
                               value={fieldName}>
@@ -120,7 +120,7 @@ class OutputComponent extends React.Component {
                 let outputMappingElementsToDisplay = exposedOutputStreamFieldNames.map((fieldName, index) =>
                     <TableRow key={index}>
                         <TableCell>
-                            <FormControl>
+                            <FormControl disabled={this.props.mode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW}>
                                 <Select
                                     // No value when no mapping is specified
                                     // (used when a different output rule template is selected)
