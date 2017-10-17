@@ -102,6 +102,14 @@ class BusinessRulesAPIs {
      * @returns {AxiosPromise}
      */
     updateBusinessRule(businessRuleID, businessRuleJSON) {
+        var formData = new FormData();
+        formData.append("businessRule", (businessRuleJSON));
+
+        // Send as multipart/form-data
+        // let httpClient = this.getHTTPClient()
+        // return httpClient.post('/instances?deploy='+deployStatus+'?',formData,
+        //     {headers:{'Content-Type': 'multipart/form-data'}})
+
         return this.getHTTPClient().put(businessRuleID, businessRuleJSON)
     }
 

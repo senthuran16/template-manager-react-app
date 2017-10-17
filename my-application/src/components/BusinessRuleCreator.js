@@ -35,7 +35,7 @@ class BusinessRuleCreator extends React.Component {
                     </Typography>
                     <br/>
 
-                    <Grid container style={this.styles.root}>
+                    <Grid container style={styles.root}>
                         <Grid item xs={12}>
                             <Grid container justify="center" spacing={Number(styles.spacing)}>
                                 <Grid item>
