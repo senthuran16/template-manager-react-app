@@ -131,7 +131,7 @@ class FilterRule extends React.Component {
         if(this.props.mode !== BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_VIEW){
             deleteButton =
                 <TableCell>
-                <IconButton color="primary" style={this.styles.deployButton} aria-label="Remove"
+                <IconButton color="primary" style={styles.deployButton} aria-label="Remove"
                             onClick={(e)=>this.handleRemoveFilterRuleButtonClick()}>
                     <ClearIcon/>
                 </IconButton>
