@@ -95,22 +95,22 @@ class BusinessRulesAPIs {
     }
 
     /**
-     * Updates the business rule with the given ID, with the given JSON of a business rule
+     * Updates the business rule with the given ID, with the given JSON of a business rule; with deployment status
+     * as specified
      *
      * @param businessRuleID
      * @param businessRuleJSON
+     * @param deployStatus
      * @returns {AxiosPromise}
      */
-    updateBusinessRule(businessRuleID, businessRuleJSON) {
+    updateBusinessRule(businessRuleID, businessRuleJSON, deployStatus) {
         var formData = new FormData();
         formData.append("businessRule", (businessRuleJSON));
 
         // Send as multipart/form-data
-        // let httpClient = this.getHTTPClient()
-        // return httpClient.post('/instances?deploy='+deployStatus+'?',formData,
-        //     {headers:{'Content-Type': 'multipart/form-data'}})
-
-        return this.getHTTPClient().put(businessRuleID, businessRuleJSON)
+        let httpClient = this.getHTTPClient()
+        return httpClient.put('/instances?deploy='+deployStatus+'?businessRuleInstanceID='+businessRuleID,formData,
+            {headers:{'Content-Type': 'multipart/form-data'}})
     }
 
     /**

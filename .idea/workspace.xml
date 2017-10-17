@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,28 +19,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FilterRule.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterRule.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="133" column="56" lean-forward="false" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
-              <folding>
-                <element signature="e#67#121#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="InputComponent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-application/src/components/InputComponent.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -103,7 +83,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TemplateGroupSelector.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TemplateGroupSelector.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="422">
@@ -113,12 +93,84 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilterComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterComponent.js">
+      <file leaf-file-name="BusinessRulesAPIs.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
+            <state relative-caret-position="286">
+              <caret line="102" column="26" lean-forward="true" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="26" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="511">
+              <caret line="503" column="30" lean-forward="true" selection-start-line="503" selection-start-column="30" selection-end-line="503" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#101#135#0" expanded="true" />
+                <element signature="e#376#406#0" expanded="true" />
+                <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+                <element signature="n#!!doc;n#createBusinessRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BusinessRuleFromTemplateForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="188" column="14" lean-forward="false" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#101#135#0" expanded="true" />
+                <element signature="n#!!doc;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+                <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+                <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -227,14 +279,14 @@
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/CreateButton.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
         <option value="$PROJECT_DIR$/my-application/src/index.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/Header.js" />
-        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
+        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
       </list>
     </option>
   </component>
@@ -377,7 +429,7 @@
       <workItem from="1507871757902" duration="4426000" />
       <workItem from="1507878904541" duration="24339000" />
       <workItem from="1508070116573" duration="72889000" />
-      <workItem from="1508245415628" duration="2916000" />
+      <workItem from="1508245415628" duration="3552000" />
     </task>
     <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
       <created>1506944452636</created>
@@ -561,11 +613,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508249021547</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fixed minor styling issue in components">
+      <created>1508249418055</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1508249418055</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="855673000" />
+    <option name="totallyTimeSpent" value="856309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="591" y="24" width="1849" height="1056" extended-state="0" />
@@ -579,7 +638,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -597,7 +656,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes" />
     <MESSAGE value="Implemented Edit BR from scratch" />
     <MESSAGE value="Changed properties to get values from state BusinessRule values in Create &amp; Edit BRFromTemplate, and few minor fixes" />
     <MESSAGE value="Fixed not displaying input &amp; output properties in BR From scratch form" />
@@ -622,7 +680,8 @@
     <MESSAGE value="Changed this.styles into const styles in order to build with es2015 preset successfully" />
     <MESSAGE value="Fixed minor issue in header styling" />
     <MESSAGE value="Fixed minor styling issue in BusinessRuleCreator component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor styling issue in BusinessRuleCreator component" />
+    <MESSAGE value="Fixed minor styling issue in components" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor styling issue in components" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -769,14 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="108" column="8" lean-forward="false" selection-start-line="108" selection-start-column="11" selection-end-line="110" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
@@ -854,54 +905,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="702" column="53" lean-forward="true" selection-start-line="702" selection-start-column="53" selection-end-line="702" selection-end-column="53" />
-          <folding>
-            <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-            <element signature="n#!!doc;n#createBusinessRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -918,29 +921,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="391" column="61" lean-forward="true" selection-start-line="391" selection-start-column="61" selection-end-line="391" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#101#135#0" expanded="true" />
-            <element signature="n#!!doc;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-            <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-            <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
-            <element signature="e#101#149#0" expanded="true" />
+            <element signature="e#101#149#0" expanded="false" />
             <element signature="n#!!block;n#loadTemplateGroupSelector#0;n#BusinessRuleManager#0" expanded="false" />
           </folding>
         </state>
@@ -959,7 +945,7 @@
         <state relative-caret-position="265">
           <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
           <folding>
-            <element signature="e#157#205#0" expanded="true" />
+            <element signature="e#157#205#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1046,6 +1032,82 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="93" column="27" lean-forward="true" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="503" column="30" lean-forward="true" selection-start-line="503" selection-start-column="30" selection-end-line="503" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#101#135#0" expanded="true" />
+            <element signature="e#376#406#0" expanded="true" />
+            <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+            <element signature="n#!!doc;n#createBusinessRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="188" column="14" lean-forward="false" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#101#135#0" expanded="true" />
+            <element signature="n#!!doc;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="102" column="26" lean-forward="true" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="26" />
           <folding />
         </state>
       </provider>

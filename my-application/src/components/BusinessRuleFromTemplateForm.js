@@ -5,16 +5,10 @@ import ReactDOM from 'react-dom';
 import Property from './Property';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui/Dialog';
+import Dialog, {DialogActions, DialogContent, DialogContentText, DialogTitle,} from 'material-ui/Dialog';
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
-import axios from 'axios';
 import Header from "./Header";
 import Typography from 'material-ui/Typography';
 import {FormControl, FormHelperText} from 'material-ui/Form';
@@ -22,7 +16,6 @@ import Select from 'material-ui/Select';
 import Input, {InputLabel} from 'material-ui/Input';
 import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
 import {MenuItem} from 'material-ui/Menu';
-import BusinessRuleModifier from "./BusinessRuleModifier";
 import ShowProgressComponent from "./ShowProgressComponent";
 
 
@@ -191,16 +184,9 @@ class BusinessRuleFromTemplateForm extends React.Component {
             // Send prepared business rule object to API
             let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
             // Deployment true or false
-            if(deployStatus){
-                apis.updateBusinessRule(businessRuleObject['uuid'],JSON.stringify(businessRuleObject)).then(function (response) {
-                    BusinessRulesFunctions.loadBusinessRuleModifier(true,response.status.toString());
-                })
-            }else{
-                apis.updateBusinessRule(businessRuleObject['uuid'],JSON.stringify(businessRuleObject)).then(function (response) {
-                    BusinessRulesFunctions.loadBusinessRuleModifier(true,response.status.toString());
-                })
-            }
-
+            apis.updateBusinessRule(businessRuleObject['uuid'], JSON.stringify(businessRuleObject), deployStatus).then(function (response) {
+                BusinessRulesFunctions.loadBusinessRuleModifier(true, response.status.toString());
+            })
         }else{
             // Display error
             this.setDialog(BusinessRulesMessageStringConstants.ALL_FIELDS_REQUIRED_ERROR_TITLE,

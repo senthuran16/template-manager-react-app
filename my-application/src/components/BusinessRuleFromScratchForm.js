@@ -9,27 +9,11 @@ import TextField from 'material-ui/TextField';
 // import match from 'autosuggest-highlight/match';
 // import parse from 'autosuggest-highlight/parse';
 import Header from "./Header";
-import {FormControl, FormHelperText} from 'material-ui/Form';
-import Input, {InputLabel} from 'material-ui/Input';
-import Select from 'material-ui/Select';
-import {MenuItem} from 'material-ui/Menu';
-import Collapse from 'material-ui/transitions/Collapse';
-import Grid from 'material-ui/Grid';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui/Dialog';
-import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
+import Dialog, {DialogActions, DialogContent, DialogContentText, DialogTitle,} from 'material-ui/Dialog';
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import BusinessRulesConstants from "../utils/BusinessRulesConstants";
-import AddIcon from "material-ui-icons/Add"
-import {IconButton, Typography} from "material-ui";
-import Paper from 'material-ui/Paper';
-import FilterRule from "./FilterRule";
+import {Typography} from "material-ui";
 import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
-import List, {ListItem, ListItemText} from 'material-ui/List';
 import InputComponent from "./InputComponent";
 import OutputComponent from "./OutputComponent";
 import FilterComponent from "./FilterComponent";
@@ -517,16 +501,9 @@ class BusinessRuleFromScratchForm extends React.Component {
             // Send prepared business rule object to API
             let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
             // Deployment true or false
-            if(deployStatus){
-                apis.updateBusinessRule(businessRuleObject['uuid'],JSON.stringify(businessRuleObject)).then(function (response) {
-                    BusinessRulesFunctions.loadBusinessRuleModifier(true,response.status.toString());
-                })
-            }else{
-                apis.updateBusinessRule(businessRuleObject['uuid'],JSON.stringify(businessRuleObject)).then(function (response) {
-                    BusinessRulesFunctions.loadBusinessRuleModifier(true,response.status.toString());
-                })
-            }
-
+            apis.updateBusinessRule(businessRuleObject['uuid'], JSON.stringify(businessRuleObject), deployStatus).then(function (response) {
+                BusinessRulesFunctions.loadBusinessRuleModifier(true, response.status.toString());
+            })
         }else{
             // Display error
             this.setDialog(BusinessRulesMessageStringConstants.ALL_FIELDS_REQUIRED_ERROR_TITLE,
