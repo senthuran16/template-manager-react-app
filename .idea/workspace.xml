@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/CreateButton.js" afterPath="$PROJECT_DIR$/my-application/src/components/CreateButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/Header.js" afterPath="$PROJECT_DIR$/my-application/src/components/Header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/ShowProgressComponent.js" afterPath="$PROJECT_DIR$/my-application/src/components/ShowProgressComponent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" afterPath="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" afterPath="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/index.js" afterPath="$PROJECT_DIR$/my-application/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,10 +17,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BusinessRulesFunctions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BusinessRulesFunctions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="621">
               <caret line="252" column="0" lean-forward="true" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
               <folding>
                 <element signature="e#61#85#0" expanded="false" />
@@ -96,6 +84,16 @@
                 <element signature="n#!!block;n#isEmpty#0;n#BusinessRulesFunctions#0" expanded="false" />
                 <element signature="e#18813#18897#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Header.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -202,7 +200,6 @@
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/ShowProgressComponent.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/Header.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/CreateButton.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
@@ -211,6 +208,7 @@
         <option value="$PROJECT_DIR$/my-application/src/index.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/Header.js" />
       </list>
     </option>
   </component>
@@ -353,7 +351,7 @@
       <workItem from="1507871757902" duration="4426000" />
       <workItem from="1507878904541" duration="24339000" />
       <workItem from="1508070116573" duration="72889000" />
-      <workItem from="1508245415628" duration="1036000" />
+      <workItem from="1508245415628" duration="1487000" />
     </task>
     <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
       <created>1506944452636</created>
@@ -516,11 +514,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508229114243</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Changed this.styles into const styles in order to build with es2015 preset successfully">
+      <created>1508247397564</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1508247397564</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="853793000" />
+    <option name="totallyTimeSpent" value="854244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="591" y="24" width="1849" height="1056" extended-state="0" />
@@ -530,19 +535,19 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.039153438" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14708994" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14708994" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07197383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +579,8 @@
     <MESSAGE value="# Added tooltip to re-deploy button&#10;# Removed BusinessRuleViewer &amp; BusinessRuleEditor, and enabled form modes to function for create, edit and view&#10;# Fixed minor issues" />
     <MESSAGE value="Grouped FilterComponent properties, to a component" />
     <MESSAGE value="Minor fixes related to API calls and the UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes related to API calls and the UI" />
+    <MESSAGE value="Changed this.styles into const styles in order to build with es2015 preset successfully" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed this.styles into const styles in order to build with es2015 preset successfully" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -686,6 +692,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2412">
           <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+            <element signature="e#101#149#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -693,6 +703,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-18">
           <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <element signature="e#67#115#0" expanded="false" />
+            <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#RuleTemplateSelector#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -700,6 +714,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
           <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -793,6 +808,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -804,17 +822,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/TemplateGroup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="108" column="94" lean-forward="false" selection-start-line="108" selection-start-column="94" selection-end-line="108" selection-end-column="94" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -822,6 +834,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="59" column="44" lean-forward="false" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
+          <folding>
+            <element signature="e#157#205#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -830,7 +845,7 @@
         <state relative-caret-position="243">
           <caret line="98" column="65" lean-forward="false" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
           <folding>
-            <element signature="e#67#115#0" expanded="true" />
+            <element signature="e#67#115#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -839,6 +854,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="394" column="64" lean-forward="false" selection-start-line="394" selection-start-column="64" selection-end-line="394" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#101#135#0" expanded="true" />
+            <element signature="n#!!doc;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -847,7 +872,7 @@
         <state relative-caret-position="297">
           <caret line="11" column="38" lean-forward="false" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
           <folding>
-            <element signature="e#67#121#0" expanded="true" />
+            <element signature="e#67#121#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -857,7 +882,7 @@
         <state relative-caret-position="108">
           <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -867,7 +892,7 @@
         <state relative-caret-position="833">
           <caret line="730" column="27" lean-forward="true" selection-start-line="730" selection-start-column="27" selection-end-line="730" selection-end-column="27" />
           <folding>
-            <element signature="e#376#406#0" expanded="true" />
+            <element signature="e#376#406#0" expanded="false" />
             <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
             <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
             <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
@@ -913,7 +938,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="621">
           <caret line="252" column="0" lean-forward="true" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
           <folding>
             <element signature="e#61#85#0" expanded="false" />
@@ -977,6 +1002,14 @@
             <element signature="n#!!block;n#isEmpty#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="e#18813#18897#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>

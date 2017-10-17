@@ -29,7 +29,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <AppBar position="static" style={styles.header}>
+            <AppBar position="static" style={styles.headerStyle}>
                 <Toolbar>
                     <img height='35' src={Logo}/>
                     &nbsp;
