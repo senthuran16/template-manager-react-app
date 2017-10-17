@@ -474,9 +474,13 @@ class BusinessRuleFromScratchForm extends React.Component {
             businessRuleObject['properties'] = state.businessRuleProperties
 
             // Send prepared business rule object to API
-            let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+            let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
             apis.createBusinessRule(JSON.stringify(businessRuleObject), deployStatus).then(function (response) {
                 BusinessRulesFunctions.loadBusinessRuleModifier(true, response.status);
+            }).catch(function (error){
+                ReactDOM.render(
+                    <ShowProgressComponent
+                        error={BusinessRulesMessageStringConstants.API_FAILURE}/>,document.getElementById('root'))
             })
             // Show 'please wait'
             ReactDOM.render(<ShowProgressComponent/>,document.getElementById('root'))
@@ -509,7 +513,7 @@ class BusinessRuleFromScratchForm extends React.Component {
             businessRuleObject['properties'] = state.businessRuleProperties
 
             // Send prepared business rule object to API
-            let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+            let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
             // Deployment true or false
             if(deployStatus){
                 apis.updateBusinessRule(businessRuleObject['uuid'],JSON.stringify(businessRuleObject)).then(function (response) {

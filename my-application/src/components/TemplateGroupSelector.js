@@ -34,9 +34,9 @@ class TemplateGroupSelector extends React.Component {
     }
 
     render() {
-        var templateGroups
+        let templateGroups
 
-        // Business rule will be created from template
+        // Business rule to be created from template
         if(this.state.mode === BusinessRulesConstants.BUSINESS_RULE_TYPE_TEMPLATE){
             templateGroups = this.state.templateGroups.map((templateGroup) =>
                 <Grid item key={templateGroup.uuid}>
@@ -52,7 +52,7 @@ class TemplateGroupSelector extends React.Component {
                 </Grid>
             )
         }else{
-            // Business rule will be created from scratch
+            // Business rule to be created from scratch
             templateGroups = this.state.templateGroups.map((templateGroup) =>
                 <Grid item key={templateGroup.uuid}>
                     <TemplateGroup
@@ -63,7 +63,6 @@ class TemplateGroupSelector extends React.Component {
                         onClick={(e) =>
                             BusinessRulesFunctions.loadBusinessRuleFromScratchCreator(templateGroup.uuid)
                         }
-                        // todo: loadBusinessRuleFromScratchForm.. no creator anymore
                     />
                 </Grid>
             )

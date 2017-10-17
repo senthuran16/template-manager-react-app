@@ -27,7 +27,7 @@ import ShowProgressComponent from "./ShowProgressComponent";
 
 
 /**
- * Represents a form, shown to for Business Rules from template
+ * Represents a form, shown to create Business Rules from template
  */
 class BusinessRuleFromTemplateForm extends React.Component {
     // Button Style
@@ -49,7 +49,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            formMode: props.formMode, // 'create', 'edit' or todo: 'view'
+            formMode: props.formMode, // 'create', 'edit' or 'view'
             businessRuleName: props.businessRuleName,
             businessRuleUUID: props.businessRuleUUID,
             selectedTemplateGroup: props.selectedTemplateGroup,
@@ -148,7 +148,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
             businessRuleObject['properties'] = this.state.businessRuleProperties
 
             // Send prepared business rule object to API
-            let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+            let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
                 apis.createBusinessRule(JSON.stringify(businessRuleObject), deployStatus.toString()).then(function (response) {
                 BusinessRulesFunctions.loadBusinessRuleModifier(true, response.status);
             }).catch(function (error){
@@ -187,7 +187,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
             businessRuleObject['properties'] = this.state.businessRuleProperties
 
             // Send prepared business rule object to API
-            let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+            let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
             // Deployment true or false
             if(deployStatus){
                 apis.updateBusinessRule(businessRuleObject['uuid'],JSON.stringify(businessRuleObject)).then(function (response) {

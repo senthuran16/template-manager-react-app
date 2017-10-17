@@ -51,14 +51,18 @@ const BusinessRulesConstants = {
 
     // Business Rule deployment statuses
     BUSINESS_RULE_STATUS_DEPLOYED: 3,
-    BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED: 1,
+    BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED: 1, // Tried to save & deploy, but only save was successful
+    BUSINESS_RULE_STATUS_NOT_DEPLOYED: 0, // Tried only to save, and was successful todo: check number
 
     BUSINESS_RULE_STATUS_DEPLOYED_STRING: 'Deployed',
+    BUSINESS_RULE_STATUS_NOT_DEPLOYED_STRING: 'Not Deployed',
     BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED_STRING: 'Deployment Failed',
 
 
+
+
     // URL for APIs
-    APIS_URL: "http://localhost:9090"
+    BASE_URL: "http://localhost:9090"
 }
 
 export default BusinessRulesConstants;

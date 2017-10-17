@@ -10,9 +10,10 @@ import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
 import Tooltip from 'material-ui/Tooltip';
+import VisibilityIcon from 'material-ui-icons/Visibility';
 
 /**
- * Represent each Business Rule, that is shown as a row, in order to edit, delete / re-deploy Business Rules
+ * Represents each Business Rule, that is shown as a row, to view, edit, delete / re-deploy Business Rules
  */
 class BusinessRule extends React.Component {
     // Styles
@@ -21,6 +22,7 @@ class BusinessRule extends React.Component {
             color: '#EF6C00'
         },
         hyperlink: {
+            cursor: 'pointer',
             color: 'inherit',
             textDecoration: 'inherit',
             ':hover': {
@@ -41,65 +43,7 @@ class BusinessRule extends React.Component {
     }
 
     /**
-     * Generates initials to be shown in the avatar
-     */
-    generateAvatarInitials() {
-        var avatarInitials = "";
-        // Contains words split by space
-        var splitWords = this.state.name.split(" ")
-
-        if (splitWords.length >= 2) {
-            // Two letter initials
-            avatarInitials += (splitWords[0][0] + splitWords[splitWords.length - 1][0])
-        } else {
-            // One letter initial
-            avatarInitials += splitWords[0][0]
-        }
-
-        return avatarInitials
-    }
-
-    /**
-     * Generates a style with backgroundColor for the given name
-     *
-     * @param name
-     * @returns {{style: {backgroundColor: string}}}
-     */
-    generateAvatarColor(name) {
-        var hash = 0;
-        for (let i = 0; i < name.length; i++) {
-            hash = name.charCodeAt(i) + ((hash << 5) - hash);
-        }
-
-        var c = (hash & 0x00FFFFFF)
-            .toString(16)
-            .toUpperCase();
-
-        var color = "00000".substring(0, 6 - c.length) + c;
-        // Put the random color to an object
-        let style = {backgroundColor: '#' + color.toString()}
-        return {style}
-    }
-
-    /**
-     * Generates style with a random backgroundColor, from an array of given colors
-     * @returns {{style: {backgroundColor: string}}}
-     */
-    generateAvatarColor() {
-        let colors = [
-            '#009688',
-            '#03A9F4',
-            '#EF6C00',
-            '#4527A0',
-            '#C51162',
-        ];
-        // Put the random color to an object
-        let style = {backgroundColor: colors[Math.floor(Math.random() * colors.length)]}
-        return {style}
-    }
-
-    /**
-     * Views the business rule form with disabled properties
+     * Views the business rule form in 'view' mode
      */
     viewBusinessRule() {
         BusinessRulesFunctions.viewBusinessRuleForm(false, this.state.uuid)
@@ -108,78 +52,90 @@ class BusinessRule extends React.Component {
      * Handles onClick action of the 'Re-deploy' button
      */
     handleReDeployButtonClick() {
-
+        // todo: complete this
     }
 
     /**
-     * Handles onClick action of the 'Edit' button
+     * Opens the business rule form in 'edit' mode
      */
     handleEditButtonClick() {
-        //BusinessRulesFunctions.loadBusinessRuleEditor(this.state.uuid)
-        // Open form to edit
         BusinessRulesFunctions.viewBusinessRuleForm(true, this.state.uuid)
     }
 
     /**
-     * Handles onClick action of the 'Delete' button
+     * Sends the API call for deleting this business rule
      */
     handleDeleteButtonClick() {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
-        let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'false').then(
-            alert('BusinessRule \'' + this.state.name + '\' has been successfully deleted!')
-        )
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
+        // todo: no hard coding for true or false for force-delete
+        let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'true').then(function(deleteResponse){
+            console.log("DELETE RESPONSE")
+            console.log(deleteResponse)
+        })
     }
 
     render() {
-        // To show the action buttons for the business rule
-        var actionButtonsCell
-        // If not deployed
-        if (this.state.status === BusinessRulesConstants.BUSINESS_RULE_DEPLOYMENT_STATUS_NOT_DEPLOYED) {
-            actionButtonsCell =
-                <TableCell>
-                    <IconButton aria-label="Edit" onClick={(e) => this.handleEditButtonClick()}>
-                        <EditIcon/>
-                    </IconButton>
-                    &nbsp;
-                    <IconButton aria-label="Delete" onClick={(e) => this.handleDeleteButtonClick()}>
-                        <DeleteIcon/>
-                    </IconButton>
-                    &nbsp;
-                    <Tooltip id="tooltip-right" title="Redeploy" placement="right">
+        // To show deployment status and redeploy button
+        let deployedStatus
+        let redeployButton
+        switch(this.state.status) {
+            case BusinessRulesConstants.BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED:
+                // Deployment failed
+                deployedStatus = BusinessRulesConstants.BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED_STRING
+                redeployButton =
+                    <Tooltip id="tooltip-right" title="Re-Deploy" placement="right-end">
                         <IconButton color="primary" style={this.styles.deployButton} aria-label="Refresh"
                                     onClick={(e) => this.handleReDeployButtonClick()}>
                             <RefreshIcon/>
                         </IconButton>
                     </Tooltip>
-                </TableCell>
-        } else {
-            actionButtonsCell =
-                <TableCell>
+                break;
+            case BusinessRulesConstants.BUSINESS_RULE_STATUS_NOT_DEPLOYED:
+                // Not deployed
+                deployedStatus = BusinessRulesConstants.BUSINESS_RULE_STATUS_NOT_DEPLOYED_STRING
+                redeployButton =
+                    <Tooltip id="tooltip-right" title="Re-Deploy" placement="right-end">
+                        <IconButton color="primary" style={this.styles.deployButton} aria-label="Refresh"
+                                    onClick={(e) => this.handleReDeployButtonClick()}>
+                            <RefreshIcon/>
+                        </IconButton>
+                    </Tooltip>
+                break;
+            default:
+                // Deployed
+                deployedStatus = BusinessRulesConstants.BUSINESS_RULE_STATUS_DEPLOYED_STRING
+        }
+
+        // To show all the action buttons
+        let actionButtonsCell =
+            <TableCell>
+                <Tooltip id="tooltip-right" title="View" placement="right-end">
+                    <IconButton aria-label="View" onClick={(e) => this.viewBusinessRule()}>
+                        <VisibilityIcon/>
+                    </IconButton>
+                </Tooltip>
+                &nbsp;
+                <Tooltip id="tooltip-right" title="Edit" placement="right-end">
                     <IconButton aria-label="Edit" onClick={(e) => this.handleEditButtonClick()}>
                         <EditIcon/>
                     </IconButton>
-                    &nbsp;
+                </Tooltip>
+                &nbsp;
+                <Tooltip id="tooltip-right" title="Delete" placement="right-end">
                     <IconButton aria-label="Delete" onClick={(e) => this.handleDeleteButtonClick()}>
                         <DeleteIcon/>
                     </IconButton>
-                </TableCell>
-        }
+                </Tooltip>
+                &nbsp;
+                {redeployButton}
+            </TableCell>
 
-        // Deployed status string
-        var deployedStatus
-        if(this.state.status === BusinessRulesConstants.BUSINESS_RULE_DEPLOYMENT_STATUS_DEPLOYED){
 
-        }
-
-        // if (this.state.status === BusinessRulesConstants.BUSINESS_RULE_DEPLOYMENT_STATUS_DEPLOYED) {
-        //     deployedStatus = "Deployed"
-        // } else {
-        //     deployedStatus = "Not Deployed"
-        // }
         return (
             <TableRow>
                 <TableCell>
-                    <a onClick={(e) => this.viewBusinessRule()} style={this.styles.hyperlink}>{this.state.name}</a></TableCell>
+                        {this.state.name}
+                </TableCell>
                 <TableCell>{deployedStatus}</TableCell>
                 {actionButtonsCell}
             </TableRow>

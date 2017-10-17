@@ -8,13 +8,21 @@ import BusinessRule from "./BusinessRule";
 import Table, {TableBody, TableCell, TableHead, TableRow,} from 'material-ui/Table';
 import Button from "material-ui/Button";
 import AddIcon from "material-ui-icons/Add";
+import Dialog, {
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+} from 'material-ui/Dialog';
 import Paper from 'material-ui/Paper';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
 
 /**
- * Allows to select a Business Rule among Business Rules displayed as table rows and re-deploy, edit or delete each
+ * Allows to select a Business Rule among Business Rules displayed as table rows
+ * and view, edit, delete or re-deploy (when not deployed already) each;
+ * Or to create a new business rule
  */
 class BusinessRuleModifier extends React.Component {
     styles = {
@@ -47,7 +55,13 @@ class BusinessRuleModifier extends React.Component {
 
             // To show the snackbar, after deployment / save
             displaySnackBar: this.props.displaySnackBar,
-            snackbarMessageStatus: this.props.snackbarMessageStatus
+            snackbarMessageStatus: this.props.snackbarMessageStatus,
+
+            // To show dialog when deleting a business rule
+            displayDeleteDialog: false,
+            isForceDeletePossible: false,
+            forceDeleteBusinessRule: false,
+            isDeleted: false
         }
     }
 
@@ -70,9 +84,6 @@ class BusinessRuleModifier extends React.Component {
         }
 
         if (!isNoneAvailable) {
-            console.log("RESPONSES")
-            console.log(this.state.businessRules)
-
             // Show available business rules
             let businessRules = this.state.businessRules.map((businessRule) =>
                 <BusinessRule
@@ -80,13 +91,16 @@ class BusinessRuleModifier extends React.Component {
                     name={businessRule[0].name}
                     uuid={businessRule[0].uuid}
                     type={businessRule[0].type}
-                    //status={BusinessRulesFunctions.getBusinessRuleDeploymentStatus(businessRule.uuid)}
-                    status={businessRule[1].toString()}
+                    status={businessRule[1]}
                 />
             )
 
             return (
                 <div style={this.styles.container}>
+                    <Button fab color="primary" style={this.styles.floatButton} aria-label="Remove"
+                            onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
+                        <AddIcon/>
+                    </Button>
                     <Table>
                         <TableHead>
                             <TableRow>
@@ -123,12 +137,49 @@ class BusinessRuleModifier extends React.Component {
         }
     }
 
+    /**
+     * Closes the snackbar
+     */
     handleRequestClose(){
         this.setState({ displaySnackBar: false });
     };
 
-    render() {
+    /**
+     * Shows the delete dialog, after a business rule is requested to be deleted
+     *
+     * @returns {XML}
+     */
+    showDeleteDialog(){
+        return (
+            <Dialog open={this.state.displayDeleteDialog}
+                    onRequestClose={(e)=>this.dismissDialog()}
+            >
+                <DialogTitle>{this.state.dialogTitle}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {this.state.dialogContentText}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button style={this.styles.secondaryButton}
+                            onClick={(e)=>this.dismissDialog()}
+                            color="default">
+                        {this.state.dialogPrimaryButtonText}
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
 
+    /**
+     * Closes the dialog
+     */
+    dismissDialog(){
+        this.setState({displayDeleteDialog: false})
+    }
+
+    render() {
+        // Show snackbar with response message, when this page is rendered after a form submission
         let snackBar =
             <Snackbar
                 open={this.state.displaySnackBar}
@@ -177,10 +228,6 @@ class BusinessRuleModifier extends React.Component {
                             (this.state.businessRules.length > 0)?
                                 (<Typography type="headline">
                                     Business Rules
-                                    <Button fab color="primary" style={this.styles.floatButton} aria-label="Remove"
-                                            onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
-                                        <AddIcon/>
-                                    </Button>
                                 </Typography>):
                                 (<div></div>)
                         }

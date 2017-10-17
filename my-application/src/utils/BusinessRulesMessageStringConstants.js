@@ -44,9 +44,15 @@ const BusinessRulesMessageStringConstants = {
 
     // Messages related to save & deployment
     BUSINESS_RULE_SAVE_SUCCESSFUL_MESSAGE : 'Successfully saved business rule',
-    BUSINESS_RULE_SAVE_AND_DEPLOYMENT_SUCCESS_MESSAGE: 'Successfully deployed business rule',
+    BUSINESS_RULE_SAVE_AND_DEPLOYMENT_SUCCESS_MESSAGE: 'Business rule deployed successfully',
     BUSINESS_RULE_SAVE_SUCCESSFUL_DEPLOYMENT_FAILURE_MESSAGE: 'Saved, and failed to deploy business rule',
     BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE_MESSAGE: 'Failed to save and deploy business rule',
+
+    // Errors on deleting business rule
+    BUSINESS_RULE_DELETION_SUCCESSFUL: 200,
+    BUSINESS_RULE_DELETION_FAILURE_REQUEST_FORCE_DELETE: 500, //todo Check this
+    BUSINESS_RULE_FORCE_DELETION_SUCCESSFUL: 200,
+    BUSINESS_RULE_FORCE_DELETION_FAILURE: 500,
 
     // Common errors
     CONNECTION_FAILURE: 'There was an error while connecting to the server',

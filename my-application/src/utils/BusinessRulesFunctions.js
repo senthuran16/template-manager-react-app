@@ -151,20 +151,24 @@ class BusinessRulesFunctions {
     }
 
     /**
-     * Shows available Template Groups to select one,
-     * for creating a Business Rule in the given mode
+     * Shows available Template Groups as thumbnails,
+     * to select one for creating a Business Rule in the given mode
+     *
+     * @param mode 'scratch' or 'template'
      */
     static loadTemplateGroupSelector(mode) {
-        let responseData = this.getTemplateGroups()
-        responseData.then(function (response) {
+        let templateGroupsPromise = this.getTemplateGroups()
+        templateGroupsPromise.then(function (templateGroupsResponse) {
             ReactDOM.render(
                 <TemplateGroupSelector
-                    templateGroups={response.data}
+                    templateGroups={templateGroupsResponse.data}
                     mode={mode}
                 />, document.getElementById('root'))
-        }).catch(error => {
-            console.log(error);
-        });
+        }).catch(function(error){
+            ReactDOM.render(<ShowProgressComponent error={BusinessRulesMessageStringConstants.API_FAILURE}/>,
+                document.getElementById('root'))
+        })
+        ReactDOM.render(<ShowProgressComponent/>,document.getElementById('root'))
     }
 
     /**
@@ -176,7 +180,7 @@ class BusinessRulesFunctions {
         let templateGroupPromise = this.getTemplateGroup(templateGroupUUID)
         templateGroupPromise.then(function(templateGroupResponse){
             // template group is loaded
-            let templateGroup = templateGroupResponse.data //todo: what if this api call fails? no 'data'!
+            let templateGroup = templateGroupResponse.data
             let ruleTemplatesPromise = that.getRuleTemplates(templateGroupUUID)
             ruleTemplatesPromise.then(function(ruleTemplatesResponse){
                 let inputRuleTemplates = []
@@ -190,6 +194,7 @@ class BusinessRulesFunctions {
                         outputRuleTemplates.push(ruleTemplate)
                     }
                 }
+                // Show business rule from scratch form
                 ReactDOM.render(
                     <BusinessRuleFromScratchForm
                         formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
@@ -197,7 +202,7 @@ class BusinessRulesFunctions {
                         inputRuleTemplates={inputRuleTemplates}
                         outputRuleTemplates={outputRuleTemplates}
                     />, document.getElementById('root'))
-            });
+            })
         })
     }
 
@@ -253,7 +258,7 @@ class BusinessRulesFunctions {
                         templateRuleTemplates.push(ruleTemplate)
                     }
                 }
-
+                // Display form for creating a business rule from template
                 ReactDOM.render(
                     <BusinessRuleFromTemplateForm
                         formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
@@ -262,23 +267,14 @@ class BusinessRulesFunctions {
                     />,
                     document.getElementById('root')
                 )
-
-                //
-                // ReactDOM.render(<RuleTemplateSelector
-                //     selectedTemplateGroup={templateGroupResponse.data}
-                //     ruleTemplates={ruleTemplatesResponse.data}
-                // />, document.getElementById('root'));
+            }).catch(function(error){
+                ReactDOM.render(<ShowProgressComponent error={BusinessRulesMessageStringConstants.API_FAILURE}/>,
+                    document.getElementById('root'))
             })
+        }).catch(function(error){
+            ReactDOM.render(<ShowProgressComponent error={BusinessRulesMessageStringConstants.API_FAILURE}/>,
+                document.getElementById('root'))
         })
-        // let responseTemplateGroupData = this.getTemplateGroup(templateGroupUUID).then(function(response){
-        //
-        // });
-        //
-        // ReactDOM.render(<RuleTemplateSelector
-        //     selectedTemplateGroup={foundTemplateGroup}
-        //     ruleTemplateTypeFilter={ruleTemplateTypeFilter}
-        //     ruleTemplates={availableRuleTemplates}
-        // />, document.getElementById('root'));
     }
 
 // API [4] is the POST for CreateBusinessRule
@@ -288,7 +284,7 @@ class BusinessRulesFunctions {
      * @returns {*}
      */
     static getTemplateGroups() {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
         let gotTemplateGroups = apis.getTemplateGroups();
         return gotTemplateGroups;
     }
@@ -300,7 +296,7 @@ class BusinessRulesFunctions {
      * @param templateGroupName
      */
     static getRuleTemplates(templateGroupUUID) {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
         let gotRuleTemplates = apis.getRuleTemplates(templateGroupUUID)
         return gotRuleTemplates
     }
@@ -338,58 +334,12 @@ class BusinessRulesFunctions {
      * @returns {[null,null]}
      */
     static getBusinessRules() {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
         let gotBusinessRules = apis.getBusinessRules();
 
         return gotBusinessRules;
 
         // todo: remove hardcode *****************************
-        // var receivedBusinessRules = [
-        //     {
-        //         "uuid": "my-stock-data-analysis",
-        //         "name": "My Stock Data Analysis",
-        //         "templateGroupUUID": "stock-exchange",
-        //         "ruleTemplateUUID": "stock-data-analysis",
-        //         "type": "template",
-        //         "properties": {
-        //             "sourceTopicList": "StockStream",
-        //             "sourceMapType": "xml",
-        //             "sinkTopic": "resultTopic",
-        //             "sinkMapType": "xml",
-        //             "minShareVolumesMargin": "20",
-        //             "maxShareVolumesMargin": "10000"
-        //         }
-        //     },
-        //     {
-        //         "uuid": "custom-stock-exchange-analysis-for-wso2",
-        //         "name": "Custom Stock Exchange Analysis for WSO2",
-        //         "templateGroupUUID": "stock-exchange",
-        //         "inputRuleTemplateUUID": "stock-exchange-input",
-        //         "outputRuleTemplateUUID": "stock-exchange-output",
-        //         "type": "scratch",
-        //         "properties": {
-        //             "inputData": {
-        //                 "topicList": "SampleStockStream2",
-        //                 "topicList2": "StockStream"
-        //             },
-        //             "ruleComponents": {
-        //                 "filterRules": ["price > 1000", "volume < 50", "name == 'WSO2 Inc'"],
-        //                 "ruleLogic": ["1 OR (2 AND 3)"]
-        //             },
-        //             "outputData": {
-        //                 "resultTopic": "SampleResultTopic2",
-        //                 "resultTopic2": "SampleResultTopic2_1"
-        //             },
-        //             "outputMappings": {
-        //                 "companyName": "name",
-        //                 "companySymbol": "symbol",
-        //                 "sellingPrice": "price"
-        //             }
-        //         }
-        //     }
-        // ]
-        //
-        // return receivedBusinessRules
         // todo: *********************************************
         // todo: Get BusinessRulesCreator from API ******************
     }
@@ -406,7 +356,7 @@ class BusinessRulesFunctions {
      * @returns {null|null}
      */
     static getBusinessRule(businessRuleUUID) {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL)
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
         let gotBusinessRule = apis.getBusinessRule(businessRuleUUID)
 
         return gotBusinessRule
@@ -430,7 +380,7 @@ class BusinessRulesFunctions {
      * @returns {*}
      */
     static getTemplateGroup(templateGroupUUID) {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
         let gotTemplateGroup = apis.getTemplateGroup(templateGroupUUID);
 
         return gotTemplateGroup;
@@ -446,7 +396,7 @@ class BusinessRulesFunctions {
      * @returns {*}
      */
     static getRuleTemplate(templateGroupUUID, ruleTemplateUUID) {
-        let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
         let gotRuleTemplate = apis.getRuleTemplate(templateGroupUUID, ruleTemplateUUID);
 
         return gotRuleTemplate;

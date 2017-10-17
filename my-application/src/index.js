@@ -12,7 +12,7 @@ import {Typography} from "material-ui";
 import BusinessRulesMessageStringConstants from "./utils/BusinessRulesMessageStringConstants";
 
 function test(){
-    let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+    let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
     let templateGroups = apis.getTemplateGroups();
     console.log("TEMPLATE GROUPS")
     console.log(templateGroups)
@@ -70,7 +70,7 @@ BusinessRulesFunctions.loadBusinessRuleModifier(false,'');
 //     }
 //
 //     test(){
-//         let apis = new BusinessRulesAPIs(BusinessRulesConstants.APIS_URL);
+//         let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
 //         let templateGroups = apis.getTemplateGroups();
 //         console.log("TEMPLATE GROUPS")
 //         console.log(templateGroups)

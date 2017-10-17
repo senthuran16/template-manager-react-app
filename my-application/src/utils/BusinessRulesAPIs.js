@@ -18,10 +18,10 @@ class BusinessRulesAPIs {
     getHTTPClient() {
         let httpClient = axios.create({
             baseURL: this.url + '/business-rule',
-            timeout: 8000
+            timeout: 30000
         });
         //httpClient.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-        return httpClient
+        return httpClient;
     }
 
     /**
@@ -61,12 +61,6 @@ class BusinessRulesAPIs {
     }
 
     /**
-     * Creates a business rule with the given business rule JSON
-     *
-     * @param businessRuleJSON
-     * @returns {AxiosPromise}
-     */
-    /**
      * Creates a business rule with the given business rule JSON.
      * Deploying enabled or disabled according to the given deployStatus
      *
@@ -75,15 +69,14 @@ class BusinessRulesAPIs {
      * @returns {AxiosPromise}
      */
     createBusinessRule(businessRuleJSON, deployStatus) {
-        // Hold sent JSON against the key 'businessRule'
+        // Hold sent JSON against the key 'businessRule' in form data
         var formData = new FormData();
         formData.append("businessRule", (businessRuleJSON));
 
         // Send as multipart/form-data
-        let httpClient = this.getHTTPClient() //todo: confirm how does the parameter look like
-        // return httpClient.post('/instances?deploy='+deployStatus, formData, {headers:{'content-type': 'multipart/form-data'}})
-        return httpClient.post('/instances?deploy='+deployStatus,formData,{headers:{'Content-Type': 'multipart/form-data'}})
-
+        let httpClient = this.getHTTPClient()
+        return httpClient.post('/instances?deploy='+deployStatus,formData,
+            {headers:{'Content-Type': 'multipart/form-data'}})
     }
 
     /**
@@ -103,6 +96,7 @@ class BusinessRulesAPIs {
 
     /**
      * Updates the business rule with the given ID, with the given JSON of a business rule
+     *
      * @param businessRuleID
      * @param businessRuleJSON
      * @returns {AxiosPromise}
@@ -112,14 +106,15 @@ class BusinessRulesAPIs {
     }
 
     /**
-     * Deletes the busingess rule with the given ID.
-     * Undeploys siddhiApps of the business rule only if force deletion status is false
+     * Deletes the business rule with the given ID.
+     * Un-deploys SiddhiApps of the business rule only if force deletion status is false
      *
      * @param businessRuleID
      * @param forceDeleteStatus
      */
     deleteBusinessRule(businessRuleID, forceDeleteStatus) {
-        return this.getHTTPClient().delete(businessRuleID)
+        return this.getHTTPClient()
+            .delete('/instances/' + businessRuleID + '?force-delete=' + forceDeleteStatus);
     }
 }
 

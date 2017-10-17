@@ -6,13 +6,14 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import Cake from 'material-ui-icons/Cake';
 import List from 'material-ui-icons/List';
-import Li from 'material-ui-icons/Create';
+import Create from 'material-ui-icons/Create';
 import Grid from 'material-ui/Grid';
 import Logo from '../images/wso2-logo.svg';
 import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 
 /**
- * Represents a Create Button used in the Business Rule Manager
+ * Represents a Create Button used in the Business Rule Creator, which will direct to
+ * the specific create business rule page
  */
 class CreateButton extends React.Component {
     styles = {
@@ -48,20 +49,10 @@ class CreateButton extends React.Component {
             icon = <List/>
             text = 'From Template'
         }else{
-            icon = <Li/>
+            icon = <Create/>
             text = 'From the scratch'
         }
 
-        // return (
-        //     <div style={this.styles.buttonDiv}>
-        //     <Button raised style={this.styles.button} onClick={this.state.onClick}>
-        //         {icon}
-        //     </Button>
-        //         <Typography type="title" color="inherit">
-        //             {text}
-        //         </Typography>
-        //     </div>
-        // )
         return (
             <div style={this.styles.div}>
                 <Button raised style={this.styles.button} onClick={this.state.onClick}>
