@@ -9,17 +9,19 @@ import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageSt
 /**
  * Shows circular progress
  */
+
+const styles = {
+    progress: {
+        color: '#EF6C00',
+    },
+    paper: {
+        maxWidth: 400,
+        paddingTop: 30,
+        paddingBottom: 30
+    },
+}
+
 class ShowProgressComponent extends React.Component {
-    styles = {
-        progress: {
-            color: '#EF6C00',
-        },
-        paper: {
-            maxWidth: 400,
-            paddingTop: 30,
-            paddingBottom: 30
-        },
-    }
 
     render() {
         return (
@@ -31,7 +33,7 @@ class ShowProgressComponent extends React.Component {
                     <br/>
                     <br/>
                     <div>
-                        <Paper style={this.styles.paper}>
+                        <Paper style={styles.paper}>
                             <br/>
                             {(this.props.error) ?
                                 (<div>

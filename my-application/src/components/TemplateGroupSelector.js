@@ -11,20 +11,20 @@ import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 /**
  * Allows to select a Template Group, among Template Groups displayed as thumbnails
  */
-class TemplateGroupSelector extends React.Component {
-    styles = {
-        containerDiv: {
-            maxWidth: 750
-        },
-        root: {
-            flexGrow: 1,
-        },
-        control: {
-            padding: 5,
-        },
-        spacing: '0'
-    }
+const styles = {
+    containerDiv: {
+        maxWidth: 750
+    },
+    root: {
+        flexGrow: 1,
+    },
+    control: {
+        padding: 5,
+    },
+    spacing: '0'
+}
 
+class TemplateGroupSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -85,9 +85,9 @@ class TemplateGroupSelector extends React.Component {
                         {/*{templateGroups}*/}
                     {/*</div>*/}
 
-                    <Grid container style={this.styles.root}>
+                    <Grid container style={styles.root}>
                         <Grid item xs={12}>
-                            <Grid container justify="center" spacing={Number(this.styles.spacing)}>
+                            <Grid container justify="center" spacing={Number(styles.spacing)}>
                                 {templateGroups}
                             </Grid>
                         </Grid>

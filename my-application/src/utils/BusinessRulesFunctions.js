@@ -16,29 +16,13 @@ import BusinessRuleFromScratchForm from "../components/BusinessRuleFromScratchFo
 import BusinessRulesMessageStringConstants from "./BusinessRulesMessageStringConstants";
 import BusinessRuleModifier from "../components/BusinessRuleModifier";
 import ShowProgressComponent from "../components/ShowProgressComponent";
-import {Router, Route} from 'react-router';
 
 
 class BusinessRulesFunctions {
-    // Load from API and store
-    availableTemplateGroups = this.getTemplateGroups()
-    /* Start of Methods related to API calls **************************************/
-    availableBusinessRules = this.getBusinessRules()
-    // Properties given in the form, for Creating a Business Rule
-    businessRuleEnteredValues = {
-        'uuid': '',
-        'name': '',
-        'templateGroupUUID': '',
-        'ruleTemplateUUID': '',
-        'type': '',
-        'properties': {}
-    }
-
     /**
-     * Loads business rule form, for the business rule of the given id - for viewing / editing
-     * The form is Editable or not, according to the given boolean value
-     *
+     * Loads the form, that represents an existing form for viewing. Editable mode as specified
      * @param editable
+     * @param businessRuleUUID
      */
     static viewBusinessRuleForm(editable,businessRuleUUID){
         let businessRulePromise = this.getBusinessRule(businessRuleUUID)
@@ -141,7 +125,7 @@ class BusinessRulesFunctions {
     }
 
     /**
-     * Loads business rule creator, which allows to create a business rule from template, or scratch
+     * Loads business rule creator, which shows options to create a business rule from template, or scratch
      */
     static loadBusinessRuleCreator() {
         ReactDOM.render(
@@ -173,13 +157,15 @@ class BusinessRulesFunctions {
 
     /**
      * Shows form to create a BusinessRule from scratch,
-     * by selecting input & output rule templates from a list of available ones
+     * with available input & output rule templates from the template group, identified by the given UUID
+     *
+     * @param templateGroupUUID
      */
     static loadBusinessRuleFromScratchCreator(templateGroupUUID) {
         let that = this
         let templateGroupPromise = this.getTemplateGroup(templateGroupUUID)
         templateGroupPromise.then(function(templateGroupResponse){
-            // template group is loaded
+            // Load template group
             let templateGroup = templateGroupResponse.data
             let ruleTemplatesPromise = that.getRuleTemplates(templateGroupUUID)
             ruleTemplatesPromise.then(function(ruleTemplatesResponse){
@@ -194,7 +180,6 @@ class BusinessRulesFunctions {
                         outputRuleTemplates.push(ruleTemplate)
                     }
                 }
-                // Show business rule from scratch form
                 ReactDOM.render(
                     <BusinessRuleFromScratchForm
                         formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
@@ -214,20 +199,9 @@ class BusinessRulesFunctions {
      * @param snackbarMessageStatus Status code, that is after an API response
      */
     static loadBusinessRuleModifier(displaySnackBar, snackbarMessageStatus){
-        let styles = {
-            progress: {
-                margin: 10
-            },
-            progress: {
-                backgroundColor: '#EF6C00'
-            },
-        }
-
         // Load available Business Rules
         let businessRulesPromise = BusinessRulesFunctions.getBusinessRules()
         businessRulesPromise.then(function(response){
-            console.log("BUSINESS RULES MANAGER STARTED")
-            console.log(response)
             ReactDOM.render(
                 <BusinessRuleModifier
                     businessRules={response.data}
@@ -238,12 +212,12 @@ class BusinessRulesFunctions {
             ReactDOM.render(<ShowProgressComponent error={BusinessRulesMessageStringConstants.CONNECTION_FAILURE}/>,
                 document.getElementById("root"))
         })
-        // Show 'please wait'
         ReactDOM.render(<ShowProgressComponent/>, document.getElementById("root"))
     }
 
     /**
-     * Loads the form for creating a business rule from template
+     * Loads the form for creating a business rule from template by selecting a rule template,
+     * that belongs to the template group which is identified by the given UUID
      */
     static loadBusinessRulesFromTemplateCreator(templateGroupUUID) {
         // Get the template group
@@ -258,7 +232,7 @@ class BusinessRulesFunctions {
                         templateRuleTemplates.push(ruleTemplate)
                     }
                 }
-                // Display form for creating a business rule from template
+
                 ReactDOM.render(
                     <BusinessRuleFromTemplateForm
                         formMode={BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE}
@@ -277,16 +251,19 @@ class BusinessRulesFunctions {
         })
     }
 
-// API [4] is the POST for CreateBusinessRule
+    /*
+    * Functions that have API calls within them
+    */
 
     /**
-     * Returns promise for available Template Groups
+     * Returns promise for available template groups
+     *
      * @returns {*}
      */
     static getTemplateGroups() {
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
-        let gotTemplateGroups = apis.getTemplateGroups();
-        return gotTemplateGroups;
+        let gotTemplateGroupsPromise = apis.getTemplateGroups();
+        return gotTemplateGroupsPromise;
     }
 
     /** [2]

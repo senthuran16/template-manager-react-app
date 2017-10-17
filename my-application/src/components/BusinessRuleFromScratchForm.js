@@ -39,41 +39,43 @@ import ShowProgressComponent from "./ShowProgressComponent";
 /**
  * Represents a form, shown to for Business Rules from scratch
  */
+
+// Button Style
+const styles = {
+    addFilterRuleButton: {
+        backgroundColor: '#EF6C00',
+        color: 'white'
+    },
+    button: {
+        backgroundColor: '#EF6C00',
+        color: 'white',
+        marginRight: 10
+    },
+    secondaryButton: {
+        marginRight: 10
+    },
+    paper: {
+        padding: 10,
+        paddingTop: 15,
+        paddingBottom: 15,
+    },
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        position: 'relative',
+        overflow: 'auto',
+        maxHeight: 300,
+    },
+    rootGrid: {
+        flexGrow: 1,
+        paddingTop: 20
+    },
+    listSection: {
+        background: 'inherit',
+    },
+}
+
 class BusinessRuleFromScratchForm extends React.Component {
-    // Button Style
-    styles = {
-        addFilterRuleButton: {
-            backgroundColor: '#EF6C00',
-            color: 'white'
-        },
-        button: {
-            backgroundColor: '#EF6C00',
-            color: 'white',
-            marginRight: 10
-        },
-        secondaryButton: {
-            marginRight: 10
-        },
-        paper: {
-            padding: 10,
-            paddingTop: 15,
-            paddingBottom: 15,
-        },
-        root: {
-            width: '100%',
-            maxWidth: 360,
-            position: 'relative',
-            overflow: 'auto',
-            maxHeight: 300,
-        },
-        rootGrid: {
-            flexGrow: 1,
-            paddingTop: 20
-        },
-        listSection: {
-            background: 'inherit',
-        },
-    }
 
     constructor(props) {
         super(props);
@@ -623,7 +625,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button style={this.styles.secondaryButton}
+                    <Button style={styles.secondaryButton}
                             onClick={(e)=>this.dismissDialog()}
                             color="default">
                         {this.state.dialogPrimaryButtonText}
@@ -654,11 +656,11 @@ class BusinessRuleFromScratchForm extends React.Component {
         if (this.state.formMode === BusinessRulesConstants.BUSINESS_RULE_FORM_MODE_CREATE) {
             submitButtons =
                 <div>
-                    <Button raised color="default" style={this.styles.secondaryButton}
+                    <Button raised color="default" style={styles.secondaryButton}
                             onClick={(e) => this.createBusinessRule(false)}>
                         Save
                     </Button>
-                    <Button raised color="primary" style={this.styles.button}
+                    <Button raised color="primary" style={styles.button}
                             onClick={(e) => this.createBusinessRule(true)}>
                         Save & Deploy
                     </Button>
@@ -667,11 +669,11 @@ class BusinessRuleFromScratchForm extends React.Component {
             // If form should be displayed for Editing a business rule
             submitButtons =
                 <div>
-                    <Button raised color="default" style={this.styles.secondaryButton}
+                    <Button raised color="default" style={styles.secondaryButton}
                             onClick={(e) => this.updateBusinessRule(false)}>
                         Save
                     </Button>
-                    <Button raised color="primary" style={this.styles.button}
+                    <Button raised color="primary" style={styles.button}
                             onClick={(e) => this.updateBusinessRule(true)}>
                         Save & Deploy
                     </Button>
@@ -700,7 +702,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
                     handleInputRuleTemplateSelected={(e) => this.handleInputRuleTemplateSelected(e)}
                     reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
-                    style={this.styles}
+                    style={styles}
                     isExpanded={this.state.isInputComponentExpanded}
                     toggleExpansion={(e) => this.toggleInputComponentExpansion()}
                 />
@@ -720,7 +722,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     ruleLogicWarn={this.warnOnRuleLogic()}
                     isExpanded={this.state.isFilterComponentExpanded}
                     toggleExpansion={(e) => this.toggleFilterComponentExpansion()}
-                    style={this.styles}
+                    style={styles}
                 />
                 <br/>
                 <OutputComponent
@@ -736,7 +738,7 @@ class BusinessRuleFromScratchForm extends React.Component {
                     businessRuleProperties={this.state['businessRuleProperties']}
                     isExpanded={this.state.isOutputComponentExpanded}
                     toggleExpansion={(e) => this.toggleOutputComponentExpansion()}
-                    style={this.styles}
+                    style={styles}
                 />
                 <br/>
                 {submitButtons}

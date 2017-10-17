@@ -15,22 +15,24 @@ import BusinessRulesConstants from "../utils/BusinessRulesConstants";
  * Represents a Create Button used in the Business Rule Creator, which will direct to
  * the specific create business rule page
  */
-class CreateButton extends React.Component {
-    styles = {
-        button: {
-            padding: 50,
-            margin: 25,
-            height: 120,
-            width: 120,
-            color: 'white',
-            backgroundColor: '#424242',
-            borderRadius: 900,
-        },
-        div: {
-            paddingLeft: 7,
-            paddingRight: 7
-        }
+
+const styles = {
+    button: {
+        padding: 50,
+        margin: 25,
+        height: 120,
+        width: 120,
+        color: 'white',
+        backgroundColor: '#424242',
+        borderRadius: 900,
+    },
+    div: {
+        paddingLeft: 7,
+        paddingRight: 7
     }
+}
+
+class CreateButton extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,8 +56,8 @@ class CreateButton extends React.Component {
         }
 
         return (
-            <div style={this.styles.div}>
-                <Button raised style={this.styles.button} onClick={this.state.onClick}>
+            <div style={styles.div}>
+                <Button raised style={styles.button} onClick={this.state.onClick}>
                     {icon}
                 </Button>
                 <Typography type="title" color="inherit">

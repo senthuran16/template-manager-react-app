@@ -9,12 +9,16 @@ import Logo from '../images/wso2-logo.svg';
 /**
  * Represents a Create Button used in the Business Rule Manager
  */
-class Header extends React.Component {
-    // Styles
-    headerStyle = {
+
+// Styles
+const styles = {
+    headerStyle: {
         color: 'white',
         backgroundColor: '#212121',
-    };
+    }
+}
+
+class Header extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,7 +29,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <AppBar position="static" style={this.headerStyle}>
+            <AppBar position="static" style={styles.header}>
                 <Toolbar>
                     <img height='35' src={Logo}/>
                     &nbsp;

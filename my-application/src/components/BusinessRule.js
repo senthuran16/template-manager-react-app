@@ -15,22 +15,23 @@ import VisibilityIcon from 'material-ui-icons/Visibility';
 /**
  * Represents each Business Rule, that is shown as a row, to view, edit, delete / re-deploy Business Rules
  */
-class BusinessRule extends React.Component {
-    // Styles
-    styles = {
-        deployButton: {
-            color: '#EF6C00'
-        },
-        hyperlink: {
-            cursor: 'pointer',
-            color: 'inherit',
-            textDecoration: 'inherit',
-            ':hover': {
-                textDecoration: 'underline',
-            },
-        },
-    }
 
+// Styles
+const styles = {
+    deployButton: {
+        color: '#EF6C00'
+    },
+    hyperlink: {
+        cursor: 'pointer',
+        color: 'inherit',
+        textDecoration: 'inherit',
+        ':hover': {
+            textDecoration: 'underline',
+        },
+    },
+}
+
+class BusinessRule extends React.Component {
 
     constructor(props) {
         super(props);
@@ -84,7 +85,7 @@ class BusinessRule extends React.Component {
                 deployedStatus = BusinessRulesConstants.BUSINESS_RULE_STATUS_DEPLOYMENT_FAILED_STRING
                 redeployButton =
                     <Tooltip id="tooltip-right" title="Re-Deploy" placement="right-end">
-                        <IconButton color="primary" style={this.styles.deployButton} aria-label="Refresh"
+                        <IconButton color="primary" style={styles.deployButton} aria-label="Refresh"
                                     onClick={(e) => this.handleReDeployButtonClick()}>
                             <RefreshIcon/>
                         </IconButton>
@@ -95,7 +96,7 @@ class BusinessRule extends React.Component {
                 deployedStatus = BusinessRulesConstants.BUSINESS_RULE_STATUS_NOT_DEPLOYED_STRING
                 redeployButton =
                     <Tooltip id="tooltip-right" title="Re-Deploy" placement="right-end">
-                        <IconButton color="primary" style={this.styles.deployButton} aria-label="Refresh"
+                        <IconButton color="primary" style={styles.deployButton} aria-label="Refresh"
                                     onClick={(e) => this.handleReDeployButtonClick()}>
                             <RefreshIcon/>
                         </IconButton>

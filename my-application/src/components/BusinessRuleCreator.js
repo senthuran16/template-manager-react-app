@@ -11,17 +11,17 @@ import BusinessRulesConstants from "../utils/BusinessRulesConstants";
 /**
  * Allows to create a Business Rule either from scratch or from a Template
  */
-class BusinessRuleCreator extends React.Component {
-    styles = {
-        root: {
-            flexGrow: 1,
-        },
-        control: {
-            padding: 5,
-        },
-        spacing: '40'
-    }
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    control: {
+        padding: 5,
+    },
+    spacing: '40'
+}
 
+class BusinessRuleCreator extends React.Component {
     render() {
         return (
             <div>
@@ -37,7 +37,7 @@ class BusinessRuleCreator extends React.Component {
 
                     <Grid container style={this.styles.root}>
                         <Grid item xs={12}>
-                            <Grid container justify="center" spacing={Number(this.styles.spacing)}>
+                            <Grid container justify="center" spacing={Number(styles.spacing)}>
                                 <Grid item>
                                     <CreateButton
                                         onClick={(e) => BusinessRulesFunctions.loadTemplateGroupSelector(

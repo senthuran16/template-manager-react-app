@@ -10,45 +10,43 @@ import {Typography} from "material-ui";
 import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
 import Paper from 'material-ui/Paper';
-import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
 
 /**
  * Represents a Filter Rule, which is specified in a Business Rule from scratch, that has exactly 4 elements :
  * FilterRuleNumber, Attribute, Operator and AttributeOrvalue
  */
-class FilterRule extends React.Component {
 
-    // Styles
-    styles = {
-        deployButton: {
-            color: '#EF6C00'
-        },
-        container: {
-            flexGrow: 1,
-            position: 'relative',
-            height: 200,
-        },
-        suggestionsContainerOpen: {
-            position: 'absolute',
-            marginTop: 2,
-            marginBottom: 2,
-            left: 0,
-            right: 0,
-        },
-        suggestion: {
-            display: 'block',
-        },
-        suggestionsList: {
-            margin: 0,
-            padding: 0,
-            listStyleType: 'none',
-        },
-        textField: {
-            width: '100%',
-        }
+// Styles
+const styles = {
+    deployButton: {
+        color: '#EF6C00'
+    },
+    container: {
+        flexGrow: 1,
+        position: 'relative',
+        height: 200,
+    },
+    suggestionsContainerOpen: {
+        position: 'absolute',
+        marginTop: 2,
+        marginBottom: 2,
+        left: 0,
+        right: 0,
+    },
+    suggestion: {
+        display: 'block',
+    },
+    suggestionsList: {
+        margin: 0,
+        padding: 0,
+        listStyleType: 'none',
+    },
+    textField: {
+        width: '100%',
     }
+}
+
+class FilterRule extends React.Component {
 
     /**
      * Gives an array, which has Attribute, Logic, AttributeOrValue elements seperated from the given filter rule

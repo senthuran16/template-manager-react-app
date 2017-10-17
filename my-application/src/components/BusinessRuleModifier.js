@@ -24,30 +24,30 @@ import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageSt
  * and view, edit, delete or re-deploy (when not deployed already) each;
  * Or to create a new business rule
  */
-class BusinessRuleModifier extends React.Component {
-    styles = {
-        floatButton: {
-            backgroundColor: '#EF6C00',
-            color: 'white',
-            float: 'right'
-        },
-        raisedButton: {
-            backgroundColor: '#EF6C00',
-            color: 'white'
-        },
-        container: {
-            maxWidth: 1020,
-        },
-        paper: {
-            maxWidth: 400,
-            paddingTop: 30,
-            paddingBottom: 30
-        },
-        snackbar: {
-            direction: 'up'
-        }
+const styles = {
+    floatButton: {
+        backgroundColor: '#EF6C00',
+        color: 'white',
+        float: 'right'
+    },
+    raisedButton: {
+        backgroundColor: '#EF6C00',
+        color: 'white'
+    },
+    container: {
+        maxWidth: 1020,
+    },
+    paper: {
+        maxWidth: 400,
+        paddingTop: 30,
+        paddingBottom: 30
+    },
+    snackbar: {
+        direction: 'up'
     }
+}
 
+class BusinessRuleModifier extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -96,8 +96,8 @@ class BusinessRuleModifier extends React.Component {
             )
 
             return (
-                <div style={this.styles.container}>
-                    <Button fab color="primary" style={this.styles.floatButton} aria-label="Remove"
+                <div style={styles.container}>
+                    <Button fab color="primary" style={styles.floatButton} aria-label="Remove"
                             onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
                         <AddIcon/>
                     </Button>
@@ -119,7 +119,7 @@ class BusinessRuleModifier extends React.Component {
             // Show message for creation
             return (
                 <div>
-                    <Paper style={this.styles.paper}>
+                    <Paper style={styles.paper}>
                         <Typography type="title">
                             No business rule found!
                         </Typography>
@@ -127,7 +127,7 @@ class BusinessRuleModifier extends React.Component {
                             Get started by creating one
                         </Typography>
                         <br/>
-                        <Button color="primary" style={this.styles.raisedButton} aria-label="Remove"
+                        <Button color="primary" style={styles.raisedButton} aria-label="Remove"
                                 onClick={(e) => BusinessRulesFunctions.loadBusinessRuleCreator()}>
                             Create
                         </Button>
@@ -161,7 +161,7 @@ class BusinessRuleModifier extends React.Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button style={this.styles.secondaryButton}
+                    <Button style={styles.secondaryButton}
                             onClick={(e)=>this.dismissDialog()}
                             color="default">
                         {this.state.dialogPrimaryButtonText}
@@ -184,7 +184,7 @@ class BusinessRuleModifier extends React.Component {
             <Snackbar
                 open={this.state.displaySnackBar}
                 onRequestClose={(e)=>this.handleRequestClose()}
-                transition={<Slide direction={this.styles.snackbar.direction} />}
+                transition={<Slide direction={styles.snackbar.direction} />}
                 SnackbarContentProps={{
                     'aria-describedby': 'snackbarMessage',
                 }}

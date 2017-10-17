@@ -29,22 +29,24 @@ import ShowProgressComponent from "./ShowProgressComponent";
 /**
  * Represents a form, shown to create Business Rules from template
  */
-class BusinessRuleFromTemplateForm extends React.Component {
-    // Button Style
-    styles = {
-        button: {
-            backgroundColor: '#EF6C00',
-            color: 'white',
-            marginRight: 10
-        },
-        secondaryButton: {
-            marginRight: 10
-        },
-        container: {
-            align: 'center',
-            maxWidth: 800
-        }
+
+// Button Style
+const styles = {
+    button: {
+        backgroundColor: '#EF6C00',
+        color: 'white',
+        marginRight: 10
+    },
+    secondaryButton: {
+        marginRight: 10
+    },
+    container: {
+        align: 'center',
+        maxWidth: 800
     }
+}
+
+class BusinessRuleFromTemplateForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -274,7 +276,7 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button style={this.styles.secondaryButton}
+                    <Button style={styles.secondaryButton}
                             onClick={(e)=>this.dismissDialog()}
                             color="default">
                         {this.state.dialogPrimaryButtonText}
@@ -372,11 +374,11 @@ class BusinessRuleFromTemplateForm extends React.Component {
             if(!BusinessRulesFunctions.isEmpty(this.state.selectedRuleTemplate)){
                 submitButtons =
                     <div>
-                        <Button raised color="default" style={this.styles.secondaryButton}
+                        <Button raised color="default" style={styles.secondaryButton}
                                 onClick={(e) => this.createBusinessRule(false)}>
                             Save
                         </Button>
-                        <Button raised color="primary" style={this.styles.button}
+                        <Button raised color="primary" style={styles.button}
                                 onClick={(e) => this.createBusinessRule(true)}>
                             Save & Deploy
                         </Button>
@@ -386,11 +388,11 @@ class BusinessRuleFromTemplateForm extends React.Component {
             // If form should be displayed for Editing a business rule
             submitButtons =
                 <div>
-                    <Button raised color="default" style={this.styles.secondaryButton}
+                    <Button raised color="default" style={styles.secondaryButton}
                             onClick={(e) => this.updateBusinessRule(false)}>
                         Save
                     </Button>
-                    <Button raised color="primary" style={this.styles.button}
+                    <Button raised color="primary" style={styles.button}
                             onClick={(e) => this.updateBusinessRule(true)}>
                         Save & Deploy
                     </Button>

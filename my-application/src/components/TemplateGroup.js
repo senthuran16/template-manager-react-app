@@ -11,20 +11,22 @@ import IconButton from 'material-ui/IconButton';
 /**
  * Represent each Template Group, that is shown as a thumbnail
  */
-class TemplateGroup extends React.Component {
-    // Styles
-    styles = {
-        card: {
-            width: 345,
-            height: 200,
-            margin: 15
-        },
-        avatarButton: {
-            color: 'white',
-            width: 55,
-            height: 55
-        }
+
+// Styles
+const styles = {
+    card: {
+        width: 345,
+        height: 200,
+        margin: 15
+    },
+    avatarButton: {
+        color: 'white',
+        width: 55,
+        height: 55
     }
+}
+
+class TemplateGroup extends React.Component {
 
     constructor(props) {
         super(props);
@@ -101,10 +103,10 @@ class TemplateGroup extends React.Component {
 
     render() {
         return (
-            <Card style={this.styles.card}>
+            <Card style={styles.card}>
                 <CardContent>
                     <br/>
-                    <IconButton aria-label="Create" onClick={this.state.onClick} style={this.styles.avatarButton}>
+                    <IconButton aria-label="Create" onClick={this.state.onClick} style={styles.avatarButton}>
                         {/*<NoteAdd/>*/}
                         <Avatar style={this.generateAvatarColor()['style']} onClick={this.state.onClick}>
                             {this.generateAvatarInitials()}
