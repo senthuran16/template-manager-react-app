@@ -70,9 +70,17 @@ class InputComponent extends React.Component {
         // If an input rule template has been selected
         if (!BusinessRulesFunctions.isEmpty(this.props.selectedInputRuleTemplate)) {
             // To display input data properties
-            inputDataPropertiesToDisplay = this.props.reArrangePropertiesForDisplay(
+            let inputConfigurations = this.props.reArrangePropertiesForDisplay(
                 BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_INPUT,
                 this.props.mode)
+
+            inputDataPropertiesToDisplay =
+                <div>
+                    <Typography type="subheading">
+                        Configurations
+                    </Typography>
+                    {inputConfigurations}
+                </div>
 
             // Store as a 2 dimensional array of [fieldName, fieldType]s
             let inputStreamFields =
@@ -103,19 +111,13 @@ class InputComponent extends React.Component {
                         {exposedInputStreamFieldElementsToDisplay}
                     </Paper>
                 </Grid>
-        } else {
-            // Input rule template has not been selected
-            inputDataPropertiesToDisplay =
-                <Typography type="body2">
-                    {BusinessRulesMessageStringConstants.SELECT_RULE_TEMPLATE}
-                </Typography>
         }
 
         return (
             <div>
-                <AppBar position="static" color="default">
+                <AppBar position="static" color="default" style={{height:30}}>
                     <Toolbar>
-                        <Typography type="title">Input</Typography>
+                        <Typography type="subheading">Input</Typography>
                         <IconButton
                             onClick={(e) => this.props.toggleExpansion()}
                         >
@@ -129,16 +131,15 @@ class InputComponent extends React.Component {
                         <br/>
                         <br/>
                         <br/>
-                        <Grid container style={this.props.style.rootGrid} wrap="wrap">
+                        <Grid container style={this.props.style.rootGrid} >
                             <Grid item xs={12}>
                                 <Grid container spacing={40}>
-                                    <Grid item style={{paddingRight: 90}}>
-                                        <Typography type="subheading">
-                                            Configurations
-                                        </Typography>
+                                    <Grid item xs={9} style={{paddingLeft: 100, paddingRight: 100}}>
                                         {inputDataPropertiesToDisplay}
                                     </Grid>
-                                    {exposedInputStreamFieldsToDisplay}
+                                    <Grid item xs={3}>
+                                        {exposedInputStreamFieldsToDisplay}
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>

@@ -13,6 +13,7 @@ import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
 import Tooltip from 'material-ui/Tooltip';
 import VisibilityIcon from 'material-ui-icons/Visibility';
 import BusinessRuleModifier from "./BusinessRuleModifier";
+import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
 
 /**
  * Represents each Business Rule, that is shown as a row, to view, edit, delete / re-deploy Business Rules
@@ -59,9 +60,15 @@ class BusinessRule extends React.Component {
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
         let redeployPromise = apis.redeployBusinessRule(this.state.uuid).then(
             function(redeployResponse){
-                BusinessRulesFunctions.loadBusinessRuleModifier(true, redeployResponse.data)
+                // BusinessRulesFunctions.loadBusinessRuleModifier(true, BusinessRulesMessageStringConstants
+                //     .BUSINESS_RULE_REDEPLOY_SUCCESSFUL)
+                BusinessRulesFunctions.loadBusinessRuleModifier(true, BusinessRulesMessageStringConstants
+                    .BUSINESS_RULE_REDEPLOY_FAILURE) //todo: check deployment and remove hardcode
             }
-        )
+        ).catch(function(error){
+            BusinessRulesFunctions.loadBusinessRuleModifier(true, BusinessRulesMessageStringConstants
+                .BUSINESS_RULE_REDEPLOY_FAILURE)
+        })
     }
 
     /**
@@ -75,11 +82,9 @@ class BusinessRule extends React.Component {
      * Sends the API call for deleting this business rule
      */
     handleDeleteButtonClick() {
+        this.props.showDeleteDialog(this.state.uuid)
+
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
-        // todo: no hard coding for true or false for force-delete
-        let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'true').then(function(deleteResponse){
-            BusinessRulesFunctions.loadBusinessRuleModifier(false,'')
-        })
     }
 
     render() {

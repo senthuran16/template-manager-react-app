@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5430c87-edc5-44bf-b21c-7bd392c53d41" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchFormBackup4.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchFormBackup5.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" afterPath="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/FilterComponent.js" afterPath="$PROJECT_DIR$/my-application/src/components/FilterComponent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/Header.js" afterPath="$PROJECT_DIR$/my-application/src/components/Header.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/InputComponent.js" afterPath="$PROJECT_DIR$/my-application/src/components/InputComponent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/OutputComponent.js" afterPath="$PROJECT_DIR$/my-application/src/components/OutputComponent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/components/Property.js" afterPath="$PROJECT_DIR$/my-application/src/components/Property.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesMessageStringConstants.js" afterPath="$PROJECT_DIR$/my-application/src/utils/BusinessRulesMessageStringConstants.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,83 +28,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BusinessRuleFromTemplateForm.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
+    <leaf>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="409" column="33" lean-forward="true" selection-start-line="409" selection-start-column="33" selection-end-line="409" selection-end-column="33" />
+            <state relative-caret-position="108">
+              <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
               <folding>
-                <element signature="e#101#135#0" expanded="true" />
-                <element signature="n#!!doc;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BusinessRuleFromScratchForm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="44" selection-end-column="6" />
-              <folding>
-                <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#reArrangePropertiesForDisplay#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#getFieldNames#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#getFields#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#toggleInputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleInputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#toggleFilterComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleAttributeChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleOperatorChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleAttributeOrValueChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleRuleLogicChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#generateRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#addFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#removeFilterRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#warnOnRuleLogic#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#toggleOutputComponentExpansion#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleOutputRuleTemplateSelected#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!block;n#handleOutputMappingChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-                <element signature="n#!!doc;n#createBusinessRule#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InputComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-application/src/components/InputComponent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="125" column="53" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="53" />
-              <folding>
-                <element signature="e#67#115#0" expanded="true" />
-                <element signature="e#592#653#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,7 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Paper</find>
       <find>load</find>
       <find>handleRemove</find>
       <find>TOHO</find>
@@ -142,6 +81,7 @@
       <find>this.styles</find>
       <find>this.style</find>
       <find>delete</find>
+      <find>showDeleteC</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -190,29 +130,29 @@
         <option value="$PROJECT_DIR$/my-application/src/components/RuleTemplateSelector.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchFormBackup.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchCreator.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/Property.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleEditor.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/InputComponent.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/OutputComponent.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/FilterComponent.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/showProgressComponent.js" />
         <option value="$PROJECT_DIR$/my-application/public/index.html" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesConstants.js" />
-        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesMessageStringConstants.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroupSelector.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/ShowProgressComponent.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/TemplateGroup.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/CreateButton.js" />
         <option value="$PROJECT_DIR$/my-application/src/index.js" />
-        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/Header.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/FilterRule.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
         <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js" />
-        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/Property.js" />
+        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/Header.js" />
+        <option value="$PROJECT_DIR$/my-application/src/utils/BusinessRulesMessageStringConstants.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRule.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/OutputComponent.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/FilterComponent.js" />
         <option value="$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js" />
+        <option value="$PROJECT_DIR$/my-application/src/components/InputComponent.js" />
       </list>
     </option>
   </component>
@@ -355,7 +295,7 @@
       <workItem from="1507871757902" duration="4426000" />
       <workItem from="1507878904541" duration="24339000" />
       <workItem from="1508070116573" duration="72889000" />
-      <workItem from="1508245415628" duration="8832000" />
+      <workItem from="1508245415628" duration="23642000" />
     </task>
     <task id="LOCAL-00001" summary="# Changed initial value to value for Properties&#10;# Implemented FilterRule component&#10;# Modified Property component to handle events from props, rather than states&#10;# Few minor fixes">
       <created>1506944452636</created>
@@ -553,16 +493,24 @@
       <option name="project" value="LOCAL" />
       <updated>1508250078900</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Grouped BR From template form elements within a paper">
+      <created>1508304054912</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1508304054912</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="861589000" />
+    <option name="totallyTimeSpent" value="876399000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1892915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -576,7 +524,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07197383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -589,7 +536,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed properties to get values from state BusinessRule values in Create &amp; Edit BRFromTemplate, and few minor fixes" />
     <MESSAGE value="Fixed not displaying input &amp; output properties in BR From scratch form" />
     <MESSAGE value="Implemented Create Business Rule from scratch and few minor fixes" />
     <MESSAGE value="Fixed to set default values as initial values in the state, for CreateBRFromScratch" />
@@ -614,7 +560,8 @@
     <MESSAGE value="Fixed minor styling issue in BusinessRuleCreator component" />
     <MESSAGE value="Fixed minor styling issue in components" />
     <MESSAGE value="Fixed PUT API call, when updating business rule" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed PUT API call, when updating business rule" />
+    <MESSAGE value="Grouped BR From template form elements within a paper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Grouped BR From template form elements within a paper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -623,13 +570,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/node_modules/material-ui/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -736,24 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesMessageStringConstants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="54" column="46" lean-forward="false" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleCreator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -799,48 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterRule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="133" column="56" lean-forward="false" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
-          <folding>
-            <element signature="e#67#121#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/OutputComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/Property.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/RuleTemplateSelector.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
@@ -879,117 +759,150 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesFunctions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="33" />
+        <state relative-caret-position="411">
+          <caret line="209" column="30" lean-forward="false" selection-start-line="209" selection-start-column="30" selection-end-line="209" selection-end-column="30" />
           <folding>
+            <element signature="e#0#26#0" expanded="true" />
             <element signature="e#61#85#0" expanded="false" />
             <element signature="e#101#173#0" expanded="true" />
             <element signature="n#!!doc;n#viewBusinessRuleForm#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="n#!!block;n#viewBusinessRuleForm#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#1485#7279#0" expanded="false" />
-            <element signature="e#1758#7268#0" expanded="false" />
-            <element signature="e#2025#7253#0" expanded="false" />
-            <element signature="e#2296#2787#0" expanded="false" />
-            <element signature="e#2398#2494#0" expanded="false" />
-            <element signature="e#2572#2665#0" expanded="false" />
-            <element signature="e#2671#2765#0" expanded="false" />
-            <element signature="e#2963#4604#0" expanded="false" />
-            <element signature="e#3393#4581#0" expanded="false" />
-            <element signature="e#3520#4460#0" expanded="false" />
-            <element signature="e#4610#7235#0" expanded="false" />
-            <element signature="e#5124#7212#0" expanded="false" />
-            <element signature="e#5676#7185#0" expanded="false" />
-            <element signature="e#5905#7052#0" expanded="false" />
+            <element signature="e#1932#7442#0" expanded="false" />
+            <element signature="e#2199#7427#0" expanded="false" />
+            <element signature="e#2470#2961#0" expanded="false" />
+            <element signature="e#2572#2668#0" expanded="false" />
+            <element signature="e#2746#2839#0" expanded="false" />
+            <element signature="e#2845#2939#0" expanded="false" />
+            <element signature="e#3137#4778#0" expanded="false" />
+            <element signature="e#3567#4755#0" expanded="false" />
+            <element signature="e#3694#4634#0" expanded="false" />
+            <element signature="e#4784#7409#0" expanded="false" />
+            <element signature="e#5298#7386#0" expanded="false" />
+            <element signature="e#5850#7359#0" expanded="false" />
+            <element signature="e#6079#7226#0" expanded="false" />
             <element signature="n#!!doc;n#loadBusinessRuleCreator#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#loadBusinessRuleCreator#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#loadTemplateGroupSelector#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#loadTemplateGroupSelector#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#7937#8166#0" expanded="false" />
-            <element signature="e#7984#8122#0" expanded="false" />
-            <element signature="e#8189#8359#0" expanded="false" />
+            <element signature="e#8111#8340#0" expanded="false" />
+            <element signature="e#8158#8296#0" expanded="false" />
+            <element signature="e#8363#8533#0" expanded="false" />
             <element signature="n#!!doc;n#loadBusinessRuleFromScratchCreator#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#loadBusinessRuleFromScratchCreator#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#loadBusinessRuleModifier#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="n#!!block;n#loadBusinessRuleModifier#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#loadBusinessRulesFromTemplateCreator#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#loadBusinessRulesFromTemplateCreator#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#getTemplateGroups#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroups#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#getRuleTemplateProperties#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplateProperties#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#14481#14648#0" expanded="false" />
-            <element signature="e#14541#14638#0" expanded="false" />
-            <element signature="e#14697#14827#0" expanded="false" />
-            <element signature="e#14755#14817#0" expanded="false" />
-            <element signature="e#14836#14891#0" expanded="false" />
+            <element signature="e#14655#14822#0" expanded="false" />
+            <element signature="e#14715#14812#0" expanded="false" />
+            <element signature="e#14871#15001#0" expanded="false" />
+            <element signature="e#14929#14991#0" expanded="false" />
+            <element signature="e#15010#15065#0" expanded="false" />
             <element signature="n#!!doc;n#getBusinessRules#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRules#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#15276#15330#0" expanded="false" />
-            <element signature="e#15557#15637#0" expanded="false" />
+            <element signature="e#15450#15504#0" expanded="false" />
+            <element signature="e#15731#15811#0" expanded="false" />
             <element signature="n#!!doc;n#getBusinessRule#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRule#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#16026#16084#0" expanded="false" />
+            <element signature="e#16200#16258#0" expanded="false" />
             <element signature="n#!!doc;n#getTemplateGroup#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getTemplateGroup#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#getRuleTemplate#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getRuleTemplate#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#getBusinessRuleDeploymentStatus#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#getBusinessRuleDeploymentStatus#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#17870#18038#0" expanded="false" />
-            <element signature="e#18120#18155#0" expanded="false" />
-            <element signature="e#18246#18288#0" expanded="false" />
+            <element signature="e#18044#18212#0" expanded="false" />
+            <element signature="e#18294#18329#0" expanded="false" />
+            <element signature="e#18420#18462#0" expanded="false" />
             <element signature="n#!!doc;n#generateBusinessRuleUUID#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#generateBusinessRuleUUID#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!doc;n#isEmpty#0;n#BusinessRulesFunctions#0" expanded="false" />
             <element signature="n#!!block;n#isEmpty#0;n#BusinessRulesFunctions#0" expanded="false" />
-            <element signature="e#18813#18897#0" expanded="false" />
+            <element signature="e#18987#19071#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/Property.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="34" column="50" lean-forward="false" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterRule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="91" column="4" lean-forward="false" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesAPIs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="119" column="28" lean-forward="true" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+        <state relative-caret-position="577">
+          <caret line="132" column="4" lean-forward="false" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1809">
-          <caret line="77" column="65" lean-forward="true" selection-start-line="77" selection-start-column="65" selection-end-line="77" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="484">
+          <caret line="65" column="78" lean-forward="false" selection-start-line="65" selection-start-column="78" selection-end-line="65" selection-end-column="78" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleModifier.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="567">
+          <caret line="57" column="23" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="23" />
           <folding>
             <element signature="e#67#115#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-application/src/components/InputComponent.js">
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="125" column="53" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="53" />
-          <folding>
-            <element signature="e#67#115#0" expanded="true" />
-            <element signature="e#592#653#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="483">
+          <caret line="37" column="48" lean-forward="false" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/utils/BusinessRulesMessageStringConstants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/OutputComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="165" column="53" lean-forward="false" selection-start-line="165" selection-start-column="53" selection-end-line="165" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/FilterComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="117" column="53" lean-forward="false" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromScratchForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="44" selection-end-column="6" />
+        <state relative-caret-position="351">
+          <caret line="693" column="48" lean-forward="true" selection-start-line="693" selection-start-column="48" selection-end-line="693" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
             <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromScratchForm#0" expanded="false" />
@@ -1034,18 +947,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/node_modules/material-ui/AppBar/AppBar.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/components/InputComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="43" column="56" lean-forward="true" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+          <folding>
+            <element signature="e#67#115#0" expanded="true" />
+            <element signature="e#592#653#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/my-application/src/components/BusinessRuleFromTemplateForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="409" column="33" lean-forward="true" selection-start-line="409" selection-start-column="33" selection-end-line="409" selection-end-column="33" />
+        <state relative-caret-position="486">
+          <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
           <folding>
-            <element signature="e#101#135#0" expanded="true" />
             <element signature="n#!!doc;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
             <element signature="n#!!block;n#handleRuleTemplateSelected#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
             <element signature="n#!!doc;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
             <element signature="n#!!block;n#handleValueChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
             <element signature="n#!!doc;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
             <element signature="n#!!block;n#handleBusinessRuleNameChange#0;n#BusinessRuleFromTemplateForm#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-application/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

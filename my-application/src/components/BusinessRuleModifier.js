@@ -18,6 +18,10 @@ import Paper from 'material-ui/Paper';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
+import BusinessRulesConstants from "../utils/BusinessRulesConstants";
+import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
+import Switch from 'material-ui/Switch';
+import { FormControlLabel, FormGroup } from 'material-ui/Form';
 
 /**
  * Allows to select a Business Rule among Business Rules displayed as table rows
@@ -42,8 +46,17 @@ const styles = {
         paddingTop: 30,
         paddingBottom: 30
     },
+    secondaryButton: {
+        marginRight: 10
+    },
     snackbar: {
         direction: 'up'
+    },
+    check: {
+        color: '#EF6C00',
+        '& + $bar': {
+            backgroundColor: '#EF6C00',
+        },
     }
 }
 
@@ -59,9 +72,8 @@ class BusinessRuleModifier extends React.Component {
 
             // To show dialog when deleting a business rule
             displayDeleteDialog: false,
-            isForceDeletePossible: false,
-            forceDeleteBusinessRule: false, // To force delete or not
-            isDeleted: false
+            businessRuleUUIDToBeDeleted: '',
+            forceDeleteBusinessRule: false
         }
     }
 
@@ -92,6 +104,7 @@ class BusinessRuleModifier extends React.Component {
                     uuid={businessRule[0].uuid}
                     type={businessRule[0].type}
                     status={businessRule[1]}
+                    showDeleteDialog={(uuid) => this.handleDeleteDialogOpen(uuid)}
                 />
             )
 
@@ -138,11 +151,77 @@ class BusinessRuleModifier extends React.Component {
     }
 
     /**
+     * Sends request to the API, to delete the business rule with the given UUID, and status
+     *
+     * @param businessRuleUUID
+     * @param forceDeleteStatus
+     */
+    deleteBusinessRule(businessRuleUUID, forceDeleteStatus){
+        this.setState({displayDialog: true})
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
+        let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'true').then(function(deleteResponse){
+            BusinessRulesFunctions.loadBusinessRuleModifier(true,202)
+        }).catch(function(error){
+            BusinessRulesFunctions.loadBusinessRuleModifier(true,502)
+        })
+    }
+
+    /**
      * Closes the snackbar
      */
     handleRequestClose(){
         this.setState({ displaySnackBar: false });
     };
+
+    /**
+     * Opens the delete confirmation dialog, after updating the state with business rule's UUID, that is to be deleted
+     */
+    handleDeleteDialogOpen(businessRuleUUID){
+        this.setState({
+            displayDeleteDialog: true,
+            businessRuleUUIDToBeDeleted: businessRuleUUID})
+    }
+
+    /**
+     * Returns delete confirmation dialog
+     *
+     * @returns {XML}
+     */
+    showDeleteConfirmationDialog() {
+        return (
+            <Dialog open={this.state.displayDeleteDialog}
+                    onRequestClose={(e) => this.dismissDialog()}
+            >
+                <DialogTitle>
+                    {BusinessRulesMessageStringConstants.BUSINESS_RULE_DELETION_CONFIRMATION_TITLE}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {BusinessRulesMessageStringConstants.BUSINESS_RUL_DELETION_CONFIRMATION_CONTENT}
+                    </DialogContentText>
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={this.state.forceDeleteBusinessRule}
+                                onChange={(event, checked) => this.setState({forceDeleteBusinessRule:checked})}
+                                style={styles.check}
+                            />
+                        }
+                        label="Clear all the information on deletion"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button style={styles.secondaryButton}
+                            onClick={(e) => this.deleteBusinessRule(
+                                this.state.businessRuleUUIDToBeDeleted,
+                                this.state.forceDeleteBusinessRule)}
+                            color="default">
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
 
     /**
      * Closes the dialog
@@ -181,7 +260,17 @@ class BusinessRuleModifier extends React.Component {
                                             .BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE) ?
                                         (BusinessRulesMessageStringConstants
                                             .BUSINESS_RULE_SAVE_AND_DEPLOYMENT_FAILURE_MESSAGE) :
-                                        ('')}
+                                        (this.state.snackbarMessageStatus ===
+                                            BusinessRulesMessageStringConstants
+                                                .BUSINESS_RULE_DELETION_SUCCESSFUL)?
+                                            (BusinessRulesMessageStringConstants
+                                                .BUSINESS_RULE_DELETION_SUCCESSFUL_MESSAGE):
+                                            (this.state.snackbarMessageStatus ===
+                                                BusinessRulesMessageStringConstants
+                                                    .BUSINESS_RULE_DELETION_FAILURE)?
+                                                (BusinessRulesMessageStringConstants
+                                                    .BUSINESS_RULE_DELETION_FAILURE_MESSAGE):
+                                                ('')}
                     </span>
                 }
             />
@@ -189,6 +278,7 @@ class BusinessRuleModifier extends React.Component {
 
         return (
             <div>
+                {this.showDeleteConfirmationDialog()}
                 {snackBar}
                 <center>
                     <Header

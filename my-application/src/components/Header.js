@@ -35,7 +35,7 @@ class Header extends React.Component {
                     &nbsp;
                     &nbsp;
                     &nbsp;
-                    <Typography type="title" color="inherit">
+                    <Typography type="subheading" color="inherit">
                         {this.state.title}
                     </Typography>
                 </Toolbar>

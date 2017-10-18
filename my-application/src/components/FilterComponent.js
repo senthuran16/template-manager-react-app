@@ -115,7 +115,7 @@ class FilterComponent extends React.Component {
             <div>
                 <AppBar position="static" color="default">
                     <Toolbar>
-                        <Typography type="title">Filters</Typography>
+                        <Typography type="subheading">Filters</Typography>
                         <IconButton
                             onClick={(e) => this.props.toggleExpansion()}
                         >

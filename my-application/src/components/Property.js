@@ -26,11 +26,13 @@ class Property extends React.Component {
                 <div>
                     <br/>
                     <FormControl
+                        fullWidth
                         error={(this.props.errorState)?(this.props.errorState):false}
                         disabled={(this.props.disabledState)?(this.props.disabledState):false}
                     >
                         <InputLabel htmlFor={this.props.name}>{this.props.fieldName}</InputLabel>
                         <Select
+                            style={{align: 'left'}}
                             value={this.props.value}
                             onChange={(e)=>this.handleOnChange(e)}
                             input={<Input id={this.props.name}/>}
@@ -46,6 +48,7 @@ class Property extends React.Component {
             return (
                 <div>
                     <TextField
+                        fullWidth
                         required
                         error={(this.props.errorState)?(this.props.errorState):false}
                         disabled={(this.props.disabledState)?(this.props.disabledState):false}

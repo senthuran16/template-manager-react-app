@@ -28,6 +28,10 @@ class BusinessRulesFunctions {
         let businessRulePromise = this.getBusinessRule(businessRuleUUID)
         businessRulePromise.then(function(businessRuleResponse){
             let gotBusinessRule = businessRuleResponse.data
+            console.log("BUSINESS RULE UUID")
+            console.log(businessRuleUUID)
+            console.log("got business rule")
+            console.log(gotBusinessRule)
 
             // Get the template group
             let templateGroupPromise = BusinessRulesFunctions.getTemplateGroup(gotBusinessRule.templateGroupUUID)

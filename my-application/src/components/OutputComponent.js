@@ -40,19 +40,6 @@ class OutputComponent extends React.Component {
         let outputDataPropertiesToDisplay
         let outputMappingsToDisplay
 
-        // Messages to display initially
-        // Output rule template has not been selected
-        outputDataPropertiesToDisplay =
-            <Typography type="body2">
-                {BusinessRulesMessageStringConstants.SELECT_RULE_TEMPLATE}
-            </Typography>
-
-        // Output & Input rule templates has not been selected
-        outputMappingsToDisplay =
-            <Typography type="body2">
-                {BusinessRulesMessageStringConstants.MAPPING_NOT_AVAILABLE}
-            </Typography>
-
         // To display rule templates selection drop down
         let outputRuleTemplateElements = this.props.outputRuleTemplates.map((outputRuleTemplate) =>
             <MenuItem key={outputRuleTemplate.uuid} value={outputRuleTemplate.uuid}>
@@ -84,9 +71,17 @@ class OutputComponent extends React.Component {
         // If an output rule template has been selected
         if (!BusinessRulesFunctions.isEmpty(this.props.selectedOutputRuleTemplate)) {
             // To display output data properties
-            outputDataPropertiesToDisplay = this.props.reArrangePropertiesForDisplay(
+            let outputDataConfigurations = this.props.reArrangePropertiesForDisplay(
                 BusinessRulesConstants.BUSINESS_RULE_FROM_SCRATCH_PROPERTY_TYPE_OUTPUT,
                 this.props.mode)
+
+            outputDataPropertiesToDisplay =
+                <div>
+                    <Typography type="subheading">
+                        Configurations
+                    </Typography>
+                    {outputDataConfigurations}
+                </div>
 
             // To display Output Mappings
 
@@ -144,18 +139,23 @@ class OutputComponent extends React.Component {
                 )
 
                 outputMappingsToDisplay =
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Input</TableCell>
-                                <TableCell></TableCell>
-                                <TableCell>Output</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {outputMappingElementsToDisplay}
-                        </TableBody>
-                    </Table>
+                    <div>
+                        <Typography type="subheading">
+                            Mappings
+                        </Typography>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Input</TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell>Output</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {outputMappingElementsToDisplay}
+                            </TableBody>
+                        </Table>
+                    </div>
             }
         }
 
@@ -163,7 +163,7 @@ class OutputComponent extends React.Component {
             <div>
                 <AppBar position="static" color="default">
                     <Toolbar>
-                        <Typography type="title">Output</Typography>
+                        <Typography type="subheading">Output</Typography>
                         <IconButton
                             onClick={(e) => this.props.toggleExpansion()}
                         >
@@ -177,15 +177,9 @@ class OutputComponent extends React.Component {
                         <br/>
                         <br/>
                         <br/>
-                        <Typography type="subheading">
-                            Configurations
-                        </Typography>
                         {outputDataPropertiesToDisplay}
                         <br/>
                         <br/>
-                        <Typography type="subheading">
-                            Mappings
-                        </Typography>
                         {outputMappingsToDisplay}
                         <br/>
                     </Collapse>

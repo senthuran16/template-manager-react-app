@@ -38,11 +38,14 @@ const styles = {
         align: 'center',
         maxWidth: 800
     },
-    paper: {
-        padding: 50,
-        maxWidth: 500,
-        align: 'center'
+    formRoot: {
+        flexGrow: 1,
+        marginTop: 30,
     },
+    formPaper: {
+        padding: 50,
+        maxWidth: 600,
+    }
 }
 
 class BusinessRuleFromTemplateForm extends React.Component {
@@ -398,27 +401,30 @@ class BusinessRuleFromTemplateForm extends React.Component {
                     title="Business Rule Manager"
                 />
                 <br/>
-                <Grid container spacing={24}>
-                    <Grid item xs>
-                        <Paper style={styles.paper}>
-                            <Typography type="headline">
-                                {this.state.selectedTemplateGroup.name}
-                            </Typography>
-                            <Typography type="subheading">
-                                {this.state.selectedTemplateGroup.description}
-                            </Typography>
-                            <br/>
-                            {ruleTemplatesSelectionToDisplay}
-                            <br/>
-                            <br/>
-                            <br/>
-                            {businessRuleNameTextField}
-                            {propertiesToDisplay}
-                            <br/>
-                            {submitButtons}
-                        </Paper>
+                <div style={styles.formRoot}>
+                    <center>
+                    <Grid container spacing={24} justify='center'>
+                        <Grid item xs>
+                            <Paper style={styles.formPaper}>
+                                <Typography type="headline">
+                                    {this.state.selectedTemplateGroup.name}
+                                </Typography>
+                                <Typography type="subheading">
+                                    {this.state.selectedTemplateGroup.description}
+                                </Typography>
+                                <br/>
+                                {ruleTemplatesSelectionToDisplay}
+                                <br/>
+                                <br/>
+                                {businessRuleNameTextField}
+                                {propertiesToDisplay}
+                                <br/>
+                                {submitButtons}
+                            </Paper>
+                        </Grid>
                     </Grid>
-                </Grid>
+                    </center>
+                </div>
             </div>
         )
     }

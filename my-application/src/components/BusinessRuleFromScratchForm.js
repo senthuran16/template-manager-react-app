@@ -19,6 +19,8 @@ import OutputComponent from "./OutputComponent";
 import FilterComponent from "./FilterComponent";
 import BusinessRulesMessageStringConstants from "../utils/BusinessRulesMessageStringConstants";
 import ShowProgressComponent from "./ShowProgressComponent";
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 
 /**
  * Represents a form, shown to for Business Rules from scratch
@@ -39,7 +41,7 @@ const styles = {
         marginRight: 10
     },
     paper: {
-        padding: 10,
+        padding: 40,
         paddingTop: 15,
         paddingBottom: 15,
     },
@@ -54,9 +56,21 @@ const styles = {
         flexGrow: 1,
         paddingTop: 20
     },
+    propertyComponentPadding: {
+        paddingLeft: 40,
+        paddingRight: 40
+    },
     listSection: {
         background: 'inherit',
     },
+    formRoot: {
+        flexGrow: 1,
+        marginTop: 30,
+    },
+    formPaper: {
+        padding: 50,
+        maxWidth: 1000,
+    }
 }
 
 class BusinessRuleFromScratchForm extends React.Component {
@@ -664,61 +678,71 @@ class BusinessRuleFromScratchForm extends React.Component {
                     title="Business Rule Manager"
                 />
                 <br/>
-                <Typography type="headline">{this.state.selectedTemplateGroup.name}</Typography>
-                <Typography type="subheading">
-                    {this.state.selectedTemplateGroup.description}
-                </Typography>
-                <br/>
-                {businessRuleNameToDisplay}
-                <br/>
-                <br/>
-                <InputComponent
-                    mode={this.state.formMode}
-                    inputRuleTemplates={this.state.inputRuleTemplates}
-                    getFields={(streamDefinition) => this.getFields(streamDefinition)}
-                    selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
-                    handleInputRuleTemplateSelected={(e) => this.handleInputRuleTemplateSelected(e)}
-                    reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
-                    style={styles}
-                    isExpanded={this.state.isInputComponentExpanded}
-                    toggleExpansion={(e) => this.toggleInputComponentExpansion()}
-                />
-                <br/>
-                <FilterComponent
-                    mode={this.state.formMode}
-                    selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
-                    getFields={(streamDefinition) => this.getFields(streamDefinition)}
-                    businessRuleProperties={this.state.businessRuleProperties}
-                    handleAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
-                    handleOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
-                    handleAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}
-                    handleRemoveFilterRule={(index) => this.removeFilterRule(index)}
-                    handleRuleLogicChange={(value) => this.handleRuleLogicChange(value)}
-                    addFilterRule={(e) => this.addFilterRule()}
-                    onFilterRuleAddition={(e) => this.generateRuleLogic()}
-                    ruleLogicWarn={this.warnOnRuleLogic()}
-                    isExpanded={this.state.isFilterComponentExpanded}
-                    toggleExpansion={(e) => this.toggleFilterComponentExpansion()}
-                    style={styles}
-                />
-                <br/>
-                <OutputComponent
-                    mode={this.state.formMode}
-                    outputRuleTemplates={this.state.outputRuleTemplates}
-                    getFields={(streamDefinition) => this.getFields(streamDefinition)}
-                    getFieldNames={(streamDefinition) => this.getFieldNames(streamDefinition)}
-                    selectedOutputRuleTemplate={this.state.selectedOutputRuleTemplate}
-                    selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
-                    handleOutputRuleTemplateSelected={(e) => this.handleOutputRuleTemplateSelected(e)}
-                    handleOutputMappingChange={(e, fieldName) => this.handleOutputMappingChange(e, fieldName)}
-                    reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
-                    businessRuleProperties={this.state['businessRuleProperties']}
-                    isExpanded={this.state.isOutputComponentExpanded}
-                    toggleExpansion={(e) => this.toggleOutputComponentExpansion()}
-                    style={styles}
-                />
-                <br/>
-                {submitButtons}
+                <div style={styles.formRoot}>
+                    <center>
+                        <Grid container spacing={24} justify='center'>
+                            <Grid item xs>
+                                <Paper style={styles.formPaper}>
+                                    <Typography type="headline">{this.state.selectedTemplateGroup.name}</Typography>
+                                    <Typography type="subheading">
+                                        {this.state.selectedTemplateGroup.description}
+                                    </Typography>
+                                    <br/>
+                                    {businessRuleNameToDisplay}
+                                    <br/>
+                                    <br/>
+                                    <InputComponent
+                                        mode={this.state.formMode}
+                                        inputRuleTemplates={this.state.inputRuleTemplates}
+                                        getFields={(streamDefinition) => this.getFields(streamDefinition)}
+                                        selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
+                                        handleInputRuleTemplateSelected={(e) => this.handleInputRuleTemplateSelected(e)}
+                                        reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
+                                        style={styles}
+                                        isExpanded={this.state.isInputComponentExpanded}
+                                        toggleExpansion={(e) => this.toggleInputComponentExpansion()}
+                                    />
+                                    <br/>
+                                    <FilterComponent
+                                        mode={this.state.formMode}
+                                        selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
+                                        getFields={(streamDefinition) => this.getFields(streamDefinition)}
+                                        businessRuleProperties={this.state.businessRuleProperties}
+                                        handleAttributeChange={(filterRuleIndex, value) => this.handleAttributeChange(filterRuleIndex, value)}
+                                        handleOperatorChange={(filterRuleIndex, value) => this.handleOperatorChange(filterRuleIndex, value)}
+                                        handleAttributeOrValueChange={(filterRuleIndex, value) => this.handleAttributeOrValueChange(filterRuleIndex, value)}
+                                        handleRemoveFilterRule={(index) => this.removeFilterRule(index)}
+                                        handleRuleLogicChange={(value) => this.handleRuleLogicChange(value)}
+                                        addFilterRule={(e) => this.addFilterRule()}
+                                        onFilterRuleAddition={(e) => this.generateRuleLogic()}
+                                        ruleLogicWarn={this.warnOnRuleLogic()}
+                                        isExpanded={this.state.isFilterComponentExpanded}
+                                        toggleExpansion={(e) => this.toggleFilterComponentExpansion()}
+                                        style={styles}
+                                    />
+                                    <br/>
+                                    <OutputComponent
+                                        mode={this.state.formMode}
+                                        outputRuleTemplates={this.state.outputRuleTemplates}
+                                        getFields={(streamDefinition) => this.getFields(streamDefinition)}
+                                        getFieldNames={(streamDefinition) => this.getFieldNames(streamDefinition)}
+                                        selectedOutputRuleTemplate={this.state.selectedOutputRuleTemplate}
+                                        selectedInputRuleTemplate={this.state.selectedInputRuleTemplate}
+                                        handleOutputRuleTemplateSelected={(e) => this.handleOutputRuleTemplateSelected(e)}
+                                        handleOutputMappingChange={(e, fieldName) => this.handleOutputMappingChange(e, fieldName)}
+                                        reArrangePropertiesForDisplay={(propertiesType, formMode) => this.reArrangePropertiesForDisplay(propertiesType, formMode)}
+                                        businessRuleProperties={this.state['businessRuleProperties']}
+                                        isExpanded={this.state.isOutputComponentExpanded}
+                                        toggleExpansion={(e) => this.toggleOutputComponentExpansion()}
+                                        style={styles}
+                                    />
+                                    <br/>
+                                    {submitButtons}
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                    </center>
+                </div>
             </div>
 
         )
