@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 // import './index.css';
 // Material-UI
 import IconButton from 'material-ui/IconButton';
@@ -11,6 +12,7 @@ import BusinessRulesFunctions from "../utils/BusinessRulesFunctions";
 import BusinessRulesAPIs from "../utils/BusinessRulesAPIs";
 import Tooltip from 'material-ui/Tooltip';
 import VisibilityIcon from 'material-ui-icons/Visibility';
+import BusinessRuleModifier from "./BusinessRuleModifier";
 
 /**
  * Represents each Business Rule, that is shown as a row, to view, edit, delete / re-deploy Business Rules
@@ -49,11 +51,17 @@ class BusinessRule extends React.Component {
     viewBusinessRule() {
         BusinessRulesFunctions.viewBusinessRuleForm(false, this.state.uuid)
     }
+
     /**
      * Handles onClick action of the 'Re-deploy' button
      */
     handleReDeployButtonClick() {
-        // todo: complete this
+        let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL)
+        let redeployPromise = apis.redeployBusinessRule(this.state.uuid).then(
+            function(redeployResponse){
+                BusinessRulesFunctions.loadBusinessRuleModifier(true, redeployResponse.data)
+            }
+        )
     }
 
     /**
@@ -70,8 +78,7 @@ class BusinessRule extends React.Component {
         let apis = new BusinessRulesAPIs(BusinessRulesConstants.BASE_URL);
         // todo: no hard coding for true or false for force-delete
         let deletePromise = apis.deleteBusinessRule(this.state.uuid, 'true').then(function(deleteResponse){
-            console.log("DELETE RESPONSE")
-            console.log(deleteResponse)
+            BusinessRulesFunctions.loadBusinessRuleModifier(false,'')
         })
     }
 

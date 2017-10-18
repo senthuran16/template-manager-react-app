@@ -124,6 +124,15 @@ class BusinessRulesAPIs {
         return this.getHTTPClient()
             .delete('/instances/' + businessRuleID + '?force-delete=' + forceDeleteStatus);
     }
+
+    /**
+     * Re deploys the artifacts of the business rule, identified by the given ID
+     *
+     * @param businessRuleID
+     */
+    redeployBusinessRule(businessRuleID){
+        return this.getHTTPClient().post('/instances/'+businessRuleID);
+    }
 }
 
 export default BusinessRulesAPIs;

@@ -60,7 +60,7 @@ class BusinessRuleModifier extends React.Component {
             // To show dialog when deleting a business rule
             displayDeleteDialog: false,
             isForceDeletePossible: false,
-            forceDeleteBusinessRule: false,
+            forceDeleteBusinessRule: false, // To force delete or not
             isDeleted: false
         }
     }
@@ -143,33 +143,6 @@ class BusinessRuleModifier extends React.Component {
     handleRequestClose(){
         this.setState({ displaySnackBar: false });
     };
-
-    /**
-     * Shows the delete dialog, after a business rule is requested to be deleted
-     *
-     * @returns {XML}
-     */
-    showDeleteDialog(){
-        return (
-            <Dialog open={this.state.displayDeleteDialog}
-                    onRequestClose={(e)=>this.dismissDialog()}
-            >
-                <DialogTitle>{this.state.dialogTitle}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {this.state.dialogContentText}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button style={styles.secondaryButton}
-                            onClick={(e)=>this.dismissDialog()}
-                            color="default">
-                        {this.state.dialogPrimaryButtonText}
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
 
     /**
      * Closes the dialog
